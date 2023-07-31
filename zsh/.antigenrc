@@ -1,0 +1,23 @@
+#vim:ft=zsh
+
+antigen use oh-my-zsh
+antigen bundle junegunn/fzf
+antigen bundle colored-man-pages
+antigen bundle command-not-found
+antigen bundle common-aliases
+antigen bundle git
+antigen bundle last-working-dir
+# use OS specific plugins
+case $(grep ^NAME /etc/os-release 2>/dev/null) in
+    *Ubuntu*) antigen bundle ubuntu ;;
+    *Debian*) antigen bundle debian ;;
+    *Arch*)   antigen bundle archlinux ;;
+    *) ;;
+esac
+#antigen bundle Aloxaf/fzf-tab
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle MichaelAquilina/zsh-you-should-use
+antigen theme romkatv/powerlevel10k
+antigen apply

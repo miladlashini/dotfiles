@@ -1,0 +1,87 @@
+#Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+#=============================pathes
+alias coreDumpStatus="ulimit -a"
+
+#if this one did not work log out and log in
+# in none of the existing shell files should be a line like the following
+# ulimit -c 0.
+#############################################################################
+#############################################################################
+# possible solution:
+#
+# 1. in the file /proc/sys/kernel/core_pattern if the first character of the pattern is a '|'
+# the kernel will treat the rest of the pattern as a command to run == meaning no core file will be generated
+# 
+# 2. create a folder in /home/milad/Documents/CoreFiles as an example and run the followinmg command :
+#
+# 3. sudo bash -c 'echo /home/milad/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'
+#
+# 4. check the content of the /proc/sys/kernel/core_pattern now it should be set to the desired folder.
+#
+# other solution:
+#
+# 1. in /etc/security/limits.conf file the following line should be uncommented:
+#  soft core unlimited
+#
+# 1. log out and log in
+#
+#
+#############################################################################
+#############################################################################
+#For the bluetooth keyboard to be available on login you need to install the
+#following :
+# sudo snap install bluetooth-autostart
+#
+# install bluez
+# bluetoothctl
+# trust DC:2C:26:0A:7E:69
+# info DC:2C:26:0A:7E:69
+#
+#
+
+alias activateCoreDump1="ulimit -c unlimited"
+alias activateCoreDump2="sudo bash -c 'echo /home/milad/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
+alias agi="sudo apt install"
+alias update="sudo apt update"
+
+
+alias upgrade="sudo apt upgrade"
+alias fixUpdate="sudo apt-get update --fix-missing"
+alias remove="sudo apt-get remove --purge"
+alias -g G="| grep"
+alias -g L="| less"
+alias MMO="sudo chown -R $USER:$USER "
+alias vcmake="cmake -DCMAKE_VERBOSE_MAKEFILE=ON " 
+alias MEX="chmod a+x "
+alias HD="df -h"
+alias lh="ls -lh"
+alias RestartNetwork="sudo systemctl restart NetworkManager.service"
+alias NetworkStatus="sudo systemctl status NetworkManager.service"
+alias path="echo $PATH"
+alias SSH_KEY="ssh-keygen -t rsa" 
+alias BoostVersion="dpkg -s libboost-dev | grep 'Version'"
+alias buildDesignPattern=" cmake -D CMAKE_C_COMPILER=${CC} -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Debug  ~/Documents/DesignPatterns/src && make -j12 "
+alias buildRPC="time make clean &&  cmake -D CMAKE_C_COMPILER=${CC} -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && make -j12 "
+
+alias buildRPC_GCC="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+
+alias buildRPC_Clang="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+
+alias buildRPC_Clang_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_Clang_Test="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_GCC_Test="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+
+alias buildRPC_Clang_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+
+alias tmuxl="tmux list-sessions"
+alias tmuxa="tmux attach-session -t "
+alias tmuxn="tmux new-session -s "
+alias tmuxk="tmux kill-session -t "
+alias tmuxks="tmux kill-server"
+
+
+
