@@ -24,6 +24,8 @@ export RPC_BUILD_DIR="/opt/RPC-build"
 export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
 export RPC_CLANG_TIDY="clang-tidy-14"
 export CXXFLAGS="-fdiagnostics-color=always" 
+export GIT_EDITOR=vim
+
 
 #=============================COMPILER
 export CCACHE_MAXSIZE=40G
