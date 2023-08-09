@@ -25,9 +25,10 @@ export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
 export RPC_CLANG_TIDY="clang-tidy-14"
 export CXXFLAGS="-fdiagnostics-color=always" 
 export GIT_EDITOR=vim
+#change it to "all" to see everything.
+export BOOST_TEST_LOG_LEVEL=error
 
-
-#=============================COMPILER
+#============================COMPILER
 export CCACHE_MAXSIZE=40G
 
 #export CC=clang-10
