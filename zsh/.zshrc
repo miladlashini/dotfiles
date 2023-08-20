@@ -104,9 +104,12 @@ for _f in \
 done
 
 ##########################################################################################
-
-autoload -Uz compinit; 
+#auto complete
+autoload -Uz compinit;
+zstyle ':completion:*' menu select
+zmodload zsh/complist
 compinit -u;
+_comp_options+=(globdots)		# Include hidden files.
 ##########################################################################################
 #The following line needs to be activated if junegunn/fzf bundle is used.
 source "/usr/share/doc/fzf/examples/key-bindings.zsh"
@@ -137,6 +140,26 @@ ulimit -c unlimited
 # For a full list of active aliases, run `alias`.
 #
 #
+##########################################################################################
+# This is the tool to navigate through the filesystem graphically
+# first you need to install go : 
+# sudo apt update && sudo apt install golang
+# then add the path of the lf executable to the PATH of your system. It is already 
+# in path just check if it is valid. Then install lf via golang :
+# Current command = 
+# "env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest"
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
+
 ##########################################################################################
 
 bindkey -r '^l'
