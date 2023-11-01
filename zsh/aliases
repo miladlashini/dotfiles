@@ -46,6 +46,8 @@ alias activateCoreDump2="sudo bash -c 'echo /home/milad/Documents/CoreFiles/core
 alias agi="sudo apt install"
 alias update="sudo apt update"
 
+#update ccache after installing new compiler
+alias UpdateCCache="sudo update-ccache-symlinks"
 
 alias upgrade="sudo apt upgrade"
 alias fixUpdate="sudo apt-get update --fix-missing"
@@ -62,20 +64,41 @@ alias NetworkStatus="sudo systemctl status NetworkManager.service"
 alias path="echo $PATH"
 alias SSH_KEY="ssh-keygen -t rsa" 
 alias BoostVersion="dpkg -s libboost-dev | grep 'Version'"
-alias buildDesignPattern=" cmake -D CMAKE_C_COMPILER=${CC} -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Debug  ~/Documents/DesignPatterns/src && make -j12 "
-alias buildRPC="time make clean &&  cmake -D CMAKE_C_COMPILER=${CC} -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && make -j12 "
 
+alias buildRPC="cmake -D CMAKE_C_COMPILER=${CC} -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && make -j12 "
+
+#debug
 alias buildRPC_GCC="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
-
 alias buildRPC_Clang="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
-
 alias buildRPC_Clang_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
 alias buildRPC_Clang_Test="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
 alias buildRPC_GCC_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
 alias buildRPC_GCC_Test="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
 alias buildRPC_GCC_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
-
 alias buildRPC_Clang_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+
+#Release
+alias buildRPC_GCC_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+alias buildRPC_Clang_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+alias buildRPC_Clang_Tidy_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_Clang_Test_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_GCC_Test_R="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy_Test_R=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_Clang_Tidy_Test_R=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+
+#Coverage
+alias buildRPC_GCC_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+alias buildRPC_Clang_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12"
+alias buildRPC_Clang_Tidy_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_Clang_Test_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_GCC_Test_C="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j12 "
+alias buildRPC_GCC_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=false -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+alias buildRPC_Clang_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG=True -D WITH_CLANG_TIDY=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12 "
+
+
+
 
 alias tmuxl="tmux list-sessions"
 alias tmuxa="tmux attach-session -t "

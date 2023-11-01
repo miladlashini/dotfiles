@@ -32,10 +32,10 @@ export BOOST_TEST_LOG_LEVEL=error
 #============================COMPILER
 export CCACHE_MAXSIZE=40G
 
-#export CC=clang-10
-#export CXX=clang++-10
-export CC=gcc-10
-export CXX=g++-10
+#export CC=clang-14
+#export CXX=clang++-14
+export CC=gcc-12
+export CXX=g++-12
 
 #export CC="gcc-7"
 #export CXX="g++-7"
