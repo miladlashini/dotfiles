@@ -166,12 +166,18 @@ bindkey -r '^l'
 bindkey -r '^g'
 bindkey -s '^g' 'clear\n'
 
-neofetch
+#neofetch --ascii_distro manjaro
+#neofetch --ascii_distro ubuntu
+#neofetch --ascii_distro archlinux
+#neofetch --ascii_distro fedora
+
+shuf -n 1 $DOTFILES/neofetch_distros.txt | xargs -I % sh -c 'neofetch --ascii_distro % '
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/dotFiles/zsh/.p10k.zsh.
 [[ ! -f ~/dotFiles/zsh/.p10k.zsh ]] || source ~/dotFiles/zsh/.p10k.zsh
 
-if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
-   fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
-fi
+#if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
+#   fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
+#1fi
