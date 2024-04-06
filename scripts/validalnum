@@ -1,0 +1,35 @@
+#!/bin/bash
+# validAlphaNum--Ensures that input consists only of alphabetical
+# and numeric characters
+
+validAlphaNum()
+{
+ # Validate arg: returns 0 if all upper+lower+digits; 1 otherwise
+
+ #s/[^[:alnum:]]//g: This is the substitution command. Here's what each part does:
+ #s: Indicates that a substitution is being performed.
+ #[^[:alnum:]]: This is a regular expression pattern matching any character that is not an alphanumeric character.
+ #[^[:alnum:]] matches any character that is neither a letter ([a-zA-Z]) nor a digit ([0-9]).
+ #//: This is the replacement part of the substitution. It's empty, meaning that any characters matching the pattern will be replaced with nothing.
+ #g: This flag stands for "global" and means that the substitution should be applied globally throughout the input string.
+ # Without this flag, only the first occurrence of the pattern on each line would be replaced.
+ validchars="$(echo $1 | sed -e 's/[^[:alnum:]]//g')"
+ if [ "$validchars" = "$1" ] ; then
+	 return 0
+ else
+	 return 1
+ fi
+}
+
+#/bin/echo -n "Enter input: "
+#read input
+
+#if ! validAlphaNum "$input" ; then
+#	echo "Please enter only letters and numbers." >&2
+#	exit 1
+#else
+#	echo "Inout is valid."
+#fi
+
+#exit 0
+
