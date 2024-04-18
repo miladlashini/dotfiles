@@ -28,6 +28,7 @@ export CXXFLAGS="-fdiagnostics-color=always"
 export GIT_EDITOR=vim
 #change it to "all" to see everything.
 export BOOST_TEST_LOG_LEVEL=error
+export PATH="$DOTFILES/scripts:$PATH"
 
 #============================COMPILER
 export CCACHE_MAXSIZE=40G
@@ -48,3 +49,4 @@ export CCACHE_TEMPDIR=/home/milad/.ccache
 export DISTCC_HOSTS='--randomize 192.168.134.51/8,lzo 192.168.134.56/8,lzo localhost/6,lzo'
 export DISTCC_VERBOSE=1
 export DISTCC_LOG='/tmp/distcc.log'
+
