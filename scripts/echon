@@ -1,3 +1,6 @@
 #!/bin/bash
-
-echon "Enter coordinates for satellite acquisition: "
+# important without the "read" operation the echon will return immediately
+# with %
+echon() {
+    echo -e "$*" | tr -d '\n'
+}

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# cat << EOF
+# ${yellowf}This is a phrase in yellow${redb} and red${reset}
+# ${boldon}This is bold${ulon} this is italics${reset} bye-bye
+# ${italicson}This is italics${italicsoff} and this is not
+# ${ulon}This is ul${uloff} and this is not
+# ${invon}This is inv${invoff} and this is not
+# ${yellowf}${redb}Warning I ${yellowb}${redf}Warning II${reset}
+# EOF
+
+. echon
+. initializeANSI
+
+initializeANSI
+
+echon "Enter a year you think might be a leap year: "
+read year
+
+echo -e "${greenf}You're right! $year is a leap year.${reset}"
+
+echo -e "${redf}Nope, that's not a leap year.${reset}"
+
+echon "${boldon}${italicson}${redf}Try again${italicsoff}${boldoff}${reset}. Do you have echo "
+
+exit 0
