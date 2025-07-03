@@ -20,7 +20,9 @@ sudo apt update
 sudo apt install -y build-essential neovim git tig zsh tmux curl wget ncdu nload fzf silversearcher-ag \
 ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev \
-software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server
+software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
+btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks 
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
@@ -154,7 +156,7 @@ if [[ "$1" == "qt" ]]; then
     libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev \
     libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev \
     libxcb-cursor-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev \
-    libjpeg-dev libssl-dev
+    libjpeg-dev libssl-dev ntp cups ffmpeg libprotobuf-dev
 
   # Clone qtbase if not already present
   if [ ! -d "$QT_SRC_DIR" ]; then
@@ -193,6 +195,32 @@ sudo usermod -aG docker "$USER"
 
 echo "Docker installed and running. You may need to log out and log back in for group changes to take effect."
 
+#For NVIDIA to solve the rendering problem
+#prime-select query
+#sudo prime-select nvidia
+
+
+#########################
+# Install Google Chrome (Stable)
+#########################
+
+echo "Installing Google Chrome (Stable)..."
+
+wget -qO /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+sudo apt install -y /tmp/google-chrome.deb
+
+rm /tmp/google-chrome.deb
+
+echo "Google Chrome installed successfully."
+
+# Add Google Chrome repo and key
+echo "Adding Google Chrome repository..."
+
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | \
+  sudo tee /etc/apt/sources.list.d/google-chrome.list > /dev/null
 
 ########
 # zsh #
