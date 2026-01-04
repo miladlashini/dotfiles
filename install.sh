@@ -22,7 +22,7 @@ ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
-xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks 
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto 
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
@@ -226,16 +226,33 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl
 # zsh #
 ########
 
-ln -s "$DOTFILES/zsh/.zshenv" ~/.zshenv
-ln -s "$DOTFILES/zsh/.zshrc" ~/.zshrc
+# Creates the link if missing
+# Replaces incorrect links
+# Does not touch real files
 
+link_if_missing() {
+    src="$1"
+    dst="$2"
+
+    if [ -L "$dst" ]; then
+        return
+    elif [ -e "$dst" ]; then
+        echo "Skipping $dst (exists and is not a symlink)"
+    else
+        ln -s "$src" "$dst"
+    fi
+}
+
+link_if_missing "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+link_if_missing "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
 ########
 # tmux #
 ########
 mkdir -p "$XDG_CONFIG_HOME/tmux"
-ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+link_if_missing "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
-if [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] \
-&& git clone https://github.com/tmux-plugins/tpm \
-"$XDG_CONFIG_HOME/tmux/plugins/tpm"
+if [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm \
+        "$XDG_CONFIG_HOME/tmux/plugins/tpm"
+fi

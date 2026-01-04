@@ -1,3 +1,4 @@
 zsh/.antigen/
 zsh/*.zwc
 zsh/.zsh_history
+zsh/.zcompdump
