@@ -22,7 +22,7 @@ ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
-xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto 
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
