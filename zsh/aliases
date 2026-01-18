@@ -44,6 +44,7 @@ alias coreDumpStatus="ulimit -a"
 alias activateCoreDump1="ulimit -c unlimited"
 alias activateCoreDump2="sudo bash -c 'echo /home/milad/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
 alias agi="sudo apt install"
+alias Up="update_script.sh"
 alias update="sudo apt update"
 
 #update ccache after installing new compiler

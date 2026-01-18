@@ -10,8 +10,11 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 export ZDOTDIR="${DOTFILES}/zsh";
 export ADOTDIR="${ZDOTDIR}/.antigen";
+export BASH_SCRIPT_DIR="${DOTFILES}/scripts/Bash";
+export PY_SCRIPT_DIR="${DOTFILES}/scripts/Python";
 
 #=============================pathes
+export PATH="$BASH_SCRIPT_DIR:$PY_SCRIPT_DIR:$PATH"
 
 export CMAKE_INSTALL_PREFIX="/tmp/RPC"
 export PATH="/usr/lib/ccache:$PATH"
