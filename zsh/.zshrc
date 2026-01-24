@@ -160,7 +160,21 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+# checks if we are online or not
+onLine(){
+    ping -c 1 google.com &> /dev/null 
+ 
+    if [ "$?" -eq 0 ]; then
+ 	echo "Online!"
+    else
+ 	echo "Offline"
+    fi
+}
+
+
 ##########################################################################################
+
+
 
 bindkey -r '^l'
 bindkey -r '^g'
