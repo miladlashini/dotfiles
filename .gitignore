@@ -1,4 +1,5 @@
 zsh/.antigen/
+zsh/performance.log
 zsh/*.zwc
 zsh/.zsh_history
 zsh/.zcompdump

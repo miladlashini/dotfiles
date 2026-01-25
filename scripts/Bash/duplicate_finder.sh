@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+# -e If any command exits with a non-zero status, the script exits immediately. could be problematic for example with grep that finds nothing.
+# -u treat unset variables as errors
+# -o pipefail — fail if any part of a pipeline fails (Manzoor hamoon pipe kardan be hame command ha)
 set -euo pipefail
 
 SEARCH_DIR="${1:-}"
