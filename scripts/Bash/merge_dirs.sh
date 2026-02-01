@@ -9,7 +9,7 @@ if [[ ! -d "$SRC" || ! -d "$DST" ]]; then
     echo "Usage: $0 <destination_dir> <source_dir>"
     exit 1
 fi
-
+copied_files=0
 merge_dir() {
     local src="$1"
     local dst="$2"
@@ -29,8 +29,11 @@ merge_dir() {
             else
             # If destination directory does not exist, copy the entire source directory
                 cp -a "$item" "$dst_item"
+                # Count files inside copied directory
+                local cnt
+                cnt=$(find "$dst_item" -type f | wc -l)
+                copied_files=$((copied_files + cnt))
             fi
-
         elif [[ -f "$item" ]]; then
             if [[ -e "$dst_item" ]]; then
                 # Get file name without extension
@@ -49,14 +52,19 @@ merge_dir() {
                 # Generate new file name with incremented suffix ${ext:+.$ext} ensures the dot is only added if ext is not empty
                     new_name="${base}_${i}${ext:+.$ext}"
                     [[ ! -e "$dst/$new_name" ]] && break
-                    ((i++))
+                    i=$((i+1))
                 done
                 cp -a "$item" "$dst/$new_name"
+                copied_files=$((copied_files + 1))
             else
                 cp -a "$item" "$dst_item"
+                copied_files=$((copied_files + 1))
             fi
         fi
     done
 }
 
+
 merge_dir "$SRC" "$DST"
+echo "Merged '$SRC' into '$DST': $copied_files files copied."
+
