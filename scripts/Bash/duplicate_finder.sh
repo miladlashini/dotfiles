@@ -50,6 +50,8 @@ for size in "${!size_groups[@]}"; do
 
     while IFS= read -r file; do
         [[ -z "$file" ]] && continue
+        # Compute hash and group by hash. awk '{print $1}' extracts the hash value from the output of the hash command,
+        # which typically includes both the hash and the filename. We only want the hash for grouping.
         hash=$($HASH_CMD "$file" | awk '{print $1}')
         hash_groups["$hash"]+=$'\n'"$file"
     done <<< "$files"
