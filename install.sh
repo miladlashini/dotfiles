@@ -256,3 +256,59 @@ if [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm \
         "$XDG_CONFIG_HOME/tmux/plugins/tpm"
 fi
+
+###########
+# neovim #
+###########
+
+echo "Setting up Neovim..."
+
+# Packages (sudo already granted earlier in your script)
+sudo apt install -y \
+    ripgrep \
+    fd-find \
+    clangd \
+    git \
+    curl
+
+sudo apt remove -y neovim
+
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+
+
+# fd compatibility (Ubuntu naming)
+if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
+    sudo ln -sf "$(which fdfind)" /usr/local/bin/fd
+fi
+
+# XDG paths
+mkdir -p "$XDG_CONFIG_HOME/nvim"
+mkdir -p "$XDG_DATA_HOME/nvim"
+
+# Symlink Neovim config
+link_if_missing "$DOTFILES/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+
+echo "Installing lazy.nvim..."
+
+# lazy.nvim (plugin manager)
+LAZY_DIR="$XDG_DATA_HOME/nvim/lazy/lazy.nvim"
+if [ ! -d "$LAZY_DIR" ]; then
+    git clone https://github.com/folke/lazy.nvim.git "$LAZY_DIR"
+fi
+
+# JetBrainsMono Nerd Font.
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -LO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip
+fc-cache -fv
+
+
+echo "Neovim setup complete."
+echo "Done!"
+echo "Start Neovim with: nvim"
+echo "Plugins will auto-install on first launch."
