@@ -155,6 +155,25 @@ require("lazy").setup({
     {
     "christoomey/vim-tmux-navigator",
     },
+
+    --------------------------------------------------
+    -- True Zoom Mode (like tmux prefix+z)
+    --------------------------------------------------
+    {
+    "folke/zen-mode.nvim",
+    opts = {
+        window = {
+        backdrop = 1,
+        width = 120,      -- full width
+        height = 1,     -- full height
+        options = {
+            number = true,
+            relativenumber = false,
+        },
+        },
+    },
+    },
+
 })
 
 --------------------------------------------------
@@ -201,5 +220,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+--------------------------------------------------
+-- Space + z → Toggle Zoom
+--------------------------------------------------
+
+vim.keymap.set("n", "<leader>z", function()
+  require("zen-mode").toggle()
+end, { desc = "Toggle Zoom" })
 
 
