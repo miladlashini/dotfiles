@@ -312,3 +312,25 @@ echo "Neovim setup complete."
 echo "Done!"
 echo "Start Neovim with: nvim"
 echo "Plugins will auto-install on first launch."
+
+#############################
+# tmux <-> neovim integration
+#############################
+
+echo "Setting up tmux <-> Neovim integration..."
+
+# Ensure TPM plugin line exists
+TMUX_CONF="$XDG_CONFIG_HOME/tmux/tmux.conf"
+
+if ! grep -q "christoomey/vim-tmux-navigator" "$TMUX_CONF"; then
+    echo "Adding vim-tmux-navigator to tmux plugins..."
+    printf "\nset -g @plugin 'christoomey/vim-tmux-navigator'\n" >> "$TMUX_CONF"
+fi
+
+# Install TPM plugins automatically (non-interactive)
+if [ -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
+    "$XDG_CONFIG_HOME/tmux/plugins/tpm/bin/install_plugins" >/dev/null 2>&1 || true
+fi
+
+echo "tmux <-> Neovim integration complete."
+

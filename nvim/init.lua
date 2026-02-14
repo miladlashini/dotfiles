@@ -1,4 +1,49 @@
 vim.g.mapleader = " "
+
+vim.g.tmux_navigator_no_mappings = 1
+
+--------------------------------------------------
+-- Split creation
+--------------------------------------------------
+
+-- Vertical split
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { desc = "Vertical split" })
+
+-- Horizontal split
+vim.keymap.set("n", "<leader>h", ":split<CR>", { desc = "Horizontal split" })
+
+-- Close current split
+vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close split" })
+
+
+-- Close current split
+vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close split" })
+
+
+
+vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>")
+
+
+--------------------------------------------------
+-- Resize splits using Alt + Arrow
+--------------------------------------------------
+
+vim.keymap.set("n", "<M-Left>",  ":vertical resize -3<CR>")
+vim.keymap.set("n", "<M-Right>", ":vertical resize +3<CR>")
+vim.keymap.set("n", "<M-Up>",    ":resize +2<CR>")
+vim.keymap.set("n", "<M-Down>",  ":resize -2<CR>")
+
+
+-- Open vertical splits to the right
+vim.opt.splitright = true
+
+-- Open horizontal splits below
+vim.opt.splitbelow = true
+
+
 --------------------------------------------------
 -- Basics (mouse & arrows friendly)
 --------------------------------------------------
@@ -102,6 +147,12 @@ require("lazy").setup({
                 },
             })
         end,
+    },
+    --------------------------------------------------
+    -- tmux <-> vim
+    --------------------------------------------------
+    {
+    "christoomey/vim-tmux-navigator",
     },
 })
 
