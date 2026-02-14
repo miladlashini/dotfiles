@@ -1,52 +1,11 @@
+--------------------------------------------------
+-- LEADER
+--------------------------------------------------
 vim.g.mapleader = " "
-
 vim.g.tmux_navigator_no_mappings = 1
 
 --------------------------------------------------
--- Split creation
---------------------------------------------------
-
--- Vertical split
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { desc = "Vertical split" })
-
--- Horizontal split
-vim.keymap.set("n", "<leader>h", ":split<CR>", { desc = "Horizontal split" })
-
--- Close current split
-vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close split" })
-
-
-
---vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>")
---vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>")
---vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>")
---vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>")
-
-vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>",  { silent = true })
-vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
-vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>",    { silent = true })
-vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>",  { silent = true })
-
-
---------------------------------------------------
--- Resize splits using Alt + Arrow
---------------------------------------------------
-
-vim.keymap.set("n", "<M-Left>",  ":vertical resize -3<CR>")
-vim.keymap.set("n", "<M-Right>", ":vertical resize +3<CR>")
-vim.keymap.set("n", "<M-Up>",    ":resize +2<CR>")
-vim.keymap.set("n", "<M-Down>",  ":resize -2<CR>")
-
-
--- Open vertical splits to the right
-vim.opt.splitright = true
-
--- Open horizontal splits below
-vim.opt.splitbelow = true
-
-
---------------------------------------------------
--- Basics (mouse & arrows friendly)
+-- BASIC SETTINGS
 --------------------------------------------------
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -56,25 +15,38 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 5
-
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.o.background = "dark"
 
---------------------------------------------------
--- Faster startup
---------------------------------------------------
 vim.loader.enable()
 
 --------------------------------------------------
--- Colors (simple & fast)
+-- KEYMAPS
 --------------------------------------------------
-vim.cmd.colorscheme("default")
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1c1c1c" })
-vim.api.nvim_set_hl(0, "Visual", { bg = "#264f78" })
+
+-- Splits
+vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "Vertical split" })
+vim.keymap.set("n", "<leader>h", "<cmd>split<CR>",  { desc = "Horizontal split" })
+vim.keymap.set("n", "<leader>q", "<cmd>close<CR>",  { desc = "Close split" })
+
+-- Tmux navigation
+vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>",  { silent = true })
+vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
+vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>",    { silent = true })
+vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>",  { silent = true })
+
+-- Resize
+vim.keymap.set("n", "<M-Left>",  "<cmd>vertical resize -3<CR>")
+vim.keymap.set("n", "<M-Right>", "<cmd>vertical resize +3<CR>")
+vim.keymap.set("n", "<M-Up>",    "<cmd>resize +2<CR>")
+vim.keymap.set("n", "<M-Down>",  "<cmd>resize -2<CR>")
 
 --------------------------------------------------
--- lazy.nvim bootstrap
+-- lazy.nvim
 --------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
@@ -82,18 +54,29 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
     --------------------------------------------------
-    -- Gruvbox Colorscheme
+    -- Colorscheme
     --------------------------------------------------
     {
-    "ellisonleao/gruvbox.nvim",
-    priority = 1000, -- load before other plugins
-    config = function()
-        require("gruvbox").setup({
-        contrast = "medium",  -- soft | medium | hard
-        transparent_mode = false,
-        })
-        vim.cmd.colorscheme("gruvbox")
-    end,
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = function()
+            require("gruvbox").setup({
+                contrast = "medium",
+            })
+            vim.cmd.colorscheme("gruvbox")
+        end,
+    },
+
+    --------------------------------------------------
+    -- Telescope
+    --------------------------------------------------
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            local telescope = require("telescope")
+            telescope.setup({})
+        end,
     },
 
     --------------------------------------------------
@@ -105,41 +88,24 @@ require("lazy").setup({
         config = function()
             require("nvim-tree").setup({
                 view = { width = 30 },
-                renderer = { highlight_git = true },
             })
         end,
     },
 
     --------------------------------------------------
-    -- Status line (pretty but light)
+    -- Status line
     --------------------------------------------------
     {
         "nvim-lualine/lualine.nvim",
         config = function()
             require("lualine").setup({
-                options = {
-                    theme = "auto",
-                    section_separators = "",
-                    component_separators = "",
-                },
+                options = { theme = "auto" },
             })
         end,
     },
 
     --------------------------------------------------
-    -- Fuzzy finder
-    --------------------------------------------------
-    {
-        "ibhagwan/fzf-lua",
-        config = function()
-            require("fzf-lua").setup({
-                winopts = { preview = { layout = "vertical" } },
-            })
-        end,
-    },
-
-    --------------------------------------------------
-    -- Autocomplete (arrow-key friendly)
+    -- Completion
     --------------------------------------------------
     {
         "hrsh7th/nvim-cmp",
@@ -164,97 +130,56 @@ require("lazy").setup({
             })
         end,
     },
-    --------------------------------------------------
-    -- tmux <-> vim
-    --------------------------------------------------
-    {
-    "christoomey/vim-tmux-navigator",
-    },
 
     --------------------------------------------------
-    -- True Zoom Mode (like tmux prefix+z)
+    -- Tmux integration
+    --------------------------------------------------
+    { "christoomey/vim-tmux-navigator" },
+
+    --------------------------------------------------
+    -- Zoom
     --------------------------------------------------
     {
-    "folke/zen-mode.nvim",
-    opts = {
-        window = {
-        backdrop = 1,
-        width = 120,      -- full width
-        height = 1,     -- full height
-        options = {
-            number = true,
-            relativenumber = false,
+        "folke/zen-mode.nvim",
+        opts = {
+            window = {
+                backdrop = 0,
+                width = 120,
+                height = 1,
+            },
         },
-        },
-    },
     },
 
 })
 
 --------------------------------------------------
--- Built-in LSP (Neovim 0.11+)
+-- LSP
 --------------------------------------------------
 vim.lsp.config("clangd", {
     cmd = { "clangd" },
-    filetypes = { "c", "cpp", "objc", "objcpp" },
+    filetypes = { "c", "cpp" },
 })
-
 vim.lsp.enable("clangd")
 
 --------------------------------------------------
--- Mouse-based LSP navigation
+-- Telescope Keymaps
 --------------------------------------------------
-vim.keymap.set("n", "<RightMouse>", vim.lsp.buf.definition)
-vim.keymap.set("n", "<LeftMouse>", "<LeftMouse>")
+local builtin = require("telescope.builtin")
 
---------------------------------------------------
--- FZF keybindings
---------------------------------------------------
-
-
--- Search files space + f
-vim.keymap.set("n", "<leader>f", function()
-  require("fzf-lua").files()
-end, { desc = "Find files" })
-
--- Search text (ripgrep) space + g
-vim.keymap.set("n", "<leader>g", function()
-  require("fzf-lua").live_grep()
-end, { desc = "Live grep" })
-
+vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>g", builtin.live_grep,  { desc = "Live grep" })
+vim.keymap.set("n", "<leader>b", builtin.buffers,    { desc = "Buffers" })
+vim.keymap.set("n", "<leader>h", builtin.help_tags,  { desc = "Help tags" })
 
 --------------------------------------------------
--- Auto-open tree when starting Neovim in a directory
+-- Zoom toggle
 --------------------------------------------------
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function(data)
-    local dir = data.file
-    if vim.fn.isdirectory(dir) == 1 then
-      vim.cmd.cd(dir)
-      require("nvim-tree.api").tree.open()
-    end
-  end,
-})
-
---------------------------------------------------
--- Space + z → Toggle Zoom
---------------------------------------------------
-
 vim.keymap.set("n", "<leader>z", function()
-  require("zen-mode").toggle()
+    require("zen-mode").toggle()
 end, { desc = "Toggle Zoom" })
 
-
 --------------------------------------------------
--- scheme & UI tweaksS
+-- UI polish
 --------------------------------------------------
-
-vim.o.background = "dark"
-
--- Slight UI polish
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#3c3836" })
-
-
-
-
