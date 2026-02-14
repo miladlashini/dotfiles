@@ -45,6 +45,10 @@ vim.keymap.set("n", "<M-Right>", "<cmd>vertical resize +3<CR>")
 vim.keymap.set("n", "<M-Up>",    "<cmd>resize +2<CR>")
 vim.keymap.set("n", "<M-Down>",  "<cmd>resize -2<CR>")
 
+-- File explorer
+vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
+
+
 --------------------------------------------------
 -- lazy.nvim
 --------------------------------------------------
@@ -87,10 +91,25 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("nvim-tree").setup({
-                view = { width = 30 },
+                view = {
+                    width = 30,
+                    side = "left",
+                },
+                renderer = {
+                    highlight_git = true,
+                    icons = {
+                        show = {
+                            git = true,
+                        },
+                    },
+                },
+                git = {
+                    enable = true,
+                },
             })
         end,
     },
+
 
     --------------------------------------------------
     -- Status line
