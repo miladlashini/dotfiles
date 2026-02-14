@@ -16,15 +16,16 @@ vim.keymap.set("n", "<leader>h", ":split<CR>", { desc = "Horizontal split" })
 vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close split" })
 
 
--- Close current split
-vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close split" })
 
+--vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>")
+--vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>")
+--vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>")
+--vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>")
 
-
-vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>")
-vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>")
-vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<C-Left>",  "<cmd>TmuxNavigateLeft<CR>",  { silent = true })
+vim.keymap.set("n", "<C-Right>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
+vim.keymap.set("n", "<C-Up>",    "<cmd>TmuxNavigateUp<CR>",    { silent = true })
+vim.keymap.set("n", "<C-Down>",  "<cmd>TmuxNavigateDown<CR>",  { silent = true })
 
 
 --------------------------------------------------
