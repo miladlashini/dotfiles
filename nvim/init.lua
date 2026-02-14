@@ -82,6 +82,21 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
     --------------------------------------------------
+    -- Gruvbox Colorscheme
+    --------------------------------------------------
+    {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000, -- load before other plugins
+    config = function()
+        require("gruvbox").setup({
+        contrast = "hard",  -- soft | medium | hard
+        transparent_mode = false,
+        })
+        vim.cmd.colorscheme("gruvbox")
+    end,
+    },
+    
+    --------------------------------------------------
     -- File tree
     --------------------------------------------------
     {
@@ -228,5 +243,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.keymap.set("n", "<leader>z", function()
   require("zen-mode").toggle()
 end, { desc = "Toggle Zoom" })
+
+
 
 
