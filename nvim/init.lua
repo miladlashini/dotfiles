@@ -162,16 +162,6 @@ require("lazy").setup({
     },
 
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "mason.nvim" },
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "clangd", "lua_ls" },
-            })
-        end,
-    },
-
-    {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
@@ -181,12 +171,15 @@ require("lazy").setup({
         require("mason").setup()
 
         require("mason-lspconfig").setup({
-        ensure_installed = { "clangd" },
+        ensure_installed = { "clangd", "neocmake", "pyright", "bashls"},
         })
 
-                -- LSP keymaps (applied when LSP attaches to buffer)
+
+        -- LSP keymaps (applied when LSP attaches to buffer)
         local on_attach = function(_, bufnr)
         local opts = { buffer = bufnr }
+        -- <C-o>   → jump back
+        -- <C-i>   → jump forward
 
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
@@ -195,11 +188,46 @@ require("lazy").setup({
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         end
 
+        --------------------------------------------------
+        -- C / C++
+        --------------------------------------------------
         vim.lsp.config('clangd', {
             on_attach = on_attach,
-            cmd = { "clangd", "--background-index" },
+            cmd = { "clangd", "--background-index", "--clang-tidy",},
         })
         vim.lsp.enable('clangd')
+
+        --------------------------------------------------
+        -- CMake (neocmake)
+        --------------------------------------------------
+        vim.lsp.config("neocmake", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = { "neocmake" },
+            filetypes = { "cmake" },
+            root_markers = { "CMakeLists.txt", ".git" },
+        })
+
+        vim.lsp.enable("neocmake")
+        
+
+        --------------------------------------------------
+        -- Python
+        --------------------------------------------------
+        vim.lsp.config("pyright", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+        vim.lsp.enable("pyright")
+
+        --------------------------------------------------
+        -- Bash
+        --------------------------------------------------
+        vim.lsp.config("bashls", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+        vim.lsp.enable("bashls")
     end,
     },
 

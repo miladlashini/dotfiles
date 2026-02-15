@@ -19,7 +19,7 @@ sudo apt update
 # Install packages
 sudo apt install -y build-essential neovim git tig zsh tmux curl wget ncdu nload fzf silversearcher-ag \
 ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
-libssl-dev python3 python3-pip python3-venv python3-dev \
+libssl-dev python3 python3-pip python3-venv python3-dev npm \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
@@ -334,4 +334,6 @@ if [ -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
 fi
 
 echo "tmux <-> Neovim integration complete."
+
+sudo snap install bash-language-server --classic
 
