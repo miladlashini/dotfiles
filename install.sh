@@ -21,6 +21,7 @@ sudo apt install -y build-essential neovim git tig zsh tmux curl wget ncdu nload
 ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
+libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
 xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash tree-sitter-cli
 

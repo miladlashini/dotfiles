@@ -182,10 +182,21 @@ require("lazy").setup({
 
         require("mason-lspconfig").setup({
         ensure_installed = { "clangd" },
-        automatic_enable = true,
         })
 
+                -- LSP keymaps (applied when LSP attaches to buffer)
+        local on_attach = function(_, bufnr)
+        local opts = { buffer = bufnr }
+
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        end
+
         vim.lsp.config('clangd', {
+            on_attach = on_attach,
             cmd = { "clangd", "--background-index" },
         })
         vim.lsp.enable('clangd')
@@ -300,3 +311,4 @@ end, { desc = "Toggle Zoom" })
 --------------------------------------------------
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#3c3836" })
+
