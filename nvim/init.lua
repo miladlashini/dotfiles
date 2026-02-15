@@ -152,6 +152,47 @@ require("lazy").setup({
     },
 
     --------------------------------------------------
+    -- Mason + LSP
+    --------------------------------------------------
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end,
+    },
+
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "mason.nvim" },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "clangd", "lua_ls" },
+            })
+        end,
+    },
+
+    {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+        require("mason").setup()
+
+        require("mason-lspconfig").setup({
+        ensure_installed = { "clangd" },
+        automatic_enable = true,
+        })
+
+        vim.lsp.config('clangd', {
+            cmd = { "clangd", "--background-index" },
+        })
+        vim.lsp.enable('clangd')
+    end,
+    },
+
+    --------------------------------------------------
     -- Completion
     --------------------------------------------------
     {
@@ -175,6 +216,16 @@ require("lazy").setup({
                     { name = "path" },
                 },
             })
+        end,
+    },
+
+    --------------------------------------------------
+    -- Git
+    --------------------------------------------------
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup( {current_line_blame = true} )
         end,
     },
 
