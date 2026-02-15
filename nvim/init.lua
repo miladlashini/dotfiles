@@ -48,6 +48,8 @@ vim.keymap.set("n", "<M-Down>",  "<cmd>resize -2<CR>")
 -- File explorer
 vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
 
+-- Tab navigation
+vim.keymap.set("n", "<leader>n", ":tabnext<CR>")
 
 --------------------------------------------------
 -- lazy.nvim
@@ -55,8 +57,11 @@ vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Fil
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+--------------------------------------------------
+-- PLUGINS
+--------------------------------------------------
 
+require("lazy").setup({
     --------------------------------------------------
     -- Colorscheme
     --------------------------------------------------
@@ -75,12 +80,25 @@ require("lazy").setup({
     -- Telescope
     --------------------------------------------------
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            local telescope = require("telescope")
-            telescope.setup({})
-        end,
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make"
+        }
+    },
+    config = function()
+        local telescope = require("telescope")
+        telescope.setup({})
+        telescope.load_extension("fzf")
+
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "<leader>f", builtin.find_files)
+        vim.keymap.set("n", "<leader>g", builtin.live_grep)
+        vim.keymap.set("n", "<leader>b", builtin.buffers)
+        vim.keymap.set("n", "<leader>h", builtin.help_tags)
+    end,
     },
 
     --------------------------------------------------
@@ -168,7 +186,6 @@ require("lazy").setup({
             },
         },
     },
-
 })
 
 --------------------------------------------------
