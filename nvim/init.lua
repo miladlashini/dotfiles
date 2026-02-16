@@ -128,7 +128,6 @@ require("lazy").setup({
         end,
     },
 
-
     --------------------------------------------------
     -- Status line
     --------------------------------------------------
@@ -149,6 +148,17 @@ require("lazy").setup({
         config = function()
             require("which-key").setup()
         end,
+    },
+
+
+    --------------------------------------------------
+    -- Store
+    --------------------------------------------------
+    {
+    "alex-popov-tech/store.nvim",
+    dependencies = { "OXY2DEV/markview.nvim" },
+    opts = {},
+    cmd = "Store"
     },
 
     --------------------------------------------------
@@ -331,4 +341,7 @@ end, { desc = "Toggle Zoom" })
 --------------------------------------------------
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#3c3836" })
+
+vim.keymap.set("n", "<leader>ps", "<cmd>Store<cr>", { desc = "Open Plugin Store" })
+
 
