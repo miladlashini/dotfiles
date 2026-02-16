@@ -193,6 +193,7 @@ require("lazy").setup({
         --------------------------------------------------
         vim.lsp.config('clangd', {
             on_attach = on_attach,
+            filetypes = { "c", "cpp" },
             cmd = { "clangd", "--background-index", "--clang-tidy",},
         })
         vim.lsp.enable('clangd')
@@ -307,15 +308,6 @@ require("lazy").setup({
         },
     },
 })
-
---------------------------------------------------
--- LSP
---------------------------------------------------
-vim.lsp.config("clangd", {
-    cmd = { "clangd" },
-    filetypes = { "c", "cpp" },
-})
-vim.lsp.enable("clangd")
 
 --------------------------------------------------
 -- Telescope Keymaps
