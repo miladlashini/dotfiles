@@ -236,12 +236,17 @@ link_if_missing() {
     dst="$2"
 
     if [ -L "$dst" ]; then
+        echo "Symlink already exists: $dst"
         return
-    elif [ -e "$dst" ]; then
-        echo "Skipping $dst (exists and is not a symlink)"
-    else
-        ln -s "$src" "$dst"
     fi
+
+    if [ -e "$dst" ]; then
+        echo "Backing up existing $dst to $dst.backup"
+        mv "$dst" "$dst.backup"
+    fi
+
+    ln -s "$src" "$dst"
+    echo "Linked $src -> $dst"
 }
 
 link_if_missing "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
@@ -291,7 +296,7 @@ mkdir -p "$XDG_CONFIG_HOME/nvim"
 mkdir -p "$XDG_DATA_HOME/nvim"
 
 # Symlink Neovim config
-link_if_missing "$DOTFILES/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+link_if_missing "$DOTFILES/nvim" "$XDG_CONFIG_HOME/nvim"
 
 echo "Installing lazy.nvim..."
 
