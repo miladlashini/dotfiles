@@ -1,7 +1,7 @@
 require("conform").setup({
     formatters_by_ft = {
-        cpp = { "clang-format-19" },
-        c   = { "clang-format-19" },
+        cpp = { "clang-format" },
+        c   = { "clang-format" },
     },
 
     format_on_save = {

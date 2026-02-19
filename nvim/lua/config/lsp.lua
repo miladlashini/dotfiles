@@ -1,4 +1,4 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Mason setup
 config = function()
     require("mason").setup()

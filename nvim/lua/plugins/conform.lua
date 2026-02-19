@@ -1,6 +1,7 @@
 return {
     "stevearc/conform.nvim",
-    event = "BufWritePre",  -- load when saving a file
+    event = "BufWritePre",
+    dependencies = { "williamboman/mason.nvim" },
     config = function()
         require("config.conform")
     end,
