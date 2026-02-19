@@ -345,6 +345,8 @@ sudo snap install bash-language-server --classic
 #############################
 # NODE.JS & NVM
 #############################
+# Install NVM
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 export NVM_DIR="$HOME/.config/nvm"
 
