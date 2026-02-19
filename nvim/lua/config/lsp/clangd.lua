@@ -1,8 +1,10 @@
-return function(lspconfig, on_attach)
-    lspconfig.clangd.setup({
-        --capabilities = capabilities,
+return function(on_attach, capabilities)
+    vim.lsp.config("clangd", {
         on_attach = on_attach,
+        capabilities = capabilities,
         cmd = { "clangd", "--background-index", "--clang-tidy" },
         filetypes = { "c", "cpp" },
     })
-end
+
+    vim.lsp.enable("clangd")
+end                                                                                                                                                                                                               

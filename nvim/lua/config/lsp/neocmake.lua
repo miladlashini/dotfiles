@@ -1,8 +1,12 @@
-return function(lspconfig, on_attach)
-    lspconfig.neocmake.setup({
-        --capabilities = capabilities,
-        on_attach = on_attach,
+return function(on_attach, capabilities)
+    vim.lsp.config("neocmakelsp", {
+        cmd = { "neocmakelsp", "stdio" },
         filetypes = { "cmake" },
-        root_dir = lspconfig.util.root_pattern("CMakeLists.txt", ".git"),
+        root_markers = { "CMakeLists.txt", ".git" },
+        capabilities = capabilities,
+        on_attach = on_attach,
     })
+
+    vim.lsp.enable("neocmakelsp")
 end
+

@@ -116,7 +116,6 @@ else
   echo "CMake $CMAKE_VERSION is already installed."
 fi
 
-
 ##################
 # Python Setup   #
 ##################
@@ -251,6 +250,7 @@ link_if_missing() {
 
 link_if_missing "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
 link_if_missing "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+
 
 ########
 # tmux #
