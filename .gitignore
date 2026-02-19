@@ -4,3 +4,4 @@ zsh/performance.log
 zsh/*.zwc
 zsh/.zsh_history
 nvim/lazy-lock.json
+__cmake_systeminformation/

@@ -342,3 +342,29 @@ echo "tmux <-> Neovim integration complete."
 
 sudo snap install bash-language-server --classic
 
+#############################
+# NODE.JS & NVM
+#############################
+
+export NVM_DIR="$HOME/.config/nvm"
+
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
+else
+  echo "ERROR: nvm.sh not found in $NVM_DIR"
+  exit 1
+fi
+
+# Verify nvm is loaded
+command -v nvm >/dev/null 2>&1 || {
+  echo "ERROR: nvm failed to load"
+  exit 1
+}
+
+# Install Node 22
+nvm install 22
+nvm alias default 22
+
+export NVM_DIR="$HOME/.config/nvm" 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+

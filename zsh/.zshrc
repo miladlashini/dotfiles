@@ -195,3 +195,9 @@ shuf -n 1 $DOTFILES/neofetch_distros.txt | xargs -I % sh -c 'neofetch --ascii_di
 #if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
 #   fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
 #1fi
+# This is for nvm, the node version manager. It is used to manage different 
+# versions of node and npm.
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+

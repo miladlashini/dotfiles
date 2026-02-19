@@ -7,8 +7,8 @@ function M.setup()
         ensure_installed = { "clangd", "neocmake", "pyright", "bashls" },
     })
 
-    -- 🔥 Required for nvim-cmp
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    -- 🔥 Required for "blink.cmp"
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     --------------------------------------------------
     -- Keymaps when LSP attaches
