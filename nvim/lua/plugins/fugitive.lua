@@ -19,4 +19,7 @@ return {
     { "<leader>gl", "<cmd>Git pull<CR>", desc = "Git Pull" },
     { "<leader>gb", "<cmd>Git blame<CR>", desc = "Git Blame" },
   },
+  vim.keymap.set("n", "<leader>gd", "<cmd>Gdiffsplit<CR>", { desc = "Git Diff" }),
+  vim.keymap.set("n", "<leader>gB", "<cmd>GBrowse<CR>", { desc = "Git Browse" })
+
 }
