@@ -73,8 +73,8 @@ return {
     },
     keymap = {
       ['<CR>']    = { 'select_and_accept', 'fallback' },
-      ['<DOWN>']   = { 'select_next', 'fallback_to_mappings' },
-      ['<UP>'] = { 'select_prev', 'fallback_to_mappings' },
+      ['<Tab>']   = { 'select_next', 'fallback_to_mappings' },
+      ['<S-Tab>'] = { 'select_prev', 'fallback_to_mappings' },
     },
     -- ensure you have the `snippets` source (enabled by default)
     sources = {

@@ -4,7 +4,7 @@ function M.setup()
     require("mason").setup()
 
     require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "neocmake", "pyright", "bashls" },
+        ensure_installed = { "clangd", "neocmake", "pyright", "bashls", "jsonls" },
     })
 
     -- 🔥 Required for "blink.cmp"
@@ -30,6 +30,7 @@ function M.setup()
     require("config.lsp.neocmake")(on_attach, capabilities)
     require("config.lsp.pyright")(on_attach, capabilities)
     require("config.lsp.bashls")(on_attach, capabilities)
+    require("config.lsp.jsonls")(on_attach, capabilities)
 end
 
 return M
