@@ -24,4 +24,4 @@ dashboard.setup({
     },
 })
 
-vim.cmd([[ highlight DashboardHeader guifg=#66FFFF ]])
+vim.cmd([[ highlight DashboardHeader guifg=#8F7635 ]])
