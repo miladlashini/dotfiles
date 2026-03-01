@@ -22,7 +22,7 @@ ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev npm \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
-btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev \
+btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev  ranger ueberzug \
 xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash tree-sitter-cli
 
 # Replace with your actual name and email
@@ -342,6 +342,9 @@ fi
 echo "tmux <-> Neovim integration complete."
 
 sudo snap install bash-language-server --classic
+
+# Remove tree-sitter-cli if it was installed via apt to avoid conflicts with Neovim's built-in tree-sitter
+sudo apt remove tree-sitter-cli
 
 #############################
 # NODE.JS & NVM

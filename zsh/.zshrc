@@ -171,6 +171,16 @@ onLine(){
     fi
 }
 
+# This is the tool to navigate through the filesystem graphically using ranger
+function goto() {
+    tempfile=$(mktemp)
+    ranger --choosedir="$tempfile" "${@:-$PWD}"
+    if [ -f "$tempfile" ] && [ -s "$tempfile" ]; then
+        cd "$(cat "$tempfile")"
+    fi
+    rm -f "$tempfile"
+}
+
 
 ##########################################################################################
 
