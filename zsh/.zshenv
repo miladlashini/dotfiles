@@ -29,6 +29,8 @@ export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
 export RPC_CLANG_TIDY="clang-tidy-14"
 export CXXFLAGS="-fdiagnostics-color=always" 
 export GIT_EDITOR=vim
+export PATH="/snap/bin:$PATH"
+
 #change it to "all" to see everything.
 export BOOST_TEST_LOG_LEVEL=error
 export PATH="$DOTFILES/scripts:$PATH"
