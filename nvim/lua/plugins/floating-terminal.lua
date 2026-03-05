@@ -43,11 +43,6 @@ return {
       end,
     },
     {
-        "<leader>tb",
-        "<cmd>ToggleTerm<cr>",
-        desc = "Toggle last terminal",
-    },
-    {
         '<Esc>',
         [[<C-\><C-n><C-w>w]],
         mode = 't',
@@ -57,13 +52,17 @@ return {
     vim.keymap.set("n", "<leader>tf", 
     -- Focus the floating terminal if it exists, otherwise open a new one <leader>tf
     function()
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            if vim.bo[buf].buftype == "terminal" then
-            vim.api.nvim_set_current_win(win)
-            vim.cmd("startinsert")
-            return
-            end
-        end
+        vim.cmd("ToggleTerm")
+        vim.schedule(
+          function() 
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+              local buf = vim.api.nvim_win_get_buf(win)
+              if vim.bo[buf].buftype == "terminal" then
+              vim.api.nvim_set_current_win(win)
+              vim.cmd("startinsert")
+              return
+              end
+          end
+        end)
     end, { desc = "Focus floating terminal" })
 }
