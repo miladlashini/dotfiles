@@ -256,7 +256,9 @@ link_if_missing "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 # tmux #
 ########
 mkdir -p "$XDG_CONFIG_HOME/tmux"
+mkdir -p "$XDG_CONFIG_HOME/tmux/scripts"
 link_if_missing "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+link_if_missing "$DOTFILES/tmux/scripts/popup.zsh" "$XDG_CONFIG_HOME/tmux/scripts/popup.zsh"
 
 if [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm \
@@ -282,6 +284,7 @@ sudo apt remove -y neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+rm nvim-linux-x86_64.tar.gz
 
 sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
