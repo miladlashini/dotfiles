@@ -377,3 +377,30 @@ nvm alias default 22
 export NVM_DIR="$HOME/.config/nvm" 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 
+################################
+# keyd for remapping F keys to control volume (for tmux popups)
+################################
+# enable the following incase that keyboard F function do not work to force them.
+
+# git clone https://github.com/rvaiya/keyd.git /tmp/keyd
+# cd /tmp/keyd
+# make
+# sudo make install
+
+# sudo systemctl enable keyd
+# 046d:c548 is the Logitech K120 keyboard, adjust if you have a different model
+# keyboard can be show up as logitech USB receiver and not the keyboard itself, so you may need to check with lsusb and adjust the id accordingly
+# the followinmg number is for acer laptop
+
+# sudo tee /etc/keyd/arzopek87.conf > /dev/null << 'EOF'
+# [ids]
+# 046d:c548 
+
+# [main]
+# volumeup = f12
+# volumedown = f11
+# mute = f10
+# EOF
+
+# sudo systemctl restart keyd
+
