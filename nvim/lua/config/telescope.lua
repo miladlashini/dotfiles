@@ -7,6 +7,8 @@ telescope.load_extension("fzf")
 -- Telescope Keymaps
 --------------------------------------------------
 
+-- <C-t> opens the file under the cursor in a new tab
+
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find files" })

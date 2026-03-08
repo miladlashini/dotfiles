@@ -20,3 +20,5 @@ vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Fil
 
 -- Tab navigation
 vim.keymap.set("n", "<leader>n", ":tabnext<CR>")
+-- Search and replace
+vim.keymap.set("n", "<leader>r", "*cgn")

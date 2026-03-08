@@ -156,7 +156,7 @@ if [[ "$1" == "qt" ]]; then
     libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev \
     libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev \
     libxcb-cursor-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev \
-    libjpeg-dev libssl-dev ntp cups ffmpeg libprotobuf-dev
+    libjpeg-dev libssl-dev ntp cups ffmpeg libprotobuf-dev protobuf-compiler 
 
   # Clone qtbase if not already present
   if [ ! -d "$QT_SRC_DIR" ]; then
