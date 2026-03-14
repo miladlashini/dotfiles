@@ -13,5 +13,7 @@ vim.opt.expandtab = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.o.background = "dark"
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
 
 vim.loader.enable()  -- faster module loading (Neovim 0.10+)
