@@ -23,7 +23,7 @@ libssl-dev python3 python3-pip python3-venv python3-dev npm \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev  ranger ueberzug \
-xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash tree-sitter-cli
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash 
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
@@ -249,6 +249,45 @@ link_if_missing "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
 link_if_missing "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
 
+#############################
+# RUST & TREE-SITTER CLI
+#############################
+
+# Install rustup (Rust installer) if not present
+if ! command -v rustup >/dev/null 2>&1; then
+  echo "Installing rustup..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  export PATH="$HOME/.cargo/bin:$PATH"
+else
+  echo "rustup already installed"
+fi
+
+# Ensure cargo/bin is in PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Set stable toolchain
+rustup default stable
+
+# Verify Rust and Cargo
+rustc --version
+cargo --version
+
+# Install Tree-sitter CLI via Cargo (locked to a stable version)
+if ! command -v tree-sitter >/dev/null 2>&1; then
+  echo "Installing Tree-sitter CLI via Cargo..."
+  cargo install --locked tree-sitter-cli
+else
+  echo "Tree-sitter CLI already installed: $(tree-sitter --version)"
+fi
+
+# Verify Tree-sitter installation
+tree-sitter --version || {
+  echo "ERROR: Tree-sitter CLI failed to install"
+  exit 1
+}
+
+echo "Rust and Tree-sitter CLI installation complete"
+
 ########
 # tmux #
 ########
@@ -342,9 +381,6 @@ fi
 echo "tmux <-> Neovim integration complete."
 
 sudo snap install bash-language-server --classic
-
-# Remove tree-sitter-cli if it was installed via apt to avoid conflicts with Neovim's built-in tree-sitter
-sudo apt remove tree-sitter-cli
 
 #############################
 # NODE.JS & NVM

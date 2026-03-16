@@ -55,3 +55,4 @@ export DISTCC_HOSTS='--randomize 192.168.134.51/8,lzo 192.168.134.56/8,lzo local
 export DISTCC_VERBOSE=1
 export DISTCC_LOG='/tmp/distcc.log'
 
+. "$HOME/.cargo/env"
