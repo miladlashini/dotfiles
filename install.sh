@@ -42,9 +42,6 @@ ccache -M 50G
 ##########################################
 
 echo "Installing GCC, G++ (versions 10–13) and latest Clang tools..."
-
-# Add Ubuntu Toolchain PPA (for gcc/g++ 12 and 13)
-sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt update
 
 # Install multiple gcc/g++ versions
