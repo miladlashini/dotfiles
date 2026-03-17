@@ -181,16 +181,63 @@ fi
 # Install Docker (docker.io)
 #########################
 
-echo "Installing Docker..."
+echo "==> Installing Docker (idempotent version)..."
 
-sudo apt install -y docker.io
+# Remove Snap Docker if exists
+if snap list | grep -q '^docker'; then
+    echo "==> Removing Snap Docker..."
+    sudo snap remove docker --purge || true
+    sudo rm -rf /var/snap/docker ~/snap/docker
+fi
 
-sudo systemctl enable --now docker
+# Install prerequisites
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg lsb-release
 
-# Add current user to docker group
-sudo usermod -aG docker "$USER"
+# Add Docker GPG key (skip if already exists)
+DOCKER_KEYRING=/etc/apt/keyrings/docker.asc
+if [ ! -f "$DOCKER_KEYRING" ]; then
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o "$DOCKER_KEYRING"
+    sudo chmod a+r "$DOCKER_KEYRING"
+fi
 
-echo "Docker installed and running. You may need to log out and log back in for group changes to take effect."
+# Add Docker repository (skip if already exists)
+DOCKER_LIST=/etc/apt/sources.list.d/docker.list
+if [ ! -f "$DOCKER_LIST" ]; then
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=$DOCKER_KEYRING] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo ${UBUNTU_CODENAME:-$VERSION_CODENAME}) stable" | \
+      sudo tee "$DOCKER_LIST" > /dev/null
+fi
+
+sudo apt-get update
+
+# Install Docker packages (install or upgrade)
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Enable Docker socket and service
+sudo systemctl enable docker.socket || true
+sudo systemctl enable docker || true
+sudo systemctl start docker.socket || true
+sudo systemctl start docker || true
+
+# Add current user to docker group if not already
+if ! groups $USER | grep -q "\bdocker\b"; then
+    sudo usermod -aG docker $USER
+    echo "==> User $USER added to docker group. Log out and back in for group changes to take effect."
+fi
+
+# Wait for Docker daemon to be ready (avoid socket errors)
+echo "==> Waiting for Docker daemon to be ready..."
+for i in {1..10}; do
+    if docker info >/dev/null 2>&1; then
+        echo "==> Docker is running!"
+        break
+    fi
+    sleep 2
+done
+
+echo "==> Docker installation complete (idempotent)."
 
 #For NVIDIA to solve the rendering problem
 #prime-select query

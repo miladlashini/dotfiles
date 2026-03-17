@@ -110,5 +110,5 @@ alias tmuxn="tmux new-session -s "
 alias tmuxk="tmux kill-session -t "
 alias tmuxks="tmux kill-server"
 
-
+source ${HOME}/dotfiles/zsh/aliases2
 
