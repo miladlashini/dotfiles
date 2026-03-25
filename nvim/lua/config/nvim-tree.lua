@@ -14,6 +14,12 @@ require("nvim-tree").setup({
     git = {
         enable = true,
     },
+   filters = {
+        dotfiles = false,
+    },
+   git = {
+        ignore = false,
+    },
 })
 
 -- Optional keymap
