@@ -22,3 +22,5 @@ vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Fil
 vim.keymap.set("n", "<leader>n", ":tabnext<CR>")
 -- Search and replace
 vim.keymap.set("n", "<leader>r", "*cgn")
+-- F2 becomes new line from arbitratory position
+vim.keymap.set("n", "<F2>", "i<CR>")
