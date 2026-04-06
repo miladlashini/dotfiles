@@ -24,3 +24,8 @@ vim.keymap.set("n", "<leader>n", ":tabnext<CR>")
 vim.keymap.set("n", "<leader>r", "*cgn")
 -- F2 becomes new line from arbitratory position
 vim.keymap.set("n", "<F2>", "i<CR>")
+-- Insert a character after the cursor
+vim.keymap.set("n", "<leader>i", function()
+  local char = vim.fn.getcharstr()
+  vim.cmd("normal! a" .. char)
+end)
