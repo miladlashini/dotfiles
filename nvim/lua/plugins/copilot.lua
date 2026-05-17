@@ -1,4 +1,3 @@
--- lua/plugins/copilot.lua
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -11,7 +10,7 @@ return {
         keymap = {
           accept = "<C-l>",
           next = "<C-]>",
-          prev = "<C-[>",
+          prev = "<C-k>",   -- changed from <C-[>
           dismiss = "<C-x>",
         },
       },
