@@ -2,8 +2,9 @@ return function(on_attach, capabilities)
     vim.lsp.config("clangd", {
         on_attach = on_attach,
         capabilities = capabilities,
-        cmd = { "clangd", 
+        cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/clangd"), 
         "--background-index", 
+        "--background-index-priority=normal",
         "--clang-tidy",  
         "--header-insertion=iwyu", 
         "--completion-style=detailed",
@@ -11,8 +12,8 @@ return function(on_attach, capabilities)
         "--pch-storage=memory",
         "--cross-file-rename",
         "--suggest-missing-includes",
-        "--all-scopes-completion" },
-        
+        "--all-scopes-completion", 
+    },    
         filetypes = { "c", "cpp" },
     })
 
