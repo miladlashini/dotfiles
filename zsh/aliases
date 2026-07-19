@@ -108,6 +108,8 @@ alias cleanCMakeCache="rm -rf ${RPC_BUILD_DIR}/CMakeCache.txt && rm -rf ${RPC_BU
 alias cleanCCache="ccache -C"
 alias CCacheStats="ccache -s"
 
+alias listTargets="cmake --build ${RPC_BUILD_DIR} --target help"
+
 alias tmuxl="tmux list-sessions"
 alias tmuxa="tmux attach-session -t "
 alias tmuxn="tmux new-session -s "
