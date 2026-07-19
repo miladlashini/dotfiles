@@ -101,8 +101,12 @@ alias buildRPC_GCC_Test_C="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=
 alias buildRPC_GCC_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
 alias buildRPC_Clang_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
 
+alias cleanRPC="rm -rf ${RPC_BUILD_DIR}/*"
 
+alias cleanCMakeCache="rm -rf ${RPC_BUILD_DIR}/CMakeCache.txt && rm -rf ${RPC_BUILD_DIR}/CMakeFiles"
 
+alias cleanCCache="ccache -C"
+alias CCacheStats="ccache -s"
 
 alias tmuxl="tmux list-sessions"
 alias tmuxa="tmux attach-session -t "
