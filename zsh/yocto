@@ -1,0 +1,433 @@
+# Yocto / bitbake helpers, built while cross-compiling RPC for the Raspberry Pi 1 B+.
+# See ~/.claude/plans/i-want-to-make-misty-cray.md for the full project this supports.
+#
+# YOCTO_DIR / YOCTO_BUILD_DIR are exported from .zshenv.
+#
+# Everything below except `bupoky` auto-sources the build environment on first
+# use in a shell (via _yocto_env), so you don't have to remember to run bupoky
+# first -- but bupoky is there for when you want it explicitly, or want to
+# switch to a different build dir later (e.g. a future 64-bit Pi build).
+
+# source the poky build environment (always re-sources; safe to call repeatedly)
+alias bupoky='source "${YOCTO_DIR}/poky/oe-init-build-env" "${YOCTO_BUILD_DIR}"'
+
+# internal: make sure bitbake is on PATH in this shell, without re-sourcing needlessly
+_yocto_env() {
+    # bitbake sandboxes some tasks (e.g. do_prepare_recipe_sysroot) from the network
+    # using unprivileged user namespaces; Ubuntu 24.04's AppArmor hardening blocks
+    # those by default, and it resets on every reboot unless persisted -- so just
+    # check and fix it here every time rather than hitting the cryptic
+    # "PermissionError: [Errno 1] Operation not permitted" again.
+    if [[ "$(sysctl -n kernel.apparmor_restrict_unprivileged_userns 2>/dev/null)" == "1" ]]; then
+        echo "(enabling unprivileged user namespaces for bitbake's task sandboxing...)"
+        sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null
+    fi
+
+    if ! command -v bitbake >/dev/null 2>&1; then
+        echo "(sourcing Yocto build env for ${YOCTO_BUILD_DIR}...)"
+        source "${YOCTO_DIR}/poky/oe-init-build-env" "${YOCTO_BUILD_DIR}" >/dev/null
+    fi
+}
+
+# list every named task a recipe defines (do_fetch, do_compile, do_install, ...)
+bbtasks() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbtasks <recipe>"; return 1; fi
+    bitbake -c listtasks "$1"
+}
+
+# print S/B/D/WORKDIR/PN/PV for a recipe -- see Phase 3.1
+bbpaths() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbpaths <recipe>"; return 1; fi
+    bitbake -e "$1" | grep -E '^(S|B|D|WORKDIR|PN|PV)='
+}
+
+# open an interactive devshell with the recipe's real cross-compile environment -- Phase 3.3
+bbshell() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbshell <recipe>"; return 1; fi
+    bitbake -c devshell "$1"
+}
+
+# full `bitbake -e` dump for a recipe, paged
+bbenv() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbenv <recipe>"; return 1; fi
+    bitbake -e "$1" | less
+}
+
+# internal: print the summary block for one already-resolved recipe + its `bitbake -e` dump
+_bbsummary_one() {
+    local recipe="$1" env="$2"
+    echo "== $recipe =="
+    echo
+    echo "--- identity ---"
+    echo "$env" | grep -E '^(PN|PV|LICENSE|HOMEPAGE)='
+    echo
+    echo "--- description ---"
+    echo "$env" | grep -E '^(SUMMARY|DESCRIPTION)='
+    echo
+    echo "--- layer(s) ---"
+    bitbake-layers show-recipes "$recipe" 2>/dev/null | awk '/Matching recipes/{f=1;next} f'
+    echo
+    echo "--- build-time dependencies (DEPENDS) ---"
+    echo "$env" | grep -E '^DEPENDS='
+    echo
+    echo "--- runtime dependencies (RDEPENDS) ---"
+    echo "$env" | grep -E '^RDEPENDS:'
+    echo
+    echo "--- paths ---"
+    echo "$env" | grep -E '^(S|B|D|WORKDIR)='
+    echo
+    echo "--- packages produced (per PACKAGES) ---"
+    local packages
+    packages=$(echo "$env" | grep -E '^PACKAGES=' | sed -E 's/^PACKAGES="(.*)"$/\1/')
+    if [[ -n "$packages" ]]; then
+        oe-pkgdata-util list-pkg-files ${=packages} 2>/dev/null || echo "(not built yet -- no package data)"
+    else
+        echo "(PACKAGES empty/unresolved)"
+    fi
+}
+
+# one-shot overview of a recipe: identity, description, layer, deps, paths, packages.
+# tries an exact match first; if that fails, falls back to a *substring* wildcard
+# search (same fnmatch bitbake-layers itself uses) and summarizes every match, e.g.
+# `bbsummary tiny` finds and summarizes tinycompress, tinyxml, etc.
+bbsummary() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbsummary <recipe-or-substring>"; return 1; fi
+    local pattern="$1" env
+
+    if env=$(bitbake -e "$pattern" 2>&1); then
+        _bbsummary_one "$pattern" "$env"
+        return 0
+    fi
+
+    local -a matches
+    matches=($(bitbake-layers show-recipes "*${pattern}*" 2>/dev/null | awk '
+        /Matching recipes/ { f=1; next }
+        f && /^[^[:space:]]/ { sub(":$",""); print }
+    '))
+
+    if [[ ${#matches} -eq 0 ]]; then
+        echo "no recipe matches: $pattern"
+        return 1
+    fi
+
+    echo "no exact recipe named '$pattern' -- found ${#matches} match(es), summarizing each:"
+    echo
+    local r
+    for r in "${matches[@]}"; do
+        if env=$(bitbake -e "$r" 2>&1); then
+            _bbsummary_one "$r" "$env"
+            echo
+        fi
+    done
+}
+
+# tail a task's log for a recipe (default task: compile) -- see temp/log.do_* from Phase 3.2
+bblog() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bblog <recipe> [task=compile] [lines=50]"; return 1; fi
+    local recipe="$1" task="${2:-compile}" lines="${3:-50}" workdir
+    workdir=$(bitbake -e "$recipe" 2>/dev/null | grep '^WORKDIR=' | cut -d'"' -f2)
+    if [[ -z "$workdir" ]]; then echo "could not resolve WORKDIR for $recipe"; return 1; fi
+    local logfile="${workdir}/temp/log.do_${task}"
+    if [[ ! -f "$logfile" ]]; then
+        echo "no such log: $logfile"
+        echo "available logs:"
+        ls "${workdir}/temp/" 2>/dev/null | grep '^log\.do_'
+        return 1
+    fi
+    tail -n "$lines" "$logfile"
+}
+
+# list files owned by a recipe's package(s), e.g. `bbpkgs zlib zlib-dev` -- Phase 3.4
+bbpkgs() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbpkgs <recipe> [package...]"; return 1; fi
+    if ! oe-pkgdata-util list-pkg-files "$@" 2>/dev/null; then
+        echo "no package data for '$*' -- it may just not have been built yet."
+        echo "try: bitbake $1   (then re-run bbpkgs)"
+        return 1
+    fi
+}
+
+# find which package owns a file glob, e.g. `bbowns '*/libz.so*'` -- Phase 3.4
+bbowns() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbowns '<glob-pattern>'"; return 1; fi
+    oe-pkgdata-util find-path "$1"
+}
+
+# show which layer(s) provide a recipe (and which one wins) -- Phase 3.6
+# omit the pattern to list every recipe across every layer
+bblayer() {
+    _yocto_env
+    bitbake-layers show-recipes "$@"
+}
+
+# inverse of bblayer: group recipes BY layer instead of by recipe.
+# optional pattern filters recipe names, e.g. `bblayerrecipes "*boost*"`
+bblayerrecipes() {
+    _yocto_env
+    bitbake-layers show-recipes "$@" | awk '
+        /^[^[:space:]]/ { r=$1; sub(":$","",r); next }
+        /^[[:space:]]+/ { layer=$1; recipes[layer] = recipes[layer] "\n  " r }
+        END {
+            n = asorti(recipes, sorted)
+            for (i=1; i<=n; i++) {
+                l = sorted[i]
+                print l ":" recipes[l]
+                print ""
+            }
+        }'
+}
+
+# recipes provided by more than one layer, i.e. genuinely overridden -- Phase 3.6
+# (different subcommand than bblayer/show-recipes; takes no pattern, only flags)
+bboverlayed() {
+    _yocto_env
+    bitbake-layers show-overlayed "$@"
+}
+
+# recipes bitbake's parser skipped outright, with the reason (incompatible machine/host,
+# conflicting distro feature, missing PREFERRED_PROVIDER, ...). Optional glob filters names.
+bbskipped() {
+    _yocto_env
+    bitbake-layers show-recipes "$@" 2>/dev/null | gawk '
+        /^[^[:space:]]/ { r=$0; sub(":$","",r); next }
+        /\(skipped/ {
+            match($0, /\(skipped: (.*)\)/, arr)
+            print r ": " arr[1]
+        }'
+}
+
+# recipes that are known and NOT skipped, but have never actually been built here
+# (no stamps at all yet) -- i.e. they exist in your layers but nothing has pulled
+# them into a target you've run. Optional glob filters names, same as bblayer.
+bbunbuilt() {
+    _yocto_env
+    local all built
+    all=$(bitbake-layers show-recipes "$@" 2>/dev/null | gawk '
+        /^[^[:space:]]/ { if (r != "" && !skip) print r; r=$0; sub(":$","",r); skip=0; next }
+        /\(skipped/ { skip=1 }
+        END { if (r != "" && !skip) print r }' | sort -u)
+    built=$(ls -1 "${YOCTO_BUILD_DIR}/tmp/stamps"/*/ 2>/dev/null | grep -v ':$' | grep -v '^$' | sort -u)
+    comm -23 <(echo "$all") <(echo "$built")
+}
+
+# what does this recipe depend on -- outgoing edges in task-depends.dot ("bitbake -g <target>" first)
+bbneeds() {
+    if [[ -z "$1" ]]; then echo "usage: bbneeds <recipe>  (run 'bitbake -g <target>' first if no graph exists)"; return 1; fi
+    local dotfile="${YOCTO_BUILD_DIR}/task-depends.dot"
+    if [[ ! -f "$dotfile" ]]; then
+        echo "no task-depends.dot in ${YOCTO_BUILD_DIR} -- run 'bitbake -g <target>' first"
+        return 1
+    fi
+    if ! grep -q "\"$1\." "$dotfile"; then
+        echo "'$1' doesn't appear in this graph at all -- it wasn't part of whatever target"
+        echo "you last ran 'bitbake -g' on. Try: bitbake -g $1   (graphs just its own tree)"
+        return 1
+    fi
+    echo "recipes that '$1' needs built first:"
+    grep -E '^"'"$1"'\..*" -> "' "$dotfile" | awk -F'"' '{print $4}' | sed -E 's/\..*$//' | sort -u
+}
+
+# who depends on this recipe -- incoming edges in task-depends.dot ("bitbake -g <target>" first)
+bbneededby() {
+    if [[ -z "$1" ]]; then echo "usage: bbneededby <recipe>  (run 'bitbake -g <target>' first if no graph exists)"; return 1; fi
+    local dotfile="${YOCTO_BUILD_DIR}/task-depends.dot"
+    if [[ ! -f "$dotfile" ]]; then
+        echo "no task-depends.dot in ${YOCTO_BUILD_DIR} -- run 'bitbake -g <target>' first"
+        return 1
+    fi
+    if ! grep -q "\"$1\." "$dotfile"; then
+        echo "'$1' doesn't appear in this graph at all -- it wasn't part of whatever target"
+        echo "you last ran 'bitbake -g' on. Try: bitbake -g $1   (graphs just its own tree)"
+        return 1
+    fi
+    echo "recipes that need '$1' built first:"
+    grep -E '\-> "'"$1"'\.' "$dotfile" | awk -F'"' '{print $2}' | sed -E 's/\..*$//' | sort -u
+}
+
+# plain build of a recipe or image
+bbbuild() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbbuild <recipe-or-image>"; return 1; fi
+    bitbake "$@"
+}
+
+# build an image-based SDK (installer ends up in tmp/deploy/sdk/) -- Phase 4
+# defaults to core-image-minimal, our current target
+bbsdk() {
+    _yocto_env
+    local image="${1:-core-image-minimal}"
+    bitbake "$image" -c populate_sdk
+}
+
+# install the most recently built SDK installer from tmp/deploy/sdk/ into /opt (needs sudo).
+# unsets LD_LIBRARY_PATH for the install itself (the installer refuses to run with it set --
+# e.g. our own Qt 5.12.7 export) without touching that export permanently.
+# optional $1 overrides the install destination (default: /opt/poky/<version-from-filename>)
+bbsdkinstall() {
+    local installer dest version
+    installer=$(ls -t "${YOCTO_BUILD_DIR}/tmp/deploy/sdk/"*.sh 2>/dev/null | head -1)
+    if [[ -z "$installer" ]]; then
+        echo "no SDK installer found in ${YOCTO_BUILD_DIR}/tmp/deploy/sdk/ -- run 'bbsdk' first"
+        return 1
+    fi
+    version=$(basename "$installer" | sed -E 's/.*-([0-9]+\.[0-9]+\.[0-9]+)\.sh$/\1/')
+    dest="${1:-/opt/poky/${version}}"
+    echo "installing $(basename "$installer")"
+    echo "into $dest ..."
+    sudo env -u LD_LIBRARY_PATH "$installer" -d "$dest" -y
+}
+
+# internal: path to the most recently installed SDK's environment-setup script
+_yocto_sdk_env_script() {
+    ls -t "${YOCTO_SDK_ROOT}"/*/environment-setup-* 2>/dev/null | head -1
+}
+
+# source the installed SDK's environment into the CURRENT shell (like bupoky, but for the SDK).
+# unsets LD_LIBRARY_PATH first -- the SDK script itself refuses to configure anything if it's
+# set (same check as the installer had), and this permanently drops it for THIS shell (the SDK
+# and things like our Qt LD_LIBRARY_PATH genuinely can't coexist in one shell) -- open a fresh
+# terminal afterward if you need that back.
+bbsdkenv() {
+    local script
+    script=$(_yocto_sdk_env_script)
+    if [[ -z "$script" ]]; then
+        echo "no installed SDK found under ${YOCTO_SDK_ROOT} -- run bbsdkinstall first"
+        return 1
+    fi
+    unset LD_LIBRARY_PATH
+    echo "sourcing $script"
+    source "$script"
+}
+
+# verify the installed SDK: compiler, target sysroot deps, toolchain file, host tools -- Phase 4.3
+# runs in a subshell so it never switches your actual interactive shell into cross-compile mode
+bbsdkcheck() {
+    local script
+    script=$(_yocto_sdk_env_script)
+    if [[ -z "$script" ]]; then
+        echo "no installed SDK found under ${YOCTO_SDK_ROOT} -- run bbsdkinstall first"
+        return 1
+    fi
+    (
+        unset LD_LIBRARY_PATH
+        source "$script" >/dev/null
+
+        echo "--- compiler ---"
+        ${=CC} --version | head -1
+        echo
+
+        echo "--- deps in target sysroot ---"
+        local dep
+        for dep in boost openssl systemd; do
+            if [[ -d "$SDKTARGETSYSROOT/usr/include/$dep" ]]; then
+                echo "OK      $dep"
+            else
+                echo "MISSING $dep"
+            fi
+        done
+        echo
+
+        echo "--- CMAKE_TOOLCHAIN_FILE ---"
+        if [[ -n "$CMAKE_TOOLCHAIN_FILE" && -f "$CMAKE_TOOLCHAIN_FILE" ]]; then
+            echo "OK      $CMAKE_TOOLCHAIN_FILE"
+        else
+            echo "MISSING (unset, or file not found)"
+        fi
+        echo
+
+        echo "--- nativesdk host tools ---"
+        local tool
+        for tool in cmake ninja; do
+            if command -v "$tool" >/dev/null 2>&1; then
+                echo "OK      $tool -> $(command -v "$tool")"
+            else
+                echo "MISSING $tool"
+            fi
+        done
+    )
+}
+
+# cross-compile RPC for the Pi using the installed Yocto SDK (configure-if-needed + build) -- Phase 5.1
+# runs in a subshell so it doesn't leave your interactive shell in SDK/cross-compile mode afterward
+bbrpccross() {
+    local script
+    script=$(_yocto_sdk_env_script)
+    if [[ -z "$script" ]]; then
+        echo "no installed SDK found under ${YOCTO_SDK_ROOT} -- run bbsdkinstall first"
+        return 1
+    fi
+    (
+        unset LD_LIBRARY_PATH
+        source "$script" >/dev/null
+        cmake -S "${RPC_SOURCE_DIR}" -B "${RPC_BUILD_DIR_RPI}" \
+            -DCMAKE_BUILD_TYPE=Release -DRPC_WITH_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX=/usr \
+            && cmake --build "${RPC_BUILD_DIR_RPI}" -j"$(nproc)"
+    )
+}
+
+# force-rebuild a recipe after editing its source (recompile+reinstall, skip sstate for it only)
+bbforce() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbforce <recipe>"; return 1; fi
+    bitbake -c compile -f "$1" && bitbake -c install -f "$1" && bitbake "$1"
+}
+
+# clean a recipe's work dir (sstate is kept, so a later plain rebuild is still fast)
+bbclean() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbclean <recipe>"; return 1; fi
+    bitbake -c clean "$1"
+}
+
+# wipe a recipe's sstate entries too -- forces a genuine from-scratch rebuild of just it
+bbcleansstate() {
+    _yocto_env
+    if [[ -z "$1" ]]; then echo "usage: bbcleansstate <recipe>"; return 1; fi
+    bitbake -c cleansstate "$1"
+}
+
+# disk usage of the three big Yocto directories (downloads/sstate survive a tmp wipe)
+bbdisk() {
+    du -sh "${YOCTO_DIR}/downloads" "${YOCTO_DIR}/sstate-cache" "${YOCTO_BUILD_DIR}/tmp" 2>/dev/null
+}
+
+# the Phase 3.5 lesson as a one-liner: wipe tmp/ and rebuild from sstate (downloads/sstate untouched)
+bbwipetmp() {
+    _yocto_env
+    echo "Deleting ${YOCTO_BUILD_DIR}/tmp (downloads/ and sstate-cache/ are untouched)..."
+    rm -rf "${YOCTO_BUILD_DIR}/tmp"
+    bitbake "${1:-core-image-minimal}"
+}
+
+# flash a built image onto a device. ALWAYS pass the device explicitly -- never hardcoded --
+# and this asks for a typed confirmation since it overwrites the entire target device.
+bbflash() {
+    _yocto_env
+    if [[ -z "$1" || -z "$2" ]]; then
+        echo "usage: bbflash <image-basename e.g. core-image-minimal> </dev/sdX>"
+        return 1
+    fi
+    local image="$1" device="$2"
+    if [[ ! -b "$device" ]]; then
+        echo "not a block device: $device"
+        return 1
+    fi
+    echo "About to overwrite the ENTIRE device $device with:"
+    echo "  ${YOCTO_BUILD_DIR}/tmp/deploy/images/raspberrypi/${image}-raspberrypi.rootfs.wic.bz2"
+    lsblk "$device"
+    read -q "REPLY?Type y to continue: "
+    echo
+    if [[ "$REPLY" != "y" ]]; then
+        echo "aborted"
+        return 1
+    fi
+    sudo bmaptool copy "${YOCTO_BUILD_DIR}/tmp/deploy/images/raspberrypi/${image}-raspberrypi.rootfs.wic.bz2" "$device"
+}

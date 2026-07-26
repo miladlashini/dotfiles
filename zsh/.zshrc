@@ -99,6 +99,7 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
 
 for _f in \
         "${ZDOTDIR}/aliases" \
+        "${ZDOTDIR}/yocto" \
         ; do
         source "${_f}" 2>/dev/null || true
 done

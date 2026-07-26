@@ -26,6 +26,11 @@ export PATH="$HOME/Qt/6.7.2/bin:$PATH"
 export CMAKE_PREFIX_PATH="$HOME/Qt/6.7.2"
 export RPC_BUILD_DIR="/opt/RPC-build"
 export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
+export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
+
+export YOCTO_DIR="${HOME}/yocto"
+export YOCTO_BUILD_DIR="${YOCTO_DIR}/build-rpi"
+export YOCTO_SDK_ROOT="/opt/poky"
 export RPC_CLANG_TIDY="clang-tidy-14"
 export CXXFLAGS="-fdiagnostics-color=always" 
 export GIT_EDITOR=vim
@@ -42,8 +47,12 @@ export CCACHE_MAXSIZE=40G
 
 #export CC=clang-14
 #export CXX=clang++-14
-export CC=gcc-12
-export CXX=g++-12
+# guarded: don't clobber the cross-compiler inside a Yocto cross-compile shell
+# (bitbake devshell or an SDK environment-setup session) -- both export this
+if [[ -z "$PKG_CONFIG_SYSROOT_DIR" ]]; then
+    export CC=gcc-12
+    export CXX=g++-12
+fi
 
 #export CC="gcc-7"
 #export CXX="g++-7"

@@ -23,7 +23,7 @@ libssl-dev python3 python3-pip python3-venv python3-dev npm \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev  ranger ueberzug \
-xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash 
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor 
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
@@ -241,8 +241,16 @@ echo "==> Docker installation complete (idempotent)."
 
 #For NVIDIA to solve the rendering problem
 #prime-select query
-#sudo prime-select nvidia
+#sudo prime-select nvidia'
 
+#########################
+# Yocto Related
+#########################
+
+sudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential \
+  chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
+  iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool \
+  file locales libacl1 bmap-tools
 
 #########################
 # Install Google Chrome (Stable)
