@@ -27,6 +27,8 @@ export CMAKE_PREFIX_PATH="$HOME/Qt/6.7.2"
 export RPC_BUILD_DIR="/opt/RPC-build"
 export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
 export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
+# update this if DHCP ever reassigns the Pi 1 B+'s address
+export RPC_PI_HOST="root@192.168.2.193"
 
 export YOCTO_DIR="${HOME}/yocto"
 export YOCTO_BUILD_DIR="${YOCTO_DIR}/build-rpi"
