@@ -118,15 +118,31 @@ install_base_packages() {
 
 configure_git() {
   log "Configuring global git identity..."
+
+  # Prompt for the email, defaulting to whatever's already configured
+  # globally (falling back to the known address if nothing is set yet) --
+  # pressing Enter keeps the default. Skipped entirely when stdin isn't a
+  # terminal (e.g. a non-interactive/piped run), so the default is used as-is.
+  local default_email email
+  default_email="$(git config --global user.email 2>/dev/null || true)"
+  default_email="${default_email:-milad.lashini@gmail.com}"
+
+  email="$default_email"
+  # check if stdin is a terminal before prompting for input
+  if [ -t 0 ]; then
+    read -r -p "Git user.email [$default_email]: " email
+    email="${email:-$default_email}"
+  fi
+
   git config --global user.name "Milad Lashini"
-  git config --global user.email "milad.lashini@gmail.com"
+  git config --global user.email "$email"
   git config --global core.editor vim
 }
 
 setup_ccache() {
   log "Setting up ccache..."
   mkdir -p "$HOME/.ccache"
-  ccache -M 50G
+  ccache -M "$CCACHE_MAXSIZE"
 }
 
 # =============================================================================
@@ -178,13 +194,33 @@ install_vscode() {
   code --install-extension ms-python.python
 }
 
+# Resolves to the tag of Kitware/CMake's current "Latest" GitHub release
+# (e.g. "4.4.2") by following the /releases/latest redirect - no GitHub API
+# call, so it isn't subject to the API's unauthenticated rate limit.
+latest_cmake_version() {
+  local location
+  # Follow the redirect from /releases/latest to get the actual release tag.
+  location="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/Kitware/CMake/releases/latest)"
+  if [[ "$location" != */tag/v* ]]; then
+    echo "ERROR: couldn't resolve the latest CMake release from $location" >&2
+    exit 1
+  fi
+  # Strip the leading path and "v" prefix to get just the version number.
+  echo "${location##*/v}"
+}
+
 build_and_install_cmake() {
-  local cmake_version="3.29.3"
+  local cmake_version
+  cmake_version="$(latest_cmake_version)"
   local cmake_tar="cmake-$cmake_version.tar.gz"
   local cmake_dir="cmake-$cmake_version"
+  # CMake's installed data dir is share/cmake-<major.minor> (no patch
+  # component), so a patch-level upgrade reuses it but a major/minor bump
+  # leaves the previous one behind - tracked here so it can be cleaned up.
+  local cmake_share_dir="cmake-${cmake_version%.*}"
 
   if command -v cmake &>/dev/null && [[ "$(cmake --version | head -1)" == *"$cmake_version"* ]]; then
-    log "CMake $cmake_version already installed, skipping."
+    log "CMake $cmake_version already installed (latest), skipping."
     return
   fi
 
@@ -201,6 +237,15 @@ build_and_install_cmake() {
     sudo make install
   )
   rm -rf "$build_root"
+
+  # Remove any previously-installed version's leftover share dir now that
+  # the new one is installed and working (kept until the very end so a
+  # failed build/install above doesn't leave the machine without a cmake).
+  shopt -s nullglob
+  for dir in /usr/local/share/cmake-*; do
+    [[ "$(basename "$dir")" == "$cmake_share_dir" ]] || sudo rm -rf "$dir"
+  done
+  shopt -u nullglob
 }
 
 # =============================================================================
@@ -229,11 +274,9 @@ setup_python_venv() {
 build_qtbase() {
   log "Building QtBase from source..."
 
-  local qt_version="6.7.2"
   local qt_repo="https://code.qt.io/qt/qtbase.git"
   local qt_src_dir="$HOME/dev/qtbase"
   local qt_build_dir="$HOME/dev/qtbase-build"
-  local qt_install_dir="$HOME/Qt/$qt_version-core"
 
   sudo apt install -y build-essential cmake ninja-build perl python3 \
     libx11-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev \
@@ -245,7 +288,7 @@ build_qtbase() {
     libjpeg-dev libssl-dev ntp cups ffmpeg libprotobuf-dev protobuf-compiler
 
   if [ ! -d "$qt_src_dir" ]; then
-    git clone --branch "v$qt_version" --depth 1 "$qt_repo" "$qt_src_dir"
+    git clone --branch "v$QT_VERSION" --depth 1 "$qt_repo" "$qt_src_dir"
   fi
 
   mkdir -p "$qt_build_dir"
@@ -254,14 +297,14 @@ build_qtbase() {
     cmake "$qt_src_dir" \
       -GNinja \
       -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX="$qt_install_dir" \
+      -DCMAKE_INSTALL_PREFIX="$QT_PREFIX" \
       -DQT_BUILD_EXAMPLES=OFF \
       -DQT_BUILD_TESTS=OFF
     ninja -j"$(nproc)"
     ninja install
   )
 
-  echo "==> QtBase installed in $qt_install_dir"
+  echo "==> QtBase installed in $QT_PREFIX"
 }
 
 # =============================================================================
@@ -273,6 +316,7 @@ install_docker() {
 
   if snap list 2>/dev/null | grep -q '^docker'; then
     log "Removing Snap Docker..."
+    # try to remove the snap package, but don't fail if it's not installed (e.g. if it was removed manually)
     sudo snap remove docker --purge || true
     sudo rm -rf /var/snap/docker ~/snap/docker
   fi
@@ -296,12 +340,12 @@ install_docker() {
 
   sudo apt-get update
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
+  # enable and start the docker service and socket, but don't fail if they already are
   sudo systemctl enable docker.socket || true
   sudo systemctl enable docker || true
   sudo systemctl start docker.socket || true
   sudo systemctl start docker || true
-
+  # check if the current user is in the docker group, and add them if not
   if ! groups "$USER" | grep -q "\bdocker\b"; then
     sudo usermod -aG docker "$USER"
     echo "==> User $USER added to docker group. Log out and back in for group changes to take effect."
@@ -538,6 +582,9 @@ main() {
 
   require_env_vars
   start_sudo_keepalive
+
+  # shellcheck disable=SC1091
+  source "$DOTFILES/versions.sh"
 
   install_base_packages
   configure_git

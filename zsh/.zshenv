@@ -1,71 +1,133 @@
+#!/usr/bin/env zsh
+#
+# .zshenv - always sourced by zsh (login, interactive, non-interactive, and
+# script invocations via `#!/usr/bin/env zsh`). Kept to environment/PATH
+# setup only; prompts/aliases/plugins belong in .zshrc instead, since those
+# would be wasted work in non-interactive shells.
+#
+# Symlinked to ~/.zshenv by ../install.sh. See .zshenv.legacy for the
+# previous, unsectioned version of this file.
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-# for dotfiles
+# Because this file is re-sourced by every nested shell (a new tmux pane, a
+# script run with #!/usr/bin/env zsh, etc.), and each of those inherits an
+# already-populated PATH from its parent, naive `PATH="dir:$PATH"` prepends
+# accumulate duplicate entries with every level of nesting. `typeset -U`
+# keeps the path array (kept in sync with $PATH by zsh) de-duplicated
+# instead, so re-sourcing is a no-op rather than a leak.
+typeset -U path
+
+########################################
+# oh-my-zsh
+########################################
+export ZSH="$HOME/.oh-my-zsh"
+
+########################################
+# XDG base directories
+########################################
 export XDG_CONFIG_HOME="$HOME/.config"
-export DOTFILES="$HOME/dotfiles"
-# For specific data
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
-# # For cached files
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
-export ZDOTDIR="${DOTFILES}/zsh";
-export ADOTDIR="${ZDOTDIR}/.antigen";
-export BASH_SCRIPT_DIR="${DOTFILES}/scripts/Bash";
-export PY_SCRIPT_DIR="${DOTFILES}/scripts/Python";
 
-#=============================pathes
-export PATH="$BASH_SCRIPT_DIR:$PY_SCRIPT_DIR:$PATH"
+########################################
+# dotfiles repo layout
+########################################
+export DOTFILES="$HOME/dotfiles"
+export ZDOTDIR="$DOTFILES/zsh"
+export ADOTDIR="$ZDOTDIR/.antigen"
+export BASH_SCRIPT_DIR="$DOTFILES/scripts/Bash"
+export PY_SCRIPT_DIR="$DOTFILES/scripts/Python"
 
+# Constants shared with install.sh (Qt version/prefix, ccache size, ...) -
+# see versions.sh for the single source of truth.
+# shellcheck disable=SC1091
+source "$DOTFILES/versions.sh"
+export QT_VERSION QT_PREFIX CCACHE_MAXSIZE
+
+########################################
+# PATH
+########################################
 export CMAKE_INSTALL_PREFIX="/tmp/RPC"
-export PATH="/usr/lib/ccache:$PATH"
-export PATH="/usr/local/Qt-5.12.7/bin/:$PATH"
-export PATH="${CMAKE_INSTALL_PREFIX}/bin/:${CMAKE_INSTALL_PREFIX}/examples:$PATH"
-export PATH="${HOME}/go/bin/:$PATH"
-export LD_LIBRARY_PATH="/usr/local/Qt-5.12.7/lib/:$LD_LIBRARY_PATH"
-export PATH="$HOME/Qt/6.7.2/bin:$PATH"
-export CMAKE_PREFIX_PATH="$HOME/Qt/6.7.2"
+
+# Listed highest-priority first; prepended as a block onto whatever PATH
+# already existed when this file was sourced (kept in $path at the end).
+path=(
+  "$DOTFILES/scripts"
+  "$HOME/.local/bin"            # pip --user installs
+  "/snap/bin"
+  "$QT_PREFIX/bin"
+  "$HOME/go/bin"
+  "$CMAKE_INSTALL_PREFIX/bin"
+  "$CMAKE_INSTALL_PREFIX/examples"
+  "/usr/lib/ccache"             # gcc/g++/cc symlinks that invoke ccache
+  "$BASH_SCRIPT_DIR"
+  "$PY_SCRIPT_DIR"
+  $path
+)
+
+# ${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} avoids leaving a leading/trailing
+# empty entry (which libc treats as "search the current directory") when
+# LD_LIBRARY_PATH isn't already set.
+export LD_LIBRARY_PATH="$QT_PREFIX/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export CMAKE_PREFIX_PATH="$QT_PREFIX"
+
+########################################
+# RPC project
+########################################
+export RPC_SOURCE_DIR="$HOME/Documents/RPC/src"
 export RPC_BUILD_DIR="/opt/RPC-build"
-export RPC_SOURCE_DIR="${HOME}/Documents/RPC/src"
 export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
+export RPC_CLANG_TIDY="clang-tidy-14"
 # update this if DHCP ever reassigns the Pi 1 B+'s address
 export RPC_PI_HOST="root@192.168.2.193"
 
-export YOCTO_DIR="${HOME}/yocto"
-export YOCTO_BUILD_DIR="${YOCTO_DIR}/build-rpi"
+########################################
+# Yocto
+########################################
+export YOCTO_DIR="$HOME/yocto"
+export YOCTO_BUILD_DIR="$YOCTO_DIR/build-rpi"
 export YOCTO_SDK_ROOT="/opt/poky"
-export RPC_CLANG_TIDY="clang-tidy-14"
-export CXXFLAGS="-fdiagnostics-color=always" 
-export GIT_EDITOR=vim
-export PATH="/snap/bin:$PATH"
-# for pip packages
-export PATH="$HOME/.local/bin:$PATH"
 
-#change it to "all" to see everything.
-export BOOST_TEST_LOG_LEVEL=error
-export PATH="$DOTFILES/scripts:$PATH"
-
-#============================COMPILER
-export CCACHE_MAXSIZE=40G
-
+########################################
+# Compiler selection
+########################################
+# Alternatives kept for quick manual switching - uncomment the pair you want.
 #export CC=clang-14
 #export CXX=clang++-14
-# guarded: don't clobber the cross-compiler inside a Yocto cross-compile shell
-# (bitbake devshell or an SDK environment-setup session) -- both export this
+#export CC=gcc-7
+#export CXX=g++-7
+#export CC=clang-7
+#export CXX=clang++-7
+
+# Guarded: don't clobber the cross-compiler inside a Yocto cross-compile
+# shell (bitbake devshell or an SDK environment-setup session) - both of
+# those export PKG_CONFIG_SYSROOT_DIR themselves.
 if [[ -z "$PKG_CONFIG_SYSROOT_DIR" ]]; then
     export CC=gcc-12
     export CXX=g++-12
 fi
 
-#export CC="gcc-7"
-#export CXX="g++-7"
-#export CC="clang-7"
-#export CXX="clang++-7"
+export CXXFLAGS="-fdiagnostics-color=always"
 
-export CCACHE_DIR=/home/milad/.ccache
-export CCACHE_TEMPDIR=/home/milad/.ccache
+########################################
+# Build caching / distributed compilation
+########################################
+export CCACHE_DIR="$HOME/.ccache"
+export CCACHE_TEMPDIR="$HOME/.ccache"
 
 export DISTCC_HOSTS='--randomize 192.168.134.51/8,lzo 192.168.134.56/8,lzo localhost/6,lzo'
 export DISTCC_VERBOSE=1
 export DISTCC_LOG='/tmp/distcc.log'
 
-. "$HOME/.cargo/env"
+########################################
+# Misc
+########################################
+export GIT_EDITOR=vim
+# set to "all" to see every Boost.Test log line instead of just failures
+export BOOST_TEST_LOG_LEVEL=error
+
+########################################
+# Tool init
+########################################
+# Guarded: this file doesn't exist until install.sh's Rust step has run, and
+# .zshenv must not fail/abort a shell that's starting before that.
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

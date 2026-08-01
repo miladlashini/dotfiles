@@ -269,7 +269,7 @@ bbsdk() {
 
 # install the most recently built SDK installer from tmp/deploy/sdk/ into /opt (needs sudo).
 # unsets LD_LIBRARY_PATH for the install itself (the installer refuses to run with it set --
-# e.g. our own Qt 5.12.7 export) without touching that export permanently.
+# e.g. our own Qt export in .zshenv) without touching that export permanently.
 # optional $1 overrides the install destination (default: /opt/poky/<version-from-filename>)
 bbsdkinstall() {
     local installer dest version
