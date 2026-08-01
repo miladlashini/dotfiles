@@ -17,13 +17,17 @@ fi
 sudo apt update
 
 # Install packages
+
+# The following command installs a comprehensive set of development tools, utilities, and libraries for C/C++, Python, Node.js, and general system management. It includes compilers, editors, version control tools, networking utilities, and more.
 sudo apt install -y build-essential neovim git tig zsh tmux curl wget ncdu nload fzf silversearcher-ag \
 ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
 libssl-dev python3 python3-pip python3-venv python3-dev npm \
 software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
 libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
 btop iftop nethogs vnstat nload variety snapd obs-studio doxygen cowsay unrar djvulibre-bin libzip-dev  ranger ueberzug \
-xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor 
+xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor ruby-full
+# Install asciidoctor-pdf gem
+sudo gem install asciidoctor-pdf
 
 # Replace with your actual name and email
 git config --global user.name "Milad Lashini"
