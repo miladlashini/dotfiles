@@ -1,120 +1,163 @@
-#Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#=============================pathes
-alias coreDumpStatus="ulimit -a"
+# aliases - personal zsh aliases/functions, shared across every machine
+# this dotfiles repo is used on. Sourced by .zshrc. Machine-specific
+# additions that shouldn't be shared belong in aliases2 instead (see the
+# bottom of this file) - that file is gitignored on purpose.
+#
+# Naming: everything below is lower_snake_case, matching install.sh,
+# zsh/yocto, and scripts/Bash/history-sync - the convention the Google
+# Shell Style Guide recommends and the one already dominant in this repo.
+# Exception: the global aliases (`alias -g`) stay UPPERCASE on purpose,
+# since that's the standard zsh idiom for making them visually stand out
+# anywhere in a command line, not just as the first word.
 
-#if this one did not work log out and log in
-# in none of the existing shell files should be a line like the following
-# ulimit -c 0.
-#############################################################################
-#############################################################################
-# possible solution:
+########################################
+# core dumps
+########################################
+# `ulimit -c unlimited` is set globally in .zshrc; if core files still
+# aren't produced, it's usually one of:
 #
-# 1. in the file /proc/sys/kernel/core_pattern if the first character of the pattern is a '|'
-# the kernel will treat the rest of the pattern as a command to run == meaning no core file will be generated
-# 
-# 2. create a folder in /home/milad/Documents/CoreFiles as an example and run the followinmg command :
+# 1. /proc/sys/kernel/core_pattern starts with '|' - the kernel pipes core
+#    dumps to that command instead of writing a file. Check its content and,
+#    if needed, point it at a real directory instead (create the directory
+#    first): set_core_dump_pattern below does this.
 #
-# 3. sudo bash -c 'echo /home/milad/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'
-#
-# 4. check the content of the /proc/sys/kernel/core_pattern now it should be set to the desired folder.
-#
-# other solution:
-#
-# 1. in /etc/security/limits.conf file the following line should be uncommented:
-#  soft core unlimited
-#
-# 1. log out and log in
-#
-#
-#############################################################################
-#############################################################################
-#For the bluetooth keyboard to be available on login you need to install the
-#following :
-# sudo snap install bluetooth-autostart
-#
-# install bluez
-# bluetoothctl
-# trust DC:2C:26:0A:7E:69
-# info DC:2C:26:0A:7E:69
-#
-#
+# 2. /etc/security/limits.conf is missing "soft core unlimited" - add it,
+#    then log out and back in.
 
-alias activateCoreDump1="ulimit -c unlimited"
-alias activateCoreDump2="sudo bash -c 'echo /home/milad/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
+alias core_dump_status="ulimit -a"
+alias set_core_dump_ulimit="ulimit -c unlimited"
+alias set_core_dump_pattern="sudo bash -c 'echo $HOME/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
+
+########################################
+# bluetooth keyboard (reference notes, not aliases)
+########################################
+# For the bluetooth keyboard to be available at login:
+#   sudo snap install bluetooth-autostart
+#   bluetoothctl
+#     trust DC:2C:26:0A:7E:69
+#     info  DC:2C:26:0A:7E:69
+
+########################################
+# system / packages
+########################################
 alias agi="sudo apt install"
-alias Up="update_script.sh"
 alias update="sudo apt update"
-alias IP="curl -4 -s ifconfig.me | tr -d '\n'"
-
-#update ccache after installing new compiler
-alias UpdateCCache="sudo update-ccache-symlinks"
-
 alias upgrade="sudo apt upgrade"
-alias fixUpdate="sudo apt-get update --fix-missing"
+alias fix_update="sudo apt-get update --fix-missing"
 alias remove="sudo apt-get remove --purge"
+alias up="update_script.sh"
+
+########################################
+# networking
+########################################
+alias my_ip="curl -4 -s ifconfig.me | tr -d '\n'"
+alias ips="hostname -I"
+alias restart_network="sudo systemctl restart NetworkManager.service"
+alias network_status="sudo systemctl status NetworkManager.service"
+
+########################################
+# shell / file utilities
+########################################
 alias -g G="| grep"
 alias -g L="| less"
-alias MMO="sudo chown -R $USER:$USER "
-alias vcmake="cmake -DCMAKE_VERBOSE_MAKEFILE=ON " 
-alias MEX="chmod a+x "
-alias HD="df -h"
+alias mmo="sudo chown -R $USER:$USER "
+alias mex="chmod a+x "
+alias disk_usage="df -h"
 alias lh="ls -lhrta"
-alias IPs="hostname -I"
-alias RestartNetwork="sudo systemctl restart NetworkManager.service"
-alias NetworkStatus="sudo systemctl status NetworkManager.service"
-alias path="echo $PATH"
-alias SSH_KEY="ssh-keygen -t rsa" 
-alias BoostVersion="dpkg -s libboost-dev | grep 'Version'"
+alias ssh_key="ssh-keygen -t rsa"
+# single-quoted so $PATH is read fresh every time, not baked in from
+# whatever it was when this file was sourced at shell startup.
+alias path='echo $PATH'
 
+########################################
+# RPC project builds
+########################################
+# All quoted with '...' rather than "..." so $CC/$CXX/$RPC_*_DIR/$(nproc)
+# are evaluated when the alias/function *runs*, not once at shell startup -
+# otherwise switching $CC/$CXX mid-session (see .zshenv) would silently be
+# ignored by these.
+#
+# Everything below uses `cmake --build "$RPC_BUILD_DIR" ...` rather than a
+# bare `make`, and "${RPC_BUILD_DIR:?...}"/"${RPC_SOURCE_DIR:?...}" rather
+# than a bare $RPC_BUILD_DIR/$RPC_SOURCE_DIR:
+#   - bare `make`/`make clean` operate on whatever directory you happen to
+#     be sitting in, not $RPC_BUILD_DIR - run from anywhere else and it
+#     silently no-ops (or acts on an unrelated Makefile, if your CWD has
+#     one). `cmake --build <dir>` is directory-explicit regardless of CWD.
+#   - if $RPC_BUILD_DIR were ever unset/empty (e.g. this file sourced
+#     without .zshenv having run), `rm -rf "$RPC_BUILD_DIR"/*` in clean_rpc
+#     below would silently become `rm -rf /*`. The ":?" guard turns that
+#     into an immediate, clear error instead.
 
-alias buildRPC="cmake -D CMAKE_C_COMPILER=${CC} -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_CXX_COMPILER=${CXX} -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && make -j"$(nproc)" "
+alias build_rpc='cmake -D CMAKE_C_COMPILER="$CC" -D CMAKE_CXX_COMPILER="$CXX" -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S "${RPC_SOURCE_DIR:?not set}" -B "${RPC_BUILD_DIR:?not set}" && cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"'
+
+# Shared implementation behind the build_rpc_* family below, which is every
+# combination of build type x compiler x tests x clang-tidy (3x2x2x2 = 24).
+# Every build_rpc_* name still works exactly as before; only the 24x
+# duplicated cmake invocation underneath it was collapsed into this one
+# function. Args: build_type with_clang with_tests with_tidy.
+_rpc_build() {
+    local build_type="$1" with_clang="$2" with_tests="$3" with_tidy="$4"
+    : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
+    time cmake --build "$RPC_BUILD_DIR" --target clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On \
+        -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
+        -D RPC_WITH_TESTS:BOOL="$with_tests" \
+        -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
+        -D CMAKE_BUILD_TYPE="$build_type" \
+        -S "$RPC_SOURCE_DIR" -B "$RPC_BUILD_DIR" \
+        && time cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"
+}
 
 #debug
-alias buildRPC_GCC="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Test="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_GCC_Test="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Tidy_Test=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
+alias build_rpc_gcc='_rpc_build Debug OFF OFF OFF'
+alias build_rpc_clang='_rpc_build Debug ON OFF OFF'
+alias build_rpc_clang_tidy='_rpc_build Debug ON OFF ON'
+alias build_rpc_clang_test='_rpc_build Debug ON ON OFF'
+alias build_rpc_gcc_tidy='_rpc_build Debug OFF OFF ON'
+alias build_rpc_gcc_test='_rpc_build Debug OFF ON OFF'
+alias build_rpc_gcc_tidy_test='_rpc_build Debug OFF ON ON'
+alias build_rpc_clang_tidy_test='_rpc_build Debug ON ON ON'
 
 #Release
-alias buildRPC_GCC_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang_Tidy_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Test_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy_R="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_GCC_Test_R="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy_Test_R=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Tidy_Test_R=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Release -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
+alias build_rpc_gcc_r='_rpc_build Release OFF OFF OFF'
+alias build_rpc_clang_r='_rpc_build Release ON OFF OFF'
+alias build_rpc_clang_tidy_r='_rpc_build Release ON OFF ON'
+alias build_rpc_clang_test_r='_rpc_build Release ON ON OFF'
+alias build_rpc_gcc_tidy_r='_rpc_build Release OFF OFF ON'
+alias build_rpc_gcc_test_r='_rpc_build Release OFF ON OFF'
+alias build_rpc_gcc_tidy_test_r='_rpc_build Release OFF ON ON'
+alias build_rpc_clang_tidy_test_r='_rpc_build Release ON ON ON'
 
 #Coverage
-alias buildRPC_GCC_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)""
-alias buildRPC_Clang_Tidy_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Test_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy_C="time make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=false -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_GCC_Test_C="time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  && time make -j"$(nproc)" "
-alias buildRPC_GCC_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
-alias buildRPC_Clang_Tidy_Test_C=" make clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=ON -D WITH_CLANG_TIDY:BOOL=True -D CMAKE_BUILD_TYPE=Coverage -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j"$(nproc)" "
+alias build_rpc_gcc_c='_rpc_build Coverage OFF OFF OFF'
+alias build_rpc_clang_c='_rpc_build Coverage ON OFF OFF'
+alias build_rpc_clang_tidy_c='_rpc_build Coverage ON OFF ON'
+alias build_rpc_clang_test_c='_rpc_build Coverage ON ON OFF'
+alias build_rpc_gcc_tidy_c='_rpc_build Coverage OFF OFF ON'
+alias build_rpc_gcc_test_c='_rpc_build Coverage OFF ON OFF'
+alias build_rpc_gcc_tidy_test_c='_rpc_build Coverage OFF ON ON'
+alias build_rpc_clang_tidy_test_c='_rpc_build Coverage ON ON ON'
 
-alias cleanRPC="rm -rf ${RPC_BUILD_DIR}/*"
+alias clean_rpc='rm -rf "${RPC_BUILD_DIR:?not set}"/*'
+alias clean_cmake_cache='rm -rf "${RPC_BUILD_DIR:?not set}/CMakeCache.txt" "$RPC_BUILD_DIR/CMakeFiles"'
+alias clean_ccache='ccache -C'
+alias ccache_stats='ccache -s'
+alias update_ccache='sudo update-ccache-symlinks'  # run after installing a new compiler
+alias list_targets='cmake --build "${RPC_BUILD_DIR:?not set}" --target help'
+alias boost_version="dpkg -s libboost-dev | grep 'Version'"
 
-alias cleanCMakeCache="rm -rf ${RPC_BUILD_DIR}/CMakeCache.txt && rm -rf ${RPC_BUILD_DIR}/CMakeFiles"
-
-alias cleanCCache="ccache -C"
-alias CCacheStats="ccache -s"
-
-alias listTargets="cmake --build ${RPC_BUILD_DIR} --target help"
-
+########################################
+# tmux
+########################################
 alias tmuxl="tmux list-sessions"
 alias tmuxa="tmux attach-session -t "
 alias tmuxn="tmux new-session -s "
 alias tmuxk="tmux kill-session -t "
 alias tmuxks="tmux kill-server"
 
-source ${HOME}/dotfiles/zsh/aliases2
-
+########################################
+# machine-local overrides
+########################################
+# aliases2 is gitignored on purpose - put anything here that's specific to
+# this machine and shouldn't be shared to the others via this repo.
+[ -f "${DOTFILES}/zsh/aliases2" ] && source "${DOTFILES}/zsh/aliases2"

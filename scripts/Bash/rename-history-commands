@@ -1,0 +1,142 @@
+#!/usr/bin/perl
+#
+# rename-history-commands <input> <output>
+#
+# One-off migration tool: rewrites zsh extended-history entries so that
+# invocations of aliases/functions renamed during the lower_snake_case
+# naming unification (see zsh/aliases, zsh/.zshrc) read as their new name
+# instead of the old one. Kept in the repo (rather than deleted after use)
+# so the exact transform applied to shared history is reproducible/
+# auditable later.
+#
+# Never edits in place - always read <input>, write <output> - so the
+# result can be diffed against the original before being adopted.
+#
+# Deliberately conservative: a name is only rewritten where it appears in
+# "command position" (the very start of a command, or immediately after
+# ';', '&&', '||', '|', a backtick, '$(', a newline continuation, or
+# "sudo "), with a trailing word boundary. Several of the old names (IP,
+# HD, up, update, remove, path) are short/common enough that a blind
+# find-and-replace across thousands of historical command lines risks
+# corrupting unrelated text that happens to contain the same word.
+
+use strict;
+use warnings;
+
+my ($in, $out) = @ARGV;
+die "usage: rename-history-commands <input> <output>\n" unless defined $in && defined $out;
+
+# old alias/function name => new name, from the naming-unification rename
+# table (zsh/aliases, zsh/.zshrc).
+my %MAP = (
+    coreDumpStatus            => 'core_dump_status',
+    activateCoreDump1         => 'set_core_dump_ulimit',
+    activateCoreDump2         => 'set_core_dump_pattern',
+    fixUpdate                 => 'fix_update',
+    Up                        => 'up',
+    IP                        => 'my_ip',
+    IPs                       => 'ips',
+    RestartNetwork            => 'restart_network',
+    NetworkStatus             => 'network_status',
+    MMO                       => 'mmo',
+    MEX                       => 'mex',
+    HD                        => 'disk_usage',
+    SSH_KEY                   => 'ssh_key',
+    buildRPC                  => 'build_rpc',
+    buildRPC_GCC              => 'build_rpc_gcc',
+    buildRPC_Clang            => 'build_rpc_clang',
+    buildRPC_Clang_Tidy       => 'build_rpc_clang_tidy',
+    buildRPC_Clang_Test       => 'build_rpc_clang_test',
+    buildRPC_GCC_Tidy         => 'build_rpc_gcc_tidy',
+    buildRPC_GCC_Test         => 'build_rpc_gcc_test',
+    buildRPC_GCC_Tidy_Test    => 'build_rpc_gcc_tidy_test',
+    buildRPC_Clang_Tidy_Test  => 'build_rpc_clang_tidy_test',
+    buildRPC_GCC_R            => 'build_rpc_gcc_r',
+    buildRPC_Clang_R          => 'build_rpc_clang_r',
+    buildRPC_Clang_Tidy_R     => 'build_rpc_clang_tidy_r',
+    buildRPC_Clang_Test_R     => 'build_rpc_clang_test_r',
+    buildRPC_GCC_Tidy_R       => 'build_rpc_gcc_tidy_r',
+    buildRPC_GCC_Test_R       => 'build_rpc_gcc_test_r',
+    buildRPC_GCC_Tidy_Test_R  => 'build_rpc_gcc_tidy_test_r',
+    buildRPC_Clang_Tidy_Test_R => 'build_rpc_clang_tidy_test_r',
+    buildRPC_GCC_C            => 'build_rpc_gcc_c',
+    buildRPC_Clang_C          => 'build_rpc_clang_c',
+    buildRPC_Clang_Tidy_C     => 'build_rpc_clang_tidy_c',
+    buildRPC_Clang_Test_C     => 'build_rpc_clang_test_c',
+    buildRPC_GCC_Tidy_C       => 'build_rpc_gcc_tidy_c',
+    buildRPC_GCC_Test_C       => 'build_rpc_gcc_test_c',
+    buildRPC_GCC_Tidy_Test_C  => 'build_rpc_gcc_tidy_test_c',
+    buildRPC_Clang_Tidy_Test_C => 'build_rpc_clang_tidy_test_c',
+    cleanRPC                  => 'clean_rpc',
+    cleanCMakeCache            => 'clean_cmake_cache',
+    cleanCCache                => 'clean_ccache',
+    CCacheStats                 => 'ccache_stats',
+    UpdateCCache                => 'update_ccache',
+    listTargets                 => 'list_targets',
+    BoostVersion                 => 'boost_version',
+    onLine                       => 'online',
+);
+
+# Longest names first, so e.g. buildRPC_Clang_Tidy_Test doesn't get cut
+# short by a substring match against plain buildRPC_Clang.
+my $alt = join '|', map { quotemeta } sort { length($b) <=> length($a) } keys %MAP;
+
+# %stats tracks how many times each old name was actually rewritten, for
+# the post-run summary.
+my %stats;
+
+sub rewrite_command {
+    my ($text) = @_;
+    $text =~ s{
+        (^|[;\n\`]|&&|\|\||\||\$\(|sudo\s+)   # command-position anchor
+        (\s*)
+        ($alt)
+        \b
+    }{
+        my ($lead, $ws, $word) = ($1, $2, $3);
+        $stats{$word}++;
+        "$lead$ws$MAP{$word}"
+    }gex;
+    return $text;
+}
+
+open my $fh_in, '<', $in or die "can't read $in: $!\n";
+open my $fh_out, '>', $out or die "can't write $out: $!\n";
+
+my $entry_prefix = undef;  # e.g. ": 1690000000:0;"
+my @entry_lines;           # command lines collected for the current entry
+
+sub flush_entry {
+    return unless defined $entry_prefix;
+    my $command = join "\n", @entry_lines;
+    $command = rewrite_command($command);
+    print $fh_out $entry_prefix, $command, "\n";
+    $entry_prefix = undef;
+    @entry_lines = ();
+}
+
+while (my $line = <$fh_in>) {
+    chomp $line;
+    if ($line =~ /^(: \d+:\d+;)(.*)$/) {
+        flush_entry();
+        $entry_prefix = $1;
+        @entry_lines = ($2);
+    } elsif (defined $entry_prefix) {
+        push @entry_lines, $line;
+    } else {
+        # Line before any recognized entry marker (e.g. a legacy
+        # non-extended-history line) - pass through unchanged.
+        print $fh_out "$line\n";
+    }
+}
+flush_entry();
+
+close $fh_in;
+close $fh_out;
+
+print STDERR "rename-history-commands: $in -> $out\n";
+for my $name (sort keys %stats) {
+    print STDERR "  $name -> $MAP{$name}: $stats{$name} occurrence(s)\n";
+}
+print STDERR "  (no occurrences found for the rest of the rename table)\n"
+    if keys %stats < keys %MAP;

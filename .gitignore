@@ -3,6 +3,7 @@ zsh/.antigen/
 zsh/performance.log
 zsh/*.zwc
 zsh/.zsh_history
+zsh/history.bak.*
 zsh/aliases2
 nvim/lazy-lock.json
 __cmake_systeminformation/

@@ -470,7 +470,7 @@ g++-12 test.cpp -o test && echo "âƒ¼ƒ¥ Works"\
 : 1768775645:0;git add .
 : 1768775648:0;git commit --amend --no-edit
 : 1768775655:0;git push
-: 1768775696:0;Up
+: 1768775696:0;up
 : 1768775709:0;git add .
 : 1768775711:0;git commit --amend --no-edit
 : 1768775714:0;git push
@@ -489,7 +489,7 @@ g++-12 test.cpp -o test && echo "âƒ¼ƒ¥ Works"\
 : 1768860059:0;exit
 : 1768860302:0;ls
 : 1768860317:0;vim zsh/aliases
-: 1768860397:0;IP
+: 1768860397:0;my_ip
 : 1768860575:0;free -h | grep "Mem"
 : 1768860927:0;vim zsh/aliases
 : 1768860968:0;ls
@@ -503,9 +503,9 @@ g++-12 test.cpp -o test && echo "âƒ¼ƒ¥ Works"\
 : 1768861146:0;ls
 : 1768861159:0;cd zsh
 : 1768861163:0;vim .zshrc
-: 1768861378:0;onLine
+: 1768861378:0;online
 : 1768861389:0;vim .zshrc
-: 1768861445:0;onLine
+: 1768861445:0;online
 : 1769214424:0;git pull --rebase
 : 1769214441:0;git status
 : 1769214458:0;git stash
@@ -517,8 +517,8 @@ g++-12 test.cpp -o test && echo "âƒ¼ƒ¥ Works"\
 : 1769214562:0;git commit -m "Added online check and show public IP."
 : 1769214566:0;git push
 : 1769214592:0;./install.sh 
-: 1769248566:0;onLine
-: 1769248573:0;IP
+: 1769248566:0;online
+: 1769248573:0;my_ip
 : 1769253708:0;ls -a | xargs stat -c %s
 : 1769253741:0;ls -a | xargs stat -ch %s
 : 1769253749:0;ls -a | xargs stat -c -h %s
@@ -871,10 +871,10 @@ g++-12 test.cpp -o test && echo "âƒ¼ƒ¥ Works"\
 : 1771170602:0;ls
 : 1771170618:0;cd RPC
 : 1771170636:0;ls
-: 1771170678:0;buildRPC_GCC
+: 1771170678:0;build_rpc_gcc
 : 1771170685:0;ls
 : 1771170734:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
-: 1771170766:0;MMO /opt
+: 1771170766:0;mmo /opt
 : 1771170771:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
 : 1771170911:0;agi libboost-python1.83-dev
 : 1771170918:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
@@ -1546,7 +1546,7 @@ tmux
 : 1772957879:0;tmux
 : 1772958314:0;cd  ~/Documents/RPC
 : 1772958356:0;nvim
-: 1772958433:0;buildRPC_GCC
+: 1772958433:0;build_rpc_gcc
 : 1772958445:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
 : 1772958474:0;btop
 : 1772979716:0;nvim
@@ -1754,9 +1754,9 @@ tmux
 : 1775159311:0;nvim
 : 1775229935:0;tmux
 : 1775229939:0;nvim
-: 1775231776:0;buildRPC_GCC
+: 1775231776:0;build_rpc_gcc
 : 1775231788:0;goto
-: 1775231803:0;buildRPC_GCC
+: 1775231803:0;build_rpc_gcc
 : 1775231931:0;which buildRPC_GCC
 : 1775232215:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
 : 1775242124:0;goto
@@ -1895,7 +1895,7 @@ tmux
 : 1776625709:0;cd Documents/RPC
 : 1776625718:0;nvim
 : 1776630874:0;cd /opt/RPC-build
-: 1776630881:0;buildRPC_GCC
+: 1776630881:0;build_rpc_gcc
 : 1776630931:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
 
 : 1776632347:0;goto
@@ -1969,21 +1969,21 @@ tmux
 : 1778405767:0;nvim
 : 1778405780:0;gst
 : 1778453979:0;cd /opt/RPC-build
-: 1778453984:0;buildRPC_GCC
+: 1778453984:0;build_rpc_gcc
 : 1778454221:0;OA
-: 1778454223:0;buildRPC_GCC
+: 1778454223:0;build_rpc_gcc
 : 1778527101:0;tmux
 : 1778527135:0;cd Documents/RPC
 : 1778527141:0;cd  ~/Documents/RPC
 : 1778527145:0;nvim
 : 1778530780:0;cd /opt/RPC-build
-: 1778530784:0;buildRPC_GCC
+: 1778530784:0;build_rpc_gcc
 : 1778531268:0;cd /opt/RPC-build
-: 1778531270:0;buildRPC_GCC
+: 1778531270:0;build_rpc_gcc
 : 1778533755:0;OA
-: 1778533757:0;buildRPC_GCC
+: 1778533757:0;build_rpc_gcc
 : 1778533942:0;OA
-: 1778533943:0;buildRPC_GCC
+: 1778533943:0;build_rpc_gcc
 : 1778534380:0;ls /tmp
 : 1778534396:0;ls
 : 1778534410:0;cd Utils/example
@@ -2011,7 +2011,7 @@ tmux
 : 1778614064:0;...
 : 1778614067:0;nvim
 : 1778709694:0;cd /opt/RPC-build
-: 1778709700:0;buildRPC_GCC
+: 1778709700:0;build_rpc_gcc
 : 1778711731:0;python3 trace_to_json.py
 : 1778711897:0;..
 : 1778711900:0;ls
@@ -2078,7 +2078,7 @@ tmux
 : 1778739876:0;cd  ~/Documents/RPC
 : 1778739879:0;nvim
 : 1778742150:0;cd /opt/RPC-build
-: 1778742161:0;buildRPC_GCC
+: 1778742161:0;build_rpc_gcc
 : 1778742234:0;ls
 : 1778742255:0;ls scripts
 : 1778742263:0;ls scripts/thread_scope
@@ -2116,7 +2116,7 @@ tmux
 : 1778787784:0;goto 
 : 1778787793:0;cd /opt/RPC-build
 : 1778787795:0;ls
-: 1778787824:0;buildRPC_GCC_Test
+: 1778787824:0;build_rpc_gcc_test
 : 1778787841:0;ls
 : 1778787868:0;cd Utils/test
 : 1778787875:0;ctest -N
@@ -2134,11 +2134,11 @@ tmux
 : 1778969252:0;tmux
 : 1778969255:0;nvim
 : 1778971073:0;cd /opt/RPC-build
-: 1778971077:0;buildRPC_GCC_Test
+: 1778971077:0;build_rpc_gcc_test
 : 1778971180:0;OA
-: 1778971182:0;buildRPC_GCC_Test
+: 1778971182:0;build_rpc_gcc_test
 : 1778971262:0;OA
-: 1778971263:0;buildRPC_GCC_Test
+: 1778971263:0;build_rpc_gcc_test
 : 1778971288:0;ls
 : 1778971290:0;gst
 : 1778971294:0;ga .
@@ -2203,7 +2203,7 @@ done
 : 1779218717:0;tmux
 : 1779218723:0;nvim
 : 1779218770:0;cd /opt/RPC-build
-: 1779218774:0;buildRPC_GCC_Test
+: 1779218774:0;build_rpc_gcc_test
 : 1779219325:0;type buildRPC_GCC_Test
 : 1779219419:0;time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
 : 1779220728:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make 
@@ -2251,11 +2251,11 @@ done
 : 1779736669:0;tmux
 : 1779736675:0;nvim
 : 1779742656:0;cd /opt/RPC-build
-: 1779742661:0;buildRPC_GCC_Test
+: 1779742661:0;build_rpc_gcc_test
 : 1779743387:0;OA
-: 1779743390:0;buildRPC_GCC_Test
+: 1779743390:0;build_rpc_gcc_test
 : 1779743986:0;OA
-: 1779743987:0;buildRPC_GCC_Test
+: 1779743987:0;build_rpc_gcc_test
 : 1779885047:0;tmux
 : 1779885055:0;cd  ~/Documents/RPC
 : 1779885071:0;nvim
@@ -2264,67 +2264,67 @@ done
 : 1779975519:0;tmux
 : 1779975525:0;nvim
 : 1779975569:0;cd /opt/RPC-build
-: 1779975575:0;buildRPC_GCC_Test
+: 1779975575:0;build_rpc_gcc_test
 : 1779977256:0;btop
-: 1779977588:0;buildRPC_GCC_Test
+: 1779977588:0;build_rpc_gcc_test
 : 1779977802:0;nvim
-: 1779977853:0;buildRPC_GCC_Test
+: 1779977853:0;build_rpc_gcc_test
 : 1779977975:0;nvim
-: 1779978046:0;buildRPC_GCC_Test
+: 1779978046:0;build_rpc_gcc_test
 : 1779978451:0;nvim
-: 1779978714:0;buildRPC_GCC_Test
+: 1779978714:0;build_rpc_gcc_test
 : 1779979533:0;nvim
-: 1779979679:0;buildRPC_GCC_Test
+: 1779979679:0;build_rpc_gcc_test
 : 1779979720:0;nvim
-: 1779981448:0;buildRPC_GCC_Test
+: 1779981448:0;build_rpc_gcc_test
 : 1779994099:0;tmux
 : 1779994106:0;cd  ~/Documents/RPC
 : 1779994434:0;nvim
 : 1780000322:0;cd /opt/RPC-build
-: 1780000325:0;buildRPC_GCC_Test
+: 1780000325:0;build_rpc_gcc_test
 : 1780080847:0;tmux
 : 1780081452:0;cd  ~/Documents/RPC
 : 1780081458:0;nvim
-: 1780081530:0;buildRPC_GCC_Test
+: 1780081530:0;build_rpc_gcc_test
 : 1780247245:0;cd /opt/RPC-build
-: 1780247272:0;buildRPC_GCC_Test
+: 1780247272:0;build_rpc_gcc_test
 : 1780252551:0;nvim
 : 1780254027:0;tmux
 : 1780254031:0;nvim
 : 1780254042:0;cd /opt/RPC-build
-: 1780255682:0;buildRPC_GCC_Test
+: 1780255682:0;build_rpc_gcc_test
 : 1780347681:0;cd  ~/Documents/RPC
 : 1780347685:0;nvim
 : 1780349435:0;tmux
 : 1780349438:0;nvim
 : 1780350312:0;cd /opt/RPC-build
-: 1780350316:0;buildRPC_GCC_Test
+: 1780350316:0;build_rpc_gcc_test
 : 1780519774:0;tmux
 : 1780520216:0;cd  ~/Documents/RPC
 : 1780520256:0;ls
 : 1780520266:0;cd /opt/RPC-build
 : 1780520274:0;nvim
 : 1780520334:0;ls
-: 1780520339:0;buildRPC_GCC_Test
+: 1780520339:0;build_rpc_gcc_test
 : 1780862140:0;cd /opt/RPC-build
-: 1780862143:0;buildRPC_GCC_Test
+: 1780862143:0;build_rpc_gcc_test
 : 1780946630:0;tmux
 : 1780946651:0;cd  ~/Documents/RPC
 : 1780946655:0;nvim
 : 1780948685:0;cd /opt/RPC-build
-: 1780948737:0;buildRPC_GCC_Test
+: 1780948737:0;build_rpc_gcc_test
 : 1781207566:0;tmux
 : 1781263411:0;cd  ~/Documents/RPC
 : 1781263415:0;nvim
 : 1781263613:0;cd /opt/RPC-build
-: 1781263616:0;buildRPC_GCC_Test
+: 1781263616:0;build_rpc_gcc_test
 : 1781432963:0;ssh Milad@192.168.2.225 
 : 1781444869:0;tmux
 : 1781444892:0;cd  ~/Documents/RPC
 : 1781444899:0;nvim
-: 1781444940:0;buildRPC_GCC_Test
+: 1781444940:0;build_rpc_gcc_test
 : 1781448217:0;OA
-: 1781448218:0;buildRPC_GCC_Test
+: 1781448218:0;build_rpc_gcc_test
 : 1781549201:0;tmux
 : 1781549997:0;nvim
 : 1781642589:0;tmux
@@ -2332,7 +2332,7 @@ done
 : 1782073655:0;tmux
 : 1782073662:0;nvim
 : 1782076525:0;cd /opt/RPC-build
-: 1782076529:0;buildRPC_GCC_Test
+: 1782076529:0;build_rpc_gcc_test
 : 1782161551:0;tmux
 : 1782161567:0;cd  ~/Documents/RPC
 : 1782161570:0;nvim
@@ -2375,7 +2375,7 @@ done
 : 1783282259:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
 : 1783369891:0;tmux
 : 1783369902:0;cd /opt/RPC-build
-: 1783369906:0;buildRPC_GCC_Test
+: 1783369906:0;build_rpc_gcc_test
 : 1783369938:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
 : 1783453818:0;tmux
 : 1783453857:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
@@ -2421,7 +2421,7 @@ done
 
 : 1784071227:0;git push
 : 1784071398:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
-: 1784071478:0;buildRPC_GCC_Test
+: 1784071478:0;build_rpc_gcc_test
 : 1784140407:0;claude
 : 1784143716:0;tmux
 : 1784143720:0;gst
@@ -2432,9 +2432,9 @@ done
 
 : 1784143912:0;git push
 : 1784144153:0;nvim
-: 1784147207:0;buildRPC_GCC_Test
+: 1784147207:0;build_rpc_gcc_test
 : 1784147217:0;cd /opt/RPC-build
-: 1784147221:0;buildRPC_GCC_Test
+: 1784147221:0;build_rpc_gcc_test
 : 1784147264:0;cd  ~/Documents/RPC
 : 1784147266:0;gst
 : 1784147270:0;ga .
@@ -2451,7 +2451,7 @@ done
 : 1784228528:0;tmux
 : 1784228533:0;nvim
 : 1784228732:0;cd /opt/RPC-build
-: 1784228738:0;buildRPC_GCC_Test
+: 1784228738:0;build_rpc_gcc_test
 : 1784228919:0;claude
 : 1784381206:0;cd ~/dotfiles/zsh
 : 1784381208:0;ls
@@ -2465,56 +2465,56 @@ done
 
 : 1784381469:0;git push
 : 1784381496:0;cd /opt/RPC-build
-: 1784381499:0;buildRPC_GCC_Test
+: 1784381499:0;build_rpc_gcc_test
 : 1784409577:0;gst
 : 1784409587:0;ga .
 : 1784409643:0;git commit -m "Added MBlock and various related view factory functions related to it."\
 \
 
 : 1784409649:0;git push
-: 1784410760:0;buildRPC_GCC_Test
+: 1784410760:0;build_rpc_gcc_test
 : 1784410801:0;ls
 : 1784410822:0;ctest --test-dir /opt/RPC-build
-: 1784412552:0;buildRPC_Clang_Test
+: 1784412552:0;build_rpc_clang_test
 : 1784413338:0;type buildRPC_Clang_Test
 : 1784413363:0;gst
 : 1784413376:0;ga .
 : 1784413412:0;git commit -m "Fixed the failing boost tests."\
 
 : 1784413418:0;git push
-: 1784415281:0;buildRPC_Clang_Test
+: 1784415281:0;build_rpc_clang_test
 : 1784460719:0;update_script.sh 
 : 1784461401:0;tmux
 : 1784461417:0;cd  ~/Documents/RPC
 : 1784461419:0;ls
 : 1784461421:0;gst
 : 1784461430:0;git diff
-: 1784461467:0;buildRPC_Clang_Test
+: 1784461467:0;build_rpc_clang_test
 : 1784463141:0;gst
 : 1784463145:0;ga .
 : 1784463174:0;git commit -m "Fixed the clang build and suppressed the asio warnings."\
 
 : 1784463182:0;git push
-: 1784464346:0;buildRPC_Clang_Test
-: 1784465870:0;buildRPC_GCC_Test
+: 1784464346:0;build_rpc_clang_test
+: 1784465870:0;build_rpc_gcc_test
 : 1784466120:0;\
 
-: 1784466144:0;buildRPC_GCC_Test
+: 1784466144:0;build_rpc_gcc_test
 : 1784466292:0;gst
 : 1784468352:0;ga .
 : 1784468402:0;git commit -m "refactored the type traits."\
 
 : 1784468407:0;git push
 : 1784471139:0;gst
-: 1784471155:0;buildRPC_GCC_Test
-: 1784471195:0;buildRPC_Clang_Test
+: 1784471155:0;build_rpc_gcc_test
+: 1784471195:0;build_rpc_clang_test
 : 1784471350:0;cd  ~/dotfiles
 : 1784471351:0;ls
 : 1784471357:0;cd zsh
 : 1784471359:0;ls
 : 1784471365:0;nvim aliases
-: 1784472381:0;cleanRPC 
-: 1784472395:0;buildRPC_Clang_Test
+: 1784472381:0;clean_rpc 
+: 1784472395:0;build_rpc_clang_test
 : 1784472410:0;typebuildRPC_Clang_Test
 : 1784472413:0;type buildRPC_Clang_Test
 : 1784472597:0;gst
@@ -2533,14 +2533,14 @@ done
 : 1784475152:0;git push
 : 1784475164:0;cd  ~/Documents/RPC
 : 1784475188:0;nvim
-: 1784476427:0;buildRPC_Clang_Test
+: 1784476427:0;build_rpc_clang_test
 : 1784476549:0;ctest --test-dir /opt/RPC-build
 : 1784476769:0;cmake --build /opt/RPC-build --target help
 : 1784476780:0;nvim aliases
 : 1784476793:0;cd  ~/dotfiles
 : 1784476798:0;cd zsh
 : 1784476807:0;nvim aliases
-: 1784476862:0;listTargets
+: 1784476862:0;list_targets
 : 1784476866:0;gst
 : 1784476869:0;ga .
 : 1784476888:0;git commit -m "added target list for RPC"\
@@ -2549,7 +2549,7 @@ done
 : 1784483371:0;cd  ~/Documents/RPC
 : 1784483379:0;tmx
 : 1784483382:0;tmux
-: 1784483390:0;listTargets G test
+: 1784483390:0;list_targets G test
 : 1784484110:0;df
 : 1784486014:0;gst
 : 1784486017:0;ga .
@@ -2841,7 +2841,7 @@ cd ~/yocto/build-rpi && grep -m5 'zlib' task-depends.dot
 : 1785060660:0;./meson_do_configure
 : 1785060667:0;meson_do_configure
 : 1785060711:0;./meson_do_configure
-: 1785060983:0;listTargets
+: 1785060983:0;list_targets
 : 1785060992:0;type listTargets
 : 1785062340:0;bbforce wayland-protocols
 : 1785062463:0;bbshell wayland-protocols
@@ -3111,4 +3111,18 @@ find ~/yocto/meta-rpc -type f
 : 1785672644:0;gst
 : 1785672647:0;ga .
 : 1785672685:0;git commit -m "Added incremental zsh history to the dotfiles."\
+
+: 1785672688:0;gp
+: 1785675003:0;gst
+: 1785675021:0;nvim zsh/aliases
+: 1785692247:0;ls
+: 1785692262:0;ls zsh
+: 1785692428:0;nvim zsh/aliases
+: 1785692938:0;build_rpc_clang_test
+: 1785692963:0;nvim zsh/aliases
+: 1785698021:0;gst
+: 1785698075:0;nvim zsh/.zshrc
+: 1785698452:0;nvim scripts/Bash/rename-history-commands
+: 1785698748:0;ga .
+: 1785698796:0;git commit -m "Unified the names in dotfile."\
 

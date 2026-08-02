@@ -91,7 +91,7 @@ ulimit -c unlimited
 ########################################
 
 # quick internet reachability check
-onLine() {
+online() {
     if ping -c 1 google.com &>/dev/null; then
         echo "Online!"
     else
