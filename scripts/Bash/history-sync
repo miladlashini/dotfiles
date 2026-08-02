@@ -1,0 +1,64 @@
+#!/bin/bash
+#
+# history-sync export|import
+#
+# Keeps this machine's local, live zsh history ($HISTFILE, default
+# ~/.zsh_history) and this repo's shared, git-tracked history
+# (zsh/history) in sync across every machine that uses these dotfiles.
+#
+#   export - merge new entries from $HISTFILE into zsh/history, then
+#            `git add` it. Run by .githooks/pre-commit.
+#   import - merge new entries from zsh/history into $HISTFILE, creating
+#            it if it doesn't exist yet (this is also how a brand new
+#            machine gets seeded). Run by .githooks/post-merge and once
+#            during install.sh.
+#
+# Both directions share one merge: entries are zsh's extended-history
+# format (": <epoch>:<duration>;<command>", where <command> may itself
+# span multiple physical lines via a trailing "\" continuation). The
+# destination's entries are kept first, then any of the source's entries
+# not already present (compared as exact whole-entry text) are appended -
+# order is otherwise left as-is rather than globally re-sorted by
+# timestamp, and dedup makes repeat syncs idempotent.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES="${DOTFILES:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
+HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
+TRACKED_HISTORY="$DOTFILES/zsh/history"
+
+# merge SRC into DST in place, keeping DST's entries first.
+merge() {
+  local dst="$1" src="$2" tmp
+  tmp="$(mktemp)"
+  awk '
+    function flush() {
+      if (entry != "" && !(entry in seen)) { seen[entry] = 1; print entry }
+      entry = ""
+    }
+    FNR == 1 { flush() }
+    /^: [0-9]+:[0-9]+;/ { flush(); entry = $0; next }
+    { entry = (entry == "" ? $0 : entry "\n" $0) }
+    END { flush() }
+  ' "$dst" "$src" > "$tmp"
+  mv "$tmp" "$dst"
+}
+
+case "${1:-}" in
+  export)
+    [ -f "$HISTFILE" ] || exit 0
+    touch "$TRACKED_HISTORY"
+    merge "$TRACKED_HISTORY" "$HISTFILE"
+    git -C "$DOTFILES" add "$TRACKED_HISTORY"
+    ;;
+  import)
+    [ -f "$TRACKED_HISTORY" ] || exit 0
+    touch "$HISTFILE"
+    merge "$HISTFILE" "$TRACKED_HISTORY"
+    ;;
+  *)
+    echo "usage: history-sync export|import" >&2
+    exit 1
+    ;;
+esac

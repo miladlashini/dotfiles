@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# After `git pull`/`git merge` updates zsh/history, folds any new entries
+# other machines contributed into this machine's local live history too.
+# Never blocks the merge itself.
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+"$REPO_ROOT/scripts/Bash/history-sync" import 2>/dev/null || true
+exit 0

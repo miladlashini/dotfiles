@@ -1,0 +1,3114 @@
+: 1751405758:0;cd dotfiles
+: 1751405762:0;gst
+: 1751405778:0;ga .bashrc
+: 1751405812:0;git commit -m "Added necessary bashrc to the dotfiles."
+: 1751405840:0;git config --global user.email "milad.lashini@gmail.com"
+: 1751405858:0;git config --global user.name "Milad Lashini"
+: 1751405867:0;git commit -m "Added necessary bashrc to the dotfiles."
+: 1751405873:0;git push
+: 1751405923:0;agi tmux
+: 1751406036:0;chmod 666 install.sh 
+: 1751406050:0;chmod +x install.sh 
+: 1751406061:0;./install.sh
+: 1751406108:0;agi neofetch
+: 1751406131:0;update
+: 1751406136:0;upgrade
+: 1751406208:0;agi fzf
+: 1751406228:0;agi neovim
+: 1751406254:0;agi build-essential 
+: 1751406276:0;agi wget
+: 1751406286:0;agi curl
+: 1751406445:0;agi silversearcher-ag
+: 1751406464:0;tmux
+: 1751406495:0;agi tig
+: 1751406522:0;agi nload
+: 1751406569:0;update
+: 1751406578:0;upgrade
+: 1751406852:0;agi ninja-build
+: 1751406915:0;agi ncdu
+: 1751406923:0;ncdu
+: 1751486362:0;./install.sh
+: 1751487752:0;htop
+: 1751488384:0;./install.sh qt
+: 1751488419:0;./install.sh 
+: 1751488432:0;./install.sh qt
+: 1751488502:0;g++ --version
+: 1751488914:0;./install.sh qt
+: 1751489992:0;sudo apt-key list | grep 15CF4D18AF4F7421
+: 1751490132:0;./install.sh qt
+: 1751490697:0;update
+: 1751490808:0;sudo rm -f /usr/share/keyrings/llvm-archive-keyring.gpg
+: 1751490817:0;sudo rm -f /etc/apt/sources.list.d/llvm-*.list
+: 1751490821:0;update
+: 1751490938:0;./install.sh qt
+: 1751491589:0;,,
+: 1751491595:0;cd /tmp
+: 1751491597:0;echo 'int main() { return 0; }' > test.cpp\
+g++-12 test.cpp -o test && echo "⃼�� Works"\
+
+: 1751491623:0;cd ~/dotfiles
+: 1751492298:0;cd /home/milad/.ccache\
+
+: 1751492336:0;ls -ld $CCACHE_DIR
+: 1751492379:0;echo $CCACHE_DIR
+: 1751492440:0;./install.sh qt
+: 1751492489:0;htop
+: 1751492838:0;gst
+: 1751492869:0;git add install.sh zsh/.zshenv
+: 1751492881:0;git diff
+: 1751492935:0;git commit -m "Updated install script to install necessary things at start up."
+: 1751492940:0;git push
+: 1751492960:0;./install.sh qt
+: 1751493122:0;:x
+: 1751493497:0;./install.sh qt
+: 1751493564:0;gst
+: 1751493570:0;git add install.sh
+: 1751493604:0;git commit --amend --no-edit
+: 1751493625:0;git push --force-with-lease
+: 1751494993:0;ls
+: 1751494996:0;pwd
+: 1751548714:0;cd ~/Downloads
+: 1751548755:0;sudo dpkg -i google-chrome-stable_current_amd64\(1\).deb
+: 1751574662:0;btop
+: 1751574934:0;./install.sh qt
+: 1751575022:0;nload
+: 1751575060:0;ifconfig
+: 1751575086:0;nload wlp0s20f3
+: 1751575166:0;nload device
+: 1751575251:0;btop
+: 1751575452:0;vnstat
+: 1751575462:0;iftop
+: 1751575477:0;sudo iftop
+: 1751575500:0;nethogs
+: 1751575516:0;sudo nethogs
+: 1751575530:0;vnstat
+: 1751575552:0;tmux
+: 1751575559:0;btop
+: 1751575761:0;gst
+: 1751575766:0;git add install.sh
+: 1751575816:0;git commit -m "Added networking tools to install script."
+: 1751575822:0;git push
+: 1751575904:0;btop
+: 1751576497:0;cd ~/dotfiles
+: 1751576500:0;gst
+: 1751576503:0;git add install.sh
+: 1751576510:0;git commit --amend --no-edit
+: 1751576517:0;git push --force-with-lease
+: 1751661737:0;sudo dpkg -r google-chrome-stable
+: 1751662296:0;btop
+: 1751664163:0;./install.sh qt
+: 1751664504:0;gst
+: 1751664514:0;ga install.sh 
+: 1751664519:0;git commit --amend --no-edit
+: 1751664535:0;git push --force-with-lease
+: 1751664938:0;btop
+: 1751732897:0;agi mpv
+: 1751733007:0;btop
+: 1751733688:0;gst
+: 1751733692:0;ga install.sh 
+: 1751733696:0;git commit --amend --no-edit
+: 1751733699:0;git push --force-with-lease
+: 1751733762:0;btop
+: 1751734706:0;sudo apt update && sudo apt install ubuntu-restricted-extras
+: 1751734920:0;btop
+: 1751735649:0;settings
+: 1751735655:0;gsettings
+: 1751735668:0;reboot
+: 1751736043:0;btop
+: 1751736100:0;sudo btop
+: 1751752230:0;btop
+: 1751752261:0;sudo btop
+: 1751752764:0;nvidia-smi
+: 1751752936:0;prime-select query
+: 1751753143:0;sudo prime-select nvidia
+: 1751753463:0;btop
+: 1751753839:0;./install.sh qt
+: 1751753914:0;sudo apt remove chromium-browser
+: 1751753961:0;sudo apt-get remove chromium-browser
+: 1751754231:0;./install.sh qt
+: 1751754462:0;sudo apt install gnome-tweaks
+: 1751754638:0;nautilus -q
+: 1751754674:0;snap list | grep nautilus
+: 1751755111:0;gst
+: 1751755114:0;ga install.sh 
+: 1751755118:0;git commit --amend --no-edit
+: 1751755123:0;git push --force-with-lease
+: 1751755421:0;update
+: 1751755433:0;upgrade
+: 1751834717:0;update
+: 1751834730:0;upgrade
+: 1751834811:0;nautilus -q
+: 1751835083:0;gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'\
+
+: 1751835106:0;nautilus -q
+: 1751835241:0;snap list | grep nautilus
+: 1751835499:0;nautilus -q
+: 1752003664:0;update
+: 1752003678:0;upgrade
+: 1752007088:0;btop
+: 1752090075:0;update
+: 1752090089:0;upgrade
+: 1752347478:0;update
+: 1752347495:0;upgrade
+: 1752347569:0;tmux
+: 1752347589:0;btop
+: 1752779368:0;update
+: 1752779387:0;upgrade
+: 1752957639:0;update
+: 1752957655:0;upgrade
+: 1753201110:0;update
+: 1753201143:0;upgrade
+: 1753631867:0;update
+: 1753631878:0;upgrade
+: 1753636588:0;btop
+: 1754774252:0;hostname -l
+: 1754774257:0;hostname -I
+: 1754774265:0;hostname -i
+: 1754774389:0;Ips
+: 1754774393:0;ls
+: 1754774412:0;lh
+: 1754774431:0;gst
+: 1754774442:0;git diff
+: 1754774460:0;gst
+: 1754774471:0;git add zsh/aliases
+: 1754774491:0;git commit -m "Added some aliases."
+: 1754774496:0;git push
+: 1754774529:0;Ips
+: 1754774543:0;llh
+: 1754774546:0;lh
+: 1757276532:0;cat /proc/cpuinfo
+: 1757276580:0;btop
+: 1757277652:0;..
+: 1757277668:0;cd ~/Documents/Qt_Palyground
+: 1757277669:0;ls
+: 1757277737:0;mkdir build && cd build
+: 1757277809:0;cmake .. -DCMAKE_PREFIX_PATH=/home/viserion/Qt
+: 1757277895:0;cmake .. -DCMAKE_PREFIX_PATH=/home/viserion/Qt/6.7.2-core
+: 1757277921:0;make
+: 1757278620:0;ls
+: 1757278626:0;./QtCoreNetTest
+: 1757883107:0;sudo dpkg -i code_1.104.0-1757488003_amd64.deb 
+: 1757883283:0;cd /
+: 1757883288:0;ncdu
+: 1757883294:0;sudo ncdu
+: 1757884536:0;btop
+: 1759077824:0;update
+: 1759077838:0;upgrade
+: 1759658254:0;ssh dsadmin@192.168.2.225
+: 1759658838:0;ssh admin@192.168.2.225
+: 1759658915:0;ssh root@192.168.2.225
+: 1759658943:0;ssh Milad@192.168.2.225
+: 1759659027:0;ssh-copy-id Milad@192.168.2.225
+: 1759659043:0;ssh Milad@192.168.2.225
+: 1759697881:0;ssh-copy-id Milad@192.168.2.225
+: 1759697903:0;ssh admin@192.168.2.225
+: 1759697976:0;ssh Milad@192.168.2.225
+: 1759698164:0;git clone ssh://Milad@192.168.2.225:/volume1/git-server/RPC.git
+: 1759698387:0;tig
+: 1759698399:0;git status
+: 1759698415:0;git checkout develop
+: 1759698520:0;git branches
+: 1759698523:0;git branche
+: 1759698525:0;git branch
+: 1759698531:0;git branch --list
+: 1759698909:0;ssh-copy-id Milad@192.168.2.225
+: 1759698941:0;ssh Milad@192.168.2.225
+: 1759699105:0;ssh-copy-id Milad@192.168.2.225
+: 1759699202:0;ssh Milad@192.168.2.225
+: 1759699478:0;ssh-copy-id Milad@192.168.2.225
+: 1759699515:0;ssh Milad@192.168.2.225
+: 1759699542:0;ssh Milad@192.168.2.225 -vv
+: 1759737639:0;ssh Milad@192.168.2.225 
+: 1759787097:0;git clone ssh://Milad@192.168.2.225:/volume1/git-server/RPC.git
+: 1760645183:0;ss -t
+: 1760645220:0;netstat -tulpn
+: 1762625484:0;sudo dpkg -i code_1.105.1-1760482543_amd64.deb
+: 1762625624:0;update
+: 1762625638:0;upgrade
+: 1764520325:0;ssh Milad@192.168.2.225 
+: 1765308305:0;lsusb
+: 1765308421:0;lsblk
+: 1765308953:0;lsmod
+: 1765310390:0;update
+: 1765310401:0;upgrade
+: 1765467097:0;ssh Milad@192.168.2.225 
+: 1765486132:0;pstree | less
+: 1765486155:0;pstree 
+: 1765486164:0;pstree L
+: 1765486230:0;btop
+: 1765487740:0;journalctl -xe
+: 1765832855:0;ls
+: 1765832873:0;ls -lhrt /sys
+: 1765833022:0;ls -lhrt /dev
+: 1766004104:0;cd /boot/grub
+: 1766004106:0;ls
+: 1766004116:0;vi grub.cfg
+: 1766004150:0;..
+: 1766004152:0;#ls
+: 1766004156:0;ls
+: 1766004189:0;cd efi
+: 1766004191:0;ls
+: 1766004202:0;..
+: 1766004211:0;cd grub
+: 1766004214:0;ls
+: 1766004223:0;cat grub.cfg
+: 1766004235:0;sudo cat grub.cfg
+: 1766009694:0;ldd ls
+: 1766009704:0;ldd /usr/bin/ls
+: 1766406672:0;apt-get update
+: 1766406678:0;update
+: 1766406709:0;upgrade
+: 1766406919:0;cat /etc/apt
+: 1766406932:0;cat /etc/apt/sources.list
+: 1766406961:0;cat /etc/apt/sources.list.d/ubuntu.sources
+: 1766407359:0;ls /var/cache/apt/archives
+: 1766407380:0;ls -lhrt /var/cache/apt/archives
+: 1766407457:0;ls -lhrt /var/cache/apt/
+: 1766407513:0;clear
+: 1766407531:0;apt-cache dump
+: 1766407574:0;apt-cache search editor
+: 1766407649:0;apt-cache stats
+: 1766407666:0;apt-cache search editor
+: 1766407683:0;apt list
+: 1766407733:0;apt list --nstalled
+: 1766407737:0;apt list --installed
+: 1766407764:0;apt show bash
+: 1766407819:0;apt-cache show
+: 1766407839:0;apt-cache search 
+: 1766408504:0;sudo apt-get autoremove
+: 1766413449:0;sudo apt-get install -f
+: 1766414026:0;sudo apt autoremove
+: 1766414034:0;sudo apt install -f
+: 1766793617:0;env
+: 1767285474:0;sudo snap install telegram-desktop
+: 1767369081:0;man dd
+: 1767529994:0;..
+: 1767529997:0;ls
+: 1767530006:0;cd home/milad
+: 1767530007:0;ls
+: 1767530019:0;cd /
+: 1767530037:0;cd home/viserion
+: 1767530038:0;ls
+: 1767530045:0;cd dotfiles
+: 1767530052:0;git status
+: 1767530060:0;git diff
+: 1767530120:0;vim .gitignore
+: 1767530138:0;git status
+: 1767530169:0;ls
+: 1767530175:0;vim insta
+: 1767530186:0;vim install.sh
+: 1767530309:0;agi g++-14-mipsisa64r6-linux-gnuabi64 :q
+: 1767530531:0;vim install.sh
+: 1767530606:0;./install.sh 
+: 1767530758:0;vim install.sh
+: 1767531184:0;./install.sh 
+: 1767531213:0;vim install.sh
+: 1767531334:0;./install.sh 
+: 1767531443:0;vim install.sh
+: 1767531532:0;./install.sh 
+: 1767531584:0;git status
+: 1767531631:0;git checkout -- zsh/.zcompdump
+: 1767531638:0;git status
+: 1767531646:0;git add .
+: 1767531702:0;git commit -m "Added nice image viewer and a changed the symbolic link creation part to a checking one."
+: 1767531710:0;git push
+: 1767531768:0;vim install.sh
+: 1767694251:0;ssh Milad@192.168.2.225 
+: 1767731723:0;git status
+: 1767909814:0;ls
+: 1767909832:0;chmod +x calculator
+: 1767909840:0;./calculator
+: 1767909861:0;./calculator + 3 4
+: 1767909874:0;./calculator - 4 3
+: 1767909879:0;./calculator -  3 5
+: 1767909906:0;file calculator
+: 1767909932:0;vim calculator
+: 1767910358:0;./calculator -  3 5
+: 1767910387:0;vim calculator
+: 1767910407:0;./calculator -  3 5
+: 1767910416:0;vim calculator
+: 1767910781:0;./calculator -  3 5
+: 1767910797:0;vim calculator
+: 1767910832:0;./calculator -  3 5
+: 1767910840:0;./calculator - 4 3
+: 1767910844:0;./calculator + 3 4
+: 1767910848:0;vim calculator
+: 1767910964:0;./calculator + 3 4
+: 1767910967:0;./calculator - 4 3
+: 1767910973:0;vim calculator
+: 1767911336:0;./calculator - 4 3
+: 1767911341:0;./calculator + 3 4
+: 1767911359:0;./calculator + 3 4 988 6656778 778 
+: 1768062538:0;update
+: 1768062939:0;cat ~/.config/gtk-4.0/settings.ini
+: 1768062950:0;vi ~/.config/gtk-4.0/settings.ini
+: 1768062971:0;cat ~/.config/gtk-3.0/settings.ini
+: 1768062979:0;vi ~/.config/gtk-3.0/settings.ini
+: 1768063019:0;nautilus -q
+: 1768063155:0;upgrade
+: 1768073342:0;gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+: 1768073409:0;sudo apt install gnome-tweaks
+: 1768073473:0;nautilus -q
+: 1768075353:0;ls
+: 1768075367:0;chmod +x read_command_project_official_solution
+: 1768075376:0;./read_command_project_official_solution 
+: 1768075589:0;ls
+: 1768075690:0;./read_command_project_official_solution 
+: 1768253388:0;free
+: 1768603515:0;./install.sh 
+: 1768603579:0;git status
+: 1768603588:0;git add install.sh
+: 1768603620:0;git commit -m "Added shellcheck."
+: 1768603625:0;git push
+: 1768603653:0;tig
+: 1768603708:0;agi shellcheck
+: 1768603742:0;shellcheck --version
+: 1768604019:0;cd ~/Downloads/openvpn
+: 1768604022:0;cd ..
+: 1768604023:0;ls
+: 1768604049:0;shellcheck script1_broken.sh
+: 1768604060:0;tmux
+: 1768604069:0;shellcheck script1_broken.sh
+: 1768604085:0;vi script1_broken.sh
+: 1768604370:0;uname
+: 1768604500:0;shellcheck script2_broken.sh
+: 1768604537:0;vi script2_broken.sh
+: 1768727882:0;cd ~
+: 1768727883:0;ls
+: 1768727886:0;cd do
+: 1768727890:0;cd dotfiles
+: 1768727894:0;tig
+: 1768727974:0;update
+: 1768727987:0;upgrade
+: 1768728084:0;sudo apt install -f
+: 1768728467:0;type -a xarg
+: 1768728501:0;type -a grep
+: 1768728514:0;type -a xarg
+: 1768728522:0;type -a xargs
+: 1768728662:0;help
+: 1768728674:0;help 
+: 1768728705:0;help help
+: 1768728712:0;help cd
+: 1768728725:0;man cd
+: 1768728740:0;type -a cd
+: 1768728752:0;help cd
+: 1768729076:0;exit
+: 1768729191:0;run-help
+: 1768732420:0;man -k url
+: 1768733201:0;cd ~/Documents/Bash\ Scripting/Scripts
+: 1768733203:0;ls
+: 1768733219:0;chmod +x cruft_remover.sh
+: 1768733244:0;./cruft_remover.sh
+: 1768733263:0;OA
+: 1768733265:0;./cruft_remover.sh
+: 1768740597:0;..
+: 1768740603:0;cd /tmp
+: 1768740645:0;cd ..
+: 1768740666:0;cd /home/viserion/Documents/Bash\ Scripting/Scripts
+: 1768740678:0;chmod +x folder_organiser.sh
+: 1768740682:0;cd ..
+: 1768740684:0;..
+: 1768740687:0;cd tmp
+: 1768740688:0;ls
+: 1768740761:0;cd ..
+: 1768740766:0;cd Bash\ Scripting/Scripts
+: 1768740771:0;./folder_organiser.sh
+: 1768740840:0;shellcheck folder_organiser.sh
+: 1768740906:0;./folder_organiser.sh
+: 1768741783:0;chmod +x toolkit.sh
+: 1768741799:0;./toolkit.sh
+: 1768742360:0;..
+: 1768742360:0;...
+: 1768742363:0;ls
+: 1768742366:0;cd dotfiles
+: 1768742367:0;ls
+: 1768742835:0;cd scripts
+: 1768742836:0;ls
+: 1768742838:0;..
+: 1768742842:0;cd do
+: 1768742849:0;cd  dotfiles
+: 1768742859:0;git status
+: 1768742865:0;git add .
+: 1768742896:0;git commit -m "Updated scripts folder structure and added some scripts."
+: 1768742901:0;git push
+: 1768773010:0;ls /etc | grep cron
+: 1768773026:0;ls /etc | grep 'cron'
+: 1768773047:0;ls /etc | grep "cron"
+: 1768773056:0;gst
+: 1768773077:0;ls /etc | grep 'cron'
+: 1768773088:0;ls /etc
+: 1768773118:0;ls /etc G 'cron'
+: 1768773127:0;ls /etc G cron
+: 1768773136:0;ls /etc G "cron"
+: 1768773153:0;cat /etc/crontab
+: 1768774456:0;update_script  
+: 1768774472:0;update_script.sh  
+: 1768774489:0;sudo update_script.sh  
+: 1768774568:0;update
+: 1768774615:0;cd scripts
+: 1768774634:0;ls
+: 1768774637:0;cd Bash
+: 1768774646:0;chmod +x update_script.sh
+: 1768774653:0;update_script.sh  
+: 1768774681:0;update_script.sh
+: 1768774725:0;shellcheck update_script.sh
+: 1768774779:0;update_script.sh | tr -d '\r'
+: 1768774891:0;tr -d '\r' < update_script.sh > update_script.sh
+: 1768774897:0;update_script.sh
+: 1768775045:0;tr -d '\r' < update_script.sh > tmp.sh && rm -f update_script.sh && mv tmp.sh update_script.sh
+: 1768775063:0;update_script.sh  
+: 1768775071:0;chmod +x update_script.sh
+: 1768775073:0;update_script.sh  
+: 1768775336:0;UPRE
+: 1768775351:0;Upre
+: 1768775565:0;git  status
+: 1768775581:0;ga . 
+: 1768775608:0;git commit -m "Improved update process."
+: 1768775613:0;git status
+: 1768775625:0;..
+: 1768775639:0;git commit --amend --no-edit
+: 1768775645:0;git add .
+: 1768775648:0;git commit --amend --no-edit
+: 1768775655:0;git push
+: 1768775696:0;Up
+: 1768775709:0;git add .
+: 1768775711:0;git commit --amend --no-edit
+: 1768775714:0;git push
+: 1768775725:0;git push --force-with-lease
+: 1768859609:0;curl ifconig.co
+: 1768859627:0;curl ifconfig.co
+: 1768859982:0;curl ifconfig.me
+: 1768859995:0;curl ipinfo.io/ip\
+
+: 1768860004:0;curl ipinfo.io/ip
+: 1768860019:0;curl ipinfo.io/ip\
+
+: 1768860037:0;curl icanhazip.com\
+
+: 1768860047:0;curl -4 ifconfig.me
+: 1768860059:0;exit
+: 1768860302:0;ls
+: 1768860317:0;vim zsh/aliases
+: 1768860397:0;IP
+: 1768860575:0;free -h | grep "Mem"
+: 1768860927:0;vim zsh/aliases
+: 1768860968:0;ls
+: 1768860975:0;cd zsh
+: 1768860977:0;ls
+: 1768860983:0;ls -a
+: 1768861006:0;vim zsh/.zshrc
+: 1768861034:0;vim .zshrc
+: 1768861139:0;..
+: 1768861144:0;cd dotfiles
+: 1768861146:0;ls
+: 1768861159:0;cd zsh
+: 1768861163:0;vim .zshrc
+: 1768861378:0;onLine
+: 1768861389:0;vim .zshrc
+: 1768861445:0;onLine
+: 1769214424:0;git pull --rebase
+: 1769214441:0;git status
+: 1769214458:0;git stash
+: 1769214467:0;git pull --rebase
+: 1769214478:0;git stash pop
+: 1769214482:0;git diff
+: 1769214513:0;git status
+: 1769214529:0;git add zsh/aliases zsh/.zshrc
+: 1769214562:0;git commit -m "Added online check and show public IP."
+: 1769214566:0;git push
+: 1769214592:0;./install.sh 
+: 1769248566:0;onLine
+: 1769248573:0;IP
+: 1769253708:0;ls -a | xargs stat -c %s
+: 1769253741:0;ls -a | xargs stat -ch %s
+: 1769253749:0;ls -a | xargs stat -c -h %s
+: 1769265045:0;update_script.sh  
+: 1769282553:0;systemd restart natilus
+: 1769282566:0;systemctl restart natilus
+: 1769338110:0;gst
+: 1769338177:0;ga . 
+: 1769338217:0;git commit -m "Added 2  scripts to spilit file based on modified time."
+: 1769338228:0;git push
+: 1769338350:0;tmux
+: 1769338367:0;ssh Milad@192.168.2.225 
+: 1769339499:0;git remote add nas ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769339511:0;git remote -v
+: 1769339706:0;git remote set-url --add --push origin ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769339715:0;git remote get-url --push origin
+: 1769339764:0;git remote set-url --add --push origin git@github.com:miladlashini/dotfiles.git 
+: 1769339770:0;git remote get-url --push origin
+: 1769339918:0;git remote -v
+: 1769340001:0;git remote set-url --add --push origin https://github.com/miladlashini/dotfiles.git
+: 1769340009:0;git remote get-url --push origin
+: 1769340038:0;git remote get-url origin
+: 1769340173:0;git remote -v
+: 1769340265:0;git remote set-url --delete --push origin https://github.com/miladlashini/dotfiles.git
+: 1769340277:0;git remote -v
+: 1769340343:0;git remote set-url --delete --push origin ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git 
+: 1769340350:0;git remote get-url origin
+: 1769340357:0;git remote -v
+: 1769340378:0;git remote get-url --push origin
+: 1769340626:0;git remote set-url --add --push origin ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git\
+
+: 1769340630:0;git remote get-url --push origin
+: 1769340655:0;git remote -v
+: 1769340722:0;git config --get-all remote.origin.pushurl\
+
+: 1769340847:0;git remote set-url --delete --push origin ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git 
+: 1769340854:0;git remote -v
+: 1769340939:0;git push --mirror origin\
+
+: 1769340986:0;git push
+: 1769341199:0;git remote set-url origin --push --add ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769341206:0;git remote -v
+: 1769341254:0;git remote set-url nas --delete --push  ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git 
+: 1769341275:0;git remote set-url nas --push --delete ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769341300:0;git remote set-url --delete  ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git 
+: 1769341331:0;git remote set-url --delete nas ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git 
+: 1769341341:0;git remote -v
+: 1769341383:0;git remote set-url --delete nas ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769341410:0;git push
+: 1769341518:0;git remote remove nas
+: 1769341522:0;git remote -v
+: 1769342170:0;git ls-remote ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git
+: 1769342200:0;git clone ssh://Milad@FamilyCloud/volume1/git-server/dotfiles.git /tmp/dotfiles-check
+: 1769342212:0;cd /tmp/dotfiles-check
+: 1769342216:0;ls
+: 1769342232:0;git checkout main
+: 1769342234:0;ls
+: 1769342256:0;cd scripts
+: 1769342258:0;ls
+: 1769342263:0;cd Bash
+: 1769342264:0;ls
+: 1769354744:0;..
+: 1769354748:0;cd Python
+: 1769354853:0;scp split-by-month.py Milad@FamilyCloud://volume1/homes/Milad
+: 1769354869:0;scp ./split-by-month.py Milad@FamilyCloud://volume1/homes/Milad
+: 1769354907:0;sudo scp ./split-by-month.py Milad@FamilyCloud://volume1/homes/Milad
+: 1769363887:0;man cp
+: 1769370186:0;cd ..
+: 1769370225:0;cd /tmp
+: 1769370239:0;mkdir conduit
+: 1769370244:0;cd conduit
+: 1769370346:0;curl -L -o conduit https:://github.com/ssmirr/conduit/releases/download/87cc1a3/conduit-linux-amd64
+: 1769370385:0;curl -L -o conduit https://github.com/ssmirr/conduit/releases/download/87cc1a3/conduit-linux-amd64
+: 1769370399:0;chmod +x conduit
+: 1769370409:0;./conduit start
+: 1769370435:0;./conduit start -vv
+: 1769370460:0;btop
+: 1769377108:0;ss --summary
+: 1769384468:0;cd /home/viserion/dotfiles
+: 1769384470:0;gst
+: 1769384474:0;ga .
+: 1769384496:0;git commit -m "Added 2 for merging the folder contents."
+: 1769384501:0;git push
+: 1769460331:0;tmux
+: 1769460346:0;ls
+: 1769460355:0;cd /tmp
+: 1769460363:0;curl -L -o conduit https://github.com/ssmirr/conduit/releases/download/87cc1a3/conduit-linux-amd64
+: 1769460410:0;chmod +x conduit
+: 1769460419:0;./conduit start -vv
+: 1769460433:0;btop
+: 1769460454:0;ss --summary
+: 1769631316:0;tmux
+: 1769631340:0;curl -L -o conduit https://github.com/ssmirr/conduit/releases/download/87cc1a3/conduit-linux-amd64
+: 1769631351:0;cd conduit
+: 1769631357:0;ls
+: 1769631368:0;chmod +x conduit
+: 1769631375:0;./conduit start -vv
+: 1769631454:0;btop
+: 1769631506:0;ss --summary
+: 1769801165:0;gst
+: 1769801173:0;cd Python
+: 1769801198:0;scp ./merge_dirs.py Milad@FamilyCloud://volume1/homes/Milad
+: 1769801419:0;ssh Milad@192.168.2.225 
+: 1769899283:0;git status
+: 1769899292:0;git diff
+: 1769899364:0;git checkout -- .
+: 1769936513:0;ssh Milad@192.168.2.225 
+: 1769940775:0;echo "{09..12}"
+: 1769941361:0;echo "/volume1/homes/Debo/video&photo/2023-{09..12}/2023-{09..12}/"
+: 1769985729:0;gst
+: 1769985735:0;git add .
+: 1769985761:0;git commit -m "Added move by extension script."
+: 1769985767:0;git push
+: 1769986298:0;ssh Milad@192.168.2.225 
+: 1770499340:0;update_script.sh  
+: 1770545173:0;man read
+: 1770545214:0;AAAAAAAAA
+: 1770545231:0;read --help
+: 1770545235:0;read -h
+: 1770545273:0;help read
+: 1770567909:0;man awk
+: 1770591701:0;gst
+: 1770591708:0;ga .
+: 1770591714:0;gst
+: 1770591731:0;git add .
+: 1770591768:0;git commit -m "Little changes."
+: 1770591771:0;git push
+: 1770931137:0;./install.sh 
+: 1770931655:0;nvim
+: 1770932296:0;nvim 
+: 1770932475:0;./install.sh 
+: 1770932516:0;nvim 
+: 1770932586:0;nvim --version
+: 1770932747:0;./install.sh 
+: 1770932809:0;nvim --version
+: 1770932817:0;nvim 
+: 1770934735:0;cd ..
+: 1770934736:0;ls
+: 1770934743:0;cd Documents
+: 1770934744:0;ls
+: 1770934751:0;cd RPC
+: 1770934755:0;nvim
+: 1770934839:0;cd ~/dotfiles
+: 1770934843:0;git status
+: 1770934857:0;rm nvim-linux-x86_64.tar.gz
+: 1770934865:0;gst
+: 1770934879:0;rm -f nvim-linux-x86_64.tar.gz
+: 1770934882:0;gst
+: 1770934887:0;git add .
+: 1770934900:0;git commit -m "Added neovim."
+: 1770934904:0;git push
+: 1771019222:0;tmux
+: 1771020686:0;./install.sh 
+: 1771021713:0;nvim
+: 1771021912:0;tmux
+: 1771021918:0;nvim
+: 1771023051:0;tmux
+: 1771023144:0;C
+: 1771023164:0;nvim
+: 1771023349:0;tmux
+: 1771023353:0;nvim
+: 1771024099:0;cat
+: 1771024834:0;tmux
+: 1771024840:0;nvim
+: 1771026892:0;tmux
+: 1771026904:0;nvim
+: 1771027018:0;tmux
+: 1771027036:0;nvim
+: 1771027543:0;tmux
+: 1771027590:0;tmux show -g | grep xterm-keys
+: 1771027609:0;tmux show -g G xterm-keys
+: 1771027698:0;tmux show -g prefix
+: 1771027742:0;tmux -V
+: 1771027762:0;ls -l ~/.tmux.conf
+: 1771027772:0;ls -l ~/.config/tmux/tmux.conf
+: 1771027793:0;tmux source-file ~/.tmux.conf\
+
+: 1771027822:0;tmux source-file ~/.config/tmux/tmux.conf
+: 1771027835:0;tmux show -g | grep xterm-keys\
+
+: 1771027962:0;tmux
+: 1771028003:0;nvim
+: 1771028059:0;gst
+: 1771028097:0;git restore zsh/.zcompdump 
+: 1771028101:0;gst
+: 1771028105:0;git add .
+: 1771028128:0;git commit -m "Integerated neovim and tmux."
+: 1771028133:0;git push
+: 1771028240:0;nvim
+: 1771028402:0;tmux
+: 1771028409:0;nvim
+: 1771028616:0;tmux
+: 1771028636:0;nvim
+: 1771028973:0;tmux
+: 1771028982:0;nvim
+: 1771029370:0;tmux
+: 1771029387:0;nvim
+: 1771029551:0;tmux
+: 1771029558:0;nvim
+: 1771087111:0;update_script.sh  
+: 1771087144:0;sudo apt autoremove
+: 1771087773:0;tmux -V
+: 1771087781:0;tmux show -g prefix
+: 1771087786:0;tmux
+: 1771087790:0;tmux show -g prefix
+: 1771087792:0;tmux
+: 1771087799:0;tmux _v
+: 1771087806:0;tmux -V
+: 1771087815:0;tmux show -g | grep xterm-keys
+: 1771088857:0;nvim
+: 1771089915:0;tmux
+: 1771090129:0;tmuxx
+: 1771090130:0;tmux
+: 1771090192:0;trmux
+: 1771090196:0;tmux
+: 1771090223:0;git checkout -- .
+: 1771090252:0;tmux
+: 1771090709:0;nvim
+: 1771094495:0;cat
+: 1771094754:0;cat 
+: 1771095256:0;n njnbxYNÃ�KLNMKNMX
+: 1771096811:0;git status
+: 1771096820:0;git add tmux/tmux.conf
+: 1771096841:0;git commit -m "Cleaned up tmux config file."
+: 1771096847:0;git push
+: 1771101982:0;tmux
+: 1771102058:0;nvim
+: 1771102122:0;gst
+: 1771102133:0;ls
+: 1771102150:0;nvim .gitignore
+: 1771102180:0;ls
+: 1771102190:0;ls -lhrt
+: 1771102193:0;ls -lhrta
+: 1771102203:0;gst
+: 1771102270:0;git diff zsh/.zcompdump
+: 1771102321:0;gst
+: 1771102337:0;git restore zsh/.zcompdump 
+: 1771102340:0;gst
+: 1771102344:0;ga .
+: 1771102365:0;git commit -m "tmux nvim integration."
+: 1771102372:0;git push
+: 1771103058:0;tmux
+: 1771103068:0;exit
+: 1771103081:0;tmux
+: 1771103098:0;nvim
+: 1771103362:0;tmux
+: 1771103369:0;nvim
+: 1771103434:0;gst
+: 1771103459:0;ls -lshrta zsh
+: 1771103566:0;git restore zsh/.zcompdump 
+: 1771103571:0;ga .
+: 1771103600:0;git commit -m "nvim zoom in and zoom out."
+: 1771103604:0;git push
+: 1771104756:0;nvim
+: 1771105078:0;tmux
+: 1771105093:0;gst
+: 1771105099:0;git restore zsh/.zcompdump 
+: 1771105105:0;ga .
+: 1771105131:0;git commit -m "added gruvbox theme."
+: 1771105136:0;git push
+: 1771105291:0;nvim
+: 1771105929:0;gst
+: 1771105939:0;ga .
+: 1771105956:0;git commit -m "improved gruvbox theme."
+: 1771105960:0;git push
+: 1771106034:0;nvim
+: 1771106860:0;gst
+: 1771106865:0;git restore zsh/.zcompdump 
+: 1771106876:0;gst
+: 1771106880:0;ga .
+: 1771106897:0;git commit -m "clean up and added telescope."
+: 1771106901:0;git push
+: 1771107249:0;nvim
+: 1771107976:0;gst
+: 1771107986:0;git diff
+: 1771107997:0;git restore zsh/.zcompdump 
+: 1771108007:0;ga .
+: 1771108095:0;git commit -m "added keybinding for file tree to init.lua."
+: 1771108099:0;git push
+: 1771108470:0;nvim
+: 1771108501:0;ls
+: 1771108506:0;..
+: 1771108511:0;cd Documents
+: 1771108523:0;cd /home
+: 1771108535:0;cd milad
+: 1771108537:0;ls
+: 1771108540:0;cd ~
+: 1771108542:0;lsd
+: 1771108543:0;ls
+: 1771108549:0;cd Documents
+: 1771108550:0;ls
+: 1771108554:0;cd RPC
+: 1771108561:0;nvim
+: 1771109442:0;sudo apt install tree-sitter-cli\
+
+: 1771109515:0;nvim
+: 1771109536:0;tree-sitter --version\
+
+: 1771110088:0;which nvim
+: 1771110118:0;nvim
+: 1771110176:0;git status
+: 1771110181:0;git diff
+: 1771110292:0;nvim
+: 1771144933:0;tmux
+: 1771144982:0;nvim
+: 1771147070:0;gst
+: 1771147079:0;cd ~/dotfiles
+: 1771147082:0;gst
+: 1771147126:0;gd install.sh 
+: 1771147303:0;nvim .gitignore
+: 1771147490:0;git ls-files | grep zcompdump
+: 1771147522:0;git rm --cached zsh/.zcompdump
+: 1771147537:0;git ls-files | grep zcompdump
+: 1771147553:0;gst
+: 1771147611:0;nvim .gitignore
+: 1771147628:0;gst
+: 1771147639:0;ga .
+: 1771147659:0;git commit -m "improved telescope."
+: 1771147667:0;git push
+: 1771147760:0;nvim
+: 1771148266:0;git push
+: 1771148270:0;gst
+: 1771149204:0;nvim
+: 1771150621:0;gst
+: 1771150627:0;ga .
+: 1771150643:0;git commit -m "added which key."
+: 1771150648:0;git push
+: 1771157850:0;nvim
+: 1771159261:0;cd ~/Documents/RPC
+: 1771159265:0;nvim
+: 1771164811:0;tmux
+: 1771164853:0;nvim
+: 1771164895:0;cd ~/dotfiles
+: 1771164896:0;ls
+: 1771164903:0;gst
+: 1771164913:0;gd
+: 1771164925:0;ga .
+: 1771164969:0;git commit -m "added git, mason and lsp."
+: 1771164973:0;git push
+: 1771165521:0;nvim
+: 1771166559:0;git status
+: 1771166585:0;gd
+: 1771166593:0;ga .
+: 1771166612:0;git commit -m "added format to nvim."
+: 1771166618:0;gp
+: 1771168685:0;clangd --version
+: 1771168874:0;nvim
+: 1771170598:0;cd  ~/Documents/RPC
+: 1771170601:0;cd ..
+: 1771170602:0;ls
+: 1771170618:0;cd RPC
+: 1771170636:0;ls
+: 1771170678:0;buildRPC_GCC
+: 1771170685:0;ls
+: 1771170734:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771170766:0;MMO /opt
+: 1771170771:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771170911:0;agi libboost-python1.83-dev
+: 1771170918:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771171146:0;./install.sh 
+: 1771171293:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771171352:0;./install.sh 
+: 1771171400:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771171605:0;agi libsndfile1-dev
+: 1771171646:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771171824:0;./install.sh 
+: 1771171879:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771177432:0;ls
+: 1771177462:0;cd src
+: 1771177465:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771177501:0;ls
+: 1771177764:0;cd /opt/RPC-build
+: 1771177765:0;ls
+: 1771177781:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12
+: 1771177817:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1771178132:0;./install.sh 
+: 1771178227:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1771178277:0;./autogen.sh
+: 1771178282:0;autogen.sh
+: 1771179175:0;cd ~/Documents/RPC
+: 1771179181:0;cd src
+: 1771179188:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR}  
+: 1771179280:0;cd /opt/RPC-build
+: 1771179282:0;ls
+: 1771179290:0;cd submodules/
+: 1771179291:0;ls
+: 1771179297:0;cd asio-prj-prefix
+: 1771179298:0;ls
+: 1771179301:0;cd src
+: 1771179302:0;ls
+: 1771179310:0;cd asio-prj-stamp
+: 1771179312:0;ls
+: 1771179319:0;..
+: 1771179371:0;cd ..
+: 1771179372:0;..
+: 1771179389:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1771179549:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j24
+: 1771179998:0;./install.sh 
+: 1771180054:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j24
+: 1771180522:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1771181012:0;nvim
+: 1771181374:0;cd /opt/RPC-build
+: 1771181375:0;ls
+: 1771181383:0;nvim compile_commands.json
+: 1771181394:0;cd ~/Documents/RPC
+: 1771181722:0;ln -s /opt/RPC-build/compile_commands.json .
+: 1771181725:0;ls
+: 1771181735:0;nvim
+: 1771192751:0;gst
+: 1771192765:0;rm -f nvim-linux-x86_64.tar.gz
+: 1771192770:0;gst
+: 1771192777:0;ga .
+: 1771192804:0;git commit -m "added language server lsp and mason."
+: 1771192809:0;git push
+: 1771194569:0;agi bash-language-server
+: 1771194940:0;agi bashls
+: 1771194959:0;snap install bash-language-server
+: 1771195035:0;sudo snap install bash-language-server --classic
+: 1771195124:0;bashls
+: 1771195158:0;nvim
+: 1771195833:0;agi npm
+: 1771195956:0;nvim
+: 1771196480:0;cat /home/viserion/.local/state/nvim/lsp.log
+: 1771196588:0;nvim
+: 1771196667:0;cat /home/viserion/.local/state/nvim/lsp.log
+: 1771197260:0;nvim
+: 1771197490:0;gst
+: 1771197495:0;ga .
+: 1771197520:0;git commit -m "added cmake python and bash language servers."
+: 1771197525:0;git push
+: 1771197538:0;nvim
+: 1771197578:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1771197751:0;cd /opt/RPC-build
+: 1771197755:0;nvim
+: 1771198034:0;cd ~/Documents/RPC
+: 1771198035:0;..
+: 1771198040:0;cd dotfiles
+: 1771198041:0;ls
+: 1771278260:0;tmux
+: 1771278269:0;nvim
+: 1771278553:0;cd ~/Documents/RPC
+: 1771278558:0;nvim
+: 1771278712:0;cd dotfiles
+: 1771278734:0;cd ~/dotfiles
+: 1771278747:0;gst
+: 1771278750:0;ga .
+: 1771278774:0;git commit -m "some clean ups in init.lua."
+: 1771278778:0;git push
+: 1771279108:0;tmux
+: 1771279774:0;nvim
+: 1771280918:0;gst
+: 1771280925:0;ga .
+: 1771280961:0;git commit -m "Added store and made the movement between windows by alt arrow."
+: 1771280966:0;git push
+: 1771281567:0;nvim
+: 1771283920:0;gst
+: 1771283932:0;ga .
+: 1771283948:0;git commit -m "Added Dashboard."
+: 1771283953:0;git push
+: 1771283974:0;ga .
+: 1771283982:0;git commit --amend --no-edit
+: 1771283985:0;git push
+: 1771283991:0;git push --force-with-lease
+: 1771284012:0;git push --force
+: 1771284034:0;nvim
+: 1771359137:0;tmux
+: 1771359151:0;nvim
+: 1771362749:0;rm -rf ~/.local/share/nvim/lazy/tabby.nvim
+: 1771362753:0;nvim
+: 1771370372:0;git status
+: 1771370375:0;ga .
+: 1771370387:0;git commit -m "Added Tabby."
+: 1771370392:0;git push
+: 1771445142:0;tmux
+: 1771445150:0;nvim
+: 1771447506:0;rm -rf ~/.config/nvim/init.lua
+: 1771447519:0;./install.sh 
+: 1771447633:0;btop
+: 1771447723:0;./install.sh 
+: 1771447889:0;btop
+: 1771447987:0;tmux
+: 1771447992:0;btop
+: 1771448025:0;nvim
+: 1771448224:0;./install.sh 
+: 1771448297:0;ls ~/.config/nvim/
+: 1771448967:0;ls -l ~/.config | grep nvim
+: 1771449005:0;ls -l ~/.config 
+: 1771449026:0;ls -l ~/.config G nvim
+: 1771449177:0;./install.sh 
+: 1771449267:0;ls -l ~/.config G nvim
+: 1771449290:0;nvim
+: 1771455631:0;gst
+: 1771455643:0;cd ~/dotfiles
+: 1771455645:0;gst
+: 1771455663:0;rm  -f nvim-linux-x86_64.tar.gz
+: 1771455667:0;gst
+: 1771455675:0;ga .
+: 1771455700:0;git commit -m "Restructured Nvim config."
+: 1771455705:0;git push
+: 1771455835:0;tig
+: 1771455969:0;nvim
+: 1771456176:0;tig
+: 1771456459:0;nvim
+: 1771457430:0;tig
+: 1771457772:0;nvim
+: 1771487844:0;tmux
+: 1771487980:0;nvim
+: 1771489487:0;tig
+: 1771489982:0;nvim
+: 1771495162:0;git status
+: 1771495167:0;git diff
+: 1771495194:0;ga .
+: 1771495216:0;git commit -m "Fixed the formatter problem."
+: 1771495221:0;git push
+: 1771495406:0;nvim
+: 1771495603:0;ls -lhrta
+: 1771495621:0;cd ~/Documents/RPC
+: 1771495626:0;ls -lhrta
+: 1771495639:0;nvim compile_commands.json
+: 1771496228:0;tmux
+: 1771496238:0;nvim compile_commands.json
+: 1771496247:0;nvim 
+: 1771497194:0;tig
+: 1771497571:0;nvim 
+: 1771499054:0;cargo install neocmakelsp
+: 1771499074:0;agi cargo
+: 1771499111:0;cargo install neocmakelsp
+: 1771499184:0;rustc --version
+: 1771499212:0;rustup update
+: 1771499229:0;agi rustup
+: 1771499248:0;rustup update
+: 1771499276:0;rustup install 1.89
+: 1771499547:0;cargo install neocmakelsp
+: 1771499660:0;nvim 
+: 1771500296:0;./install.sh 
+: 1771500426:0;rustup install 1.89
+: 1771500435:0;./install.sh 
+: 1771500552:0;cargo install neocmakelsp
+: 1771500566:0;rustup install 1.89
+: 1771500575:0;agi rustup
+: 1771500587:0;rustup install 1.89
+: 1771500617:0;./install.sh 
+: 1771503052:0;nvim 
+: 1771503307:0;./install.sh 
+: 1771503433:0;neocmkaelsp
+: 1771503441:0;neocmkaelsp --version
+: 1771503525:0;cargo install neocmakelsp
+: 1771503550:0;rustup install 1.89
+: 1771503557:0;agi rustup
+: 1771503571:0;rustup install 1.89
+: 1771503578:0;cargo install neocmakelsp
+: 1771503599:0;neocmakelsp 
+: 1771503693:0;..
+: 1771503705:0;./install.sh 
+: 1771504548:0;nvim 
+: 1771505563:0;cat /home/viserion/.local/state/nvim/lsp.log 
+: 1771505816:0;nvim 
+: 1771506601:0;/home/viserion/.local/state/nvim/lsp.log 
+: 1771506607:0;cat /home/viserion/.local/state/nvim/lsp.log 
+: 1771507004:0;nvim 
+: 1771507537:0;cargo uninstall tree-sitter-cli\
+
+: 1771507613:0;nvim 
+: 1771507691:0;[200~which tree-sitter
+: 1771507700:0;which tree-sitter
+: 1771507724:0;dpkg -l | grep tree-sitter\
+
+: 1771507739:0;dpkg -l G tree-sitter\
+
+: 1771507864:0;sudo apt remove tree-sitter-cli\
+
+: 1771507882:0;dpkg -l G tree-sitter\
+
+: 1771507901:0;nvim 
+: 1771507995:0;git status
+: 1771508003:0;ga .
+: 1771508087:0;git restore nvim/lazy-lock.json
+: 1771508148:0;git diff --staged
+: 1771508238:0;ga .
+: 1771508291:0;git restore --staged nvim/lazy-lock.json
+: 1771508304:0;nvim .gitignore
+: 1771508363:0;git status
+: 1771508381:0;git add .gitignore
+: 1771508394:0;git restore nvim/lazy-lock.json
+: 1771508450:0;git commit -m "Fixed the lsp added treesitter, neocmake, lsp."
+: 1771508455:0;git push
+: 1771508840:0;nvim 
+: 1771512381:0;git stash
+: 1771512387:0;git stash --list
+: 1771512397:0;git stash list
+: 1771512417:0;gst
+: 1771512427:0;ga .
+: 1771512446:0;git commit -m "Added illuminate."
+: 1771512451:0;git push
+: 1771512718:0;nvim 
+: 1771514353:0;./install.sh 
+: 1771515110:0;nvim 
+: 1771515154:0;:q
+: 1771515158:0;exit
+: 1771515169:0;tmux
+: 1771515191:0;nvim
+: 1771515315:0;node -v
+: 1771515322:0;./install.sh 
+: 1771515382:0;node -v
+: 1771515570:0;echo $NVM_DIR\
+command -v nvm\
+
+: 1771515599:0;export NVM_DIR="$HOME/.config/nvm"
+: 1771515611:0;[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+: 1771515625:0;nvm list
+: 1771515712:0;nvim
+: 1771515949:0;sudo apt remove tree-sitter-cli\
+
+: 1771516001:0;nvim
+: 1771531725:0;tmux
+: 1771531736:0;nvim
+: 1771532518:0;git diff
+: 1771532704:0;tig
+: 1771533254:0;nvim
+: 1771535195:0;sudo apt remove tree-sitter-cli\
+
+: 1771535230:0;[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+: 1771535400:0;node -v
+: 1771535405:0;tmux
+: 1771535418:0;nvim
+: 1771536590:0;gst
+: 1771536639:0;git rm --cached nvim/lazy-lock.json
+: 1771536647:0;gst
+: 1771536691:0;vi .gitignore
+: 1771536711:0;nvim .gitignore
+: 1771536758:0;git rm --cached __cmake_systeminformation/
+: 1771536767:0;gst
+: 1771536772:0;ga .
+: 1771536817:0;git commit -m "Changed the auto completion to blink.cmp."
+: 1771536830:0;git push
+: 1771536839:0;git stash list
+: 1771536850:0;git stash drop
+: 1771538201:0;nvim
+: 1771538650:0;gst
+: 1771538655:0;ga .
+: 1771538678:0;git commit -m "Added show keys."
+: 1771538684:0;git push
+: 1771538752:0;nvim
+: 1771540105:0;gst
+: 1771540110:0;ga .
+: 1771540126:0;git commit -m "Added Fuguitive"
+: 1771540133:0;git push
+: 1771540527:0;nvim
+: 1771685309:0;tmux
+: 1771685359:0;gst
+: 1771685378:0;git pull --rebase
+: 1771685389:0;git stash
+: 1771685392:0;git pull --rebase
+: 1771685398:0;tig
+: 1771685420:0;git stash pop
+: 1771685426:0;git diff
+: 1771687494:0;nvim
+: 1771697532:0;cd ~/Downloads
+: 1771697541:0;unzip e0a1d6ab2682d2c47746950b84c0b6ee-83b8b4814c3417111b9b9bef86a552608506603e.zip
+: 1771697557:0;cd e0a1d6ab2682d2c47746950b84c0b6ee-83b8b4814c3417111b9b9bef86a552608506603e
+: 1771697558:0;ls
+: 1771697625:0;nvim markdown-sample.md
+: 1771698899:0;cargo install mermaid-rs-renderer\
+
+: 1771698951:0;nvim markdown-sample.md
+: 1771699617:0;curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+: 1771699894:0;nvim 
+: 1771701183:0;ls
+: 1771701380:0;mv markdown-sample.md markdown-sample.mmd
+: 1771701383:0;ls
+: 1771701397:0;nvim markdown-sample.mmd
+: 1771701764:0;mv markdown-sample.mmd markdown-sample.md
+: 1771701769:0;nvim markdown-sample.mmd
+: 1771701784:0;n
+: 1771701793:0;nvim markdown-sample.md
+: 1771702228:0;cd ~/dotfiles
+: 1771702230:0;ls
+: 1771702257:0;rm -f nvim-linux-x86_64.tar.gz
+: 1771702265:0;gst
+: 1771702285:0;ga .
+: 1771702309:0;git commit -m "Added markdown plugin."
+: 1771702312:0;git push
+: 1771703124:0;nvim
+: 1771704590:0;gst
+: 1771704597:0;ga .
+: 1771704633:0;git commit -m "Added aalduin and activated relative numbering and some changes in dashboard."
+: 1771704638:0;git push
+: 1771704672:0;nvim
+: 1771706546:0;..
+: 1771706551:0;cd Documents
+: 1771706563:0;nvim test.json
+: 1771707284:0;nvim 
+: 1771707429:0;..
+: 1771707436:0;cd dotfiles
+: 1771707437:0;ls
+: 1771707441:0;gst
+: 1771707445:0;ga .
+: 1771707472:0;git commit -m "Added jsonls."
+: 1771707476:0;git push
+: 1771707522:0;nvim 
+: 1771708849:0;gst
+: 1771708855:0;ga .
+: 1771708868:0;git commit -m "Changes in lsp."
+: 1771708871:0;gp
+: 1771770983:0;tmux
+: 1771770996:0;nvim
+: 1771780217:0;tmux
+: 1771780224:0;nvim
+: 1771784903:0;./install.sh 
+: 1771784972:0;nvim
+: 1771784993:0;sudo apt remove tree-sitter-cli\
+
+: 1771785009:0;nvim
+: 1771785157:0;git clone --depth=1 https://github.com/github/copilot.vim.git \\
+  ~/.config/nvim/pack/github/start/copilot.vim
+: 1771785565:0;nvim
+: 1771785684:0;cat /home/viserion/.config/nvim/pack/github/start/copilot.vim
+: 1771785699:0;ls /home/viserion/.config/nvim/pack/github/start/copilot.vim
+: 1771785752:0;rm -rf /home/viserion/.config/nvim/pack/github/start/copilot.vim
+: 1771785758:0;nvim
+: 1771786010:0;rm -rf /home/viserion/.config/nvim/pack/github/start/copilot.vim
+: 1771786026:0;ls /home/viserion/.config/nvim/pack/github/start
+: 1771786033:0;..
+: 1771786034:0;ls
+: 1771786046:0;ls /home/viserion/.config/nvim/pack/github/
+: 1771786056:0;ls /home/viserion/.config/nvim/pack/
+: 1771786061:0;ls /home/viserion/.config/nvim/
+: 1771786086:0;ls /home/viserion/.config/nvim/lua
+: 1771786191:0;nvim
+: 1771786590:0;gst
+: 1771786603:0;rm -rf nvim-linux-x86_64.tar.gz
+: 1771786608:0;gst
+: 1771786611:0;ga .
+: 1771786619:0;git commit -m "Changes in ls."
+: 1771786678:0;git reset --soft HEAD~1
+: 1771786683:0;gst
+: 1771786715:0;git commit -m "added copilot to nvim."
+: 1771786720:0;gp
+: 1771787289:0;nvim
+: 1771788639:0;cd ~/Documents
+: 1771788643:0;cd RPC
+: 1771788649:0;ls
+: 1771788657:0;nvim
+: 1771789041:0;gst
+: 1771789046:0;ga .
+: 1771789065:0;git commit -m "added comment plugin."
+: 1771789069:0;gp
+: 1771964790:0;tmux
+: 1772055006:0;nvim
+: 1772225086:0;tmux
+: 1772225093:0;nvim
+: 1772225190:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1772225208:0;cd /opt/RPC-build
+: 1772225212:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1772225290:0;gst
+: 1772225410:0;update_script.sh  
+: 1772226310:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1772226715:0;nvim
+: 1772226897:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1772227414:0;ln -s /opt/RPC-build/compile_commands.json .
+: 1772227443:0;ls -lhrta
+: 1772227680:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1772228937:0;ls -lhrta
+: 1772228956:0;cat compile_commands.json < 
+: 1772228975:0;cat compile_commands.json G asio.hpp
+: 1772228990:0;cat compile_commands.json 
+: 1772229117:0;rm -rf build\
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+: 1772229126:0;ls
+: 1772229145:0;rm -rf build\
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+: 1772229155:0;ls
+: 1772229165:0;cd ..
+: 1772229185:0;rm -rf ./RPC-build/*
+: 1772229195:0;cd RPC-build
+: 1772229225:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772229252:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make -j12
+: 1772229578:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772229694:0;cat compile_commands.json G asio.hpp
+: 1772229830:0;cat compile_commands.json G asio
+: 1772229931:0;rm -rf ./RPC-build/*
+: 1772229943:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make -j12
+: 1772229965:0;cat compile_commands.json G asio
+: 1772360239:0;tmux
+: 1772360243:0;nvim
+: 1772360927:0;kflök,mm,kvknvkdfk
+: 1772360939:0;tig
+: 1772360946:0;ls
+: 1772360952:0;tig
+: 1772360963:0;gst
+: 1772360968:0;ls
+: 1772360971:0;pwd
+: 1772360982:0;ssh Milad@192.168.2.225 
+: 1772361045:0;ifconfig
+: 1772361053:0;netstat
+: 1772361461:0;vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>")\
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>")\
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]
+: 1772361724:0;vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>")\
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])änb
+: 1772361862:0;nvim
+: 1772361907:0;ls
+: 1772361951:0;tmux
+: 1772361975:0;nvim
+: 1772362060:0;ls
+: 1772362290:0;which tree-sitter
+: 1772362815:0;ihjgövcsg
+: 1772363023:0;ls
+: 1772363379:0;mv
+: 1772363428:0;ls
+: 1772363918:0;zip
+: 1772364366:0;cd ~/dotfiles
+: 1772364367:0;ls
+: 1772364379:0;tig
+: 1772364382:0;gst
+: 1772364570:0;ga .
+: 1772364596:0;git commit -m "added floating terminal."
+: 1772364600:0;git push
+: 1772364633:0;git pull
+: 1772364676:0;git config pull.rebase false
+: 1772364699:0;tig
+: 1772364713:0;git push
+: 1772364725:0;git pull
+: 1772364737:0;gst
+: 1772364749:0;git merge --continue
+: 1772364816:0;gst
+: 1772364819:0;ga .
+: 1772364824:0;tig
+: 1772364834:0;git pull --rebase
+: 1772364878:0;git merge --continue
+: 1772364898:0;ls
+: 1772364929:0;git commit -m "updated install.sh."
+: 1772364932:0;tig
+: 1772364964:0;git push
+: 1772367038:0;nvim
+: 1772367188:0;./install.sh 
+: 1772367287:0;nvim
+: 1772367325:0;sudo apt remove tree-sitter-cli\
+
+: 1772367400:0;nvim
+: 1772367436:0;ranger
+: 1772367639:0;cat
+: 1772368282:0;nvim --clean
+: 1772368518:0;:q
+: 1772368520:0;exit
+: 1772368530:0;tmux
+: 1772368537:0;nvim 
+: 1772368601:0;tmux kill-server\
+tmux
+: 1772368606:0;tmux
+: 1772368609:0;nvim 
+: 1772368670:0;cat 
+: 1772368799:0;nvim 
+: 1772370361:0;ranger
+: 1772371002:0;nvim 
+: 1772371621:0;:q
+: 1772371626:0;q
+: 1772371646:0;ranger __cmake_systeminformation
+: 1772371676:0;ranger_cd
+: 1772371736:0;goto
+: 1772371745:0;ls
+: 1772371750:0;tmux
+: 1772371754:0;goto
+: 1772371767:0;nvim
+: 1772374311:0;cd /opt/RPC-build
+: 1772374353:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make -j12
+: 1772374425:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772375165:0;nvim
+: 1772375247:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772375252:0;cd /opt/RPC-build
+: 1772375255:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772376010:0;cd /opt/RPC-build
+: 1772376012:0;ls
+: 1772376025:0;cd submodules
+: 1772376026:0;ls
+: 1772376032:0;cd asio-prefix
+: 1772376033:0;ls
+: 1772376060:0;nvim
+: 1772377006:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772398978:0;nvim
+: 1772399009:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772403874:0;cd /opt/RPC-build
+: 1772403893:0;ranger_cd
+: 1772403921:0;goto
+: 1772403999:0;ls
+: 1772404005:0;ls __cmake_systeminformation
+: 1772404021:0;rm -rf __cmake_systeminformation
+: 1772404023:0;ls
+: 1772404032:0;rm -rf nvim-linux-x86_64.tar.gz
+: 1772404034:0;ls
+: 1772404038:0;gst
+: 1772404056:0;git diff
+: 1772404087:0;ga .
+: 1772404103:0;git commit -m "updated install.sh and zshrc"
+: 1772404114:0;git push
+: 1772404128:0;nvim
+: 1772406351:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772569969:0;tmux
+: 1772570760:0;nvim
+: 1772570847:0;goto
+: 1772570878:0;nvim
+: 1772571360:0;agi yazi
+: 1772571397:0;sudo snap install yazi
+: 1772571601:0;sudo snap install yazi --classic
+: 1772571617:0;which goto
+: 1772571648:0;nvim
+: 1772571686:0;which ya
+: 1772571689:0;which yazi
+: 1772571721:0;yazi
+: 1772571829:0;nvim
+: 1772571872:0;echo $vim.env.PATH
+: 1772572012:0;which yazi
+: 1772572110:0;goto
+: 1772572139:0;nvim
+: 1772572191:0;echo {$PATH}
+: 1772572302:0;echo $PATH
+: 1772572313:0;echo $PATH G snap
+: 1772572361:0;:q
+: 1772572365:0;tmux
+: 1772572368:0;nvim
+: 1772572524:0;snap remove yazi
+: 1772572545:0;cargo install --locked yazi-fm yazi-cli
+: 1772572621:0;sudo snap install yazi --classic
+: 1772572633:0;yazi
+: 1772572663:0;echo $PATH G snap
+: 1772572670:0;nvim
+: 1772572924:0;nviom
+: 1772572927:0;nvim
+: 1772573310:0;tmux
+: 1772573317:0;goto
+: 1772573330:0;ls
+: 1772573334:0;nvim
+: 1772574030:0;ls
+: 1772574156:0;exit
+: 1772574924:0;jnbcvsjkl
+: 1772574926:0;ls
+: 1772575529:0;nvim
+: 1772575542:0;ls
+: 1772575547:0;goto
+: 1772575599:0;ls
+: 1772576124:0;nvim
+: 1772576208:0;goto
+: 1772576231:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772576855:0;nvim
+: 1772576910:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772576913:0;nvim
+: 1772577725:0;ls
+: 1772577824:0;nvim
+: 1772578008:0;ls
+: 1772578061:0;nvim
+: 1772578077:0;ls
+: 1772578397:0;nvim
+: 1772578676:0;ls
+: 1772578876:0;nvim
+: 1772578890:0;kmmökvö
+: 1772578891:0;ls
+: 1772579228:0;:q
+: 1772579234:0;nvim
+: 1772579244:0;ls
+: 1772579322:0;nvim
+: 1772579335:0;ls
+: 1772579546:0;nvim
+: 1772579714:0;ls
+: 1772653778:0;goto
+: 1772653801:0;gst
+: 1772653812:0;ga .
+: 1772653841:0;git diff --staged
+: 1772653888:0;git commit -m "fixed the floating terminal."
+: 1772653892:0;git push
+: 1772752571:0;nvim
+: 1772752654:0;ls
+: 1772752725:0;nvim
+: 1772752856:0;ls
+: 1772752859:0;gst
+: 1772752862:0;ga .
+: 1772752875:0;git commit -m "fixed the floating terminal totally."
+: 1772752878:0;git push
+: 1772753085:0;nvim
+: 1772753108:0;ls
+: 1772753663:0;./install.sh 
+: 1772754298:0;tmux
+: 1772754532:0;cat
+: 1772754729:0;grep -rni . run-shell
+: 1772754739:0;grep -rni . "run-shell"
+: 1772754752:0;grep . -rni  "run-shell"
+: 1772754828:0;grep -rni  "run-shell".
+: 1772755282:0;tmux
+: 1772781633:0;gst
+: 1772781737:0;rm nvim-linux-x86_64.tar.gz
+: 1772781742:0;gst
+: 1772781756:0;ga .
+: 1772781784:0;git commit -m "added the pop up terminal to tmux."
+: 1772781789:0;git push
+: 1772781912:0;gst
+: 1772781916:0;ga .
+: 1772781921:0;git commit --amend --no-edit
+: 1772781935:0;git push --force-with-lease
+: 1772781963:0;git push --force
+: 1772889858:0;tmux
+: 1772890242:0;cat
+: 1772898214:0;xev
+: 1772898509:0;keyd
+: 1772898523:0;agi keyd
+: 1772898640:0;update_script.sh  
+: 1772898978:0;cd /tmp
+: 1772898984:0;git clone https://github.com/rvaiya/keyd.git
+: 1772898992:0;cd keyd
+: 1772898995:0;make
+: 1772899011:0;sudo make install
+: 1772899034:0;sudo systemctl enable keyd
+: 1772899041:0;sudo systemctl start keyd
+: 1772899060:0;sudo keyd monitor
+: 1772899101:0;sudo nvim  /etc/keyd/default.conf
+: 1772899125:0;sudo systemctl restart keyd
+: 1772899235:0;sudo keyd monitor
+: 1772900025:0;nvim
+: 1772902374:0;gst
+: 1772902378:0;ga .
+: 1772902451:0;git commit -m "added handling of  F functions using keyd for keyboard that do not send F keys."
+: 1772902601:0;cd /opt/RPC-build
+: 1772902604:0;ls
+: 1772902617:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772906633:0;nvim
+: 1772909683:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772957879:0;tmux
+: 1772958314:0;cd  ~/Documents/RPC
+: 1772958356:0;nvim
+: 1772958433:0;buildRPC_GCC
+: 1772958445:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772958474:0;btop
+: 1772979716:0;nvim
+: 1772981944:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1772983276:0;nvim
+: 1772984001:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773005710:0;cd ~/dotfiles
+: 1773005714:0;./install.sh 
+: 1773005808:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773006000:0;protoc --version
+: 1773006028:0;sudo apt install protobuf-compiler
+: 1773006058:0;git diff 
+: 1773006533:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773008122:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773009701:0;cd  ~/Documents/RPC
+: 1773009704:0;gst
+: 1773010078:0;rm -rf src/__cmake_systeminformation
+: 1773010087:0;ls .cache
+: 1773010121:0;nvim .gitignore
+: 1773010191:0;gst
+: 1773010205:0;ga .
+: 1773010251:0;git commit -m "fixed gcc build."
+: 1773010355:0;gst
+: 1773010366:0;git commit --amend --no-edit
+: 1773010370:0;gst
+: 1773010373:0;ga .
+: 1773010376:0;git commit --amend --no-edit
+: 1773010383:0;git push
+: 1773010388:0;tig
+: 1773010503:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773010522:0;cd /opt/RPC-build
+: 1773010529:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773010627:0;cd ~/dotfiles
+: 1773010629:0;ls
+: 1773010632:0;gst
+: 1773010661:0;gd
+: 1773010702:0;git diff
+: 1773010714:0;gst
+: 1773010716:0;ga .
+: 1773010787:0;git commit -m "added copilot chat and changes in install directory."
+: 1773010797:0;git push 
+: 1773089090:0;goto
+: 1773089381:0;tmux
+: 1773089425:0;goto
+: 1773089455:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773089571:0;nvim
+: 1773089656:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773090324:0;goto
+: 1773090340:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773094149:0;goto
+: 1773094167:0;gst
+: 1773094172:0;ga .
+: 1773094193:0;git diff --staged
+: 1773094260:0;git commit -m "Fixed Span build for clang."
+: 1773094269:0;git push
+: 1773264254:0;tmux
+: 1773264264:0;nvim
+: 1773264873:0;goto
+: 1773264919:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773264931:0;cd RPC-build
+: 1773264933:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773348994:0;tmux
+: 1773349169:0;nvim
+: 1773349288:0;goto
+: 1773349314:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773350874:0;goto
+: 1773350890:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773446917:0;tmux
+: 1773446924:0;nvim
+: 1773447183:0;goto
+: 1773447205:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773487840:0;tmux
+: 1773487847:0;nvim
+: 1773495554:0;goto
+: 1773495580:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773497837:0;gst
+: 1773497855:0;cd ~/dotfiles
+: 1773497858:0;gst
+: 1773497868:0;ga .
+: 1773497904:0;git commit -m "Activated the spell check."
+: 1773497908:0;git push
+: 1773571754:0;tmux
+: 1773571762:0;nvim
+: 1773571854:0;goto
+: 1773571880:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773577102:0;goto
+: 1773577378:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773588069:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make \\
+
+: 1773588130:0;gst
+: 1773588136:0;ga .
+: 1773588162:0;git commit -m "Fixed identifier for clang."
+: 1773588167:0;git push
+: 1773588189:0;:q
+: 1773609238:0;tmux
+: 1773609247:0;nvim
+: 1773609395:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make \\
+
+: 1773610737:0;goto 
+: 1773610756:0;nvim
+: 1773615320:0;goto
+: 1773615341:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make 
+: 1773616766:0;ls
+: 1773616772:0;..
+: 1773616786:0;rm -rf RPC-build/*
+: 1773616798:0;cd RPC-build\\
+
+: 1773616804:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=True -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON  && time make \
+
+: 1774115154:0;goto
+: 1774115183:0;git pull --rebase
+: 1774115189:0;tig
+: 1774115353:0;git push
+: 1774115909:0;tmux
+: 1774116050:0;nvim
+: 1774117368:0;cd ..
+: 1774117376:0;cd Documents/CppTraining_2025_10_27_corpuls
+: 1774117377:0;ls
+: 1774117388:0;nvim
+: 1774117406:0;cd Solutions
+: 1774117487:0;mkdir ../build && cd ../build && cmake ../Solutions 
+: 1774117914:0;make\\
+
+: 1774118009:0;n
+: 1774118015:0;nvim
+: 1774120836:0;which buildRPC_GCC
+: 1774120951:0;cmake ../Solutions  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
+: 1774120960:0;ls
+: 1774120969:0;cat compile_commands.json
+: 1774122620:0;nvim ./install.sh
+: 1774123846:0;cmake ../Solutions  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=g++-14 _DCMAKE_C_COMPILER=gcc-14
+: 1774123865:0;make
+: 1774123963:0;cmake ../Solutions  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_STANDARD=20
+: 1774124045:0;make
+: 1774124060:0;cmake ../Solutions  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_STANDARD=23
+: 1774124062:0;make
+: 1774171645:0;tmux
+: 1774173073:0;..
+: 1774173077:0;nvim
+: 1774174327:0;goto
+: 1774174343:0;./install.sh 
+: 1774174555:0;journalctl -xeu docker.service
+: 1774174635:0;systemctl status docker.service
+: 1774174650:0;systemctl start docker.service
+: 1774174657:0;systemctl status docker.service
+: 1774389628:0;goto
+: 1774389693:0;ls
+: 1774389712:0;nvim
+: 1774391101:0;..
+: 1774391105:0;nvim
+: 1774391275:0;nvim ./dotfiles/nvim/lua/core/keymaps.lua
+: 1774391297:0;nvim
+: 1774392049:0;cd Documents/cngHost
+: 1774392053:0;..
+: 1774392060:0;cd RPC
+: 1774392064:0;nvim
+: 1774476032:0;tmux
+: 1774476041:0;nvim
+: 1774476048:0;goto
+: 1774476068:0;git status
+: 1774476075:0;git diff
+: 1774476812:0;git stash
+: 1774476818:0;git pull --rebase
+: 1774476824:0;tig
+: 1774476843:0;git stash drop
+: 1774555503:0;tmux
+: 1774555548:0;nvim
+: 1774555562:0;goto
+: 1774555586:0;nvim
+: 1774641662:0;tmux
+: 1774641672:0;goto
+: 1774641682:0;git pull --rebase
+: 1774641688:0;tig
+: 1774696597:0;tmux
+: 1774696604:0;goto
+: 1774696622:0;nvim
+: 1774733196:0;gst
+: 1774733205:0;git diff
+: 1774735929:0;nvim
+: 1774742290:0;cd ~/dotfiles
+: 1774742297:0;ga .
+: 1774742327:0;git commit -m "Added new line with F2 to nvim."
+: 1774742332:0;git push
+: 1774742822:0;nvim
+: 1774779528:0;git diff
+: 1774779541:0;tig
+: 1774779558:0;git commit --amend --no-edit
+: 1774779573:0;git push --force-with-lease
+: 1774779583:0;git push --force
+: 1774779605:0;ga .
+: 1774779611:0;git commit --amend --no-edit
+: 1774779616:0;git push --force-with-lease
+: 1774779620:0;git push --force
+: 1774782222:0;goto
+: 1774782234:0;tmux
+: 1774782238:0;nvim
+: 1774899606:0;tmux
+: 1774900177:0;nvim
+: 1774900294:0;rm -f /home/viserion/.local/state/nvim/swap/%home%viserion%Documents%RPC%src%Utils%include%Memory%StackAllocator.hpp.swp
+: 1774983111:0;tmux
+: 1774983116:0;nvim
+: 1775073842:0;tmux
+: 1775073859:0;nvim
+: 1775159308:0;tmux
+: 1775159311:0;nvim
+: 1775229935:0;tmux
+: 1775229939:0;nvim
+: 1775231776:0;buildRPC_GCC
+: 1775231788:0;goto
+: 1775231803:0;buildRPC_GCC
+: 1775231931:0;which buildRPC_GCC
+: 1775232215:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1775242124:0;goto
+: 1775242136:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make 
+: 1775243397:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=OFF -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12\
+
+: 1775243438:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j12\
+
+: 1775243452:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make \
+
+: 1775256483:0;q
+: 1775256485:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make \
+
+: 1775256501:0;ls
+: 1775256520:0;cd Utils/test
+: 1775256521:0;ls
+: 1775256525:0;ctest -N
+: 1775256546:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775256956:0;cat /opt/RPC-build/Utils/test/Testing/Temporary/LastTest.log
+: 1775257093:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775257479:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make \
+
+: 1775257497:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775295831:0;tmux
+: 1775295839:0;nvim
+: 1775295884:0;goto
+: 1775295900:0;nvim
+: 1775295959:0;goto
+: 1775295988:0;nvim
+: 1775296658:0;cd /opt/RPC-build
+: 1775296665:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make \
+
+: 1775296692:0;btop
+: 1775296709:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775296738:0;ls
+: 1775296747:0;cd Utils/test
+: 1775296753:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775296888:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775296899:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775297045:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775297066:0;ctest -R Utils-boost-test-ArenaAllocator-execute --verbose
+: 1775301641:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775301729:0;ctest -N
+: 1775301747:0;ctest -R Utils-boost-test-Stack --verbose
+: 1775302746:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775302800:0;ctest -R Utils-boost-test-ArenaAllocator --verbose
+: 1775302922:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775302930:0;ctest -R Utils-boost-test-ArenaAllocator --verbose
+: 1775303053:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775304034:0;ctest -R Utils-boost-test-ArenaAllocator --verbose
+: 1775304657:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775304787:0;ctest -R Utils-boost-test-Stack --verbose
+: 1775306945:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775307282:0;gst
+: 1775307286:0;ga .
+: 1775307332:0;git commit -m "Introduced two allocastors stack based and arena."
+: 1775307338:0;git push
+: 1775345111:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775411890:0;tmux
+: 1775411901:0;goto
+: 1775411919:0;cd RPC
+: 1775411927:0;git diff
+: 1775411934:0;nvm
+: 1775411952:0;nvim
+: 1775416122:0;cd /opt/RPC-build
+: 1775416132:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775458910:0;tmux
+: 1775458918:0;goto
+: 1775458956:0;nvim
+: 1775458973:0;..
+: 1775458977:0;cd RPC
+: 1775458980:0;nvim
+: 1775491295:0;cd ~/dotfiles
+: 1775491302:0;git diff
+: 1775491308:0;ga .
+: 1775491340:0;git commit -m "added single char insertion."
+: 1775491345:0;git push
+: 1775494673:0;..
+: 1775494674:0;ls
+: 1775494681:0;cd Documents
+: 1775494682:0;ls
+: 1775494692:0;cd CppTraining_2025_10_27_corpuls
+: 1775494693:0;ls
+: 1775494700:0;nvim
+: 1775505818:0;cd /opt/RPC-build
+: 1775505924:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775506443:0;cd Utils/test
+: 1775506466:0;ctest -R Utils-boost-test-Arena --verbose
+: 1775506473:0;ctest -R Utils-boost-test-Arena 
+: 1775506709:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775506720:0;ctest -R Utils-boost-test-Arena 
+: 1775507640:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775507649:0;ctest -R Utils-boost-test-Arena 
+: 1775507741:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775507750:0;ctest -R Utils-boost-test-Arena 
+: 1775507833:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1775507926:0;ctest -R Utils-boost-test-Arena 
+: 1775508713:0;cd ..
+: 1775508725:0;cd Documents/RPC
+: 1775508729:0;gst
+: 1775508791:0;git restore  __cmake_systeminformation/
+: 1775509007:0;gst
+: 1775509015:0;ga a
+: 1775509041:0;git commit -m "added few more allocators."
+: 1775509052:0;ga .
+: 1775509057:0;git commit -m "added few more allocators."
+: 1775509065:0;git push
+: 1775596325:0;tmux
+: 1775596328:0;nvim
+: 1775596342:0;cd ..
+: 1775596346:0;ls\\
+
+: 1775596371:0;cd CppTraining_2025_10_27_corpuls
+: 1775596375:0;nvim
+: 1776116356:0;tmux
+: 1776116361:0;nvim
+: 1776625682:0;tmux
+: 1776625693:0;..
+: 1776625695:0;ls
+: 1776625709:0;cd Documents/RPC
+: 1776625718:0;nvim
+: 1776630874:0;cd /opt/RPC-build
+: 1776630881:0;buildRPC_GCC
+: 1776630931:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1776632347:0;goto
+: 1776632364:0;gst
+: 1776632371:0;git add .
+: 1776632396:0;git commit -m "added some meta functions for typelist."
+: 1776632401:0;git push
+: 1776632421:0;nvim
+: 1776716916:0;.,.
+: 1776716918:0;..
+: 1776716927:0;cd CppTraining_2025_10_27_corpuls
+: 1776716930:0;nvim
+: 1776774672:0;..
+: 1776774675:0;tmux
+: 1776774681:0;nvim
+: 1776775304:0;g++ test.cpp test.o test
+: 1776775312:0;g++ test.cpp test
+: 1776775362:0;g++-14  test.cpp -o test
+: 1776775413:0;g++-14  test -o test.cpp
+: 1776775422:0;g++-14  test.cpp -o test
+: 1776775462:0;./test
+: 1776775579:0;clear
+: 1776775834:0;update_script.sh  
+: 1777064715:0;ls
+: 1777064727:0;cd RPC
+: 1777064733:0;nvim
+: 1777203758:0;tmux
+: 1777203762:0;nvim
+: 1777205070:0;gst
+: 1777205076:0;ga .
+: 1777205100:0;git commit -m "added singleton generic pattern."
+: 1777205104:0;git push
+: 1777205327:0;cd /opt/RPC-build
+: 1777205331:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1777205374:0;gst
+: 1777205380:0;ga .
+: 1777205387:0;git commit --amend --no-edit
+: 1777205394:0;git push --force
+: 1777205502:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1777206009:0;ga .
+: 1777206015:0;git commit --amend --no-edit
+: 1777206018:0;git push --force
+: 1777206066:0;cmake -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_COMPILE_WITH_CLANG:BOOL=False -D RPC_WITH_TESTS:BOOL=ON -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S ${RPC_SOURCE_DIR} -B ${RPC_BUILD_DIR} && time make -j 32\
+
+: 1777206076:0;ga .
+: 1777206087:0;git commit --amend --no-edit
+: 1777206091:0;git push --force
+: 1777314747:0;nvim
+: 1777316309:0;tmux
+: 1777316315:0;..
+: 1777316340:0;cd  ~/Documents/RPC
+: 1777316343:0;cd ..
+: 1777316344:0;ls
+: 1777316348:0;cd CppTraining_2025_10_27_corpuls
+: 1777316350:0;nvim
+: 1777577886:0;tmux
+: 1777577890:0;nvim
+: 1777926568:0;update_script.sh  
+: 1778103022:0;nvim
+: 1778278408:0;..
+: 1778278410:0;ls
+: 1778278415:0;cd RPC
+: 1778278419:0;tmux
+: 1778278424:0;nvim
+: 1778350015:0;update_script.sh  
+: 1778350104:0;tmux
+: 1778405755:0;nvim
+: 1778405762:0;tmux
+: 1778405767:0;nvim
+: 1778405780:0;gst
+: 1778453979:0;cd /opt/RPC-build
+: 1778453984:0;buildRPC_GCC
+: 1778454221:0;OA
+: 1778454223:0;buildRPC_GCC
+: 1778527101:0;tmux
+: 1778527135:0;cd Documents/RPC
+: 1778527141:0;cd  ~/Documents/RPC
+: 1778527145:0;nvim
+: 1778530780:0;cd /opt/RPC-build
+: 1778530784:0;buildRPC_GCC
+: 1778531268:0;cd /opt/RPC-build
+: 1778531270:0;buildRPC_GCC
+: 1778533755:0;OA
+: 1778533757:0;buildRPC_GCC
+: 1778533942:0;OA
+: 1778533943:0;buildRPC_GCC
+: 1778534380:0;ls /tmp
+: 1778534396:0;ls
+: 1778534410:0;cd Utils/example
+: 1778534412:0;ls
+: 1778534424:0;cd ThreadScope
+: 1778534425:0;ls
+: 1778534434:0;./ThreadScope
+: 1778534437:0;ls
+: 1778534841:0;Python trace_to_json.py
+: 1778534868:0;python3 trace_to_json.py
+: 1778535288:0;..
+: 1778535297:0;cd threadScopeGUI
+: 1778535299:0;ls
+: 1778535318:0;cd Documents/RPC
+: 1778535330:0;cd  ~/Documents/RPC
+: 1778535340:0;goto
+: 1778535452:0;python3 trace_to_json.py
+: 1778535482:0;python3.12 trace_to_json.py
+: 1778535521:0;cd src/Utils/threadScopeGUI
+: 1778535527:0;python3 trace_to_json.py
+: 1778535882:0;ls
+: 1778614036:0;tmux
+: 1778614047:0;nvim
+: 1778614063:0;..
+: 1778614064:0;...
+: 1778614067:0;nvim
+: 1778709694:0;cd /opt/RPC-build
+: 1778709700:0;buildRPC_GCC
+: 1778711731:0;python3 trace_to_json.py
+: 1778711897:0;..
+: 1778711900:0;ls
+: 1778711904:0;gst
+: 1778711920:0;git add .
+: 1778711979:0;git reset --soft HEAD~1
+: 1778711982:0;ls
+: 1778711985:0;tig
+: 1778712002:0;git reset --soft HEAD~0
+: 1778712005:0;ls
+: 1778712007:0;gst
+: 1778712116:0;git reset HEAD -- Utils/threadScopeGUI/ts-trace.bin
+: 1778712128:0;git reset HEAD -- Utils/threadScopeGUI/trace.json
+: 1778712132:0;ls
+: 1778712135:0;gst
+: 1778712177:0;git commit -m "added singleton generic pattern and finalized the thread scope\
+\
+
+: 1778712186:0;git commit -m "added singleton generic pattern and finalized the thread scope"\
+\
+
+: 1778712199:0;git push
+: 1778712205:0;git push --force
+: 1778712210:0;gst
+: 1778712290:0;ls
+: 1778712468:0;cd Utils/example/ThreadSafeQueue
+: 1778712470:0;ls
+: 1778712499:0;cd Utils/example/ThreadSafeQueue
+: 1778712501:0;ls
+: 1778712508:0;./ThreadSafeQueue
+: 1778712522:0;ls
+: 1778712566:0;mv ts-trace.bin ~/Documents/RPC/src/Utils
+: 1778712618:0;cd ~/Documents/RPC/src/Utils
+: 1778712619:0;ls
+: 1778712630:0;mv ts-trace.bin threadScopeGUI
+: 1778712642:0;cd threadScopeGUI
+: 1778712643:0;ls
+: 1778712665:0;rm -f trace.json
+: 1778712667:0;ls
+: 1778712674:0;python3 trace_to_json.py
+: 1778712677:0;ls
+: 1778712744:0;python3 trace_to_json.py
+: 1778712749:0;ls
+: 1778712778:0;..
+: 1778712779:0;ls
+: 1778712792:0;mv ts-trace.bin threadScopeGUI
+: 1778712805:0;cd threadScopeGUI
+: 1778712807:0;ls
+: 1778712815:0;rm -f trace.json
+: 1778712827:0;python3 trace_to_json.py
+: 1778712830:0;ls
+: 1778713064:0;tmux
+: 1778713076:0;goto
+: 1778713126:0;./ThreadSafeQueue
+: 1778713140:0;ls
+: 1778713153:0;ls -lhrt
+: 1778713190:0;ls
+: 1778713204:0;mv ts-trace.bin ~/Documents/RPC/src/Utils/threadScopeGUI
+: 1778713209:0;ls
+: 1778713217:0;python3 trace_to_json.py
+: 1778713220:0;ls
+: 1778713575:0;nvim trace.json
+: 1778739819:0;tmux
+: 1778739876:0;cd  ~/Documents/RPC
+: 1778739879:0;nvim
+: 1778742150:0;cd /opt/RPC-build
+: 1778742161:0;buildRPC_GCC
+: 1778742234:0;ls
+: 1778742255:0;ls scripts
+: 1778742263:0;ls scripts/thread_scope
+: 1778742283:0;type buildRPC_GCC
+: 1778742553:0;make install
+: 1778742586:0;ls /tmp/RPC/
+: 1778742592:0;ls /tmp/RPC/examples
+: 1778744348:0;type buildRPC_GCC && make install
+: 1778744385:0;goto
+: 1778744411:0;./ThreadSafeQueue
+: 1778744647:0;type buildRPC_GCC && make install
+: 1778745165:0;ls -lhrt
+: 1778745178:0;rm -rf ts-trace.bin
+: 1778745183:0;ls -lhrt
+: 1778745191:0;./ThreadSafeQueue
+: 1778745206:0;ls -lhrt
+: 1778745241:0;./trace_to_json.py ts-trace.bin
+: 1778745343:0;rm -rf ts-trace.bin
+: 1778745347:0;./ThreadSafeQueue
+: 1778745360:0;ls -lhrt
+: 1778745428:0;python3.12 ./trace_to_json.py ./ts-trace.bin
+: 1778745437:0;ls -lhrt
+: 1778746163:0;gst
+: 1778746180:0;ga .
+: 1778746214:0;git commit -m "some clean ups and added the script to install directory."\
+\
+
+: 1778746220:0;git push
+: 1778769587:0;tmux
+: 1778769596:0;cd  ~/Documents/RPC
+: 1778769600:0;gst
+: 1778769607:0;nvim
+: 1778787489:0;tmux
+: 1778787498:0;nvim
+: 1778787784:0;goto 
+: 1778787793:0;cd /opt/RPC-build
+: 1778787795:0;ls
+: 1778787824:0;buildRPC_GCC_Test
+: 1778787841:0;ls
+: 1778787868:0;cd Utils/test
+: 1778787875:0;ctest -N
+: 1778788204:0;..
+: 1778788221:0;make install
+: 1778788243:0;cd /tmp/RPC/examples
+: 1778788256:0;./AsyncChunkReader
+: 1778882559:0;tmux
+: 1778882616:0;cd  ~/Documents/RPC
+: 1778882618:0;ls
+: 1778882622:0;gst
+: 1778882978:0;nvim
+: 1778954755:0;tmux
+: 1778954764:0;nvim
+: 1778969252:0;tmux
+: 1778969255:0;nvim
+: 1778971073:0;cd /opt/RPC-build
+: 1778971077:0;buildRPC_GCC_Test
+: 1778971180:0;OA
+: 1778971182:0;buildRPC_GCC_Test
+: 1778971262:0;OA
+: 1778971263:0;buildRPC_GCC_Test
+: 1778971288:0;ls
+: 1778971290:0;gst
+: 1778971294:0;ga .
+: 1778971320:0;git commit -m "Removed unnecessary header files."\
+\
+
+: 1778971327:0;git push
+: 1779004292:0;tmux
+: 1779004297:0;nvim
+: 1779004385:0;cd  ~/Documents/RPC
+: 1779004388:0;nvim
+: 1779005684:0;cat 
+: 1779005734:0;nvim --clean
+: 1779007170:0;mv ~/.config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.lua.disabled
+: 1779007181:0;nvim
+: 1779007242:0;mv ~/.config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.l
+: 1779007256:0;mv ~/.config/nvim/lua/plugins/cmp.lua.disabled ~/.config/nvim/lua/plugins/cmp.lua
+: 1779007265:0;nvim
+: 1779009001:0;grep -R "on_key" ~/.config/nvim
+: 1779009240:0;grep -R "on_key" ~/.config/nvim/\
+
+: 1779009267:0;ls ~/.config/nvim/lua/plugins
+: 1779009479:0;nvim
+: 1779015456:0;grep -R "InsertEnter" ~/.config/nvim/lua
+: 1779015506:0;nvim
+: 1779017683:0;rm -rf ~/.local/share/nvim/lazy
+: 1779017709:0;nvim
+: 1779018105:0;find ~/.config/nvim -name "*.lua" | sort | while read f; do\
+  echo "===== $f ====="\
+  cat "$f"\
+  echo ""\
+done
+: 1779018152:0;find ~/.config/nvim/lua -name "*.lua" | sort | while read f; do\
+  echo "===== $f ====="\
+  cat "$f"\
+  echo ""\
+done
+: 1779018535:0;nvim
+: 1779018919:0;tmux show-options -g escape-time
+: 1779019090:0;nvim
+: 1779020899:0;tmux
+: 1779020929:0;cd ~/dotfiles
+: 1779020931:0;ls
+: 1779020935:0;gst
+: 1779020939:0;ga .
+: 1779020964:0;git commit -m "Fixed the esc problem."\
+\
+
+: 1779020968:0;git push
+: 1779044599:0;nvim
+: 1779046350:0;cd  ~/Documents/RPC
+: 1779046354:0;gst
+: 1779046356:0;ga .
+: 1779046375:0;git commit -m "Cleaning the header files."\
+\
+
+: 1779046381:0;git push
+: 1779049427:0;goto
+: 1779049470:0;nvim قاسك�\ ۃ�ک.txt
+: 1779138217:0;cd  ~/Documents/RPC
+: 1779138220:0;nvim
+: 1779218717:0;tmux
+: 1779218723:0;nvim
+: 1779218770:0;cd /opt/RPC-build
+: 1779218774:0;buildRPC_GCC_Test
+: 1779219325:0;type buildRPC_GCC_Test
+: 1779219419:0;time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1779220728:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make 
+: 1779220743:0;time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1779220767:0;cd /opt/RPC-build\\
+
+: 1779220769:0;time  make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1779226043:0;cd  ~/Documents/RPC
+: 1779226045:0;ls
+: 1779226048:0;nvim
+: 1779391276:0;tmux
+: 1779391280:0;nvim
+: 1779395510:0;find ~/.cache -name "*.idx" 2>/dev/null | head -5
+: 1779395521:0;find ~/.local -name "*.idx" 2>/dev/null | head -5
+: 1779395688:0;nvim
+: 1779396008:0;cat /tmp/rename_debug.txt
+: 1779396185:0;nvim
+: 1779396506:0;cat /tmp/rename_debug.txt
+: 1779396863:0;clangd --version
+: 1779397186:0;which clangd
+: 1779397271:0;:q
+: 1779397287:0;nvim
+: 1779399145:0;find ~/.cache -name "*.idx" 2>/dev/null | head -5
+: 1779399166:0;find ~/.local/share/nvim -name "*.idx" 2>/dev/null | head -5
+: 1779399272:0;cat /tmp/rn.txt
+: 1779399589:0;nvim
+: 1779399755:0;cd ~/dotfiles
+: 1779399757:0;ls
+: 1779399764:0;gst
+: 1779399787:0;nvim
+: 1779399848:0;gst
+: 1779399854:0;ga .
+: 1779399919:0;git commit -m "fixed the global rename and chnaged the clangd to use the correct version."\
+\
+
+: 1779399925:0;git push
+: 1779402040:0;:q
+: 1779473407:0;tmux
+: 1779473818:0;cd ..
+: 1779473820:0;ls
+: 1779473922:0;cd  ~/Documents/RPC
+: 1779473927:0;nvim
+: 1779703470:0;tmux
+: 1779703687:0;nvim
+: 1779736669:0;tmux
+: 1779736675:0;nvim
+: 1779742656:0;cd /opt/RPC-build
+: 1779742661:0;buildRPC_GCC_Test
+: 1779743387:0;OA
+: 1779743390:0;buildRPC_GCC_Test
+: 1779743986:0;OA
+: 1779743987:0;buildRPC_GCC_Test
+: 1779885047:0;tmux
+: 1779885055:0;cd  ~/Documents/RPC
+: 1779885071:0;nvim
+: 1779975330:0;tig
+: 1779975343:0;nvim
+: 1779975519:0;tmux
+: 1779975525:0;nvim
+: 1779975569:0;cd /opt/RPC-build
+: 1779975575:0;buildRPC_GCC_Test
+: 1779977256:0;btop
+: 1779977588:0;buildRPC_GCC_Test
+: 1779977802:0;nvim
+: 1779977853:0;buildRPC_GCC_Test
+: 1779977975:0;nvim
+: 1779978046:0;buildRPC_GCC_Test
+: 1779978451:0;nvim
+: 1779978714:0;buildRPC_GCC_Test
+: 1779979533:0;nvim
+: 1779979679:0;buildRPC_GCC_Test
+: 1779979720:0;nvim
+: 1779981448:0;buildRPC_GCC_Test
+: 1779994099:0;tmux
+: 1779994106:0;cd  ~/Documents/RPC
+: 1779994434:0;nvim
+: 1780000322:0;cd /opt/RPC-build
+: 1780000325:0;buildRPC_GCC_Test
+: 1780080847:0;tmux
+: 1780081452:0;cd  ~/Documents/RPC
+: 1780081458:0;nvim
+: 1780081530:0;buildRPC_GCC_Test
+: 1780247245:0;cd /opt/RPC-build
+: 1780247272:0;buildRPC_GCC_Test
+: 1780252551:0;nvim
+: 1780254027:0;tmux
+: 1780254031:0;nvim
+: 1780254042:0;cd /opt/RPC-build
+: 1780255682:0;buildRPC_GCC_Test
+: 1780347681:0;cd  ~/Documents/RPC
+: 1780347685:0;nvim
+: 1780349435:0;tmux
+: 1780349438:0;nvim
+: 1780350312:0;cd /opt/RPC-build
+: 1780350316:0;buildRPC_GCC_Test
+: 1780519774:0;tmux
+: 1780520216:0;cd  ~/Documents/RPC
+: 1780520256:0;ls
+: 1780520266:0;cd /opt/RPC-build
+: 1780520274:0;nvim
+: 1780520334:0;ls
+: 1780520339:0;buildRPC_GCC_Test
+: 1780862140:0;cd /opt/RPC-build
+: 1780862143:0;buildRPC_GCC_Test
+: 1780946630:0;tmux
+: 1780946651:0;cd  ~/Documents/RPC
+: 1780946655:0;nvim
+: 1780948685:0;cd /opt/RPC-build
+: 1780948737:0;buildRPC_GCC_Test
+: 1781207566:0;tmux
+: 1781263411:0;cd  ~/Documents/RPC
+: 1781263415:0;nvim
+: 1781263613:0;cd /opt/RPC-build
+: 1781263616:0;buildRPC_GCC_Test
+: 1781432963:0;ssh Milad@192.168.2.225 
+: 1781444869:0;tmux
+: 1781444892:0;cd  ~/Documents/RPC
+: 1781444899:0;nvim
+: 1781444940:0;buildRPC_GCC_Test
+: 1781448217:0;OA
+: 1781448218:0;buildRPC_GCC_Test
+: 1781549201:0;tmux
+: 1781549997:0;nvim
+: 1781642589:0;tmux
+: 1781642592:0;nvim
+: 1782073655:0;tmux
+: 1782073662:0;nvim
+: 1782076525:0;cd /opt/RPC-build
+: 1782076529:0;buildRPC_GCC_Test
+: 1782161551:0;tmux
+: 1782161567:0;cd  ~/Documents/RPC
+: 1782161570:0;nvim
+: 1782248570:0;tmux
+: 1782248578:0;nvim
+: 1782339479:0;tmux
+: 1782339490:0;nvim
+: 1782419370:0;tmux
+: 1782419384:0;nvim
+: 1782589651:0;tmux
+: 1782589705:0;nvim
+: 1782631723:0;tmux
+: 1782631779:0;nvim
+: 1782760198:0;tmux
+: 1782760236:0;nvim
+: 1782846531:0;tmux
+: 1782846541:0;nvim
+: 1782850798:0;nvim SKILL.md
+: 1782932357:0;tmux
+: 1782938245:0;m
+: 1782938248:0;nvim
+: 1783026045:0;update_script.sh 
+: 1783026253:0;nvim update_script.sh 
+: 1783026268:0;which update_script.sh 
+: 1783026279:0;nvim which update_script.sh 
+: 1783026291:0;nvim | which update_script.sh 
+: 1783026311:0;nvim /home/viserion/dotfiles/scripts/Bash/update_script.sh
+: 1783160505:0;nvim
+: 1783161991:0;tmux
+: 1783162001:0;nvim
+: 1783193665:0;tmux
+: 1783193681:0;nvim
+: 1783278384:0;tmux
+: 1783278388:0;nvim
+: 1783281821:0;cd /opt/RPC-build
+: 1783281830:0;type buildRPC_GCC_Test
+: 1783281871:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783282011:0;cd  ~/Documents/RPC
+: 1783282022:0;nvim
+: 1783282259:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783369891:0;tmux
+: 1783369902:0;cd /opt/RPC-build
+: 1783369906:0;buildRPC_GCC_Test
+: 1783369938:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783453818:0;tmux
+: 1783453857:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783535645:0;tmux
+: 1783535662:0;cd  ~/Documents/RPC
+: 1783535665:0;nvim
+: 1783535709:0;cd /opt/RPC-build
+: 1783535825:0;update_script.sh 
+: 1783537217:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783720926:0;cd  ~/Documents/RPC
+: 1783720928:0;nvim
+: 1783721150:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783800946:0;tmux
+: 1783800966:0;nvim
+: 1783801082:0;cd /opt/RPC-build
+: 1783801324:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783877378:0;cd  ~/Documents/RPC
+: 1783877381:0;nvim
+: 1783877608:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783887504:0;nvim
+: 1783888657:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783892029:0;nvim
+: 1783892332:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783971026:0;tmux
+: 1783971030:0;nvim
+: 1783971323:0;cd /opt/RPC-build
+: 1783971347:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1783975740:0;curl -fsSL https://claude.ai/install.sh | bash
+: 1783976050:0;nvim
+: 1783978806:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1784057926:0;tmux
+: 1784057944:0;cd  ~/Documents/RPC
+: 1784057948:0;claude
+: 1784058574:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1784070819:0;gst
+: 1784070822:0;cd  ~/Documents/RPC
+: 1784070824:0;gst
+: 1784070836:0;ga .
+: 1784071172:0;gst
+: 1784071179:0;ga .
+: 1784071222:0;git commit -m "Replaced the string span and span in the RPC."\
+\
+
+: 1784071227:0;git push
+: 1784071398:0;make clean && cmake  -D CMAKE_VERBOSE_MAKEFILE=On -D RPC_WITH_TESTS:BOOL=ON -D RPC_COMPILE_WITH_CLANG:BOOL=false -D WITH_CLANG_TIDY:BOOL=False -D CMAKE_BUILD_TYPE=Debug -S /home/viserion/Documents/RPC/src -B /opt/RPC-build  && time make
+: 1784071478:0;buildRPC_GCC_Test
+: 1784140407:0;claude
+: 1784143716:0;tmux
+: 1784143720:0;gst
+: 1784143727:0;git diff
+: 1784143769:0;ga .
+: 1784143905:0;git commit -m "Renaming and added claude.md."\
+\
+
+: 1784143912:0;git push
+: 1784144153:0;nvim
+: 1784147207:0;buildRPC_GCC_Test
+: 1784147217:0;cd /opt/RPC-build
+: 1784147221:0;buildRPC_GCC_Test
+: 1784147264:0;cd  ~/Documents/RPC
+: 1784147266:0;gst
+: 1784147270:0;ga .
+: 1784147297:0;git commit -m "Introduction of DSpan."\
+\
+
+: 1784147305:0;git push
+: 1784155601:0;gst
+: 1784155610:0;ga .
+: 1784155669:0;git commit -m "Made StringView inherit from DSpan."\
+\
+
+: 1784155676:0;git push
+: 1784228528:0;tmux
+: 1784228533:0;nvim
+: 1784228732:0;cd /opt/RPC-build
+: 1784228738:0;buildRPC_GCC_Test
+: 1784228919:0;claude
+: 1784381206:0;cd ~/dotfiles/zsh
+: 1784381208:0;ls
+: 1784381233:0;nvim aliases
+: 1784381423:0;cd ..
+: 1784381424:0;ls 
+: 1784381432:0;gst
+: 1784381434:0;ga .
+: 1784381464:0;git commit -m "Build with number of availabkle cores."\
+\
+
+: 1784381469:0;git push
+: 1784381496:0;cd /opt/RPC-build
+: 1784381499:0;buildRPC_GCC_Test
+: 1784409577:0;gst
+: 1784409587:0;ga .
+: 1784409643:0;git commit -m "Added MBlock and various related view factory functions related to it."\
+\
+
+: 1784409649:0;git push
+: 1784410760:0;buildRPC_GCC_Test
+: 1784410801:0;ls
+: 1784410822:0;ctest --test-dir /opt/RPC-build
+: 1784412552:0;buildRPC_Clang_Test
+: 1784413338:0;type buildRPC_Clang_Test
+: 1784413363:0;gst
+: 1784413376:0;ga .
+: 1784413412:0;git commit -m "Fixed the failing boost tests."\
+
+: 1784413418:0;git push
+: 1784415281:0;buildRPC_Clang_Test
+: 1784460719:0;update_script.sh 
+: 1784461401:0;tmux
+: 1784461417:0;cd  ~/Documents/RPC
+: 1784461419:0;ls
+: 1784461421:0;gst
+: 1784461430:0;git diff
+: 1784461467:0;buildRPC_Clang_Test
+: 1784463141:0;gst
+: 1784463145:0;ga .
+: 1784463174:0;git commit -m "Fixed the clang build and suppressed the asio warnings."\
+
+: 1784463182:0;git push
+: 1784464346:0;buildRPC_Clang_Test
+: 1784465870:0;buildRPC_GCC_Test
+: 1784466120:0;\
+
+: 1784466144:0;buildRPC_GCC_Test
+: 1784466292:0;gst
+: 1784468352:0;ga .
+: 1784468402:0;git commit -m "refactored the type traits."\
+
+: 1784468407:0;git push
+: 1784471139:0;gst
+: 1784471155:0;buildRPC_GCC_Test
+: 1784471195:0;buildRPC_Clang_Test
+: 1784471350:0;cd  ~/dotfiles
+: 1784471351:0;ls
+: 1784471357:0;cd zsh
+: 1784471359:0;ls
+: 1784471365:0;nvim aliases
+: 1784472381:0;cleanRPC 
+: 1784472395:0;buildRPC_Clang_Test
+: 1784472410:0;typebuildRPC_Clang_Test
+: 1784472413:0;type buildRPC_Clang_Test
+: 1784472597:0;gst
+: 1784474060:0;ga .
+: 1784474088:0;git commit -m "Migrated to gcc 14 and clang 19."\
+
+: 1784474095:0;gp
+: 1784474121:0;git push
+: 1784475092:0;ls
+: 1784475095:0;gst
+: 1784475102:0;git diff
+: 1784475120:0;ga
+: 1784475123:0;ga .
+: 1784475147:0;git commit -m "added clean commands for RPC"\
+
+: 1784475152:0;git push
+: 1784475164:0;cd  ~/Documents/RPC
+: 1784475188:0;nvim
+: 1784476427:0;buildRPC_Clang_Test
+: 1784476549:0;ctest --test-dir /opt/RPC-build
+: 1784476769:0;cmake --build /opt/RPC-build --target help
+: 1784476780:0;nvim aliases
+: 1784476793:0;cd  ~/dotfiles
+: 1784476798:0;cd zsh
+: 1784476807:0;nvim aliases
+: 1784476862:0;listTargets
+: 1784476866:0;gst
+: 1784476869:0;ga .
+: 1784476888:0;git commit -m "added target list for RPC"\
+
+: 1784476894:0;git push
+: 1784483371:0;cd  ~/Documents/RPC
+: 1784483379:0;tmx
+: 1784483382:0;tmux
+: 1784483390:0;listTargets G test
+: 1784484110:0;df
+: 1784486014:0;gst
+: 1784486017:0;ga .
+: 1784486023:0;tig
+: 1784486059:0;git commit -m "Improved asio third party cmake handling."\
+
+: 1784486063:0;git push
+: 1784493957:0;type 'listTargets \
+'
+: 1784493962:0;type listTargets \
+'
+: 1784493968:0;type listTargets
+: 1784495785:0;echo $CC' 
+: 1784495787:0;echo $CC
+: 1784497622:0;git diff'
+: 1784497625:0;git diff
+: 1784581257:0;sudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential \\
+  chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \\
+  iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool \\
+  file locales libacl1 bmap-tools\
+'\
+'
+: 1784581670:0;mkdir -p ~/yocto && cd ~/yocto'\
+'
+: 1784581700:0;mkdir -p ~/yocto && cd ~/yocto
+: 1784581737:0;git clone -b scarthgap git://git.yoctoproject.org/poky
+: 1784581868:0;git clone -b scarthgap https://github.com/agherzan/meta-raspberrypi'\
+'
+: 1784581876:0;git clone -b scarthgap https://github.com/agherzan/meta-raspberrypi\
+'\
+'
+: 1784581971:0;git clone -b scarthgap git://git.yoctoproject.org/poky
+: 1784582161:0;ls'\
+\
+\
+\
+\
+;6~ p'u/''OA
+: 1784582320:0;git clone -b scarthgap https://git.yoctoproject.org/poky
+: 1784582339:0;LS
+: 1784582344:0;ls
+: 1784583326:0;tmux
+: 1784583357:0;source poky/oe-init-build-env build-rpi
+: 1784583439:0;bitbake core-image-minimal
+: 1784583570:0;sudo sysctl kernel.apparmor_restrict_unprivileged_userns=0
+: 1784583641:0;bitbake core-image-minimal
+: 1784584195:0;btop
+: 1784662247:0;update_script.sh 
+: 1784671359:0;tmux
+: 1784672350:0;lsblk
+: 1784672439:0;sudo umount /dev/sda*
+: 1784672650:0;sudo umount /dev/sda1
+: 1784672704:0;sudo umount /dev/sda2
+: 1784672718:0;cd ~/yocto/build-rpi/tmp/deploy/images/raspberrypi
+: 1784672733:0;sudo bmaptool copy core-image-minimal-raspberrypi.rootfs.wic.bz2 /dev/sda
+: 1784673807:0;ping 192.168.2.193
+: 1784673821:0;ssh 192.168.2.193
+: 1784673940:0;ssh root@192.168.2.193
+: 1784929829:0;ping 192.168.2.193
+: 1784929832:0;ssh root@192.168.2.193
+: 1784929980:0;tmux
+: 1784930442:0;...
+: 1784930444:0;..
+: 1784930447:0;ls
+: 1784930449:0;..
+: 1784930450:0;ls
+: 1784930458:0;..
+: 1784930459:0;ls
+: 1784930474:0;bitbake -e zlib | grep -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784930498:0;ls
+: 1784930601:0;source poky/oe-init-build-env build-rpi
+: 1784930616:0;..
+: 1784930622:0;bitbake -e zlib | grep -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784930668:0;ls
+: 1784930677:0;cd build-rpi
+: 1784930679:0;bitbake -e zlib | grep -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784930687:0;bitbake -e zlib G -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784931117:0;..
+: 1784931119:0;bitbake -e zlib G -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784931341:0;bitbake -e zlib 
+: 1784931715:0;bitbake -e zlib G -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784932277:0;ls WORKDIR
+: 1784932289:0;ls WORKDIR/
+: 1784932323:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1
+: 1784932441:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/image
+: 1784932452:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/image/usr
+: 1784932458:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/image/usr/include
+: 1784932475:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/image/usr/lib
+: 1784932526:0;ls /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/packages-split
+: 1784932615:0;cat /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/temp/log.do_compile.1269644
+: 1784932651:0;cat /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/temp/log.do_install.1272355
+: 1784932674:0;cat /home/viserion/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1/temp/log.do_fetch.74331
+: 1784932892:0;WD=~/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1\
+echo "=== WORKDIR top level ==="\
+ls -la "$WD"\
+echo\
+echo "=== image/ (=D, the DESTDIR fake install root) ==="\
+find "$WD/image" -maxdepth 3\
+echo\
+echo "=== packages-split/ (output already sliced per binary package) ==="\
+ls "$WD/packages-split/" 2>&1\
+echo\
+echo "=== temp/log.do_* (one log per task) ==="\
+ls "$WD/temp/" | grep '^log\.do_'
+: 1784932922:0;WD=~/yocto/build-rpi/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/zlib/1.3.1\
+echo "=== WORKDIR top level ==="\
+ls -la "$WD"\
+echo\
+echo "=== image/ (=D, the DESTDIR fake install root) ==="\
+find "$WD/image" -maxdepth 3\
+echo\
+echo "=== packages-split/ (output already sliced per binary package) ==="\
+ls "$WD/packages-split/" 2>&1\
+echo\
+echo "=== temp/log.do_* (one log per task) ==="\
+ls "$WD/temp/" G '^log\.do_'
+: 1784935094:0;bitbake -e zlib G -E '^(S|B|D|WORKDIR|PN|PV)='
+: 1784935109:0;echo $B
+: 1784935419:0;bitbake -c devshell zlib
+: 1784935488:0;./configure
+: 1784935555:0;cd ~/yocto/build-rpi && source ~/yocto/poky/oe-init-build-env . 2>/dev/null\
+bitbake -c devshell zlib\
+
+: 1784935591:0;pwd
+: 1784935608:0;echo $CC
+: 1784935714:0;./configure
+: 1784935918:0;exit
+: 1784935929:0;cd ~/yocto/build-rpi && source ~/yocto/poky/oe-init-build-env . 2>/dev/null\
+bitbake -c devshell zlib\
+
+: 1784935937:0;echo $CC
+: 1784935991:0;exit
+: 1784936033:0;echo $CC
+: 1784936045:0;source poky/oe-init-build-env build-rpi
+: 1784936048:0;..
+: 1784936051:0;source poky/oe-init-build-env build-rpi
+: 1784936058:0;cd ~/yocto/build-rpi && source ~/yocto/poky/oe-init-build-env . 2>/dev/null\
+bitbake -c devshell zlib\
+
+: 1784936067:0;echo $CC
+: 1784936111:0;echo "WORKDIR=[$WORKDIR]"
+: 1784936179:0;echo "PKG_CONFIG_SYSROOT_DIR=[$PKG_CONFIG_SYSROOT_DIR]"\
+echo "$PATH" | tr ':' '\n' | grep -i sysroot\
+
+: 1784936188:0;echo "PKG_CONFIG_SYSROOT_DIR=[$PKG_CONFIG_SYSROOT_DIR]"\
+echo "$PATH" | tr ':' '\n' G -i sysroot\
+
+: 1784936255:0;exit
+: 1784936266:0;cd ~/yocto/build-rpi && source ~/yocto/poky/oe-init-build-env . 2>/dev/null\
+bitbake -c devshell zlib\
+
+: 1784936275:0;echo $CC
+: 1784936311:0;./configure
+: 1784936348:0;make
+: 1784936484:0;oe-pkgdata-util list-pkg-files zlib zlib-dev
+: 1784936505:0;ls
+: 1784936513:0;..
+: 1784936515:0;ls
+: 1784936519:0;cd build-rpi
+: 1784936520:0;ls
+: 1784936540:0;cd tmp
+: 1784936541:0;ls
+: 1784936548:0;cd hosttools
+: 1784936550:0;ls
+: 1784936553:0;..
+: 1784936622:0;cat /home/viserion/yocto/build-rpi/tmp/
+: 1784936630:0;cd /home/viserion/yocto/build-rpi/tmp/
+: 1784936632:0;ls
+: 1784936719:0;..
+: 1784936725:0;cd ~/yocto && source poky/oe-init-build-env build-rpi >/dev/null 2>&1\
+echo "=== list-pkg-files zlib zlib-dev ==="\
+oe-pkgdata-util list-pkg-files zlib zlib-dev\
+echo\
+echo "=== find-path '*/libz.so*' ==="\
+oe-pkgdata-util find-path '*/libz.so*'
+: 1785000510:0;tmux
+: 1785001031:0;ls
+: 1785001039:0;cd ~/dotfiles/zsh
+: 1785001041:0;ls
+: 1785001061:0;nvim yocto
+: 1785008523:0;bbpkgs zlib
+: 1785008557:0;bbpkgs zlib zlib-dev
+: 1785010035:0;..
+: 1785010037:0;bbpkgs zlib zlib-dev
+: 1785010249:0;bbwipetmp
+: 1785011808:0;nvim yocto
+: 1785011878:0;_yocto_env
+: 1785011885:0;bbwipetmp
+: 1785011953:0;_yocto_env
+: 1785011963:0;bbwipetmp
+: 1785013139:0;bbdisk
+: 1785013494:0;nvim yocto
+: 1785013620:0;bblayer zlib
+: 1785013633:0;bblayer boost
+: 1785013669:0;bblayer 
+: 1785013741:0;bblayer python*
+: 1785013744:0;bblayer python
+: 1785013770:0;bblayer "*python*"
+: 1785014125:0;nvim yocto
+: 1785014136:0;cd ~/dotfiles/zsh
+: 1785014139:0;nvim yocto
+: 1785014579:0;bblayerrecipes
+: 1785015094:0;nvim yocto
+: 1785015185:0;bblayer
+: 1785015249:0;bblayerrecipes
+: 1785015353:0;bbsummary tiny-init
+: 1785015479:0;bbsummary tiny
+: 1785016030:0;bblog
+: 1785016053:0;bblog vim-tiny
+: 1785016099:0;bbtasks vim-tiny
+: 1785017281:0;bbpkgs zlib zlib-dev
+: 1785017854:0;bitbake-layers show-recipes "*boost*"
+: 1785019483:0;cd ~/yocto/build-rpi\
+echo "=== total edges in the task dependency graph ==="\
+grep -c '\->' task-depends.dot\
+echo\
+echo "=== node count (roughly, tasks) ==="\
+grep -c 'label' task-depends.dot\
+echo\
+echo "=== zlib's own task nodes ==="\
+grep '"zlib,' task-depends.dot | head -10
+: 1785019502:0;cd ~/yocto/build-rpi\
+echo "=== total edges in the task dependency graph ==="\
+grep -c '\->' task-depends.dot\
+echo\
+echo "=== node count (roughly, tasks) ==="\
+grep -c 'label' task-depends.dot\
+echo\
+echo "=== zlib's own task nodes ==="\
+grep '"zlib,' task-depends.dot H -10
+: 1785019590:0;\
+cd ~/yocto/build-rpi && grep -m5 'zlib' task-depends.dot
+: 1785020662:0;bblayer show-overlayed
+: 1785020703:0;bitbake-layers show-overlayed
+: 1785021113:0;nvim yocto
+: 1785021268:0;bblayerrecipes
+: 1785021364:0;bbpkgs linux-raspberrypi
+: 1785021426:0;bbpkgs  bluez-firmware-rpidistro\
+
+: 1785021448:0;bbpkgs bluez-firmware-rpidistro
+: 1785021459:0;bbpkgs rpio
+: 1785021497:0;bbpkgs zlib
+: 1785021515:0;bbpkgs userland
+: 1785021784:0;bbbuild userland
+: 1785022113:0;bbpkgs userland
+: 1785022232:0;bblayer userland
+: 1785023373:0;bbpkgs userland
+: 1785023404:0;bblayerrecipes
+: 1785023443:0;bboverlayed
+: 1785023511:0;bbneeds mesa
+: 1785023536:0;bbneeds userland
+: 1785023770:0;bbneeds acl
+: 1785023819:0;bbneededby acl
+: 1785023849:0;bbneeds tar
+: 1785024014:0;bblayerrecipes
+: 1785024046:0;bbbuild wayland-protocols
+: 1785024201:0;bbpkgs wayland-protocols
+: 1785024412:0;bbsummary wayland-protocols
+: 1785053408:0;update_script.sh 
+: 1785055794:0;tmux
+: 1785055928:0;cd ~/dotfiles/zsh
+: 1785055935:0;nvim yocto
+: 1785056212:0;bbsummary wayland-protocols
+: 1785057571:0;bbtasks wayland-protocols
+: 1785057974:0;bbpaths wayland-protocols
+: 1785058114:0;bbshell wayland-protocols
+: 1785058124:0;./configure
+: 1785058127:0;ls
+: 1785058157:0;make
+: 1785058260:0;cd stable
+: 1785058261:0;ls
+: 1785058266:0;make
+: 1785058268:0;..
+: 1785058292:0;ls
+: 1785058379:0;pwd
+: 1785058441:0;ls
+: 1785058897:0;make
+: 1785059008:0;bbenv waylad-protocols
+: 1785059163:0;bbbuild waylad-protocols
+: 1785059995:0;bbneeds wayland-protocols
+: 1785060054:0;bbneededby wayland-protocols
+: 1785060157:0;bblayerrecipes
+: 1785060268:0;bbbuild waylad-protocols
+: 1785060344:0;bbbuild wayland-protocols
+: 1785060395:0;bbshell wayland-protocols
+: 1785060408:0;./configure
+: 1785060602:0;bbneeds wayland-protocols
+: 1785060613:0;bbshell wayland-protocols
+: 1785060660:0;./meson_do_configure
+: 1785060667:0;meson_do_configure
+: 1785060711:0;./meson_do_configure
+: 1785060983:0;listTargets
+: 1785060992:0;type listTargets
+: 1785062340:0;bbforce wayland-protocols
+: 1785062463:0;bbshell wayland-protocols
+: 1785062478:0;ls
+: 1785062528:0;..
+: 1785062530:0;ls
+: 1785062543:0;cd build
+: 1785062548:0;ninja
+: 1785062552:0;ls
+: 1785062561:0;make
+: 1785075922:0;bbsummary wayland-protocols
+: 1785076301:0;bblog wayland-protocols compile 50
+: 1785076351:0;bbtasks wayland-protocols 
+: 1785076365:0;bblog wayland-protocols build 50
+: 1785076431:0;bbpkgs wayland-protocols
+: 1785076493:0;bblayer wayland-protocols
+: 1785076548:0;bblayerrecipes
+: 1785076865:0;bbneeds wayland-protocols
+: 1785076899:0;bbneededby wayland-protocols
+: 1785076935:0;bbbuild rpidistro-ffmpeg
+: 1785077925:0;nvim yocto
+: 1785078041:0;bbunbuilt
+: 1785078132:0;bbskipped
+: 1785085105:0;bitbake core-image-minimal -c populate_sdk
+: 1785086011:0;btop
+: 1785087302:0;ls -lhrt /opt
+: 1785087312:0;ls -lhrt /opt/RPC-build
+: 1785087359:0;~/yocto/build-rpi/tmp/deploy/sdk/poky-glibc-x86_64-core-image-minimal-arm1176jzfshf-vfp-raspberrypi-toolchain-5.0.19.sh -d /opt/poky/5.0.19 -y\
+
+: 1785087665:0;tmux
+: 1785087675:0;cd ~/dotfiles/zsh
+: 1785087678:0;nvim yocto
+: 1785087730:0;bbsdkinstall
+: 1785088289:0;cd ~/dotfiles/zsh
+: 1785088292:0;nvim yocto
+: 1785088505:0;bbsdkcheck
+: 1785088998:0;bbsdkenv
+: 1785089014:0;cat environment-setup-arm1176jzfshf-vfp-poky-linux-gnueabi
+: 1785089028:0;cat /opt/poky/5.0.19/environment-setup-arm1176jzfshf-vfp-poky-linux-gnueabi
+: 1785089067:0;cmake -S ~/Documents/RPC/src -B /opt/RPC-build-rpi \\
+  -DCMAKE_BUILD_TYPE=Release -DRPC_WITH_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX=/us
+: 1785089129:0;cmake --build /opt/RPC-build-rpi -j32
+: 1785093794:0;lsblk
+: 1785093837:0;bbflash core-image-minimal /dev/sda
+: 1785093933:0;umount /dev/sda1 /dev/sda2
+: 1785093936:0;lsblk
+: 1785093965:0;bbflash core-image-minimal /dev/sda
+: 1785096215:0;ssh root@192.168.2.193
+: 1785096778:0;ls
+: 1785096783:0;gst
+: 1785096835:0;ls
+: 1785096837:0;..
+: 1785096838:0;ls
+: 1785096846:0;nvim install.sh
+: 1785096950:0;sudo apt install asciidoctor
+: 1785096971:0;gst
+: 1785096973:0;ga .
+: 1785096995:0;git commit -m "Added yocto support to dot file."\
+
+: 1785097000:0;git push
+: 1785180090:0;tmux
+: 1785180102:0;cd zsh
+: 1785180108:0;nvim yocto
+: 1785182897:0;bbsdkcheck
+: 1785184954:0;_yocto_sdk_env_script
+: 1785188511:0;nvim yocto
+: 1785359948:0;grep -rni  "bblayers.conf".
+: 1785359981:0;find -i name "bblayers.conf" .
+: 1785359987:0;find -iname "bblayers.conf" .
+: 1785359991:0;find -iname "bblayers.conf" ./
+: 1785360018:0;find -iname ./ "bblayers.conf" 
+: 1785360039:0;find . -iname  "bblayers.conf" 
+: 1785360076:0;find -name  "bblayers.conf" ./
+: 1785360104:0;find ./ -name  "bblayers.conf" 
+: 1785360112:0;find ./ -name  ".conf" 
+: 1785360119:0;find ./ -name  "*.conf" 
+: 1785361693:0;..
+: 1785361701:0;find ./ -name  "asio" 
+: 1785361752:0;cd meta-openembedded
+: 1785361755:0;find ./ -name  "asio" 
+: 1785446483:0;\
+find ~/yocto/meta-rpc -type f
+: 1785446519:0;cat ~/yocto/build-rpi/conf/bblayers.conf
+: 1785447386:0;gst
+: 1785447393:0;ga .
+: 1785447422:0;git commit -m "Added yocto to Project"\
+
+: 1785447429:0;gp
+: 1785524515:0;..
+: 1785524521:0;cd build-rpi
+: 1785524563:0;bbenv
+: 1785524604:0;SCRATCH=/tmp/claude-1000/-home-viserion-Documents-RPC/d445cb6f-eb6b-42eb-bd86-38f082d6587d/scratchpad
+: 1785524641:0;bitbake rpc > "$SCRATCH/rpc-first-build.log" 2>&1
+: 1785524686:0;bitbake rpc
+: 1785525610:0;gst
+: 1785525613:0;ga .
+: 1785525636:0;git commit -m "Fixed the packaging problem of RPC build"\
+
+: 1785525646:0;bitbake rpc
+: 1785535421:0;oe-pkgdata-util list-pkg-files rpc rpc-dev rpc-dbg
+: 1785536347:0;devtool modify rpc ~/Documents/RPC
+: 1785536552:0;devtool modify -n rpc ~/Documents/RPC
+: 1785536955:0;devtool build rpc
+: 1785537012:0;devtool deploy-target rpc root@192.168.2.193
+: 1785537103:0;ssh root@192.168.2.193 'ls -la /usr/lib/libUtils.so /usr/bin/TestCompiler \
+\
+\
+"\
+\
+'
+: 1785537128:0;ssh root@192.168.2.193 'ls -la /usr/lib/libUtils.so /usr/bin/TestCompiler '\
+\
+\
+"\
+\
+'\
+\
+\
+
+: 1785537139:0;ssh root@192.168.2.193 'ls -la /usr/lib/libUtils.so /usr/bin/TestCompiler'\
+\
+\
+"\
+\
+'\
+\
+\
+\
+\
+
+: 1785537178:0;ssh root@192.168.2.193 'file /usr/lib/libUtils.so'\
+\
+\
+"\
+\
+'\
+\
+\
+\
+\
+\
+\
+\
+'\
+'\
+'';'\
+\
+\
+;/'\
+\
+,.\
+'
+: 1785537184:0;tmuux
+: 1785537186:0;tmux
+: 1785537205:0;ssh root@192.168.2.193 'ls -la /usr/lib/libUtils.so /usr/bin/TestCompiler'\
+\
+\
+\
+
+: 1785537216:0;ssh root@192.168.2.193 'file /usr/lib/libUtils.so'\
+\
+\
+\
+
+: 1785537252:0;ssh root@192.168.2.193 'file /usr/lib/libUtils.so'
+: 1785538992:0;dpkg -i code_1.131.0-1785237861_amd64.deb
+: 1785539000:0;sudo dpkg -i code_1.131.0-1785237861_amd64.deb
+: 1785539264:0;..
+: 1785539319:0;asciidoctor -r asciidoctor-pdf -b pdf RPC-Yocto-project-summary.adoc 
+: 1785539446:0;sudo apt install ruby-full
+: 1785539474:0;sudo gem install asciidoctor-pdf
+: 1785539496:0;asciidoctor-pdf  RPC-Yocto-project-summary.adoc 
+: 1785539507:0;ls
+: 1785539667:0;cd ~/dotfiles/zsh
+: 1785539669:0;..
+: 1785539681:0;nvim ./install.sh
+: 1785614616:0;nvim
+: 1785615966:0;ls
+: 1785615975:0;./install.sh -h
+: 1785615991:0;chmod +x install.sh 
+: 1785615993:0;./install.sh -h
+: 1785616078:0;nvim ./install.sh
+: 1785616164:0;./install.sh -h
+: 1785616188:0;gst
+: 1785616203:0;git diff zsh
+: 1785616338:0;git diff zsh/.zshenv
+: 1785616360:0;ga zsh/
+: 1785616364:0;gst
+: 1785616480:0;git commit -m "updated yocto dotfile for deploy and layer related commands to it."\
+
+: 1785616489:0;git push
+: 1785616499:0;gst
+: 1785616506:0;ga .
+: 1785616527:0;git commit -m "Refactored install script."\
+
+: 1785616532:0;gst
+: 1785616535:0;gp
+: 1785616575:0;ls
+: 1785616591:0;ls zsh
+: 1785616606:0;ls
+: 1785616631:0;ls -lhrt /zsh
+: 1785616637:0;ls -lhrt zsh/
+: 1785616642:0;ls -lhrta zsh/
+: 1785616935:0;tmux
+: 1785616945:0;cd /
+: 1785616946:0;ls
+: 1785616952:0;ls =lhrta
+: 1785616958:0;ls -lhrta
+: 1785616973:0;cd /home/viserion
+: 1785616977:0;ls -lhrta
+: 1785617024:0;nvim .zshenv
+: 1785620306:0;./install.sh 
+: 1785620778:0;gst
+: 1785620794:0;nvim versions.sh
+: 1785620832:0;./install.sh 
+: 1785620846:0;nvim ./install.sh 
+: 1785624281:0;ls
+: 1785624301:0;nvim zsh/.zshenv
+: 1785624476:0;gst
+: 1785624490:0;ga .
+: 1785624512:0;git commit -m "Some improvement and refactoring."\
+
+: 1785624518:0;gp
+: 1785657923:0;tmux
+: 1785657935:0;cd ~/dotfiles/zsh
+: 1785657940:0;..
+: 1785658017:0;nvim zsh/.zshenv
+: 1785659529:0;gst
+: 1785659535:0;git diff
+: 1785659595:0;ga .
+: 1785659620:0;git commit -m "FixedXDG diversion."\
+
+: 1785659623:0;gp
+: 1785659667:0;nvim zsh/.zshenv
+: 1785660133:0;nvim ./install.sh 
+: 1785660245:0;nvim zsh/.zshenv
+: 1785661253:0;nvim ./install.sh 
+: 1785662285:0;gst
+: 1785662289:0;git diff
+: 1785662299:0;ga .
+: 1785662302:0;git comm
+: 1785662321:0;git commit -m "Some improvement and clean ups."\
+
+: 1785662324:0;gp
+: 1785662570:0;git diff
+: 1785662639:0;gst
+: 1785662656:0;nvim nvim/lua/config/lsp/rust_analyzer.lua
+: 1785662673:0;ga .
+: 1785662700:0;git commit -m "Added rust support to nvim language server."\
+
+: 1785662705:0;gp
+: 1785662715:0;ls
+: 1785662741:0;ls -lhrta zsh
+: 1785663754:0;ls
+: 1785663760:0;git diff
+: 1785663768:0;gst
+: 1785663792:0;nvim zsh/.zshrc
+: 1785669091:0;gst
+: 1785669097:0;ga .
+: 1785669125:0;git commit -m "refactored the .zshrc."\
+
+: 1785669130:0;gp
+: 1785671960:0;gst
+: 1785671967:0;git diff
+: 1785672068:0;git diff .githooks/
+: 1785672113:0;nvim
+: 1785672644:0;gst
+: 1785672647:0;ga .
+: 1785672685:0;git commit -m "Added incremental zsh history to the dotfiles."\
+

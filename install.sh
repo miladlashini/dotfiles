@@ -3,8 +3,9 @@
 # install.sh - Provision a fresh Ubuntu/Debian machine with this dotfiles setup.
 #
 # This script installs system packages, multiple GCC/Clang toolchains, dev
-# tools (VS Code, CMake built from source, Docker, Rust, Node via nvm, ...)
-# and symlinks the configs in this repo (zsh, tmux, nvim) into place.
+# tools (VS Code, CMake built from source, Docker, Rust, Node via nvm, ...),
+# symlinks the configs in this repo (zsh, tmux, nvim) into place, and wires
+# up the shared, cross-machine zsh history (see scripts/Bash/history-sync).
 #
 # It is the successor to install.legacy.sh (kept for reference/diffing) and
 # is organized as one function per concern, run in order by main() at the
@@ -89,6 +90,21 @@ link_if_missing() {
 
   ln -s "$src" "$dst"
   echo "Linked $src -> $dst"
+}
+
+# =============================================================================
+# Shared shell history
+# =============================================================================
+
+# Activates .githooks/ (pre-commit/post-merge, see scripts/Bash/history-sync)
+# and does an initial import so local zsh history is seeded from the repo's
+# shared copy immediately. Deliberately one of the first things main() does -
+# it's cheap and has no dependency on anything later, so there's no reason to
+# make it wait behind the slow steps (compiler builds, Docker, Qt, ...).
+setup_shared_history() {
+  log "Setting up shared shell history..."
+  git -C "$DOTFILES" config core.hooksPath .githooks
+  "$DOTFILES/scripts/Bash/history-sync" import
 }
 
 # =============================================================================
@@ -599,6 +615,8 @@ main() {
 
   # shellcheck disable=SC1091
   source "$DOTFILES/versions.sh"
+
+  setup_shared_history
 
   install_base_packages
   configure_git

@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Folds this machine's new shell history into zsh/history so it rides
+# along in every commit. Never blocks the commit itself - a sync problem
+# here should never stop a real commit from going through.
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+"$REPO_ROOT/scripts/Bash/history-sync" export 2>/dev/null || true
+exit 0
