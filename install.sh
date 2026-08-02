@@ -16,7 +16,7 @@
 #     (this repo's zsh/.zshenv sets them). If you haven't linked .zshenv yet,
 #     export them manually before running, e.g.:
 #       export DOTFILES="$HOME/dotfiles" XDG_CONFIG_HOME="$HOME/.config" \
-#              XDG_DATA_HOME="$HOME/.config/local/share"
+#              XDG_DATA_HOME="$HOME/.local/share"
 #
 # Usage:
 #   ./install.sh          # standard setup
