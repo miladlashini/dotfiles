@@ -31,7 +31,6 @@ local _parser_to_filetype = {
   ruby          = 'ruby',
   rust          = 'rust',
   ssh_config    = 'sshconfig',
-  tmux          = 'tmux',
   typescript    = 'typescript',
   vim           = 'vim',
   yaml          = 'yaml',

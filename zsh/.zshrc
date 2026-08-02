@@ -1,160 +1,107 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#!/usr/bin/env zsh
+#
+# .zshrc - sourced by every INTERACTIVE zsh shell, after .zshenv. Owns the
+# prompt, plugin manager, completion, aliases, and interactive keybindings;
+# environment/PATH setup belongs in .zshenv instead (see that file).
+#
+# Symlinked to ~/.zshrc by ../install.sh. See .zshrc.legacy for the
+# previous, unsectioned version of this file.
 
-# Path to your oh-my-zsh installation.
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+########################################
+# Powerlevel10k prompt
+########################################
+# Instant prompt must stay near the top: initialization code that may
+# require console input (password prompts, [y/n] confirmations, etc.) has
+# to go above this block; everything else goes below it.
 source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" 2>/dev/null || true
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+# To customize the prompt, run `p10k configure` or edit
+# $DOTFILES/zsh/.p10k.zsh directly.
 source "${DOTFILES}/zsh/.p10k.zsh" 2>/dev/null || true
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+########################################
+# oh-my-zsh / antigen
+########################################
+# oh-my-zsh is loaded through antigen ("antigen use oh-my-zsh" in
+# .antigenrc) rather than sourced directly. Its usual tunables (ZSH_THEME,
+# plugins=(...), CASE_SENSITIVE, HIST_STAMPS, ... - see
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) still apply if set above
+# "antigen init" below, but this setup manages the theme/plugin list through
+# .antigenrc's "antigen bundle"/"antigen theme" lines instead.
 
-#ZSH_THEME="robbyrussell"
+if [[ ! -d "${ADOTDIR:?Missing mandatory env}" ]]; then
+    # Resolve antigen's latest release tag via the /releases/latest redirect
+    # (no GitHub API call, so it isn't subject to the API's unauthenticated
+    # rate limit). Falls back to a known-good pin if that fails (e.g. no
+    # network yet on a brand new machine). Only runs on this one-time
+    # bootstrap clone, never on every shell startup.
+    _antigen_version="$(curl -fsSL -o /dev/null -w '%{url_effective}' \
+        https://github.com/zsh-users/antigen/releases/latest 2>/dev/null)"
+    _antigen_version="${_antigen_version##*/}"
+    [[ "$_antigen_version" == v[0-9]* ]] || _antigen_version="v2.2.3"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
-#antigen set up
-__zsh_antigen_version="v2.2.3"
-[[ -d "${ADOTDIR:?Missing mandatory env}" ]] || {
-	git clone \
-		--depth 1 \
-		-b "${__zsh_antigen_version}" \
-		"https://github.com/zsh-users/antigen.git" \
-		"${ADOTDIR}" \
-		;
-}
+    git clone \
+        --depth 1 \
+        -b "$_antigen_version" \
+        "https://github.com/zsh-users/antigen.git" \
+        "${ADOTDIR}"
+    unset _antigen_version
+fi
 source "${ADOTDIR}/antigen.zsh"
 
-antigen init ${ZDOTDIR}/.antigenrc
+# Reads $ZDOTDIR/.antigenrc (bundle/theme list) and applies it.
+antigen init "${ZDOTDIR}/.antigenrc"
 
+# Must come after antigen init - zsh-autosuggestions/zsh-syntax-highlighting
+# set their own defaults for these arrays when they're sourced, which would
+# clobber a value assigned any earlier.
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
 
-##########################################################################################
-
-for _f in \
-        "${ZDOTDIR}/aliases" \
-        "${ZDOTDIR}/yocto" \
-        ; do
-        source "${_f}" 2>/dev/null || true
+########################################
+# personal config files
+########################################
+for _f in "${ZDOTDIR}/aliases" "${ZDOTDIR}/yocto"; do
+    source "${_f}" 2>/dev/null || true
 done
 
-##########################################################################################
-#auto complete
-autoload -Uz compinit;
+########################################
+# completion
+########################################
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit -u;
-_comp_options+=(globdots)		# Include hidden files.
-##########################################################################################
-#The following line needs to be activated if junegunn/fzf bundle is used.
-source "/usr/share/doc/fzf/examples/key-bindings.zsh"
+compinit -u
+_comp_options+=(globdots)  # include hidden files
 
-##########################################################################################
+########################################
+# fzf
+########################################
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+########################################
+# shell behavior
+########################################
+# unlimited core dump size - see aliases: coreDumpStatus / activateCoreDump*
 ulimit -c unlimited
-##########################################################################################
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+########################################
+# functions
+########################################
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-#
-##########################################################################################
-# checks if we are online or not
-onLine(){
-    ping -c 1 google.com &> /dev/null 
- 
-    if [ "$?" -eq 0 ]; then
- 	echo "Online!"
+# quick internet reachability check
+onLine() {
+    if ping -c 1 google.com &>/dev/null; then
+        echo "Online!"
     else
- 	echo "Offline"
+        echo "Offline"
     fi
 }
 
-# This is the tool to navigate through the filesystem graphically using ranger
-function goto() {
+# navigate the filesystem graphically via ranger, cd-ing into the chosen dir on exit
+goto() {
+    local tempfile
     tempfile=$(mktemp)
     ranger --choosedir="$tempfile" "${@:-$PWD}"
     if [ -f "$tempfile" ] && [ -s "$tempfile" ]; then
@@ -163,33 +110,29 @@ function goto() {
     rm -f "$tempfile"
 }
 
-
-##########################################################################################
-
-
-
+########################################
+# keybindings
+########################################
 bindkey -r '^l'
 bindkey -r '^g'
 bindkey -s '^g' 'clear\n'
 
+########################################
+# misc
+########################################
 #neofetch --ascii_distro manjaro
 #neofetch --ascii_distro ubuntu
 #neofetch --ascii_distro archlinux
 #neofetch --ascii_distro fedora
-
-shuf -n 1 $DOTFILES/neofetch_distros.txt | xargs -I % sh -c 'neofetch --ascii_distro % '
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/dotFiles/zsh/.p10k.zsh.
-[[ ! -f ~/dotFiles/zsh/.p10k.zsh ]] || source ~/dotFiles/zsh/.p10k.zsh
+shuf -n 1 "$DOTFILES/neofetch_distros.txt" | xargs -I % sh -c 'neofetch --ascii_distro %'
 
 #if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
 #   fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)
-#1fi
-# This is for nvm, the node version manager. It is used to manage different 
-# versions of node and npm.
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+#fi
 
+########################################
+# nvm (Node version manager)
+########################################
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
