@@ -430,9 +430,23 @@ install_google_chrome() {
 # =============================================================================
 
 link_zsh_dotfiles() {
-  log "Linking zsh dotfiles..."
+  log "Linking shell dotfiles..."
   link_if_missing "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
   link_if_missing "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+  link_if_missing "$DOTFILES/.bashrc" "$HOME/.bashrc"
+}
+
+# Make zsh the login shell instead of launching it from .bashrc (the old
+# approach nested a child zsh inside every interactive bash - exiting
+# required two exits, and anything after the zsh line in .bashrc only ran
+# once zsh quit).
+set_default_shell() {
+  local zsh_path
+  zsh_path="$(command -v zsh)"
+  if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$zsh_path" ]; then
+    log "Setting login shell to $zsh_path..."
+    sudo chsh -s "$zsh_path" "$USER"
+  fi
 }
 
 # =============================================================================
@@ -639,6 +653,7 @@ main() {
   install_google_chrome
 
   link_zsh_dotfiles
+  set_default_shell
   install_rust_and_tree_sitter
 
   setup_tmux

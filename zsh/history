@@ -3126,3 +3126,8 @@ find ~/yocto/meta-rpc -type f
 : 1785698748:0;ga .
 : 1785698796:0;git commit -m "Unified the names in dotfile."\
 
+: 1785698798:0;gp
+: 1785699762:0;git diff
+: 1785701361:0;ga .
+: 1785701408:0;git commit -m "Made zsh the default terminal and added readme."\
+

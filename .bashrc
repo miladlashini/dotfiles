@@ -116,4 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 export DOTFILES="$HOME/dotfiles"
-/usr/bin/zsh
+
+# nvm + cargo, for the occasional explicit bash session (zsh is the primary
+# shell - install.sh sets it as the login shell via chsh, so this file only
+# runs when bash is started deliberately).
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
