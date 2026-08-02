@@ -4,7 +4,7 @@ function M.setup()
     require("mason").setup()
 
     require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "neocmake", "pyright", "bashls", "jsonls", "systemd_lsp" },
+        ensure_installed = { "clangd", "neocmake", "pyright", "bashls", "jsonls", "systemd_lsp", "rust_analyzer" },
     })
 
     -- 🔥 Required for "blink.cmp"
@@ -53,6 +53,7 @@ function M.setup()
     require("config.lsp.bashls")(on_attach, capabilities)
     require("config.lsp.jsonls")(on_attach, capabilities)
     require("config.lsp.systemd_lsp")(on_attach, capabilities)
+    require("config.lsp.rust_analyzer")(on_attach, capabilities)
 end
 
 return M
