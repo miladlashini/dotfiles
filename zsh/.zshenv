@@ -121,7 +121,6 @@ export DISTCC_LOG='/tmp/distcc.log'
 ########################################
 # Misc
 ########################################
-export GIT_EDITOR=vim
 # set to "all" to see every Boost.Test log line instead of just failures
 export BOOST_TEST_LOG_LEVEL=error
 

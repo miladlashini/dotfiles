@@ -149,26 +149,40 @@ setup_ccache() {
 # Compilers
 # =============================================================================
 
+# Prints the numeric suffixes of "<prefix>-<N>" packages actually available
+# in the currently configured apt repos, ascending (e.g. for prefix "gcc":
+# 9 10 11 12 13 14 15 16). Requires `apt update` to already have run.
+apt_package_versions() {
+  local prefix="$1"
+  apt-cache pkgnames "${prefix}-" | grep -E "^${prefix}-[0-9]+\$" | sed -E "s/^${prefix}-//" | sort -n
+}
+
 install_multiple_gcc_versions() {
-  log "Installing GCC/G++ (versions 10-14)..."
-  sudo apt install -y gcc-10 g++-10 gcc-11 g++-11 gcc-12 g++-12 gcc-13 g++-13 gcc-14 g++-14
+  local versions
+  versions="$(apt_package_versions gcc | tail -n 5)"
+  log "Installing GCC/G++ (latest 5 available: $(tr '\n' ' ' <<< "$versions"))..."
+  while read -r version; do
+    sudo apt install -y "gcc-$version" "g++-$version"
+  done <<< "$versions"
 }
 
 install_clang_versions() {
   log "Importing LLVM GPG key..."
   # NOTE: this only imports the key and removes stale llvm-*.list files; it
-  # does not add an apt.llvm.org source list. Clang 14-19 below are expected
+  # does not add an apt.llvm.org source list. The versions below are expected
   # to come from Ubuntu's own repos. If a target release doesn't ship one of
-  # these versions, add the matching apt.llvm.org deb line before this step.
+  # them, add the matching apt.llvm.org deb line before this step.
   sudo rm -f /usr/share/keyrings/llvm-archive-keyring.gpg
   sudo rm -f /etc/apt/sources.list.d/llvm-*.list
   curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor | \
     sudo tee /usr/share/keyrings/llvm-archive-keyring.gpg > /dev/null
 
-  log "Installing Clang 14-19 and related tools..."
-  for version in 14 15 16 17 18 19; do
+  local versions
+  versions="$(apt_package_versions clang | tail -n 5)"
+  log "Installing Clang (latest 5 available: $(tr '\n' ' ' <<< "$versions")) and related tools..."
+  while read -r version; do
     sudo apt install -y "clang-$version" "clang-tidy-$version" "clang-format-$version"
-  done
+  done <<< "$versions"
 }
 
 # =============================================================================
