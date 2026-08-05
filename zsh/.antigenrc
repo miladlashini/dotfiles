@@ -1,7 +1,7 @@
 #vim:ft=zsh
 
 antigen use oh-my-zsh
-antigen bundle junegunn/fzf
+# fzf comes from apt; its keybindings are sourced directly in .zshrc
 antigen bundle colored-man-pages
 antigen bundle command-not-found
 antigen bundle common-aliases

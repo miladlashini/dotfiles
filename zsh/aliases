@@ -25,7 +25,6 @@
 #    then log out and back in.
 
 alias core_dump_status="ulimit -a"
-alias set_core_dump_ulimit="ulimit -c unlimited"
 alias set_core_dump_pattern="sudo bash -c 'echo $HOME/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
 
 ########################################
@@ -44,7 +43,7 @@ alias agi="sudo apt install"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias fix_update="sudo apt-get update --fix-missing"
-alias remove="sudo apt-get remove --purge"
+alias agr="sudo apt-get remove --purge"
 alias up="update_script.sh"
 
 ########################################
@@ -149,11 +148,13 @@ alias boost_version="dpkg -s libboost-dev | grep 'Version'"
 ########################################
 # tmux
 ########################################
-alias tmuxl="tmux list-sessions"
-alias tmuxa="tmux attach-session -t "
-alias tmuxn="tmux new-session -s "
-alias tmuxk="tmux kill-session -t "
-alias tmuxks="tmux kill-server"
+alias tl="tmux list-sessions"
+alias ta="tmux attach-session -t"
+alias td="tmux detach"
+alias tdc="tmux detach-client -t"
+alias tn="tmux new-session -s"
+alias tk="tmux kill-session -t"
+alias tks="tmux kill-server"
 
 ########################################
 # machine-local overrides

@@ -502,7 +502,8 @@ setup_tmux() {
 setup_neovim() {
   log "Setting up Neovim..."
 
-  sudo apt install -y ripgrep fd-find clangd git curl
+  # git/curl are already in install_base_packages
+  sudo apt install -y ripgrep fd-find clangd
 
   if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
     sudo ln -sf "$(which fdfind)" /usr/local/bin/fd

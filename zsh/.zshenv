@@ -14,12 +14,8 @@
 # accumulate duplicate entries with every level of nesting. `typeset -U`
 # keeps the path array (kept in sync with $PATH by zsh) de-duplicated
 # instead, so re-sourcing is a no-op rather than a leak.
-typeset -U path
-
-########################################
-# oh-my-zsh
-########################################
-export ZSH="$HOME/.oh-my-zsh"
+# make the path array contain only unique entries; $path is kept in sync with $PATH
+typeset -U path 
 
 ########################################
 # XDG base directories
@@ -50,8 +46,9 @@ export CMAKE_INSTALL_PREFIX="/tmp/RPC"
 
 # Listed highest-priority first; prepended as a block onto whatever PATH
 # already existed when this file was sourced (kept in $path at the end).
+#
+# path is a zsh array that is kept in sync with $PATH, so we can use array syntax to
 path=(
-  "$DOTFILES/scripts"
   "$HOME/.local/bin"            # pip --user installs
   "/snap/bin"
   "$QT_PREFIX/bin"
@@ -67,6 +64,7 @@ path=(
 # ${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} avoids leaving a leading/trailing
 # empty entry (which libc treats as "search the current directory") when
 # LD_LIBRARY_PATH isn't already set.
+# LD_LIBRARY_PATH or absolutely nothing, depending on whether the user has already set it in their environment. 
 export LD_LIBRARY_PATH="$QT_PREFIX/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export CMAKE_PREFIX_PATH="$QT_PREFIX"
 
@@ -93,10 +91,6 @@ export YOCTO_SDK_ROOT="/opt/poky"
 # Alternatives kept for quick manual switching - uncomment the pair you want.
 #export CC=clang-14
 #export CXX=clang++-14
-#export CC=gcc-7
-#export CXX=g++-7
-#export CC=clang-7
-#export CXX=clang++-7
 
 # Guarded: don't clobber the cross-compiler inside a Yocto cross-compile
 # shell (bitbake devshell or an SDK environment-setup session) - both of

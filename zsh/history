@@ -3131,3 +3131,56 @@ find ~/yocto/meta-rpc -type f
 : 1785701361:0;ga .
 : 1785701408:0;git commit -m "Made zsh the default terminal and added readme."\
 
+: 1785701410:0;gp
+: 1785701526:0;./install.sh 
+: 1785702176:0;update_script.sh 
+: 1785702211:0;sudo apt remove
+: 1785702223:0;sudo apt autoremove
+: 1785785595:0;nvim
+: 1785785818:0;tmux
+: 1785785824:0;nvim
+: 1785785875:0;path
+: 1785786185:0;update_script.sh 
+: 1785870108:0;nvim
+: 1785963524:0;core_dump_status
+: 1785963592:0;tmux
+: 1785963607:0;core_dump_status
+: 1785964304:0;antigen reset
+: 1785964434:0;gst
+: 1785964438:0;ga .
+: 1785964445:0;git diff --staged
+: 1785964531:0;git commit -m "Clean up."\
+
+: 1785964534:0;gp
+: 1785964710:0;ls
+: 1785964720:0;ls zsh
+: 1785964729:0;nvim 
+: 1785965859:0;gst
+: 1785965861:0;ga .
+: 1785965871:0;git commit --amend --no-edit
+: 1785965873:0;gpf
+: 1785965893:0;gp
+: 1785965955:0;gpf
+: 1785965970:0;git push --force-with-lease
+: 1786043396:0;tl
+: 1786043421:0;tmux
+: 1786043426:0;tl
+: 1786043432:0;ta
+: 1786043481:0;tmux detach  
+: 1786043485:0;tl
+: 1786043495:0;ta 0
+: 1786043507:0;cd ~/dotfiles/zsh
+: 1786043541:0;nvim .zshenv
+: 1786043565:0;nvim aliases
+: 1786043713:0;gst
+: 1786043725:0;td
+: 1786043735:0;tmux detach  
+: 1786043751:0;ta 0
+: 1786043759:0;tl
+: 1786043867:0;nvim aliases
+: 1786044135:0;td
+: 1786044138:0;ta 0
+: 1786044202:0;nvim aliases
+: 1786044678:0;gst
+: 1786044681:0;ga .
+: 1786044687:0;git commit --amend --no-edit

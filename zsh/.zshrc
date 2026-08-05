@@ -83,7 +83,9 @@ _comp_options+=(globdots)  # include hidden files
 ########################################
 # shell behavior
 ########################################
-# unlimited core dump size - see aliases: coreDumpStatus / activateCoreDump*
+# unlimited core dump size - the single place this is set (aliases has
+# core_dump_status to inspect it and set_core_dump_pattern for the
+# /proc/sys/kernel/core_pattern side)
 ulimit -c unlimited
 
 ########################################
