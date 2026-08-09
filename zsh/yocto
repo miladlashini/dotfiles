@@ -258,36 +258,40 @@ bbunbuilt() {
     comm -23 <(echo "$all") <(echo "$built")
 }
 
-# what does this recipe depend on -- outgoing edges in task-depends.dot ("bitbake -g <target>" first)
+# internal: make sure task-depends.dot exists and actually covers the given recipe,
+# regenerating a scoped graph for it via `bitbake -g <recipe>` if not -- this is what
+# makes bbneeds/bbneededby work for any valid recipe, whether or not it's part of
+# whatever target (image or otherwise) was last graphed
+_yocto_ensure_graph() {
+    local recipe="$1" dotfile="${YOCTO_BUILD_DIR}/task-depends.dot"
+    if [[ ! -f "$dotfile" ]] || ! grep -q "\"$recipe\." "$dotfile"; then
+        echo "(generating a dependency graph for '$recipe' -- bitbake -g $recipe)"
+        ( cd "${YOCTO_BUILD_DIR}" && bitbake -g "$recipe" ) || return 1
+    fi
+    if ! grep -q "\"$recipe\." "$dotfile"; then
+        echo "'$recipe' still doesn't appear in the graph -- check the recipe name is correct"
+        return 1
+    fi
+}
+
+# what does this recipe depend on -- outgoing edges in task-depends.dot (auto-generates
+# a scoped graph for the recipe if the current one doesn't cover it)
 bbneeds() {
-    if [[ -z "$1" ]]; then echo "usage: bbneeds <recipe>  (run 'bitbake -g <target>' first if no graph exists)"; return 1; fi
+    if [[ -z "$1" ]]; then echo "usage: bbneeds <recipe>"; return 1; fi
+    _yocto_env
+    _yocto_ensure_graph "$1" || return 1
     local dotfile="${YOCTO_BUILD_DIR}/task-depends.dot"
-    if [[ ! -f "$dotfile" ]]; then
-        echo "no task-depends.dot in ${YOCTO_BUILD_DIR} -- run 'bitbake -g <target>' first"
-        return 1
-    fi
-    if ! grep -q "\"$1\." "$dotfile"; then
-        echo "'$1' doesn't appear in this graph at all -- it wasn't part of whatever target"
-        echo "you last ran 'bitbake -g' on. Try: bitbake -g $1   (graphs just its own tree)"
-        return 1
-    fi
     echo "recipes that '$1' needs built first:"
     grep -E '^"'"$1"'\..*" -> "' "$dotfile" | awk -F'"' '{print $4}' | sed -E 's/\..*$//' | sort -u
 }
 
-# who depends on this recipe -- incoming edges in task-depends.dot ("bitbake -g <target>" first)
+# who depends on this recipe -- incoming edges in task-depends.dot (auto-generates
+# a scoped graph for the recipe if the current one doesn't cover it)
 bbneededby() {
-    if [[ -z "$1" ]]; then echo "usage: bbneededby <recipe>  (run 'bitbake -g <target>' first if no graph exists)"; return 1; fi
+    if [[ -z "$1" ]]; then echo "usage: bbneededby <recipe>"; return 1; fi
+    _yocto_env
+    _yocto_ensure_graph "$1" || return 1
     local dotfile="${YOCTO_BUILD_DIR}/task-depends.dot"
-    if [[ ! -f "$dotfile" ]]; then
-        echo "no task-depends.dot in ${YOCTO_BUILD_DIR} -- run 'bitbake -g <target>' first"
-        return 1
-    fi
-    if ! grep -q "\"$1\." "$dotfile"; then
-        echo "'$1' doesn't appear in this graph at all -- it wasn't part of whatever target"
-        echo "you last ran 'bitbake -g' on. Try: bitbake -g $1   (graphs just its own tree)"
-        return 1
-    fi
     echo "recipes that need '$1' built first:"
     grep -E '\-> "'"$1"'\.' "$dotfile" | awk -F'"' '{print $2}' | sed -E 's/\..*$//' | sort -u
 }

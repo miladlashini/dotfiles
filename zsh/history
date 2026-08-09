@@ -3221,3 +3221,15 @@ find ~/yocto/meta-rpc -type f
 : 1786273575:0;ga .
 : 1786273638:0;git commit -m "Improved bblayerrecipes and using Nom for gobbling."\
 
+: 1786273643:0;gp
+: 1786280437:0;bblayerrecipes
+: 1786280502:0;bbneeds pi-bluetooth
+: 1786280577:0;bbneeds bcm2835
+: 1786280635:0;bbneededby rpi-gpio
+: 1786280700:0;bbneededby shadow
+: 1786280719:0;bbneededby ptest-runner
+: 1786280749:0;gst
+: 1786280752:0;git diff
+: 1786280889:0;ga .
+: 1786280920:0;git commit -m "Improved recipies depnedencies helpers."\
+
