@@ -3233,3 +3233,43 @@ find ~/yocto/meta-rpc -type f
 : 1786280889:0;ga .
 : 1786280920:0;git commit -m "Improved recipies depnedencies helpers."\
 
+: 1786280923:0;gp
+: 1786281054:0;bbunbuilt
+: 1786281285:0;bblayerrecipes G boost
+: 1786281310:0;..
+: 1786281329:0;cd ~/yocto 
+: 1786281358:0;cd build-rpi
+: 1786281360:0;ls
+: 1786281369:0;cd conf
+: 1786281370:0;ls
+: 1786281384:0;nvim local.conf
+: 1786296689:0;tmux
+: 1786296695:0;build_rpc_clang_test
+: 1786296717:0;build_rpc_gcc_tidy_c
+: 1786296763:0;gst
+: 1786296798:0;ga .
+: 1786296838:0;git commit -m "Removed RPC from name of CMake files."\
+
+: 1786296842:0;gp
+: 1786296862:0;build_rpc_gcc
+: 1786300187:0;gs
+: 1786300196:0;gst
+: 1786300214:0;build_rpc_gcc_test
+: 1786300251:0;build_rpc_clang_test
+: 1786300453:0;gst
+: 1786301083:0;cd  ~/Documents/RPC
+: 1786303352:0;type build_rpc_gcc_test
+: 1786304846:0;gst
+: 1786304865:0;ga .
+: 1786304989:0;git commit -m "Renamed some cmake macros and fixed several problems with protobuf cmake related files."\
+
+: 1786304995:0;gp
+: 1786305025:0;tig
+: 1786306182:0;cd  ~/dotfiles
+: 1786306196:0;nvim zsh/aliases
+: 1786308962:0;tig
+: 1786309150:0;gst
+: 1786309155:0;ga .
+: 1786309169:0;git diff --staged
+: 1786309245:0;git commit -m "improved the build helpers in dot file"\
+
