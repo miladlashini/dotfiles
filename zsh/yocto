@@ -168,13 +168,52 @@ bblayer() {
     bitbake-layers show-recipes "$@"
 }
 
-# inverse of bblayer: group recipes BY layer instead of by recipe.
-# optional pattern filters recipe names, e.g. `bblayerrecipes "*boost*"`
+# inverse of bblayer: group recipes BY layer instead of by recipe, colored by whether
+# each recipe is actually installed in the most recently built image (green = used,
+# default = not used). Optional pattern filters recipe names, e.g. `bblayerrecipes "*boost*"`
+#
+# "used" is determined from the image's .manifest (lists installed PACKAGE names) mapped
+# back to the RECIPE that produced each package via `oe-pkgdata-util lookup-recipe` --
+# package names often differ from recipe names for split packages (e.g. boost-test comes
+# from the "boost" recipe, libc6 comes from "glibc"), so a plain name match wouldn't work,
+# and the mapping isn't even stored the same way for every package (some have their own
+# direct pkgdata file, others only a runtime-reverse symlink back to the recipe's) --
+# lookup-recipe is the one tool that handles both correctly, done as a single batch call.
 bblayerrecipes() {
     _yocto_env
-    bitbake-layers show-recipes "$@" | awk '
+    local manifest="" used_file m
+    local -a manifests
+    # (Nom) = null-glob (empty array instead of a "no matches" shell error when nothing's
+    # built yet) + order newest-first by mtime; prefer the plain-named manifest (the
+    # "latest" symlink) over the timestamped snapshot it points at
+    manifests=("${YOCTO_BUILD_DIR}"/tmp/deploy/images/*/*.manifest(Nom))
+    for m in "${manifests[@]}"; do
+        if [[ "$m" != *[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9].manifest ]]; then
+            manifest="$m"
+            break
+        fi
+    done
+    used_file=$(mktemp)
+    if [[ -n "$manifest" ]]; then
+        local -a pkgs
+        pkgs=("${(@f)$(awk '{print $1}' "$manifest")}")
+        oe-pkgdata-util lookup-recipe -c "${pkgs[@]}" 2>/dev/null | sort -u > "$used_file"
+    fi
+
+    bitbake-layers show-recipes "$@" | awk -v usedfile="$used_file" '
+        BEGIN {
+            GREEN = "\033[32m"; RESET = "\033[0m"
+            if (usedfile != "") {
+                while ((getline line < usedfile) > 0) used[line] = 1
+                close(usedfile)
+            }
+        }
         /^[^[:space:]]/ { r=$1; sub(":$","",r); next }
-        /^[[:space:]]+/ { layer=$1; recipes[layer] = recipes[layer] "\n  " r }
+        /^[[:space:]]+/ {
+            layer=$1
+            disp = (r in used) ? GREEN r RESET : r
+            recipes[layer] = recipes[layer] "\n  " disp
+        }
         END {
             n = asorti(recipes, sorted)
             for (i=1; i<=n; i++) {
@@ -183,6 +222,7 @@ bblayerrecipes() {
                 print ""
             }
         }'
+    rm -f "$used_file"
 }
 
 # recipes provided by more than one layer, i.e. genuinely overridden -- Phase 3.6
@@ -273,7 +313,10 @@ bbsdk() {
 # optional $1 overrides the install destination (default: /opt/poky/<version-from-filename>)
 bbsdkinstall() {
     local installer dest version
-    installer=$(ls -t "${YOCTO_BUILD_DIR}/tmp/deploy/sdk/"*.sh 2>/dev/null | head -1)
+    local -a installers
+    # (Nom) = null-glob (no shell error if nothing's been built yet) + newest-first by mtime
+    installers=("${YOCTO_BUILD_DIR}/tmp/deploy/sdk/"*.sh(Nom))
+    installer="${installers[1]}"
     if [[ -z "$installer" ]]; then
         echo "no SDK installer found in ${YOCTO_BUILD_DIR}/tmp/deploy/sdk/ -- run 'bbsdk' first"
         return 1
@@ -287,7 +330,10 @@ bbsdkinstall() {
 
 # internal: path to the most recently installed SDK's environment-setup script
 _yocto_sdk_env_script() {
-    ls -t "${YOCTO_SDK_ROOT}"/*/environment-setup-* 2>/dev/null | head -1
+    local -a scripts
+    # (Nom) = null-glob (no shell error if no SDK is installed yet) + newest-first by mtime
+    scripts=("${YOCTO_SDK_ROOT}"/*/environment-setup-*(Nom))
+    echo "${scripts[1]}"
 }
 
 # source the installed SDK's environment into the CURRENT shell (like bupoky, but for the SDK).

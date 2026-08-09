@@ -3191,3 +3191,33 @@ find ~/yocto/meta-rpc -type f
 : 1786049462:0;ga .
 : 1786049506:0;git commit -m "Added fix for push force with two remotes."\
 
+: 1786049512:0;gp
+: 1786050964:0;git status
+: 1786050984:0;git diff
+: 1786051665:0;gst
+: 1786051668:0;ga .
+: 1786051687:0;git commit -m "Fixed file permission."\
+
+: 1786051699:0;tig
+: 1786051724:0;gp
+: 1786133743:0;nvim local.conf
+: 1786140914:0;cd dotfiles/zsh
+: 1786140918:0;ls
+: 1786140924:0;nvim yocto
+: 1786215737:0;update_script.sh 
+: 1786264357:0;cd dotfiles/zsh
+: 1786268239:0;bbenv
+: 1786268261:0;type bbenv
+: 1786268423:0;bbtasks wayland-protocols 
+: 1786269075:0;bbsummary zip
+: 1786269254:0;bblayerrecipes
+: 1786269375:0;bbneeds snapy
+: 1786270952:0;bblayerrecipes
+: 1786273392:0;tmux
+: 1786273401:0;cd ~/dotfiles
+: 1786273403:0;ls
+: 1786273405:0;gst
+: 1786273412:0;git diff
+: 1786273575:0;ga .
+: 1786273638:0;git commit -m "Improved bblayerrecipes and using Nom for gobbling."\
+
