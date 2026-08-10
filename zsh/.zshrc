@@ -29,6 +29,13 @@ source "${DOTFILES}/zsh/.p10k.zsh" 2>/dev/null || true
 # "antigen init" below, but this setup manages the theme/plugin list through
 # .antigenrc's "antigen bundle"/"antigen theme" lines instead.
 
+# oh-my-zsh plugins (e.g. last-working-dir) write state into ZSH_CACHE_DIR.
+# Without this, antigen defaults it to ~/.oh-my-zsh/cache, which doesn't
+# exist in this setup (oh-my-zsh lives under $ADOTDIR/bundles). Must be set
+# before "antigen init", which bakes the value into its cached init.zsh.
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
 if [[ ! -d "${ADOTDIR:?Missing mandatory env}" ]]; then
     # Resolve antigen's latest release tag via the /releases/latest redirect
     # (no GitHub API call, so it isn't subject to the API's unauthenticated

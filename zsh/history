@@ -3273,3 +3273,16 @@ find ~/yocto/meta-rpc -type f
 : 1786309169:0;git diff --staged
 : 1786309245:0;git commit -m "improved the build helpers in dot file"\
 
+: 1786309248:0;gp
+: 1786384284:0;ls
+: 1786384290:0;tmux
+: 1786386475:0;cd  ~/Documents/RPC
+: 1786386689:0;mkdir -p ~/.oh-my-zsh/cache
+: 1786386796:0;rm -rf ~/.oh-my-zsh/cache
+: 1786387348:0;cd dotfiles/zsh
+: 1786387515:0;cd ~/dotfiles
+: 1786387517:0;ls
+: 1786387522:0;gst
+: 1786387524:0;ga .
+: 1786387545:0;git commit -m "Fixed last working directory problem"\
+
