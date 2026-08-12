@@ -3316,3 +3316,7 @@ find ~/yocto/meta-rpc -type f
 : 1786569923:0;ga zsh/aliases
 : 1786569936:0;ga zsh/.zshrc
 : 1786569941:0;git commit --amend --no-edit
+: 1786569947:0;gst
+: 1786569952:0;ga zsh/yocto
+: 1786569999:0;git commit -m "Added guard for yocto aliases for differeent sourced environment."\
+
