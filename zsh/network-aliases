@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+#
+# networking aliases/functions - sourced from .zshrc (see the aliases_files
+# array there).
+
+########################################
+# addresses / reachability
+########################################
+# public IPv4 address (as seen from the internet)
+alias my_ip="curl -4 -s ifconfig.me | tr -d '\n'"
+# all local interface addresses
+alias ips="hostname -I"
+# default gateway (router) address
+alias gateway="ip route show default"
+
+# quick internet reachability check
+online() {
+    if ping -c 1 google.com &>/dev/null; then
+        echo "Online!"
+    else
+        echo "Offline"
+    fi
+}
+
+########################################
+# sockets / traffic
+########################################
+# listening TCP/UDP ports and which process owns them
+alias ports="sudo ss -tulpn"
+# currently established connections and their processes
+alias connections="sudo ss -tup state established"
+
+########################################
+# NetworkManager / wifi
+########################################
+alias restart_network="sudo systemctl restart NetworkManager.service"
+alias network_status="sudo systemctl status NetworkManager.service"
+alias wifi_list="nmcli device wifi list"
+
+########################################
+# DNS (systemd-resolved)
+########################################
+alias dns_servers="resolvectl status"
+alias dns_flush="resolvectl flush-caches"
+
+########################################
+# project hosts
+########################################
+# the Yocto Raspberry Pi ($RPC_PI_HOST comes from .zshenv)
+alias ssh_pi='ssh "${RPC_PI_HOST:?not set}"'

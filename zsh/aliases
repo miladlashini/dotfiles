@@ -47,14 +47,6 @@ alias agr="sudo apt-get remove --purge"
 alias up="update_script.sh"
 
 ########################################
-# networking
-########################################
-alias my_ip="curl -4 -s ifconfig.me | tr -d '\n'"
-alias ips="hostname -I"
-alias restart_network="sudo systemctl restart NetworkManager.service"
-alias network_status="sudo systemctl status NetworkManager.service"
-
-########################################
 # shell / file utilities
 ########################################
 alias -g G="| grep"

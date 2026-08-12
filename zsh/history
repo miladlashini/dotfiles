@@ -3331,3 +3331,16 @@ find ~/yocto/meta-rpc -type f
 : 1786571083:0;ga .
 : 1786571139:0;git commit -m "Separated tmux related alises."\
 
+: 1786571140:0;gp
+: 1786571488:0;gst
+: 1786571675:0;my_ip
+: 1786571687:0;ips
+: 1786571704:0;gateway
+: 1786571725:0;ports
+: 1786571813:0;connections
+: 1786571877:0;network_status
+: 1786571896:0;wifi_list
+: 1786571958:0;gst
+: 1786571963:0;ga .
+: 1786571982:0;git commit -m "refactored networking aliases."\
+

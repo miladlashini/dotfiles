@@ -72,6 +72,7 @@ aliases_files=(
     "${ZDOTDIR}/aliases"
     "${ZDOTDIR}/rpc-build-aliases"
     "${ZDOTDIR}/tmux-aliases"
+    "${ZDOTDIR}/network-aliases"
     "${ZDOTDIR}/yocto")
 
 for _f in "${aliases_files[@]}"; do
@@ -104,15 +105,7 @@ ulimit -c unlimited
 ########################################
 # functions
 ########################################
-
-# quick internet reachability check
-online() {
-    if ping -c 1 google.com &>/dev/null; then
-        echo "Online!"
-    else
-        echo "Offline"
-    fi
-}
+# (network-related functions live in network-aliases)
 
 # navigate the filesystem graphically via ranger, cd-ing into the chosen dir on exit
 goto() {
