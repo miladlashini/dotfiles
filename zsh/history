@@ -3286,3 +3286,25 @@ find ~/yocto/meta-rpc -type f
 : 1786387524:0;ga .
 : 1786387545:0;git commit -m "Fixed last working directory problem"\
 
+: 1786387547:0;gp
+: 1786392897:0;gst
+: 1786392902:0;ga .
+: 1786392936:0;git commit -m "Improved the buildinfo lib"\
+
+: 1786392941:0;gp
+: 1786478589:0;nvim
+: 1786483500:0;zsh -n /home/viserion/dotfiles/zsh/rpc-build-aliases && echo "syntax OK"
+: 1786483535:0;zsh -n /home/viserion/dotfiles/zsh/.zshrc && echo "syntax OK"
+: 1786530305:0;git diff
+: 1786530414:0;nvim
+: 1786564093:0;gst
+: 1786564100:0;nvim
+: 1786565388:0;tmux
+: 1786565399:0;nvim
+: 1786569756:0;gst
+: 1786569775:0;ga zsh/.zshenv.legacy
+: 1786569783:0;ga zsh/.zshrc.legacy
+: 1786569802:0;ga zsh/aliases.legacy
+: 1786569818:0;ga install.legacy.sh
+: 1786569838:0;git commit -m "Removed legacy files."\
+
