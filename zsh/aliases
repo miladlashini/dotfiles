@@ -60,123 +60,12 @@ alias network_status="sudo systemctl status NetworkManager.service"
 alias -g G="| grep"
 alias -g L="| less"
 alias mmo="sudo chown -R $USER:$USER "
-alias mex="chmod a+x "
-alias disk_usage="df -h"
+alias chm="chmod a+x "
 alias lh="ls -lhrta"
-alias ssh_key="ssh-keygen -t rsa"
+alias skey="ssh-keygen -t rsa"
 # single-quoted so $PATH is read fresh every time, not baked in from
 # whatever it was when this file was sourced at shell startup.
 alias path='echo $PATH'
-
-########################################
-# RPC project builds
-########################################
-# All quoted with '...' rather than "..." so $CC/$CXX/$RPC_*_DIR/$(nproc)
-# are evaluated when the alias/function *runs*, not once at shell startup -
-# otherwise switching $CC/$CXX mid-session (see .zshenv) would silently be
-# ignored by these.
-#
-# Everything below uses `cmake --build "$RPC_BUILD_DIR" ...` rather than a
-# bare `make`, and "${RPC_BUILD_DIR:?...}"/"${RPC_SOURCE_DIR:?...}" rather
-# than a bare $RPC_BUILD_DIR/$RPC_SOURCE_DIR:
-#   - bare `make`/`make clean` operate on whatever directory you happen to
-#     be sitting in, not $RPC_BUILD_DIR - run from anywhere else and it
-#     silently no-ops (or acts on an unrelated Makefile, if your CWD has
-#     one). `cmake --build <dir>` is directory-explicit regardless of CWD.
-#   - if $RPC_BUILD_DIR were ever unset/empty (e.g. this file sourced
-#     without .zshenv having run), `rm -rf "$RPC_BUILD_DIR"/*` in clean_rpc
-#     below would silently become `rm -rf /*`. The ":?" guard turns that
-#     into an immediate, clear error instead.
-
-alias build_rpc='cmake -D CMAKE_C_COMPILER="$CC" -D CMAKE_CXX_COMPILER="$CXX" -D RPC_WITH_TESTS:BOOL=ON -D CMAKE_VERBOSE_MAKEFILE=On -D CMAKE_BUILD_TYPE=Release -S "${RPC_SOURCE_DIR:?not set}" -B "${RPC_BUILD_DIR:?not set}" && cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"'
-
-# Shared implementation behind the build_rpc_* family below, which is every
-# combination of build type x compiler x tests x clang-tidy (3x2x2x2 = 24).
-# Every build_rpc_* name still works exactly as before; only the 24x
-# duplicated cmake invocation underneath it was collapsed into this one
-# function. Args: build_type with_clang with_tests with_tidy [extra cmake args...].
-# Anything after the 4 fixed args goes straight to the cmake configure, so
-# every build_rpc_* alias accepts ad-hoc flags, e.g.:
-#     build_rpc_gcc -DRPC_PROTOBUF_FROM_SOURCE=ON
-# Beware: -D values persist in the CMake cache across later builds until
-# explicitly overridden (that's cmake behavior, not this function's).
-_rpc_build() {
-    local build_type="$1" with_clang="$2" with_tests="$3" with_tidy="$4"
-    shift 4
-    : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
-    time cmake --build "$RPC_BUILD_DIR" --target clean && cmake -D CMAKE_VERBOSE_MAKEFILE=On \
-        -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
-        -D RPC_WITH_TESTS:BOOL="$with_tests" \
-        -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
-        -D CMAKE_BUILD_TYPE="$build_type" \
-        "$@" \
-        -S "$RPC_SOURCE_DIR" -B "$RPC_BUILD_DIR" \
-        && time cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"
-}
-
-#debug
-alias build_rpc_gcc='_rpc_build Debug OFF OFF OFF'
-alias build_rpc_clang='_rpc_build Debug ON OFF OFF'
-alias build_rpc_clang_tidy='_rpc_build Debug ON OFF ON'
-alias build_rpc_clang_test='_rpc_build Debug ON ON OFF'
-alias build_rpc_gcc_tidy='_rpc_build Debug OFF OFF ON'
-alias build_rpc_gcc_test='_rpc_build Debug OFF ON OFF'
-alias build_rpc_gcc_tidy_test='_rpc_build Debug OFF ON ON'
-alias build_rpc_clang_tidy_test='_rpc_build Debug ON ON ON'
-
-#Release
-alias build_rpc_gcc_r='_rpc_build Release OFF OFF OFF'
-alias build_rpc_clang_r='_rpc_build Release ON OFF OFF'
-alias build_rpc_clang_tidy_r='_rpc_build Release ON OFF ON'
-alias build_rpc_clang_test_r='_rpc_build Release ON ON OFF'
-alias build_rpc_gcc_tidy_r='_rpc_build Release OFF OFF ON'
-alias build_rpc_gcc_test_r='_rpc_build Release OFF ON OFF'
-alias build_rpc_gcc_tidy_test_r='_rpc_build Release OFF ON ON'
-alias build_rpc_clang_tidy_test_r='_rpc_build Release ON ON ON'
-
-#Coverage
-alias build_rpc_gcc_c='_rpc_build Coverage OFF OFF OFF'
-alias build_rpc_clang_c='_rpc_build Coverage ON OFF OFF'
-alias build_rpc_clang_tidy_c='_rpc_build Coverage ON OFF ON'
-alias build_rpc_clang_test_c='_rpc_build Coverage ON ON OFF'
-alias build_rpc_gcc_tidy_c='_rpc_build Coverage OFF OFF ON'
-alias build_rpc_gcc_test_c='_rpc_build Coverage OFF ON OFF'
-alias build_rpc_gcc_tidy_test_c='_rpc_build Coverage OFF ON ON'
-alias build_rpc_clang_tidy_test_c='_rpc_build Coverage ON ON ON'
-
-# examples on/off (RPC_WITH_EXAMPLES sticks in the CMake cache, hence an
-# explicit ON and OFF pair instead of relying on the option's default):
-# _examples builds everything including the example programs and their extra
-# deps (glog, udev, libusb, dbus, audio, protobuf), _core just library+tests.
-alias build_rpc_examples='_rpc_build Debug OFF ON OFF -DRPC_WITH_EXAMPLES=ON'
-alias build_rpc_examples_r='_rpc_build Release OFF ON OFF -DRPC_WITH_EXAMPLES=ON'
-alias build_rpc_examples_clang='_rpc_build Debug ON ON OFF -DRPC_WITH_EXAMPLES=ON'
-alias build_rpc_examples_clang_r='_rpc_build Release ON ON OFF -DRPC_WITH_EXAMPLES=ON'
-alias build_rpc_core='_rpc_build Debug OFF ON OFF -DRPC_WITH_EXAMPLES=OFF'
-
-# ctest passthrough works: test_rpc -R BinaryQueue, test_rpc -j"$(nproc)", ...
-alias test_rpc='ctest --test-dir "${RPC_BUILD_DIR:?not set}" --output-on-failure'
-# skip the (slow, valgrind-based) memcheck steps
-alias test_rpc_fast='ctest --test-dir "${RPC_BUILD_DIR:?not set}" --output-on-failure -E "\-memcheck"'
-
-alias list_rpc_examples='find "${RPC_BUILD_DIR:?not set}/Utils/example" -type f -perm -u+x -not -path "*CMakeFiles*" | sort'
-# run an example binary by target name from anywhere: run_rpc_example TimeStamp [args...]
-run_rpc_example() {
-    local name="${1:?usage: run_rpc_example <name> [args...]}"
-    shift
-    local exe
-    exe="$(find "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}/Utils/example" -type f -perm -u+x -not -path "*CMakeFiles*" -name "$name" | head -1)"
-    [ -n "$exe" ] || { echo "run_rpc_example: no example named '$name' (see list_rpc_examples)" >&2; return 1; }
-    "$exe" "$@"
-}
-
-alias clean_rpc='rm -rf "${RPC_BUILD_DIR:?not set}"/*'
-alias clean_cmake_cache='rm -rf "${RPC_BUILD_DIR:?not set}/CMakeCache.txt" "$RPC_BUILD_DIR/CMakeFiles"'
-alias clean_ccache='ccache -C'
-alias ccache_stats='ccache -s'
-alias update_ccache='sudo update-ccache-symlinks'  # run after installing a new compiler
-alias list_targets='cmake --build "${RPC_BUILD_DIR:?not set}" --target help'
-alias boost_version="dpkg -s libboost-dev | grep 'Version'"
 
 ########################################
 # git

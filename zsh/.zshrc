@@ -68,7 +68,12 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
 ########################################
 # personal config files
 ########################################
-for _f in "${ZDOTDIR}/aliases" "${ZDOTDIR}/yocto"; do
+aliases_files=(
+    "${ZDOTDIR}/aliases" 
+    "${ZDOTDIR}/rpc-build-aliases" 
+    "${ZDOTDIR}/yocto")
+
+for _f in "${aliases_files[@]}"; do
     source "${_f}" 2>/dev/null || true
 done
 

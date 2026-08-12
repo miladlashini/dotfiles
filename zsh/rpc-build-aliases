@@ -1,0 +1,241 @@
+#!/usr/bin/env zsh
+#
+# RPC build aliases - shared between the native host shell (sourced from
+# .zshrc) and a Yocto SDK cross-compile shell (sourced from bbsdkenv() in
+# ./yocto, right after the SDK's environment-setup script).
+#
+# The same names work in both shells because everything below is driven off
+# $RPC_BUILD_DIR/$RPC_SOURCE_DIR and $CC/$CXX rather than hardcoded
+# compilers/paths:
+#   - normal shell: $RPC_BUILD_DIR=/opt/RPC-build, $CC/$CXX from .zshenv.
+#   - SDK shell: bbsdkenv repoints $RPC_BUILD_DIR at $RPC_BUILD_DIR_RPI, and
+#     the SDK's environment-setup script has already overridden $CC/$CXX and
+#     exported CMAKE_TOOLCHAIN_FILE (via its environment-setup.d/cmake.sh
+#     drop-in), which src/CMakeLists.txt's guard keys off to skip its host
+#     gcc-14/clang-19 override.
+#
+# The handful of things that are NOT safely shared are guarded by
+# _rpc_is_cross below rather than duplicated into a second file - see each
+# guard for why. Anything without a guard behaves identically in both shells.
+#
+# All quoted with '...' rather than "..." so $CC/$CXX/$RPC_*_DIR/$(nproc)
+# are evaluated when the alias/function *runs*, not once at shell startup -
+# otherwise switching $CC/$CXX mid-session (see .zshenv) would silently be
+# ignored by these.
+#
+# Everything below uses `cmake --build "$RPC_BUILD_DIR" ...` rather than a
+# bare `make`, and "${RPC_BUILD_DIR:?...}"/"${RPC_SOURCE_DIR:?...}" rather
+# than a bare $RPC_BUILD_DIR/$RPC_SOURCE_DIR:
+#   - bare `make`/`make clean` operate on whatever directory you happen to
+#     be sitting in, not $RPC_BUILD_DIR - run from anywhere else and it
+#     silently no-ops (or acts on an unrelated Makefile, if your CWD has
+#     one). `cmake --build <dir>` is directory-explicit regardless of CWD.
+#   - if $RPC_BUILD_DIR were ever unset/empty (e.g. this file sourced
+#     without .zshenv having run), `rm -rf "$RPC_BUILD_DIR"/*` in clean_rpc
+#     below would silently become `rm -rf /*`. The ":?" guard turns that
+#     into an immediate, clear error instead.
+
+# internal: true when this shell has a Yocto SDK environment sourced.
+# $SDKTARGETSYSROOT is exported by the SDK's environment-setup script itself
+# (verified), so it is set exactly when a cross toolchain is in play and
+# never in a plain host shell.
+_rpc_is_cross() { [[ -n "$SDKTARGETSYSROOT" ]] }
+
+# internal: refuse to run a target binary on the host. The SDK cross-compiles
+# for 32-bit ARMv6 and this host has no qemu-arm binfmt handler registered
+# (verified: an ARM binary here dies with "exec format error"), so anything
+# that executes build output has to happen on the Pi instead.
+_rpc_no_target_exec() {
+    echo "$1: refusing -- this shell cross-compiles for ARM ($(basename "$SDKTARGETSYSROOT"))." >&2
+    echo "  Build output cannot execute on this x86 host (no qemu-arm binfmt registered)." >&2
+    echo "  Run it on the Pi instead: bbdeploy, or scp + ssh \$RPC_PI_HOST." >&2
+    return 1
+}
+
+# Configure+build with the ambient compiler. $CC/$CXX are only passed through
+# as CMAKE_C_COMPILER/CMAKE_CXX_COMPILER on the host: in an SDK shell $CC is
+# not a path but a whole command line ("arm-poky-linux-gnueabi-gcc -marm
+# -mfpu=vfp ... --sysroot=..."), which CMake would try to resolve as a single
+# executable name and fail on. There it is left to CMAKE_TOOLCHAIN_FILE,
+# which the SDK exports and which sets the compilers correctly by itself.
+build_rpc() {
+    : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
+    local -a compiler_args=()
+    # if the SDK has been sourced, CMAKE_TOOLCHAIN_FILE is already set and
+    # the SDK's toolchain file sets the compilers itself, so don't override it
+    _rpc_is_cross || compiler_args=(-D CMAKE_C_COMPILER="$CC" -D CMAKE_CXX_COMPILER="$CXX")
+    cmake "${compiler_args[@]}" \
+        -D RPC_WITH_TESTS:BOOL=ON \
+        -D CMAKE_VERBOSE_MAKEFILE=On \
+        -D CMAKE_BUILD_TYPE=Release \
+        "$@" \
+        -S "$RPC_SOURCE_DIR" -B "$RPC_BUILD_DIR" \
+        && cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"
+}
+
+# Shared implementation behind the build_rpc_* family below, which is every
+# combination of build type x compiler x tests x clang-tidy (3x2x2x2 = 24).
+# Every build_rpc_* name still works exactly as before; only the 24x
+# duplicated cmake invocation underneath it was collapsed into this one
+# function. Args: build_type with_clang with_tests with_tidy [extra cmake args...].
+# Anything after the 4 fixed args goes straight to the cmake configure, so
+# every build_rpc_* alias accepts ad-hoc flags, e.g.:
+#     build_rpc_gcc -DRPC_PROTOBUF_FROM_SOURCE=ON
+# Beware: -D values persist in the CMake cache across later builds until
+# explicitly overridden (that's cmake behavior, not this function's).
+_rpc_build() {
+    local build_type="$1" with_clang="$2" with_tests="$3" with_tidy="$4"
+    shift 4
+    # Guard against unset/empty $RPC_SOURCE_DIR/$RPC_BUILD_DIR, which would 
+    # otherwise silently become `cmake -S -B` and `cmake --build` in the CWD.
+    : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
+
+    # Cross shell: three of the four knobs are meaningless or actively wrong
+    # against a cross toolchain, and all three would otherwise fail silently
+    # (producing a build that looks fine but isn't what was asked for).
+    if _rpc_is_cross; then
+        if [[ "$with_clang" == ON ]]; then
+            echo "_rpc_build: refusing a clang build in an SDK shell." >&2
+            echo "  RPC_COMPILE_WITH_CLANG is ignored when CMAKE_TOOLCHAIN_FILE is set" >&2
+            echo "  (src/CMakeLists.txt guards on it), so this would silently give you the" >&2
+            echo "  ordinary gcc cross build. Use the non-clang variant to say what you mean." >&2
+            return 1
+        fi
+        if [[ "$with_tidy" == ON ]]; then
+            echo "_rpc_build: refusing clang-tidy in an SDK shell." >&2
+            echo "  \$RPC_CLANG_TIDY is a host x86 clang-tidy-14; it would be handed the ARM" >&2
+            echo "  cross flags (-mcpu=arm1176jzf-s, -mfpu=vfp, --sysroot=...) and choke." >&2
+            echo "  Run tidy against the host build (/opt/RPC-build) instead." >&2
+            return 1
+        fi
+        if [[ "$build_type" == Coverage ]]; then
+            echo "_rpc_build: refusing a Coverage build in an SDK shell." >&2
+            echo "  Coverage needs host lcov/gcov to read the .gcno files and the .gcda only" >&2
+            echo "  appear after running the binaries -- which here can only happen on the Pi." >&2
+            return 1
+        fi
+    fi
+
+    # Only clean a directory that has actually been configured: `cmake --build
+    # <unconfigured dir> --target clean` exits 1 ("not a CMake build directory"),
+    # which used to short-circuit the && chain below and skip the configure+build
+    # entirely -- so the first build after clean_rpc, or into a brand-new
+    # $RPC_BUILD_DIR_RPI, silently did nothing.
+    if [[ -f "$RPC_BUILD_DIR/CMakeCache.txt" ]]; then
+        time cmake --build "$RPC_BUILD_DIR" --target clean || return 1
+    fi
+
+    cmake -D CMAKE_VERBOSE_MAKEFILE=On \
+        -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
+        -D RPC_WITH_TESTS:BOOL="$with_tests" \
+        -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
+        -D CMAKE_BUILD_TYPE="$build_type" \
+        "$@" \
+        -S "$RPC_SOURCE_DIR" -B "$RPC_BUILD_DIR" \
+        || return 1
+    time cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"
+}
+
+#debug
+alias build_rpc_gcc='_rpc_build Debug OFF OFF OFF'
+alias build_rpc_clang='_rpc_build Debug ON OFF OFF'
+alias build_rpc_clang_tidy='_rpc_build Debug ON OFF ON'
+alias build_rpc_clang_test='_rpc_build Debug ON ON OFF'
+alias build_rpc_gcc_tidy='_rpc_build Debug OFF OFF ON'
+alias build_rpc_gcc_test='_rpc_build Debug OFF ON OFF'
+alias build_rpc_gcc_tidy_test='_rpc_build Debug OFF ON ON'
+alias build_rpc_clang_tidy_test='_rpc_build Debug ON ON ON'
+
+#Release
+alias build_rpc_gcc_r='_rpc_build Release OFF OFF OFF'
+alias build_rpc_clang_r='_rpc_build Release ON OFF OFF'
+alias build_rpc_clang_tidy_r='_rpc_build Release ON OFF ON'
+alias build_rpc_clang_test_r='_rpc_build Release ON ON OFF'
+alias build_rpc_gcc_tidy_r='_rpc_build Release OFF OFF ON'
+alias build_rpc_gcc_test_r='_rpc_build Release OFF ON OFF'
+alias build_rpc_gcc_tidy_test_r='_rpc_build Release OFF ON ON'
+alias build_rpc_clang_tidy_test_r='_rpc_build Release ON ON ON'
+
+#Coverage
+alias build_rpc_gcc_c='_rpc_build Coverage OFF OFF OFF'
+alias build_rpc_clang_c='_rpc_build Coverage ON OFF OFF'
+alias build_rpc_clang_tidy_c='_rpc_build Coverage ON OFF ON'
+alias build_rpc_clang_test_c='_rpc_build Coverage ON ON OFF'
+alias build_rpc_gcc_tidy_c='_rpc_build Coverage OFF OFF ON'
+alias build_rpc_gcc_test_c='_rpc_build Coverage OFF ON OFF'
+alias build_rpc_gcc_tidy_test_c='_rpc_build Coverage OFF ON ON'
+alias build_rpc_clang_tidy_test_c='_rpc_build Coverage ON ON ON'
+
+# examples on/off (RPC_WITH_EXAMPLES sticks in the CMake cache, hence an
+# explicit ON and OFF pair instead of relying on the option's default):
+# _examples builds everything including the example programs and their extra
+# deps (glog, udev, libusb, dbus, audio, protobuf), _core just library+tests.
+# Note the examples' extra deps are not in the SDK target sysroot, so in a
+# cross shell the _examples variants will fail at configure - build_rpc_core
+# is the cross-appropriate one (and matches what the rpc recipe builds).
+alias build_rpc_examples='_rpc_build Debug OFF ON OFF -DRPC_WITH_EXAMPLES=ON'
+alias build_rpc_examples_r='_rpc_build Release OFF ON OFF -DRPC_WITH_EXAMPLES=ON'
+alias build_rpc_examples_clang='_rpc_build Debug ON ON OFF -DRPC_WITH_EXAMPLES=ON'
+alias build_rpc_examples_clang_r='_rpc_build Release ON ON OFF -DRPC_WITH_EXAMPLES=ON'
+alias build_rpc_core='_rpc_build Debug OFF ON OFF -DRPC_WITH_EXAMPLES=OFF'
+
+# ctest passthrough works: test_rpc -R BinaryQueue, test_rpc -j"$(nproc)", ...
+# Guarded in a cross shell: ctest would try to exec ARM test binaries on this
+# x86 host and every test would "fail" with an exec format error, which looks
+# like a broken build rather than the category error it actually is.
+test_rpc() {
+    _rpc_is_cross && { _rpc_no_target_exec test_rpc; return 1; }
+    ctest --test-dir "${RPC_BUILD_DIR:?not set}" --output-on-failure "$@"
+}
+
+# skip the (slow, valgrind-based) memcheck steps
+test_rpc_fast() {
+    _rpc_is_cross && { _rpc_no_target_exec test_rpc_fast; return 1; }
+    ctest --test-dir "${RPC_BUILD_DIR:?not set}" --output-on-failure -E "\-memcheck" "$@"
+}
+
+# tolerate a missing example dir: cross builds use RPC_WITH_EXAMPLES=OFF, so
+# Utils/example never gets created there and a bare find would just error out.
+list_rpc_examples() {
+    local dir="${RPC_BUILD_DIR:?not set}/Utils/example"
+    [[ -d "$dir" ]] || { echo "no examples in $RPC_BUILD_DIR (built with RPC_WITH_EXAMPLES=OFF?)" >&2; return 1; }
+    find "$dir" -type f -perm -u+x -not -path "*CMakeFiles*" | sort
+}
+
+# run an example binary by target name from anywhere: run_rpc_example TimeStamp [args...]
+run_rpc_example() {
+    _rpc_is_cross && { _rpc_no_target_exec run_rpc_example; return 1; }
+    local name="${1:?usage: run_rpc_example <name> [args...]}"
+    shift
+    local exe
+    exe="$(find "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}/Utils/example" -type f -perm -u+x -not -path "*CMakeFiles*" -name "$name" | head -1)"
+    [ -n "$exe" ] || { echo "run_rpc_example: no example named '$name' (see list_rpc_examples)" >&2; return 1; }
+    "$exe" "$@"
+}
+
+# Safe in both shells: both act on $RPC_BUILD_DIR, which bbsdkenv has already
+# repointed at the cross build dir, so these clean the tree you're working in.
+alias clean_rpc='rm -rf "${RPC_BUILD_DIR:?not set}"/*'
+alias clean_cmake_cache='rm -rf "${RPC_BUILD_DIR:?not set}/CMakeCache.txt" "$RPC_BUILD_DIR/CMakeFiles"'
+alias list_targets='cmake --build "${RPC_BUILD_DIR:?not set}" --target help'
+
+# ccache is host-only infrastructure: the SDK's cross compiler is invoked by
+# absolute path, not through the /usr/lib/ccache symlinks, so these three stay
+# host-global in every shell. Harmless in a cross shell, just not related to it.
+alias clean_ccache='ccache -C'
+alias ccache_stats='ccache -s'
+alias update_ccache='sudo update-ccache-symlinks'  # run after installing a new compiler
+
+# dpkg only knows about host packages, so in a cross shell it would report the
+# host's boost while the build is actually linking the SDK sysroot's copy.
+boost_version() {
+    if _rpc_is_cross; then
+        local hpp="$SDKTARGETSYSROOT/usr/include/boost/version.hpp"
+        [[ -r "$hpp" ]] || { echo "boost not found in $SDKTARGETSYSROOT" >&2; return 1; }
+        # anchor on the #define: version.hpp also has a *comment* mentioning
+        # BOOST_LIB_VERSION, which an unanchored grep would match too.
+        echo "Version: $(grep '^#define BOOST_LIB_VERSION' "$hpp" | awk '{print $3}' | tr -d '"' | tr '_' '.') (target sysroot)"
+    else
+        dpkg -s libboost-dev | grep 'Version'
+    fi
+}

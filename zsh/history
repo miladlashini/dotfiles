@@ -3308,3 +3308,11 @@ find ~/yocto/meta-rpc -type f
 : 1786569818:0;ga install.legacy.sh
 : 1786569838:0;git commit -m "Removed legacy files."\
 
+: 1786569846:0;gst
+: 1786569871:0;ga zsh/rpc-build-aliases
+: 1786569905:0;git commit -m "Separated build aliases."\
+
+: 1786569909:0;gst
+: 1786569923:0;ga zsh/aliases
+: 1786569936:0;ga zsh/.zshrc
+: 1786569941:0;git commit --amend --no-edit
