@@ -3320,3 +3320,14 @@ find ~/yocto/meta-rpc -type f
 : 1786569952:0;ga zsh/yocto
 : 1786569999:0;git commit -m "Added guard for yocto aliases for differeent sourced environment."\
 
+: 1786570002:0;gp
+: 1786570867:0;git diff
+: 1786570902:0;gst
+: 1786570917:0;lh
+: 1786570934:0;cd zsh
+: 1786570936:0;lh
+: 1786570973:0;..
+: 1786570978:0;nvim
+: 1786571083:0;ga .
+: 1786571139:0;git commit -m "Separated tmux related alises."\
+

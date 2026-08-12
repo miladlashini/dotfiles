@@ -69,8 +69,9 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
 # personal config files
 ########################################
 aliases_files=(
-    "${ZDOTDIR}/aliases" 
-    "${ZDOTDIR}/rpc-build-aliases" 
+    "${ZDOTDIR}/aliases"
+    "${ZDOTDIR}/rpc-build-aliases"
+    "${ZDOTDIR}/tmux-aliases"
     "${ZDOTDIR}/yocto")
 
 for _f in "${aliases_files[@]}"; do
