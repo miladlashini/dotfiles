@@ -22,48 +22,11 @@ source "${DOTFILES}/zsh/.p10k.zsh" 2>/dev/null || true
 ########################################
 # oh-my-zsh / antigen
 ########################################
-# oh-my-zsh is loaded through antigen ("antigen use oh-my-zsh" in
-# .antigenrc) rather than sourced directly. Its usual tunables (ZSH_THEME,
-# plugins=(...), CASE_SENSITIVE, HIST_STAMPS, ... - see
-# https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) still apply if set above
-# "antigen init" below, but this setup manages the theme/plugin list through
-# .antigenrc's "antigen bundle"/"antigen theme" lines instead.
-
-# oh-my-zsh plugins (e.g. last-working-dir) write state into ZSH_CACHE_DIR.
-# Without this, antigen defaults it to ~/.oh-my-zsh/cache, which doesn't
-# exist in this setup (oh-my-zsh lives under $ADOTDIR/bundles). Must be set
-# before "antigen init", which bakes the value into its cached init.zsh.
-export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-mkdir -p "$ZSH_CACHE_DIR"
-
-if [[ ! -d "${ADOTDIR:?Missing mandatory env}" ]]; then
-    # Resolve antigen's latest release tag via the /releases/latest redirect
-    # (no GitHub API call, so it isn't subject to the API's unauthenticated
-    # rate limit). Falls back to a known-good pin if that fails (e.g. no
-    # network yet on a brand new machine). Only runs on this one-time
-    # bootstrap clone, never on every shell startup.
-    _antigen_version="$(curl -fsSL -o /dev/null -w '%{url_effective}' \
-        https://github.com/zsh-users/antigen/releases/latest 2>/dev/null)"
-    _antigen_version="${_antigen_version##*/}"
-    [[ "$_antigen_version" == v[0-9]* ]] || _antigen_version="v2.2.3"
-
-    git clone \
-        --depth 1 \
-        -b "$_antigen_version" \
-        "https://github.com/zsh-users/antigen.git" \
-        "${ADOTDIR}"
-    unset _antigen_version
-fi
-source "${ADOTDIR}/antigen.zsh"
-
-# Reads $ZDOTDIR/.antigenrc (bundle/theme list) and applies it.
-antigen init "${ZDOTDIR}/.antigenrc"
-
-# Must come after antigen init - zsh-autosuggestions/zsh-syntax-highlighting
-# set their own defaults for these arrays when they're sourced, which would
-# clobber a value assigned any earlier.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
+# Plugin manager bootstrap (bundle list lives in .antigenrc). Sourced
+# directly rather than through the aliases_files loop below, because that
+# loop silences errors - a broken plugin manager must fail loudly, not
+# leave you with a bare prompt and no explanation.
+source "${ZDOTDIR}/antigen-setup"
 
 ########################################
 # personal config files

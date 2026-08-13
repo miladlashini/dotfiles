@@ -37,7 +37,7 @@ export PY_SCRIPT_DIR="$DOTFILES/scripts/Python"
 # see versions.sh for the single source of truth.
 # shellcheck disable=SC1091
 source "$DOTFILES/versions.sh"
-export QT_VERSION QT_PREFIX CCACHE_MAXSIZE
+export QT_VERSION QT_PREFIX   # CCACHE_MAXSIZE is exported in build-cache
 
 ########################################
 # PATH
@@ -105,12 +105,8 @@ export CXXFLAGS="-fdiagnostics-color=always"
 ########################################
 # Build caching / distributed compilation
 ########################################
-export CCACHE_DIR="$HOME/.ccache"
-export CCACHE_TEMPDIR="$HOME/.ccache"
-
-export DISTCC_HOSTS='--randomize 192.168.134.51/8,lzo 192.168.134.56/8,lzo localhost/6,lzo'
-export DISTCC_VERBOSE=1
-export DISTCC_LOG='/tmp/distcc.log'
+# ccache + distcc settings (needs CCACHE_MAXSIZE from versions.sh above)
+source "$ZDOTDIR/build-cache"
 
 ########################################
 # Misc

@@ -122,7 +122,7 @@ install_base_packages() {
   # current release directly, so pulling the apt version first would just
   # mean installing and immediately removing it.)
   sudo apt install -y build-essential git tig zsh tmux curl wget ncdu nload fzf silversearcher-ag \
-    ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache \
+    ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache distcc \
     libssl-dev python3 python3-pip python3-venv python3-dev npm \
     software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
     libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
@@ -159,6 +159,18 @@ setup_ccache() {
   log "Setting up ccache..."
   mkdir -p "$HOME/.ccache"
   ccache -M "$CCACHE_MAXSIZE"
+
+  # distcc (installed above) needs no further client-side setup: DISTCC_HOSTS
+  # and friends come from zsh/build-cache. Two things deliberately NOT done
+  # here:
+  #   - the distccd *server* daemon is left disabled (Debian/Ubuntu ship
+  #     STARTDISTCC="false" in /etc/default/distcc); this machine is a
+  #     client. Enable it only on a machine meant to accept remote jobs.
+  #   - CCACHE_PREFIX is not set to "distcc". That's the usual way to chain
+  #     the two, but it routes every cache miss through distcc, and the
+  #     hosts in DISTCC_HOSTS are on a different subnet than this machine -
+  #     unreachable, so builds would stall on connection timeouts. Set it
+  #     per-shell (CCACHE_PREFIX=distcc make ...) once the farm is present.
 }
 
 # =============================================================================

@@ -3353,3 +3353,8 @@ find ~/yocto/meta-rpc -type f
 : 1786659590:0;ga .
 : 1786659619:0;git commit -m "Separated system aliases."\
 
+: 1786659621:0;gp
+: 1786662072:0;gst
+: 1786662082:0;ga .
+: 1786662099:0;git commit -m "Separated antigen and ccache."\
+

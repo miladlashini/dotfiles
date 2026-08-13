@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+#
+# Compiler acceleration settings: ccache (local compile cache) and distcc
+# (distributed compilation).
+#
+# Sourced from .zshenv, NOT .zshrc, and that matters: these are environment
+# variables the compiler toolchain reads, so they have to be set for
+# non-interactive shells too (build scripts, make/cmake invoked from an
+# editor or a cron job). If they only existed in .zshrc, ccache would
+# silently fall back to its own defaults in exactly those cases.
+#
+# Must be sourced after versions.sh, which defines CCACHE_MAXSIZE.
+#
+# Related, but deliberately left in .zshenv: "/usr/lib/ccache" in the $path
+# array. Those are the gcc/g++/cc symlinks that route compiler calls through
+# ccache, and their position relative to the other PATH entries is what
+# makes them take effect - so that entry belongs with the rest of the PATH
+# ordering rather than here.
+
+########################################
+# ccache
+########################################
+export CCACHE_DIR="$HOME/.ccache"
+export CCACHE_TEMPDIR="$HOME/.ccache"
+# value comes from versions.sh, shared with install.sh's setup_ccache()
+export CCACHE_MAXSIZE
+
+########################################
+# distcc
+########################################
+# NOTE: distcc is not currently installed on this machine - these are inert
+# until it is (`sudo apt install distcc`). The hosts list is the build farm;
+# /8 is the job limit per host and lzo enables compression.
+export DISTCC_HOSTS='--randomize 192.168.134.51/8,lzo 192.168.134.56/8,lzo localhost/6,lzo'
+export DISTCC_VERBOSE=1
+export DISTCC_LOG='/tmp/distcc.log'
