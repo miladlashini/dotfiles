@@ -1,0 +1,63 @@
+#!/usr/bin/env zsh
+#
+# system / package management aliases - sourced from .zshrc (see the
+# aliases_files array there).
+
+########################################
+# apt: install / remove / update
+########################################
+alias agi="sudo apt install"
+alias agr="sudo apt-get remove --purge"
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade"
+alias fix_update="sudo apt-get update --fix-missing"
+# remove orphaned deps, then drop downloaded .debs from the cache
+alias apt_clean="sudo apt autoremove && sudo apt clean"
+# full update+upgrade incl. reboot-required prompt (scripts/Bash/update_script.sh)
+alias up="update_script.sh"
+
+########################################
+# package queries
+########################################
+# (ags would clash with oh-my-zsh's ubuntu plugin, hence the pkg_* names)
+alias pkg_search="apt search"
+alias pkg_info="apt show"
+alias pkg_list="apt list --installed"
+# files a package installed
+alias pkg_files="dpkg -L"
+
+# which package owns a file, given either a path or a bare command name.
+# Wrapped rather than a plain `dpkg -S` alias because of usr-merge: dpkg
+# records the path the package declared (often /bin/zsh) while the binary
+# resolves as /usr/bin/zsh, so a literal lookup misses. This tries the
+# argument as given, then with /usr stripped, then with /usr prepended.
+pkg_owns() {
+    local target="${1:?usage: pkg_owns <file-or-command>}" candidate
+    # bare command name -> resolve to a path first (-p skips aliases/functions)
+    [[ "$target" == */* ]] || target="$(whence -p -- "$target" || echo "$target")"
+    for candidate in "$target" "${target#/usr}" "/usr$target"; do
+        dpkg -S "$candidate" 2>/dev/null && return 0
+    done
+    echo "no package owns $1" >&2
+    return 1
+}
+
+########################################
+# system health
+########################################
+alias fser="systemctl --failed"
+# error-priority log messages from the current boot
+alias jerr="journalctl -p err -b"
+
+# does the system want a reboot (kernel/libc upgrades), and why?
+reboot_required() {
+    if [ -f /var/run/reboot-required ]; then
+        cat /var/run/reboot-required
+        if [ -f /var/run/reboot-required.pkgs ]; then
+            echo "caused by:"
+            cat /var/run/reboot-required.pkgs
+        fi
+    else
+        echo "no reboot required"
+    fi
+}

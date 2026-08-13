@@ -3344,3 +3344,12 @@ find ~/yocto/meta-rpc -type f
 : 1786571963:0;ga .
 : 1786571982:0;git commit -m "refactored networking aliases."\
 
+: 1786571984:0;gp
+: 1786658143:0;nvim
+: 1786658548:0;dns_servers
+: 1786659365:0;journal_errors
+: 1786659579:0;gst
+: 1786659584:0;git diff
+: 1786659590:0;ga .
+: 1786659619:0;git commit -m "Separated system aliases."\
+

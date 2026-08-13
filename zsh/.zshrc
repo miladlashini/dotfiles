@@ -70,6 +70,7 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=240,bold'
 ########################################
 aliases_files=(
     "${ZDOTDIR}/aliases"
+    "${ZDOTDIR}/system-aliases"
     "${ZDOTDIR}/rpc-build-aliases"
     "${ZDOTDIR}/tmux-aliases"
     "${ZDOTDIR}/network-aliases"

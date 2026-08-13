@@ -37,16 +37,6 @@ alias set_core_dump_pattern="sudo bash -c 'echo $HOME/Documents/CoreFiles/core.%
 #     info  DC:2C:26:0A:7E:69
 
 ########################################
-# system / packages
-########################################
-alias agi="sudo apt install"
-alias update="sudo apt update"
-alias upgrade="sudo apt upgrade"
-alias fix_update="sudo apt-get update --fix-missing"
-alias agr="sudo apt-get remove --purge"
-alias up="update_script.sh"
-
-########################################
 # shell / file utilities
 ########################################
 alias -g G="| grep"
