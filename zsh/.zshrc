@@ -34,9 +34,11 @@ source "${ZDOTDIR}/antigen-setup"
 aliases_files=(
     "${ZDOTDIR}/aliases"
     "${ZDOTDIR}/system-aliases"
-    "${ZDOTDIR}/rpc-build-aliases"
-    "${ZDOTDIR}/tmux-aliases"
+    "${ZDOTDIR}/git-aliases"
+    "${ZDOTDIR}/debug-aliases"
     "${ZDOTDIR}/network-aliases"
+    "${ZDOTDIR}/tmux-aliases"
+    "${ZDOTDIR}/rpc-build-aliases"
     "${ZDOTDIR}/yocto")
 
 for _f in "${aliases_files[@]}"; do
@@ -65,22 +67,6 @@ _comp_options+=(globdots)  # include hidden files
 # core_dump_status to inspect it and set_core_dump_pattern for the
 # /proc/sys/kernel/core_pattern side)
 ulimit -c unlimited
-
-########################################
-# functions
-########################################
-# (network-related functions live in network-aliases)
-
-# navigate the filesystem graphically via ranger, cd-ing into the chosen dir on exit
-goto() {
-    local tempfile
-    tempfile=$(mktemp)
-    ranger --choosedir="$tempfile" "${@:-$PWD}"
-    if [ -f "$tempfile" ] && [ -s "$tempfile" ]; then
-        cd "$(cat "$tempfile")"
-    fi
-    rm -f "$tempfile"
-}
 
 ########################################
 # keybindings

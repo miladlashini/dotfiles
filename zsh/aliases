@@ -1,7 +1,11 @@
-# aliases - personal zsh aliases/functions, shared across every machine
-# this dotfiles repo is used on. Sourced by .zshrc. Machine-specific
-# additions that shouldn't be shared belong in aliases2 instead (see the
-# bottom of this file) - that file is gitignored on purpose.
+# aliases - general shell ergonomics: the small, everyday things that work
+# on any machine and belong to no particular domain. Sourced by .zshrc.
+#
+# Domain-specific helpers live in their own files alongside this one and
+# are listed in .zshrc's aliases_files array: system-aliases, git-aliases,
+# debug-aliases, network-aliases, tmux-aliases, rpc-build-aliases, yocto.
+# Machine-specific additions that shouldn't be shared belong in aliases2
+# (see the bottom of this file) - that file is gitignored on purpose.
 #
 # Naming: everything below is lower_snake_case, matching install.sh,
 # zsh/yocto, and scripts/Bash/history-sync - the convention the Google
@@ -9,23 +13,6 @@
 # Exception: the global aliases (`alias -g`) stay UPPERCASE on purpose,
 # since that's the standard zsh idiom for making them visually stand out
 # anywhere in a command line, not just as the first word.
-
-########################################
-# core dumps
-########################################
-# `ulimit -c unlimited` is set globally in .zshrc; if core files still
-# aren't produced, it's usually one of:
-#
-# 1. /proc/sys/kernel/core_pattern starts with '|' - the kernel pipes core
-#    dumps to that command instead of writing a file. Check its content and,
-#    if needed, point it at a real directory instead (create the directory
-#    first): set_core_dump_pattern below does this.
-#
-# 2. /etc/security/limits.conf is missing "soft core unlimited" - add it,
-#    then log out and back in.
-
-alias core_dump_status="ulimit -a"
-alias set_core_dump_pattern="sudo bash -c 'echo $HOME/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"
 
 ########################################
 # bluetooth keyboard (reference notes, not aliases)
@@ -49,21 +36,16 @@ alias skey="ssh-keygen -t rsa"
 # whatever it was when this file was sourced at shell startup.
 alias path='echo $PATH'
 
-########################################
-# git
-########################################
-# Repairs a force-push rejected with "stale info" on a secondary remote.
-# Background: origin has two push URLs (github + FamilyCloud) but fetches
-# only from github, so plain `--force-with-lease` checks FamilyCloud
-# against github's state and rejects whenever the two servers drift apart.
-# This fetches the remote's REAL state first, then force-pushes the current
-# branch with the lease pinned to exactly that - so it can never clobber
-# anything it hasn't just seen.
-force_push_lease() {
-    local remote="${1:-familycloud}" branch
-    branch="$(git rev-parse --abbrev-ref HEAD)" || return 1
-    git fetch "$remote" || return 1
-    git push "$remote" "$branch" --force-with-lease="$branch:$remote/$branch"
+# navigate the filesystem graphically via ranger, cd-ing into the chosen
+# directory on exit (ranger can't change its parent shell's cwd itself)
+goto() {
+    local tempfile
+    tempfile=$(mktemp)
+    ranger --choosedir="$tempfile" "${@:-$PWD}"
+    if [ -f "$tempfile" ] && [ -s "$tempfile" ]; then
+        cd "$(cat "$tempfile")"
+    fi
+    rm -f "$tempfile"
 }
 
 ########################################

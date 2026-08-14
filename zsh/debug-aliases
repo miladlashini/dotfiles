@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+#
+# debugging helpers - sourced from .zshrc (see the aliases_files array
+# there). Currently core-dump setup; valgrind/gdb helpers would fit here
+# too if they ever grow beyond a bare command.
+
+########################################
+# core dumps
+########################################
+# `ulimit -c unlimited` is set globally in .zshrc; if core files still
+# aren't produced, it's usually one of:
+#
+# 1. /proc/sys/kernel/core_pattern starts with '|' - the kernel pipes core
+#    dumps to that command instead of writing a file. Check its content and,
+#    if needed, point it at a real directory instead (create the directory
+#    first): set_core_dump_pattern below does this.
+#
+# 2. /etc/security/limits.conf is missing "soft core unlimited" - add it,
+#    then log out and back in.
+
+alias core_dump_status="ulimit -a"
+alias set_core_dump_pattern="sudo bash -c 'echo $HOME/Documents/CoreFiles/core.%e.%p > /proc/sys/kernel/core_pattern'"

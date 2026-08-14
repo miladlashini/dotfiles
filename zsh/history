@@ -3358,3 +3358,12 @@ find ~/yocto/meta-rpc -type f
 : 1786662082:0;ga .
 : 1786662099:0;git commit -m "Separated antigen and ccache."\
 
+: 1786662100:0;gp
+: 1786751708:0;gst
+: 1786751714:0;git diff
+: 1786751730:0;gst
+: 1786751761:0;git diff
+: 1786751788:0;tig
+: 1786751832:0;ga .
+: 1786751852:0;git commit -m "Separated git and debug."\
+
