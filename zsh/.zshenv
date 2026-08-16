@@ -65,6 +65,7 @@ path=(
 # empty entry (which libc treats as "search the current directory") when
 # LD_LIBRARY_PATH isn't already set.
 # LD_LIBRARY_PATH or absolutely nothing, depending on whether the user has already set it in their environment. 
+# if LD_LIBRARY_PATH is set, prepend the Qt library path to it; otherwise, subtitute LD_LIBRARY_PATH with an empty string. The reason to use  :+ operastor is to avoid having dangling : at the end of the path, which would cause the current directory to be searched for libraries.
 export LD_LIBRARY_PATH="$QT_PREFIX/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export CMAKE_PREFIX_PATH="$QT_PREFIX"
 
@@ -77,13 +78,6 @@ export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
 export RPC_CLANG_TIDY="clang-tidy-14"
 # update this if DHCP ever reassigns the Pi 1 B+'s address
 export RPC_PI_HOST="root@192.168.2.193"
-
-########################################
-# Yocto
-########################################
-export YOCTO_DIR="$HOME/yocto"
-export YOCTO_BUILD_DIR="$YOCTO_DIR/build-rpi"
-export YOCTO_SDK_ROOT="/opt/poky"
 
 ########################################
 # Compiler selection

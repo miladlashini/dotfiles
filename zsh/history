@@ -3367,3 +3367,21 @@ find ~/yocto/meta-rpc -type f
 : 1786751832:0;ga .
 : 1786751852:0;git commit -m "Separated git and debug."\
 
+: 1786751854:0;gp
+: 1786814055:0;tmux
+: 1786814233:0;nvim
+: 1786820612:0;jerr
+: 1786879407:0;git diff
+: 1786879429:0;nvim
+: 1786882720:0;tmux
+: 1786882736:0;pkg_owns cd
+: 1786882775:0;nvim
+: 1786883679:0;pkg_owns bitbake
+: 1786883747:0;pkg_owns code
+: 1786886194:0;ccache_stats
+: 1786889182:0;gst
+: 1786889186:0;tig
+: 1786889190:0;git diff
+: 1786889198:0;ga .
+: 1786889225:0;git commit -m "Moved yocto var to its own file."\
+

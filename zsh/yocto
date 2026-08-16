@@ -1,12 +1,22 @@
 # Yocto / bitbake helpers, built while cross-compiling RPC for the Raspberry Pi 1 B+.
 # See ~/.claude/plans/i-want-to-make-misty-cray.md for the full project this supports.
 #
-# YOCTO_DIR / YOCTO_BUILD_DIR are exported from .zshenv.
-#
 # Everything below except `bupoky` auto-sources the build environment on first
 # use in a shell (via _yocto_env), so you don't have to remember to run bupoky
 # first -- but bupoky is there for when you want it explicitly, or want to
 # switch to a different build dir later (e.g. a future 64-bit Pi build).
+
+########################################
+# paths
+########################################
+# Kept here rather than in .zshenv because this file is their only consumer.
+# Note the scope that implies: this file is sourced from .zshrc, so these are
+# set in interactive shells only - which matches the bb* functions below,
+# since they're defined here too and are equally interactive-only. If a
+# non-interactive script ever needs them, move them back to .zshenv.
+export YOCTO_DIR="$HOME/yocto"
+export YOCTO_BUILD_DIR="$YOCTO_DIR/build-rpi"
+export YOCTO_SDK_ROOT="/opt/poky"
 
 # source the poky build environment (always re-sources; safe to call repeatedly)
 alias bupoky='source "${YOCTO_DIR}/poky/oe-init-build-env" "${YOCTO_BUILD_DIR}"'
