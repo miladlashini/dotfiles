@@ -3385,3 +3385,13 @@ find ~/yocto/meta-rpc -type f
 : 1786889198:0;ga .
 : 1786889225:0;git commit -m "Moved yocto var to its own file."\
 
+: 1786889227:0;gp
+: 1786890025:0;nvim
+: 1786890241:0;antigen reset && exec zsh
+: 1786890256:0;gc
+: 1786890295:0;nvim
+: 1786890345:0;antigen reset && exec zsh
+: 1786890502:0;gst
+: 1786890701:0;ga .
+: 1786890729:0;git commit -m "Added theme feature to dotfiles."\
+

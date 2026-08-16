@@ -19,5 +19,23 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle MichaelAquilina/zsh-you-should-use
-antigen theme romkatv/powerlevel10k
+# Theme is chosen in zsh/theme (sourced from .zshrc before antigen runs).
+# Anything not matched explicitly is treated as an oh-my-zsh built-in theme
+# name, so ZSH_THEME_SELECTION="af-magic" etc. works without editing here.
+case "${ZSH_THEME_SELECTION:-powerlevel10k}" in
+    powerlevel10k)
+        antigen theme romkatv/powerlevel10k
+        ;;
+    pure)
+        antigen bundle mafredri/zsh-async
+        antigen theme sindresorhus/pure
+        ;;
+    spaceship)
+        antigen theme spaceship-prompt/spaceship-prompt
+        ;;
+    *)
+        antigen theme "${ZSH_THEME_SELECTION}"
+        ;;
+esac
+
 antigen apply

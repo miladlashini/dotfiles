@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+#
+# Prompt theme selection - the ONE place to change how the prompt looks.
+#
+# Uncomment exactly one ZSH_THEME_SELECTION line below, then:
+#
+#     antigen reset && exec zsh
+#
+# The reset is required because antigen compiles .antigenrc (where the
+# theme is actually applied, driven by this variable) into a cached
+# init.zsh, so edits here are invisible until that cache is rebuilt.
+#
+# Sourced from the very top of .zshrc - before the Powerlevel10k instant
+# prompt block, which is conditional on this value.
+
+########################################
+# active theme
+########################################
+ZSH_THEME_SELECTION="powerlevel10k"
+
+########################################
+# alternatives (uncomment one above instead)
+########################################
+# powerlevel10k  - fast, highly configurable, git-aware. Configure with
+#                  `p10k configure`; settings persist in zsh/.p10k.zsh.
+#                  Needs a Nerd Font (install.sh installs JetBrainsMono).
+# ZSH_THEME_SELECTION="powerlevel10k"
+
+# pure           - minimal, uncluttered two-line prompt. Pulls in
+#                  mafredri/zsh-async automatically (see .antigenrc).
+#ZSH_THEME_SELECTION="pure"
+
+# spaceship      - informative, many language/tool segments (node, rust,
+#                  docker, ...). Heavier than pure, lighter to configure
+#                  than p10k. Also wants a Nerd Font.
+# ZSH_THEME_SELECTION="spaceship"
+
+# agnoster       - the classic powerline look, ships with oh-my-zsh, needs
+#                  a powerline/Nerd Font.
+#ZSH_THEME_SELECTION="agnoster"
+
+# robbyrussell   - oh-my-zsh's default. Plain, fast, no special font.
+#ZSH_THEME_SELECTION="robbyrussell"
+
+# Any other oh-my-zsh built-in theme works too - the name is the file's
+# basename in .antigen/bundles/robbyrussell/oh-my-zsh/themes/ without the
+# ".zsh-theme" suffix (143 available; `ls` that directory to browse).
+# Themes not listed above fall through to the default branch in .antigenrc,
+# which treats the value as an oh-my-zsh theme name.
+#ZSH_THEME_SELECTION="af-magic"

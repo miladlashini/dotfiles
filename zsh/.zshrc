@@ -8,16 +8,25 @@
 # previous, unsectioned version of this file.
 
 ########################################
-# Powerlevel10k prompt
+# prompt theme
 ########################################
-# Instant prompt must stay near the top: initialization code that may
-# require console input (password prompts, [y/n] confirmations, etc.) has
-# to go above this block; everything else goes below it.
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" 2>/dev/null || true
+# Which theme to use lives in zsh/theme - a single variable, edit there.
+# Must be sourced this early because the Powerlevel10k instant prompt
+# below is conditional on it (and that block has to stay near the top).
+source "${ZDOTDIR}/theme"
 
-# To customize the prompt, run `p10k configure` or edit
-# $DOTFILES/zsh/.p10k.zsh directly.
-source "${DOTFILES}/zsh/.p10k.zsh" 2>/dev/null || true
+# Powerlevel10k only: the instant prompt must stay near the top:
+# initialization code that may require console input (password prompts,
+# [y/n] confirmations, etc.) has to go above this block; everything else
+# goes below it. Skipped entirely under other themes, which have no
+# instant-prompt cache and no .p10k.zsh to read.
+if [[ "$ZSH_THEME_SELECTION" == powerlevel10k ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" 2>/dev/null || true
+
+    # To customize the prompt, run `p10k configure` or edit
+    # $DOTFILES/zsh/.p10k.zsh directly.
+    source "${DOTFILES}/zsh/.p10k.zsh" 2>/dev/null || true
+fi
 
 ########################################
 # oh-my-zsh / antigen
