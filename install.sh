@@ -127,7 +127,8 @@ install_base_packages() {
     software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
     libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
     btop iftop nethogs vnstat variety snapd obs-studio cowsay unrar djvulibre-bin libzip-dev ranger ueberzug \
-    xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor ruby-full
+    xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor ruby-full \
+    graphviz openjdk-21-jre-headless librsvg2-bin libbatik-java plantuml
 
   sudo gem install asciidoctor-pdf
 }
@@ -234,6 +235,20 @@ install_vscode() {
 
   code --install-extension ms-vscode.cpptools
   code --install-extension ms-python.python
+  # PlantUML extension used in this workspace.
+  code --install-extension jebbs.plantuml
+  # Keep a single provider to avoid duplicate command registration warnings.
+  code --uninstall-extension well-ar.plantuml || true
+}
+
+# PlantUML local rendering prerequisites and PDF fallback tooling.
+# - Java + Graphviz are required by jebbs.plantuml local renderer.
+# - `libbatik-java` provides classes like SVGConverter used by some PDF paths.
+# - `librsvg2-bin` provides rsvg-convert; this gives a robust SVG->PDF fallback
+#   when direct PlantUML PDF export fails due to JAR/classpath mismatches.
+install_plantuml_prerequisites() {
+  log "Installing PlantUML prerequisites..."
+  sudo apt install -y openjdk-21-jre-headless graphviz librsvg2-bin libbatik-java plantuml
 }
 
 # Resolves to the tag of Kitware/CMake's current "Latest" GitHub release
@@ -653,6 +668,7 @@ main() {
   install_clang_versions
 
   install_vscode
+  install_plantuml_prerequisites
   build_and_install_cmake
 
   setup_python_venv
