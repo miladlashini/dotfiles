@@ -128,7 +128,7 @@ install_base_packages() {
     libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev \
     btop iftop nethogs vnstat variety snapd obs-studio cowsay unrar djvulibre-bin libzip-dev ranger ueberzug \
     xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor ruby-full \
-    graphviz openjdk-21-jre-headless librsvg2-bin libbatik-java plantuml
+    graphviz openjdk-21-jre-headless librsvg2-bin libbatik-java plantuml cppcheck iwyu
 
   sudo gem install asciidoctor-pdf
 }

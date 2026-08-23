@@ -73,9 +73,24 @@ export CMAKE_PREFIX_PATH="$QT_PREFIX"
 # RPC project
 ########################################
 export RPC_SOURCE_DIR="$HOME/Documents/RPC/src"
-export RPC_BUILD_DIR="/opt/RPC-build"
+# Base path for host builds - rpc-build-aliases' _rpc_build derives the
+# actual, per-compiler directory from this (${RPC_BUILD_DIR_ROOT}-gcc,
+# ${RPC_BUILD_DIR_ROOT}-clang, ...), the same way RPC_BUILD_DIR_RPI already
+# is a dedicated directory rather than sharing this one. Each compiler gets
+# its own persistent directory so gcc and clang builds never contend for the
+# same one - CMake cannot change an already-configured directory's compiler
+# in place (see src/CMakeLists.txt's own guard against exactly that
+# scenario), so sharing one directory across compilers meant whichever was
+# configured first stuck around silently, regardless of which build_rpc_*
+# alias you ran later.
+export RPC_BUILD_DIR_ROOT="/opt/RPC-build"
+# Default for anything reading $RPC_BUILD_DIR before a build_rpc_* alias has
+# picked a compiler this session (matches the gcc-14 CC/CXX default below) -
+# _rpc_build reassigns this on every call to match whichever compiler that
+# call actually selected.
+export RPC_BUILD_DIR="${RPC_BUILD_DIR_ROOT}-gcc"
 export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
-export RPC_CLANG_TIDY="clang-tidy-14"
+export RPC_CLANG_TIDY="clang-tidy-19"
 # update this if DHCP ever reassigns the Pi 1 B+'s address
 export RPC_PI_HOST="root@192.168.2.193"
 
@@ -90,8 +105,8 @@ export RPC_PI_HOST="root@192.168.2.193"
 # shell (bitbake devshell or an SDK environment-setup session) - both of
 # those export PKG_CONFIG_SYSROOT_DIR themselves.
 if [[ -z "$PKG_CONFIG_SYSROOT_DIR" ]]; then
-    export CC=gcc-12
-    export CXX=g++-12
+    export CC=gcc-14
+    export CXX=g++-14
 fi
 
 export CXXFLAGS="-fdiagnostics-color=always"

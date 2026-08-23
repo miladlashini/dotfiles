@@ -7113,3 +7113,106 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1787132821:0;ga .
 : 1787132858:0;git commit -m "Added support for plantuml renderes for vs code installation."\
 
+: 1786890731:0;gp
+: 1786891005:0;tmux
+: 1786892540:0;update
+: 1786892566:0;update_script.sh 
+: 1786894973:0;cd  ~/Documents/RPC
+: 1786894989:0;nvim
+: 1786895364:0;build_rpc_clang_test
+: 1786896118:0;list_targets
+: 1786896370:0;build_rpc_gcc_test -DRPC_WITH_EXAMPLES ON
+: 1786896393:0;build_rpc_gcc_test -D RPC_WITH_EXAMPLES ON
+: 1786896468:0;build_rpc_gcc_test -D RPC_WITH_EXAMPLES:BOOL=ON
+: 1786896475:0;list_targets
+: 1786896878:0;cd /opt/RPC-build
+: 1786896884:0;ccmake
+: 1786896890:0;ccmake .
+: 1786905381:0;build_rpc_gcc_test
+: 1786905406:0;build_rpc_clang_r
+: 1786905459:0;build_rpc_gcc_test_c
+: 1786907370:0;gst
+: 1786907373:0;ga .
+: 1786907425:0;git commit -m "Rewrote the buildtype and protobuf cmake."\
+
+: 1786907428:0;gp
+: 1787173147:0;ssh Milad@192.168.2.225 
+: 1787175959:0;ethtool eth0
+: 1787175973:0;ifconfig
+: 1787175998:0;ethtool wlp0s20f3
+: 1787176009:0;sudo ethtool wlp0s20f3
+: 1787176035:0;ethtool enp67s0
+: 1787176050:0;sudo ethtool enp67s0
+: 1787176835:0;cd  ~/Documents/RPC
+: 1787176840:0;cd  ~/dotfiles
+: 1787176850:0;git pull
+: 1787176884:0;tig
+: 1787176911:0;force-push-lease 
+: 1787176923:0;force_push_lease
+: 1787176941:0;./install.sh
+: 1787255429:0;cd ~/Documents/RPC
+: 1787255433:0;gst
+: 1787263106:0;ga .
+: 1787263179:0;git commit -m "Added build utility for library. Some refactoring in build system."\
+
+: 1787263188:0;gp
+: 1787263941:0;cd ~/Downloads/
+: 1787263950:0;dpkg -i code_1.134.0-1787078834_amd64.deb
+: 1787263954:0;sudo dpkg -i code_1.134.0-1787078834_amd64.deb
+: 1787264004:0;update_script.sh
+: 1787343642:0;tmux
+: 1787343659:0;build_rpc_gcc_test
+: 1787347350:0;sudo apt cppcheck iwyu
+: 1787347370:0;sudo apt-get install cppcheck iwyu
+: 1787347406:0;cd ~/dotfiles
+: 1787347408:0;ls
+: 1787347417:0;nvim install.sh
+: 1787350279:0;tig
+: 1787351916:0;nvim
+: 1787400619:0;update_script.sh
+: 1787400827:0;build_rpc_gcc_test -DWITH_IWYU=ON
+: 1787406109:0;nvim
+: 1787408426:0;build_rpc_gcc_test -DWITH_IWYU=ON
+: 1787408534:0;clean_cmake_cache
+: 1787408539:0;build_rpc_gcc_test -DWITH_IWYU=ON
+: 1787408630:0;build_rpc_gcc_test -DWITH_CPPCHECK=ON
+: 1787410355:0;tnux
+: 1787410358:0;tmux
+: 1787410407:0;cd ~/Documents/RPC
+: 1787410410:0;gst
+: 1787410414:0;git diff
+: 1787411747:0;gst
+: 1787411749:0;ga .
+: 1787411781:0;git commit -m "Improved the static analysis."\
+
+: 1787411789:0;gp
+: 1787419529:0;build_rpc_gcc_test -DWITH_IWYU=ON
+: 1787419581:0;build_rpc_gcc_test -DWITH_CPPCHECK=OFF
+: 1787419676:0;build_rpc_gcc_test -DWITH_IWYU=OFF
+: 1787420232:0;type build_rpc_gcc_test -DWITH_IWYU=OFF
+: 1787421403:0;build_rpc_gcc_test -DWITH_IWYU=OFF
+: 1787427789:0;cd ~/dotfiles/zsh/
+: 1787427791:0;..
+: 1787427796:0;git diff
+: 1787427882:0;gst
+: 1787427890:0;git diff
+: 1787428054:0;build_rpc_gcc_test -DWITH_IWYU=OFF
+: 1787428070:0;build_rpc_clang_tidy
+: 1787428128:0;st
+: 1787428130:0;gst
+: 1787428136:0;ga .
+: 1787428196:0;git commit -m "Fixed bugs with static analysis, different build directory for different compiler."\
+
+: 1787428206:0;gp
+: 1787428221:0;build_rpc_clang_tidy_test
+: 1787428276:0;test_rpc_fast
+: 1787428304:0;build_rpc_gcc_tidy_test
+: 1787428336:0;test_rpc_fast
+: 1787475609:0;update_script.sh
+: 1787484447:0;gst
+: 1787484453:0;git diff
+: 1787489424:0;ga
+: 1787489427:0;ga 
+: 1787489430:0;ga .
+: 1787489454:0;git commit -m "Adopted the changes for code base."\
+

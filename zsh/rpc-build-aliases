@@ -7,12 +7,20 @@
 # The same names work in both shells because everything below is driven off
 # $RPC_BUILD_DIR/$RPC_SOURCE_DIR and $CC/$CXX rather than hardcoded
 # compilers/paths:
-#   - normal shell: $RPC_BUILD_DIR=/opt/RPC-build, $CC/$CXX from .zshenv.
-#   - SDK shell: bbsdkenv repoints $RPC_BUILD_DIR at $RPC_BUILD_DIR_RPI, and
-#     the SDK's environment-setup script has already overridden $CC/$CXX and
-#     exported CMAKE_TOOLCHAIN_FILE (via its environment-setup.d/cmake.sh
-#     drop-in), which src/CMakeLists.txt's guard keys off to skip its host
-#     gcc-14/clang-19 override.
+#   - normal shell: _rpc_build (used by every build_rpc_* alias) sets
+#     $RPC_BUILD_DIR to a compiler-specific directory derived from
+#     $RPC_BUILD_DIR_ROOT (see _rpc_build_dir_for_compiler) every time it
+#     runs, based on that call's own compiler choice - gcc and clang builds
+#     live in separate, persistent directories and never contend for one.
+#     $CC/$CXX (used only by the separate build_rpc() below) come from
+#     .zshenv.
+#   - SDK shell: bbsdkenv repoints $RPC_BUILD_DIR at $RPC_BUILD_DIR_RPI (a
+#     single fixed directory - there is one cross toolchain, not a
+#     gcc/clang choice, and _rpc_build_dir_for_compiler is never called
+#     here), and the SDK's environment-setup script has already overridden
+#     $CC/$CXX and exported CMAKE_TOOLCHAIN_FILE (via its
+#     environment-setup.d/cmake.sh drop-in), which src/CMakeLists.txt's
+#     guard keys off to skip its host gcc-14/clang-19 override.
 #
 # The handful of things that are NOT safely shared are guarded by
 # _rpc_is_cross below rather than duplicated into a second file - see each
@@ -52,12 +60,31 @@ _rpc_no_target_exec() {
     return 1
 }
 
+# internal: the per-compiler host build directory - expandable to a future
+# third host compiler by adding one more branch here, the only place that
+# needs to know the mapping. Never called in a cross shell: $RPC_BUILD_DIR
+# there is already pointed at $RPC_BUILD_DIR_RPI by _yocto_sdk_source, and
+# there is exactly one cross toolchain, not a gcc/clang choice.
+_rpc_build_dir_for_compiler() {
+    : "${RPC_BUILD_DIR_ROOT:?RPC_BUILD_DIR_ROOT is not set}"
+    if [[ "$1" == ON ]]; then
+        echo "${RPC_BUILD_DIR_ROOT}-clang"
+    else
+        echo "${RPC_BUILD_DIR_ROOT}-gcc"
+    fi
+}
+
 # Configure+build with the ambient compiler. $CC/$CXX are only passed through
 # as CMAKE_C_COMPILER/CMAKE_CXX_COMPILER on the host: in an SDK shell $CC is
 # not a path but a whole command line ("arm-poky-linux-gnueabi-gcc -marm
 # -mfpu=vfp ... --sysroot=..."), which CMake would try to resolve as a single
 # executable name and fail on. There it is left to CMAKE_TOOLCHAIN_FILE,
 # which the SDK exports and which sets the compilers correctly by itself.
+# Unlike _rpc_build below, this does not derive its own directory from a
+# compiler choice - it targets whatever $RPC_BUILD_DIR currently is (the
+# .zshenv gcc default, or whatever a build_rpc_* alias last selected this
+# session), since its own compiler choice ($CC/$CXX) is a single ambient
+# value, not a per-call toggle.
 build_rpc() {
     : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
     local -a compiler_args=()
@@ -86,7 +113,17 @@ build_rpc() {
 _rpc_build() {
     local build_type="$1" with_clang="$2" with_tests="$3" with_tidy="$4"
     shift 4
-    # Guard against unset/empty $RPC_SOURCE_DIR/$RPC_BUILD_DIR, which would 
+
+    # Host shell only: pick the directory for THIS call's compiler choice,
+    # every time, so switching from e.g. build_rpc_clang_test to
+    # build_rpc_gcc_test (or vice versa) automatically retargets every
+    # subsequent command in this session (test_rpc, clean_rpc, ...) at the
+    # right directory - independent of whichever compiler an earlier build
+    # in this session used. Left untouched in a cross shell: $RPC_BUILD_DIR
+    # there is bbsdkenv's fixed $RPC_BUILD_DIR_RPI, not a per-compiler choice.
+    _rpc_is_cross || export RPC_BUILD_DIR="$(_rpc_build_dir_for_compiler "$with_clang")"
+
+    # Guard against unset/empty $RPC_SOURCE_DIR/$RPC_BUILD_DIR, which would
     # otherwise silently become `cmake -S -B` and `cmake --build` in the CWD.
     : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
 
@@ -103,9 +140,9 @@ _rpc_build() {
         fi
         if [[ "$with_tidy" == ON ]]; then
             echo "_rpc_build: refusing clang-tidy in an SDK shell." >&2
-            echo "  \$RPC_CLANG_TIDY is a host x86 clang-tidy-14; it would be handed the ARM" >&2
+            echo "  \$RPC_CLANG_TIDY is a host x86 clang-tidy; it would be handed the ARM" >&2
             echo "  cross flags (-mcpu=arm1176jzf-s, -mfpu=vfp, --sysroot=...) and choke." >&2
-            echo "  Run tidy against the host build (/opt/RPC-build) instead." >&2
+            echo "  Run tidy against a host build (${RPC_BUILD_DIR_ROOT}-gcc) instead." >&2
             return 1
         fi
         if [[ "$build_type" == Coverage ]]; then
