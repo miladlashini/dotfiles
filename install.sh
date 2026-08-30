@@ -320,7 +320,7 @@ setup_python_venv() {
   # shellcheck disable=SC1090
   source ~/dev/env/venv/bin/activate
   pip install --upgrade pip
-  pip install pytest ipython flake8 black mypy
+  pip install pytest ipython flake8 black mypy cmakelang pyyaml
   deactivate
 }
 

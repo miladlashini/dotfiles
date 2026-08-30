@@ -7216,3 +7216,68 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1787489430:0;ga .
 : 1787489454:0;git commit -m "Adopted the changes for code base."\
 
+: 1787489464:0;gp
+: 1787531673:0;cd ~/Documents/RPC
+: 1787531712:0;git commit -m "Improved the warning for static analysis."\
+
+: 1787531715:0;gp
+: 1787532094:0;build_rpc_gcc_tidy_test
+: 1787561923:0;jerr
+: 1787569892:0;gst
+: 1787569896:0;ga .
+: 1787569909:0;git commit -m "Improved find boost."\
+
+: 1787569912:0;gp
+: 1787570109:0;lh /usr/lib/x86_64-linux-gnu/
+: 1787570119:0;lh /usr/lib/x86_64-linux-gnu/cmake
+: 1787581029:0;cd ~/dotfiles
+: 1787581031:0;gst
+: 1787581037:0;git diff
+: 1787953967:0;reboot now
+: 1787953977:0;sudo reboot now
+: 1787961778:0;cd ~/Documents/RPC
+: 1787961916:0;gst
+: 1787962946:0;ga .
+: 1787962973:0;git commit -m "Added clang format support to the project."\
+
+: 1787962975:0;gp
+: 1787962996:0;build_rpc_gcc_tidy_test
+: 1787964835:0;gst
+: 1787964838:0;ga .
+: 1787964864:0;git commit -m "Applied new formating style to the project."\
+
+: 1787964869:0;gp
+: 1788032958:0;tig
+: 1788033144:0;build_rpc_clang_test_c
+: 1788033166:0;build_rpc_clang_test
+: 1788043868:0;tig
+: 1788044410:0;git diff
+: 1788088249:0;cd ~/dotfiles
+: 1788088253:0;./install.sh
+: 1788101534:0;cd ~/Documents/RPC
+: 1788101539:0;gst
+: 1788101547:0;git diff
+: 1788102367:0;git commit -m "Added cmake formt chain to the proj."\
+
+: 1788102387:0;cmake-format -i "src/CMakeLists.txt" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/CMakeLists.txt"
+: 1788102392:0;gst
+: 1788102438:0;git diff --staged
+: 1788103164:0;ga .
+: 1788103170:0;git commit -m "Added cmake formt chain to the proj."\
+
+: 1788103179:0;gp
+: 1788106563:0;gst
+: 1788106571:0;ga .
+: 1788106630:0;git commit -m "Exclude vendor code from cmake formating and introduced the script to apply formating repo wise."\
+
+: 1788106633:0;gp
+: 1788109428:0;MEX Tools/apply-cmake-format.sh
+: 1788109458:0;nvim ~/dotfiles/zsh/aliases
+: 1788109491:0;chm Tools/apply-cmake-format.sh
+: 1788109520:0;Tools/apply-cmake-format.sh
+: 1788115777:0;tmux
+: 1788115789:0;cd ~/dotfiles
+: 1788115798:0;gst
+: 1788115803:0;git diff
+: 1788115932:0;ga .
+: 1788116027:0;git commit -m "Added python packges repo to paths and installed necessary things for cmake format"

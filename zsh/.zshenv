@@ -50,6 +50,7 @@ export CMAKE_INSTALL_PREFIX="/tmp/RPC"
 # path is a zsh array that is kept in sync with $PATH, so we can use array syntax to
 path=(
   "$HOME/.local/bin"            # pip --user installs
+  "$HOME/dev/env/venv/bin"      # shared Python dev venv (pytest, black, mypy, cmake-format, ...)
   "/snap/bin"
   "$QT_PREFIX/bin"
   "$HOME/go/bin"
@@ -90,7 +91,11 @@ export RPC_BUILD_DIR_ROOT="/opt/RPC-build"
 # call actually selected.
 export RPC_BUILD_DIR="${RPC_BUILD_DIR_ROOT}-gcc"
 export RPC_BUILD_DIR_RPI="/opt/RPC-build-rpi"
-export RPC_CLANG_TIDY="clang-tidy-19"
+# Only versioned clang-tidy/clang-format binaries are installed (no bare
+# "clang-tidy"/"clang-format"); RPC's StaticAnalysis.cmake/FindClangFormat.cmake
+# use these as find_program() overrides when set.
+export STATIC_ANALYZER="clang-tidy-19"
+export CODE_FORMATER="clang-format-19"
 # update this if DHCP ever reassigns the Pi 1 B+'s address
 export RPC_PI_HOST="root@192.168.2.193"
 

@@ -140,7 +140,7 @@ _rpc_build() {
         fi
         if [[ "$with_tidy" == ON ]]; then
             echo "_rpc_build: refusing clang-tidy in an SDK shell." >&2
-            echo "  \$RPC_CLANG_TIDY is a host x86 clang-tidy; it would be handed the ARM" >&2
+            echo "  \$STATIC_ANALYZER is a host x86 clang-tidy; it would be handed the ARM" >&2
             echo "  cross flags (-mcpu=arm1176jzf-s, -mfpu=vfp, --sysroot=...) and choke." >&2
             echo "  Run tidy against a host build (${RPC_BUILD_DIR_ROOT}-gcc) instead." >&2
             return 1
