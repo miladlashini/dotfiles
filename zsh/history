@@ -7281,3 +7281,50 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1788115803:0;git diff
 : 1788115932:0;ga .
 : 1788116027:0;git commit -m "Added python packges repo to paths and installed necessary things for cmake format"
+: 1788116030:0;gp
+: 1788118216:0;gst
+: 1788118221:0;ga .
+: 1788118247:0;git commit -m "Applied new cmake formating style to the project."\
+
+: 1788118270:0;cmake-format -i "src/cmake/FindDBus.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindDBus.cmake"
+: 1788118276:0;git commit -m "Applied new cmake formating style to the project."\
+
+: 1788118326:0;cmake-format -i "src/cmake/FindDBus.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindDBus.cmake"
+: 1788118373:0;git commit -m "Applied new cmake formating style to the project."\
+
+: 1788118388:0;gp
+: 1788118860:0;build_rpc_clang_test
+: 1788118883:0;cmake --version
+: 1788118962:0;clean_cmake_cache
+: 1788118965:0;build_rpc_clang_test
+: 1788118973:0;ls
+: 1788118982:0;clean_cmake_cache
+: 1788118991:0;type clean_cmake_cache
+: 1788119486:0;Tools/apply-cmake-format.sh
+: 1788119549:0;tig
+: 1788119708:0;git revert 663f181
+: 1788119726:0;git checkout -- .
+: 1788119729:0;git revert 663f181
+: 1788119805:0;git checkout -- .
+: 1788119860:0;git reset --soft HEAD~0
+: 1788119863:0;gst
+: 1788119867:0;git reset --soft HEAD~1
+: 1788119870:0;gst
+: 1788119883:0;tig
+: 1788119899:0;Tools/apply-cmake-format.sh 
+: 1788119906:0;chm Tools/apply-cmake-format.sh
+: 1788119924:0;Tools/apply-cmake-format.sh 
+: 1788119950:0;build_rpc_clang_test
+: 1788119964:0;build_rpc_gcc_tidy_test
+: 1788120058:0;build_rpc_core
+: 1788120399:0;ga .
+: 1788120405:0;git commit -m "Applied new cmake formating style to the project."\
+
+: 1788120437:0;gp
+: 1788120452:0;gp --force-with-lease
+: 1788172246:0;tmux
+: 1788214410:0;git diff
+: 1788214418:0;./install.sh
+: 1788214608:0;ga .
+: 1788214632:0;git commit -m "Added dbus to install script."\
+
