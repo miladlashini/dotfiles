@@ -173,6 +173,57 @@ _rpc_build() {
     time cmake --build "$RPC_BUILD_DIR" -j"$(nproc)"
 }
 
+# Configure-only counterpart to _rpc_build: same directory-selection and
+# cross-shell guards, but stops after the cmake configure step - no
+# --target clean, no cmake --build. Kept as its own standalone function
+# (rather than a flag on _rpc_build) so the well-exercised build path above
+# stays untouched. Args: same as _rpc_build: build_type with_clang
+# with_tests with_tidy [extra cmake args...].
+_rpc_configure() {
+    local build_type="$1" with_clang="$2" with_tests="$3" with_tidy="$4"
+    shift 4
+
+    _rpc_is_cross || export RPC_BUILD_DIR="$(_rpc_build_dir_for_compiler "$with_clang")"
+
+    : "${RPC_SOURCE_DIR:?RPC_SOURCE_DIR is not set}" "${RPC_BUILD_DIR:?RPC_BUILD_DIR is not set}"
+
+    if _rpc_is_cross; then
+        if [[ "$with_clang" == ON ]]; then
+            echo "_rpc_configure: refusing a clang build in an SDK shell." >&2
+            echo "  RPC_COMPILE_WITH_CLANG is ignored when CMAKE_TOOLCHAIN_FILE is set" >&2
+            echo "  (src/CMakeLists.txt guards on it), so this would silently give you the" >&2
+            echo "  ordinary gcc cross build. Use the non-clang variant to say what you mean." >&2
+            return 1
+        fi
+        if [[ "$with_tidy" == ON ]]; then
+            echo "_rpc_configure: refusing clang-tidy in an SDK shell." >&2
+            echo "  \$STATIC_ANALYZER is a host x86 clang-tidy; it would be handed the ARM" >&2
+            echo "  cross flags (-mcpu=arm1176jzf-s, -mfpu=vfp, --sysroot=...) and choke." >&2
+            echo "  Run tidy against a host build (${RPC_BUILD_DIR_ROOT}-gcc) instead." >&2
+            return 1
+        fi
+        if [[ "$build_type" == Coverage ]]; then
+            echo "_rpc_configure: refusing a Coverage build in an SDK shell." >&2
+            echo "  Coverage needs host lcov/gcov to read the .gcno files and the .gcda only" >&2
+            echo "  appear after running the binaries -- which here can only happen on the Pi." >&2
+            return 1
+        fi
+    fi
+
+    cmake -D CMAKE_VERBOSE_MAKEFILE=On \
+        -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
+        -D RPC_WITH_TESTS:BOOL="$with_tests" \
+        -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
+        -D CMAKE_BUILD_TYPE="$build_type" \
+        "$@" \
+        -S "$RPC_SOURCE_DIR" -B "$RPC_BUILD_DIR"
+}
+
+# configure only (no build) - regenerate compile_commands.json or catch a
+# cmake-level error without waiting on a full build.
+alias configure_rpc_gcc='_rpc_configure Debug OFF OFF OFF'
+alias configure_rpc_clang='_rpc_configure Debug ON OFF OFF'
+
 #debug
 alias build_rpc_gcc='_rpc_build Debug OFF OFF OFF'
 alias build_rpc_clang='_rpc_build Debug ON OFF OFF'

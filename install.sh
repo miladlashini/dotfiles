@@ -126,6 +126,7 @@ install_base_packages() {
     libssl-dev python3 python3-pip python3-venv python3-dev npm \
     software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
     libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev libdbus-1-dev \
+    libusb-1.0-0-dev \
     btop iftop nethogs vnstat variety snapd obs-studio cowsay unrar djvulibre-bin libzip-dev ranger ueberzug \
     xdotool iperf netcat-traditional mpv ubuntu-restricted-extras gnome-tweaks ristretto shellcheck xxhash asciidoctor ruby-full \
     graphviz openjdk-21-jre-headless librsvg2-bin libbatik-java plantuml cppcheck iwyu

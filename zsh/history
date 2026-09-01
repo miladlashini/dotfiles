@@ -7328,3 +7328,45 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1788214608:0;ga .
 : 1788214632:0;git commit -m "Added dbus to install script."\
 
+: 1788214636:0;gp
+: 1788214649:0;tmux
+: 1788214658:0;cd ~/Documents/RPC
+: 1788214730:0;ga .
+: 1788214762:0;git commit -m "Improved the find dbus module."\
+
+: 1788214784:0;cmake-format -i "src/cmake/FindDBus.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindDBus.cmake"
+: 1788214790:0;git commit -m "Improved the find dbus module."\
+
+: 1788214807:0;build_rpc_gcc_tidy_test
+: 1788214850:0;gp
+: 1788216304:0;build_rpc_clang_tidy_test
+: 1788216425:0;gst
+: 1788216427:0;ga .
+: 1788216438:0;git commit -m "Improved the find glog module."\
+
+: 1788216440:0;gp
+: 1788250492:0;tmux
+: 1788250511:0;nvim /usr/lib/x86_64-linux-gnu/pkgconfig/dbus-1.pc
+: 1788263466:0;build_rpc_clang_tidy_test
+: 1788263500:0;gst
+: 1788263986:0;cd ~/dotfiles
+: 1788263989:0;gst
+: 1788263996:0;git diff
+: 1788264002:0;./install.sh
+: 1788264586:0;_rpc_configure
+: 1788264626:0;nvim /zsh/rpc-build-aliases
+: 1788264659:0;nvim zsh/rpc-build-aliases
+: 1788264948:0;_rpc_configure
+: 1788264965:0;gst
+: 1788264967:0;ga .
+: 1788264977:0;gst
+: 1788264979:0;ga .
+: 1788265026:0;git commit -m "Improved libfind lib dbus and usb."\
+
+: 1788265029:0;gp
+: 1788265049:0;cmake-format -i "src/cmake/FindLibUSB.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindLibUSB.cmake"
+: 1788265052:0;git commit -m "Improved libfind lib dbus and usb."\
+
+: 1788265055:0;gp
+: 1788265112:0;git commit -m "Added lib usb instalation and single cmake configure."\
+
