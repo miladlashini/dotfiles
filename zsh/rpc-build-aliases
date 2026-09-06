@@ -307,6 +307,30 @@ alias clean_rpc='rm -rf "${RPC_BUILD_DIR:?not set}"/*'
 alias clean_cmake_cache='rm -rf "${RPC_BUILD_DIR:?not set}/CMakeCache.txt" "$RPC_BUILD_DIR/CMakeFiles"'
 alias list_targets='cmake --build "${RPC_BUILD_DIR:?not set}" --target help'
 
+# Build any single target by name, e.g. build_rpc_target UDSConnection - works
+# for any name list_targets prints, not just install-<name>. Plain wrapper
+# around --target so you don't have to retype $RPC_BUILD_DIR by hand.
+build_rpc_target() {
+    local name="${1:?usage: build_rpc_target <target-name> (see list_targets)}"
+    cmake --build "${RPC_BUILD_DIR:?not set}" --target "$name"
+}
+
+# Build then install one target by name, e.g. install_rpc_target UDDConnection.
+# Every install_lib/install_exe/install_examples/install_lib_simple call
+# registers a matching install-<name> target that builds <name> then installs
+# only its own COMPONENT - this just spells out that name for you instead of
+# typing --target install-<name> by hand. Safe in both shells: install itself
+# never executes the target, just copies files, so no _rpc_is_cross guard
+# is needed here the way test_rpc/run_rpc_example need one.
+install_rpc_target() {
+    local name="${1:?usage: install_rpc_target <target-name>}"
+    cmake --build "${RPC_BUILD_DIR:?not set}" --target "install-$name"
+}
+
+# Build everything, then install everything project-wide (no COMPONENT
+# filter) - the install-everything target from src/cmake/Install.cmake.
+alias install_rpc='cmake --build "${RPC_BUILD_DIR:?not set}" --target install-everything'
+
 # ccache is host-only infrastructure: the SDK's cross compiler is invoked by
 # absolute path, not through the /usr/lib/ccache symlinks, so these three stay
 # host-global in every shell. Harmless in a cross shell, just not related to it.

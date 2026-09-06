@@ -7370,3 +7370,56 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1788265055:0;gp
 : 1788265112:0;git commit -m "Added lib usb instalation and single cmake configure."\
 
+: 1788265115:0;gp
+: 1788381562:0;tmux
+: 1788381570:0;cd ~/Documents/RPC
+: 1788383643:0;_rpc_configure
+: 1788385875:0;build_rpc_clang_tidy_test
+: 1788460730:0;gst
+: 1788460734:0;ga .
+: 1788460770:0;\
+
+: 1788460775:0;ga .
+: 1788460777:0;gst
+: 1788460807:0;git commit -m "Systemd and pthreead."\
+
+: 1788460810:0;gp
+: 1788465835:0;lh /usr/lib/x86_64-linux-gnu/pkgconfig/
+: 1788465986:0;nvim /usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc
+: 1788470689:0;gst
+: 1788470691:0;ga .
+: 1788470715:0;git commit -m "Udev and valgrind."\
+
+: 1788470721:0;gp
+: 1788471210:0;_rpc_configure
+: 1788509620:0;gst
+: 1788510875:0;ga .
+: 1788510891:0;git commit -m "Zlib"\
+
+: 1788510894:0;gp
+: 1788553959:0;nvim /opt/RPC-build-gcc/cmake_install.cmake
+: 1788621543:0;tmux
+: 1788621547:0;build_rpc_clang_tidy_test
+: 1788621636:0;_rpc_configure
+: 1788707174:0;list_targets
+: 1788713595:0;type build_rpc_gcc_test 
+: 1788713724:0;cmake --build /opt/RPC-build-rpi install-everything -j32
+: 1788713742:0;cmake --build /opt/RPC-build-rpi -t install-everything -j32
+: 1788713761:0;_rpc_configure
+: 1788713764:0;cmake --build /opt/RPC-build-rpi -t install-everything -j32
+: 1788713772:0;list_targets
+: 1788713794:0;cmake --build /opt/RPC-build-rpi -t install-everything -j32
+: 1788713800:0;cmake --build /opt/RPC-build-rpi -t --install-everything -j32
+: 1788713880:0;nvim ~/dotfiles/zsh/aliases
+: 1788713885:0;tmux
+: 1788713930:0;nvim ~/dotfiles/zsh/rpc-build-aliases
+: 1788714097:0;list_targets
+: 1788714318:0;cmake test-UTF8
+: 1788714489:0;list_targets
+: 1788714630:0;cmake --build /opt/RPC-build-gcc --target install-everything -j32
+: 1788721742:0;nvim ~/dotfiles/zsh/rpc-build-aliases
+: 1788724738:0;cd ~/dotfiles
+: 1788724740:0;gst
+: 1788724749:0;git diff
+: 1788724770:0;ga .
+: 1788724813:0;git commit -m "Updated build aliases"
