@@ -92,7 +92,7 @@ build_rpc() {
     # the SDK's toolchain file sets the compilers itself, so don't override it
     _rpc_is_cross || compiler_args=(-D CMAKE_C_COMPILER="$CC" -D CMAKE_CXX_COMPILER="$CXX")
     cmake "${compiler_args[@]}" \
-        -D RPC_WITH_TESTS:BOOL=ON \
+        -D WITH_TESTS:BOOL=ON \
         -D CMAKE_VERBOSE_MAKEFILE=On \
         -D CMAKE_BUILD_TYPE=Release \
         "$@" \
@@ -164,7 +164,7 @@ _rpc_build() {
 
     cmake -D CMAKE_VERBOSE_MAKEFILE=On \
         -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
-        -D RPC_WITH_TESTS:BOOL="$with_tests" \
+        -D WITH_TESTS:BOOL="$with_tests" \
         -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
         -D CMAKE_BUILD_TYPE="$build_type" \
         "$@" \
@@ -212,7 +212,7 @@ _rpc_configure() {
 
     cmake -D CMAKE_VERBOSE_MAKEFILE=On \
         -D RPC_COMPILE_WITH_CLANG:BOOL="$with_clang" \
-        -D RPC_WITH_TESTS:BOOL="$with_tests" \
+        -D WITH_TESTS:BOOL="$with_tests" \
         -D WITH_CLANG_TIDY:BOOL="$with_tidy" \
         -D CMAKE_BUILD_TYPE="$build_type" \
         "$@" \
@@ -330,6 +330,36 @@ install_rpc_target() {
 # Build everything, then install everything project-wide (no COMPONENT
 # filter) - the install-everything target from src/cmake/Install.cmake.
 alias install_rpc='cmake --build "${RPC_BUILD_DIR:?not set}" --target install-everything'
+
+# Package the current build via CPack (src/cmake/Packaging.cmake) - .tar.gz always, plus .deb when
+# dpkg-deb is available (see that file for which). Requires the project already built - cpack
+# itself doesn't build anything, it only packages what install() already knows how to place.
+# `cpack --config <path>` alone writes the package to the *current directory*, not the build dir
+# the config came from - `-B` forces the output back into $RPC_BUILD_DIR regardless of where this
+# is run from, matching every other alias here (verified: without -B, running this from elsewhere
+# drops the package in $PWD instead).
+package_rpc() {
+    cpack -B "${RPC_BUILD_DIR:?not set}" --config "${RPC_BUILD_DIR}/CPackConfig.cmake" "$@"
+}
+
+# One generator only, e.g. the plain tarball without waiting on (or needing) dpkg-deb.
+alias package_rpc_tgz='package_rpc -G TGZ'
+alias package_rpc_deb='package_rpc -G DEB'
+
+# List whatever package_rpc has produced in the current build dir. (N) is zsh's null-glob
+# qualifier, needed twice over: without it, zsh's default NOMATCH option would abort the whole
+# command the moment either pattern has zero matches (e.g. no .deb yet); and with (N) alone but no
+# guard, `ls` falls back to listing the *current directory* when both patterns are empty (`ls`
+# with zero arguments), rather than saying no packages exist yet.
+list_rpc_packages() {
+    local dir="${RPC_BUILD_DIR:?not set}"
+    local -a pkgs=("$dir"/*.tar.gz(N) "$dir"/*.deb(N))
+    if [[ ${#pkgs[@]} -eq 0 ]]; then
+        echo "no packages in $dir yet (run package_rpc first)" >&2
+        return 1
+    fi
+    ls -la "${pkgs[@]}"
+}
 
 # ccache is host-only infrastructure: the SDK's cross compiler is invoked by
 # absolute path, not through the /usr/lib/ccache symlinks, so these three stay

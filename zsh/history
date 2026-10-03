@@ -7423,3 +7423,114 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1788724749:0;git diff
 : 1788724770:0;ga .
 : 1788724813:0;git commit -m "Updated build aliases"
+: 1788724817:0;gp
+: 1788801736:0;cd ~/Documents/RPC
+: 1788801738:0;ls
+: 1789066111:0;sudo dpkg -i code_1.137.0-1788902055_amd64.deb
+: 1789245128:0;update_script.sh
+: 1789246043:0;tmux
+: 1789293645:0;update_script.sh
+: 1789299697:0;gst
+: 1789299701:0;ga .
+: 1789299726:0;git commit -m "Improved install functionality."
+: 1789299751:0;cmake-format -i "src/cmake/InstallPackageConfig.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/InstallPackageConfig.cmake"
+: 1789299804:0;git commit -m "Improved install functionality."
+: 1789299826:0;gp
+: 1789312244:0;gst
+: 1789312256:0;ga .
+: 1789312271:0;git commit -m "Improved Protobuf."
+: 1789312274:0;gp
+: 1789324209:0;gst
+: 1789324219:0;ga .
+: 1789324249:0;git commit -m "Refactored static analysis."
+: 1789324252:0;gp
+: 1789327700:0;gst
+: 1789327704:0;ga .
+: 1789327731:0;git commit -m "general Refactoring."
+: 1789327734:0;gp
+: 1789327751:0;cmake-format -i "src/CMakeLists.txt" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/CMakeLists.txt"\
+
+: 1789327757:0;gp
+: 1789327763:0;git commit -m "general Refactoring."
+: 1789327768:0;gp
+: 1789505987:0;gst
+: 1789505991:0;ga .
+: 1789506020:0;git commit -m "Improved the Tests.cmake."
+: 1789506038:0;cmake-format -i "src/cmake/FindBoost.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindBoost.cmake"
+: 1789506059:0;cmake-format -i "src/cmake/FindClangFormat.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/FindClangFormat.cmake"
+: 1789506066:0;git commit -m "Improved the Tests.cmake."
+: 1789586202:0;tmux
+: 1789755356:0;cd ~/dotfiles/
+: 1789755364:0;git diff
+: 1789842374:0;sudo dpkg -i ~/Downloads/code_1.138.0-1789458761_amd64.deb
+: 1789842513:0;gst
+: 1789858649:0;tmux
+: 1789858667:0;cd ~/Documents/RPC
+: 1789858670:0;gst
+: 1789858680:0;ga .
+: 1789858703:0;git commit -m "Added packaging tto build."
+: 1789858710:0;gp
+: 1789858886:0;cd ~/dotfiles
+: 1789858890:0;ls
+: 1789858893:0;gst
+: 1789859153:0;./install.sh
+: 1789912066:0;tmux
+: 1789912073:0;cd ~/Documents/RPC
+: 1789912177:0;nvim ~/dotfiles/zsh/rpc-build-aliases
+: 1789912220:0;_rpc_configure
+: 1789912677:0;cmake --build /opt/RPC-build-gcc --target perf-Benchmark
+: 1789937808:0;_rpc_configure
+: 1789937888:0;cmake --build /opt/RPC-build-gcc --target perf-Compression
+: 1789940619:0;_rpc_configure
+: 1789940628:0;cmake --build /opt/RPC-build-gcc --target perf-Compression
+: 1790014844:0;tmux
+: 1790023101:0;_rpc_configure
+: 1790023210:0;cmake --build /opt/RPC-build-gcc --target perf-RSAGeneratorBin 
+: 1790023495:0;_rpc_configure
+: 1790023502:0;cmake --build /opt/RPC-build-gcc --target perf-RSAGeneratorBin 
+: 1790024516:0;cmake --build /opt/RPC-build-gcc --target perf-RSAGeneratorPEM
+: 1790025535:0;_rpc_configure
+: 1790025566:0;cmake --build /opt/RPC-build-gcc --target perf-RSAGeneratorBin 
+: 1790026550:0;_rpc_configure
+: 1790026569:0;cmake --build /opt/RPC-build-gcc --target perf-hashGen
+: 1790027100:0;_rpc_configure
+: 1790027104:0;cmake --build /opt/RPC-build-gcc --target perf-hashGen
+: 1790027171:0;_rpc_configure
+: 1790027177:0;cmake --build /opt/RPC-build-gcc --target perf-hashGen
+: 1790109967:0;gst
+: 1790109979:0;ga .
+: 1790110001:0;git commit -m "Added perf analysis to build."
+: 1790110024:0;make-format -i "src/Utils/example/AsyncEncryption/CMakeLists.txt" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/Utils/example/AsyncEncryption/CMakeLists.txt"
+: 1790110034:0;cmake-format -i "src/Utils/example/AsyncEncryption/CMakeLists.txt" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/Utils/example/AsyncEncryption/CMakeLists.txt"
+: 1790110044:0;cmake-format -i "src/cmake/Utils.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/Utils.cmake"
+: 1790110049:0;git commit -m "Added perf analysis to build."
+: 1790110056:0;gp
+: 1790116378:0;_rpc_configure
+: 1790116392:0;list_targets
+: 1790116471:0;list_targets G sanitizer
+: 1790116478:0;list_targets G Sanitizer
+: 1790116490:0;list_targets G *Sanitizer*
+: 1790116508:0;list_targets G Benchmark
+: 1790116535:0;cd /opt/RPC-build
+: 1790116558:0;cd /opt/RPC-build-gcc
+: 1790116563:0;sanitize-Benchmark
+: 1790116586:0;cmake --build /opt/RPC-build-gcc --target sanitize-Benchmark
+: 1790417612:0;tmux
+: 1790624445:0;sudo dpkg -i ~/Downloads/code_1.139.1-1790309529_amd64.deb
+: 1790624499:0;update_script.sh
+: 1790711199:0;tmux
+: 1790974910:0;cd ~/Documents/RPC
+: 1790974913:0;gst
+: 1790974919:0;ga .
+: 1790974941:0;git commit -m "Added sanitizers analysis."
+: 1790974976:0;cmake-format -i "src/cmake/Sanitizers.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/Sanitizers.cmake"
+: 1790974982:0;git commit -m "Added sanitizers analysis."
+: 1790974989:0;gp
+: 1791020032:0;tmux
+: 1791025715:0;cd ~/dotfiles/
+: 1791025719:0;gst
+: 1791025728:0;git diff
+: 1791025795:0;git diff install.sh
+: 1791027221:0;gst
+: 1791027224:0;ga .
+: 1791027246:0;git commit -m "Added perf related tools."

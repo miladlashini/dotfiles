@@ -465,9 +465,9 @@ bbsdkcheck() {
 # plus the two cross-specific flags. Extra args are passed through, e.g.
 #     bbrpccross -D CMAKE_BUILD_TYPE=Debug
 #
-# NOTE: build_rpc sets RPC_WITH_TESTS=ON, which the old hand-written cmake line here did not --
+# NOTE: build_rpc sets WITH_TESTS=ON, which the old hand-written cmake line here did not --
 # so the test binaries (e.g. test-BinaryQueue, the one Phase 5 ran on the Pi) are now built by
-# default instead of being EXCLUDE_FROM_ALL. Pass -D RPC_WITH_TESTS:BOOL=OFF for the old, leaner
+# default instead of being EXCLUDE_FROM_ALL. Pass -D WITH_TESTS:BOOL=OFF for the old, leaner
 # behavior. It must be build_rpc (a function) and not one of the build_rpc_* aliases: alias
 # expansion happens at parse time, and this subshell body is parsed before the source runs.
 bbrpccross() {

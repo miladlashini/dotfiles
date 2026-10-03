@@ -175,6 +175,53 @@ setup_ccache() {
   #     per-shell (CCACHE_PREFIX=distcc make ...) once the farm is present.
 }
 
+# `perf record` needs perf_event_open() access, gated by
+# /proc/sys/kernel/perf_event_paranoid. The kernel's own thresholds (from
+# `perf record`'s own error message when this is too restrictive):
+#   -1: allow (almost) all events for all users
+#   >=0: disallow raw and ftrace function tracepoint access
+#   >=1: disallow CPU event access (this is what blocks plain
+#        `perf record -g` cycle sampling - the thing we actually need)
+#   >=2: disallow kernel profiling (kernel-frame symbolication in the graph)
+# 0 is the smallest value that unblocks CPU event access and kernel-frame
+# symbolication, while still leaving raw tracepoint/ftrace access disallowed
+# - not -1, which would also open that up and isn't needed for ordinary
+# userspace flame graphs.
+configure_perf_permissions() {
+  log "Relaxing perf_event_paranoid for userspace profiling (perf/flame graphs)..."
+  local sysctl_file=/etc/sysctl.d/99-perf-event-paranoid.conf
+  local target_value=0
+  if [[ "$(cat /proc/sys/kernel/perf_event_paranoid 2>/dev/null)" == "$target_value" ]]; then
+    echo "perf_event_paranoid already $target_value"
+    return
+  fi
+  echo "kernel.perf_event_paranoid = $target_value" | sudo tee "$sysctl_file" > /dev/null
+  sudo sysctl --system > /dev/null
+}
+
+# perf's own kernel-frame symbolication needs /proc/kallsyms addresses, gated
+# separately by /proc/sys/kernel/kptr_restrict:
+#   0: kernel addresses exposed to unprivileged users (needed for a non-root
+#      `perf record -g` to resolve kernel-space frames, e.g. syscalls/futex
+#      wait, instead of leaving them as [unknown] in the flame graph)
+#   1: hidden from users without CAP_SYSLOG (the common distro default)
+#   2: always hidden, even from CAP_SYSLOG
+# Security tradeoff: 0 weakens KASLR for every local user on this machine
+# (kernel addresses become a straightforward information leak), traded here
+# for being able to profile kernel-space time (which flame graphs of anything
+# lock/syscall-heavy spend a lot of samples in) without needing root per run.
+configure_kptr_restrict() {
+  log "Relaxing kptr_restrict for kernel-frame symbolication in flame graphs..."
+  local sysctl_file=/etc/sysctl.d/99-kptr-restrict.conf
+  local target_value=0
+  if [[ "$(cat /proc/sys/kernel/kptr_restrict 2>/dev/null)" == "$target_value" ]]; then
+    echo "kptr_restrict already $target_value"
+    return
+  fi
+  echo "kernel.kptr_restrict = $target_value" | sudo tee "$sysctl_file" > /dev/null
+  sudo sysctl --system > /dev/null
+}
+
 # =============================================================================
 # Compilers
 # =============================================================================
@@ -505,6 +552,18 @@ install_rust_and_tree_sitter() {
     echo "ERROR: Tree-sitter CLI failed to install" >&2
     exit 1
   }
+
+  # inferno: Rust reimplementation of Brendan Gregg's stackcollapse-perf.pl +
+  # flamegraph.pl, consuming plain `perf script` text - used by RPC's
+  # add_perf_analysis()/flamegraph.sh (src/cmake/PerfAnalysis.cmake).
+  log "Installing inferno (flame graph renderer)..."
+  if ! command -v inferno-flamegraph >/dev/null 2>&1; then
+    cargo install --locked inferno
+  else
+    # inferno-flamegraph has no --version flag (only -h/--help), unlike
+    # rustc/cargo/tree-sitter above - nothing to print here but the fact.
+    echo "inferno already installed"
+  fi
 }
 
 # =============================================================================
@@ -664,6 +723,8 @@ main() {
   install_base_packages
   configure_git
   setup_ccache
+  configure_perf_permissions
+  configure_kptr_restrict
 
   install_multiple_gcc_versions
   install_clang_versions
