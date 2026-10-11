@@ -87,11 +87,11 @@ bindkey -s '^g' 'clear\n'
 ########################################
 # misc
 ########################################
-#neofetch --ascii_distro manjaro
-#neofetch --ascii_distro ubuntu
-#neofetch --ascii_distro archlinux
-#neofetch --ascii_distro fedora
-shuf -n 1 "$DOTFILES/neofetch_distros.txt" | xargs -I % sh -c 'neofetch --ascii_distro %'
+#fastfetch --logo manjaro
+#fastfetch --logo ubuntu
+#fastfetch --logo archlinux
+#fastfetch --logo fedora
+shuf -n 1 "$DOTFILES/neofetch_distros.txt" | xargs -I % sh -c 'fastfetch --logo %'
 
 #if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
 #   fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n1)

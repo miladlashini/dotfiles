@@ -7534,3 +7534,43 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1791027221:0;gst
 : 1791027224:0;ga .
 : 1791027246:0;git commit -m "Added perf related tools."
+: 1791027250:0;gp
+: 1791031681:0;coverage_rpc_gcc
+: 1791032460:0;sudo dpkg -i ~/Downloads/code_1.140.0-1790759618_amd64.deb
+: 1791046043:0;cd ~/Documents/RPC
+: 1791046062:0;coverage_rpc_clang
+: 1791065636:0;coverage_rpc_gcc
+: 1791065710:0;coverage_rpc_clang
+: 1791104919:0;nvim ~/dotfiles/zsh/rpc-build-aliases
+: 1791407199:0;sudo dpkg -i ~/Downloads/code_1.141.0-1791276758_amd64.deb
+: 1791631467:0;ldd /usr/bin/ls\\
+
+: 1791631473:0;ldd /usr/bin/ls\
+
+: 1791632372:0;ctest --test-dir /opt/RPC-build --show-only=json-v1
+: 1791632402:0;ctest --test-dir /opt/RPC-build-clang --show-only=json-v1
+: 1791705538:0;sudo apt install ubuntu-release-upgrader-core
+: 1791705555:0;sudo do-release-upgrade
+: 1791705567:0;update_script.sh
+: 1791705918:0;sudo do-release-upgrade
+: 1791705977:0;update_script.sh
+: 1791706000:0;sudo apt autoremove
+: 1791706036:0;sudo do-release-upgrade
+: 1791706270:0;sudo apt update
+: 1791706280:0;sudo apt full-upgrade
+: 1791706753:0;apt list --upgradable 
+: 1791706793:0;sudo apt -o APT::Get::Always-Include-Phased-Updates=true full-upgrade
+: 1791706821:0;sudo apt autoremove
+: 1791706886:0;apt list --upgradable 
+: 1791706900:0;sudo do-release-upgrade
+: 1791710201:0;cd ~/dotfiles
+: 1791710209:0;./install.sh
+: 1791710240:0;apt list --upgradable
+: 1791710296:0;./install.sh
+: 1791710317:0;agi neofetch
+: 1791710652:0;./install.sh
+: 1791711735:0;nvim
+: 1791711794:0;git diff
+: 1791711865:0;gst
+: 1791711867:0;ga .
+: 1791711911:0;git commit -m "Updates for ubuntu 26.04"

@@ -254,6 +254,36 @@ alias build_rpc_gcc_test_c='_rpc_build Coverage OFF ON OFF'
 alias build_rpc_gcc_tidy_test_c='_rpc_build Coverage OFF ON ON'
 alias build_rpc_clang_tidy_test_c='_rpc_build Coverage ON ON ON'
 
+# Coverage report: configure+build Coverage with tests on (build_rpc_*_test_c), then run the
+# coverage-report-<compiler> target (ctest + gcov/lcov or llvm-profdata/llvm-cov + genhtml -> one
+# combined HTML report under $RPC_BUILD_DIR/coverage-report-<compiler>/index.html). See
+# docs/build-system/coverage.md in the repo for what the target actually does. Extra args are
+# forwarded to the configure step, same as every build_rpc_* alias, e.g.:
+#     coverage_rpc_gcc -DRPC_WITH_EXAMPLES=OFF
+# Guarded against a cross shell for free: build_rpc_*_test_c already refuses a Coverage build
+# there (see _rpc_build), so this fails at that step with the same clear message.
+coverage_rpc_gcc() {
+    build_rpc_gcc_test_c "$@" || return 1
+    cmake --build "${RPC_BUILD_DIR:?not set}" --target coverage-report-gcc
+}
+coverage_rpc_clang() {
+    build_rpc_clang_test_c "$@" || return 1
+    cmake --build "${RPC_BUILD_DIR:?not set}" --target coverage-report-clang
+}
+
+# Open the report coverage_rpc_gcc/coverage_rpc_clang just produced, whichever of the two exists
+# under the current $RPC_BUILD_DIR (N) is zsh's null-glob qualifier - without it, a missing report
+# would abort the whole command instead of falling through to the "not found" message below.
+open_rpc_coverage() {
+    local dir="${RPC_BUILD_DIR:?not set}"
+    local -a reports=("$dir"/coverage-report-*/index.html(N))
+    if [[ ${#reports[@]} -eq 0 ]]; then
+        echo "no coverage report in $dir yet (run coverage_rpc_gcc or coverage_rpc_clang first)" >&2
+        return 1
+    fi
+    xdg-open "${reports[1]}"
+}
+
 # examples on/off (RPC_WITH_EXAMPLES sticks in the CMake cache, hence an
 # explicit ON and OFF pair instead of relying on the option's default):
 # _examples builds everything including the example programs and their extra

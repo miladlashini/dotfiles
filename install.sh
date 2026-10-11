@@ -122,7 +122,7 @@ install_base_packages() {
   # current release directly, so pulling the apt version first would just
   # mean installing and immediately removing it.)
   sudo apt install -y build-essential git tig zsh tmux curl wget ncdu nload fzf silversearcher-ag \
-    ninja-build gpg net-tools neofetch htop valgrind lcov doxygen ccache distcc \
+    ninja-build gpg net-tools fastfetch htop valgrind lcov doxygen ccache distcc \
     libssl-dev python3 python3-pip python3-venv python3-dev npm \
     software-properties-common pkg-config libtool autoconf automake libgtest-dev libnm-dev openssh-server libboost-all-dev \
     libgoogle-glog-dev libudev-dev libsndfile1-dev libpulse-dev libsystemd-dev libdbus-1-dev \
@@ -360,6 +360,10 @@ build_and_install_cmake() {
 setup_python_venv() {
   log "Setting up Python dev virtualenv at ~/dev/env/venv..."
   mkdir -p ~/dev/env
+  if [ -d ~/dev/env/venv ] && ! ~/dev/env/venv/bin/python -c 'import pip' >/dev/null 2>&1; then
+    echo "Existing virtual environment is broken (system Python changed); recreating it"
+    rm -rf ~/dev/env/venv
+  fi
   if [ ! -d ~/dev/env/venv ]; then
     python3 -m venv ~/dev/env/venv
     echo "Created virtual environment at ~/dev/env/venv"
@@ -474,7 +478,7 @@ install_yocto_dependencies() {
   log "Installing Yocto build dependencies..."
   sudo apt install -y gawk wget git diffstat unzip texinfo gcc build-essential \
     chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
-    iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool \
+    iputils-ping python3-git python3-jinja2 python3-subunit zstd lz4 \
     file locales libacl1 bmap-tools
 }
 
