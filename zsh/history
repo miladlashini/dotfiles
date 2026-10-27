@@ -7574,3 +7574,830 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1791711865:0;gst
 : 1791711867:0;ga .
 : 1791711911:0;git commit -m "Updates for ubuntu 26.04"
+: 1787132869:0;tig
+: 1787132891:0;gp
+: 1787147402:0;dpkg -i code_1.133.0-1786487972_amd64.deb
+: 1787147409:0;sudo dpkg -i code_1.133.0-1786487972_amd64.deb
+: 1787148688:0;..
+: 1787148691:0;...
+: 1787148893:0;C3Build man-blDrv
+: 1787149102:0;SLAYOnPAM man-blDrv
+: 1787149108:0;home_config
+: 1787149111:0;SLAYOnPAM man-blDrv
+: 1787149150:0;UPLOADToPAM man-blDrv s
+: 1787149283:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1787150785:0;ATTACHPAMLOG | tee /home/milad/Documents/log-6.txt
+: 1787151883:0;C3Build man-blDrv
+: 1787152034:0;SLAYOnPAM man-blDrv
+: 1787152067:0;UPLOADToPAM man-blDrv s
+: 1787152281:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1787152452:0;ATTACHPAMLOG | tee /home/milad/Documents/log-6.txt
+: 1787152734:0;C3Build man-blDrv
+: 1787152856:0;C3Build 
+: 1787229204:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1787229210:0;home_config
+: 1787229212:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1787229516:0;ATTACHPAMLOG | tee /home/milad/Documents/log-6.txt
+: 1787230058:0;C3Build 
+: 1787231902:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1787232207:0;ATTACHPAMLOG | tee /home/milad/Documents/log-6.txt
+: 1787297045:0;gst
+: 1787297067:0;nvim .gitignore
+: 1787297103:0;gst
+: 1787297109:0;nvim .gitignore
+: 1787297133:0;gst
+: 1787297147:0;nvim .gitignore
+: 1787297188:0;lh out
+: 1787297233:0;gst
+: 1787297821:0;ga .
+: 1787297866:0;git commit -m "TRI-21538 : fixed deletion of entry from bluetooth stored devices."\
+
+: 1787297875:0;git push
+: 1787298564:0;tar xf Releases.tar.gz
+: 1787298567:0;ls
+: 1787298862:0;C3Build 
+: 1787299513:0;gst
+: 1787303839:0;ga .
+: 1787303859:0;git commit -m "TRI-21538 : new firmware for BT121."\
+
+: 1787303869:0;gp
+: 1788770616:0;cd ~/Downloads
+: 1788770631:0;dpkg -i code_1.136.1-1788413865_amd64.deb
+: 1788770637:0;sudo dpkg -i code_1.136.1-1788413865_amd64.deb
+: 1788850790:0;tmux
+: 1788853005:0;cd ~/host
+: 1788853009:0;tig
+: 1788857622:0;git fetch origin --prune
+: 1788857743:0;tig --all
+: 1788872284:0;C3Build 
+: 1788879702:0;online
+: 1788946585:0;tig
+: 1788950166:0;nvim
+: 1789368772:0;tig
+: 1789368832:0;tmux
+: 1789368884:0;gp
+: 1789369469:0;..
+: 1789369478:0;C3Build 
+: 1789369487:0;..
+: 1789369489:0;C3Build 
+: 1789374924:0;GIT_PAGER=cat git --no-pager diff --name-status b1c3d43b70^1 b1c3d43b70
+: 1789374937:0;GIT_PAGER=cat git --no-pager diff --unified=30 b1c3d43b70^1 b1c3d43b70 > /tmp/b1c3d43b70-review.diff && wc -l /tmp/b1c3d43b70-review.diff
+: 1789375004:0;GIT_PAGER=cat git --no-pager show --format=fuller --stat 88d99b274e 9fd5a0e5ef; GIT_PAGER=cat git --no-pager diff --unified=20 88d99b274e^ 88d99b274e -- CORPULS/common/lib-bte; GIT_PAGER=cat git --no-pager diff --unified=30 9fd5a0e5ef^ 9fd5a0e5ef -- CORPULS/common/lib-bte/bte_bt121.c > /tmp/9fd5a0e5ef-review.diff; wc -l /tmp/9fd5a0e5ef-review.diff
+: 1789375016:0;GIT_PAGER=cat git --no-pager log --reverse --format='%H%x09%s' b1c3d43b70..HEAD -- CORPULS/common/lib-bte/bte_bt121.c CORPULS/common/lib-bte/bte_bt121.h CORPULS/common/lib-bte/bte_hal.c CORPULS/common/lib-bte/bte_hal.h CORPULS/common/man-blDrv/BlUsrReqHndlr.c CORPULS/common/include/c3_bt_timing_trace.h > /tmp/b1-later.log; wc -l /tmp/b1-later.log
+: 1789375031:0;GIT_PAGER=cat git --no-pager diff --unified=30 06780a080d^ 06780a080d -- CORPULS/common/lib-bte/bte_bt121.c; git show b1c3d43b70:CORPULS/common/lib-bte/bte_bt121.c | nl -ba | sed -n '450,550p;1580,1740p;1950,2080p;3300,3445p' > /tmp/b1-bt121-numbered.txt; git show b1c3d43b70:CORPULS/common/lib-bte/bte_hal.c | nl -ba | sed -n '3600,3780p' > /tmp/b1-hal-numbered.txt; git show b1c3d43b70:CORPULS/common/man-blDrv/BlUsrReqHndlr.c | nl -ba | sed -n '370,470p' > /tmp/b1-usr-numbered.txt
+: 1789375082:0;GIT_PAGER=cat git --no-pager log --oneline --reverse -S'BT121_EVENT_RFCOMM_OPENED' b1c3d43b70^..HEAD -- CORPULS/common/lib-bte/bte_bt121.c; GIT_PAGER=cat git --no-pager log --oneline --reverse -S's_PendingOpenMac' b1c3d43b70^..HEAD -- CORPULS/common/lib-bte/bte_bt121.c; GIT_PAGER=cat git --no-pager log --oneline --reverse -S'sPendingConnectionHandle = CONNECTION_HANDLE_NOT_VALID' b1c3d43b70^..HEAD -- CORPULS/common/lib-bte/bte_bt121.c
+: 1789375098:0;git show b1c3d43b70:CORPULS/common/lib-bte/bte_bt121.c | nl -ba | sed -n '3430,3545p'; git show b1c3d43b70:CORPULS/common/man-blDrv/BlUsrReqHndlr.c | nl -ba | sed -n '940,1025p'; git show b1c3d43b70^:CORPULS/common/lib-bte/bte_hal.c | nl -ba | sed -n '3700,3795p'
+: 1789375130:0;GIT_PAGER=cat git --no-pager log --oneline --reverse -S'#define C3_BT_EVENT_TRACE_ENABLE 0' b1c3d43b70..HEAD -- CORPULS/common/include/c3_bt_timing_trace.h; GIT_PAGER=cat git --no-pager log --oneline --reverse -p b1c3d43b70..HEAD -- CORPULS/common/include/c3_bt_timing_trace.h
+: 1789375140:0;GIT_PAGER=cat git --no-pager blame -L 3483,3588 -- CORPULS/common/lib-bte/bte_bt121.c; GIT_PAGER=cat git --no-pager blame -L 2028,2060 -- CORPULS/common/lib-bte/bte_bt121.c
+: 1789375189:0;git show -s --format='target %H%nparent %P%nsubject %s' b1c3d43b70; git log --reverse --format='%H %s' b1c3d43b70^..HEAD; git diff --check b1c3d43b70^ b1c3d43b70; git status --short
+: 1789375936:0;tig
+: 1789375976:0;gp
+: 1789389354:0;gst
+: 1789389559:0;tig
+: 1789389853:0;gst
+: 1789389858:0;tig
+: 1789393697:0;C3Build 
+: 1789396958:0;gp
+: 1789397107:0;cd ~/Downloads/
+: 1789397123:0;sudo dpkg -i code_1.137.0-1788902055_amd64.deb
+: 1789454085:0;cd ~/host
+: 1789455293:0;btop
+: 1789456796:0;git --no-pager show --format=fuller --stat --name-status f2f580c5c5
+: 1789456881:0;git --no-pager diff --find-renames f2f580c5c5^1 f2f580c5c5 -- CORPULS/common/include/c3_bt_timing_trace.h CORPULS/common/lib-bte/bte_bt121.c
+: 1789456910:0;git status --short; git --no-pager show -s --format='commit=%H%nparent=%P%nsubject=%s' f2f580c5c5; git --no-pager log --oneline --reverse f2f580c5c5..3250f6d88dcbcd466daf85ecfa12114f234f70ff
+: 1789457058:0;git --no-pager diff f2f580c5c5 3250f6d88dcbcd466daf85ecfa12114f234f70ff -- CORPULS/common/include/c3_bt_timing_trace.h; git --no-pager log --oneline --follow -- CORPULS/common/include/c3_bt_timing_trace.h; git --no-pager show f2f580c5c5:CORPULS/common/lib-bte/bte_bt121.c | sed -n '1710,1965p'
+: 1789457071:0;git --no-pager show f2f580c5c5:CORPULS/common/lib-bte/bte_bt121.c | sed -n '1700,1960p'
+: 1789457133:0;git --no-pager grep -n C3_BT_EVENT_LOG f2f580c5c5 -- CORPULS/common/lib-bte/bte_bt121.c; git --no-pager diff --check f2f580c5c5^1 f2f580c5c5; git --no-pager diff --quiet f2f580c5c5 3250f6d88dcbcd466daf85ecfa12114f234f70ff -- CORPULS/common/include/c3_bt_timing_trace.h; echo header_tip_diff_exit=$?
+: 1789457214:0;git --no-pager show --format='%H %s' --stat --patch 9fd5a0e5efc365ccc820de364e23364818181eb8 -- CORPULS/common/lib-bte/bte_bt121.c; git --no-pager show f2f580c5c5:CORPULS/common/include/c3_bt_timing_trace.h | nl -ba
+: 1789458447:0;tig
+: 1789458834:0;gst
+: 1789458841:0;ga .
+: 1789458852:0;git commit --amend --no-edit
+: 1789458866:0;tig
+: 1789459432:0;gp
+: 1789459704:0;btop
+: 1789459737:0;tmux
+: 1789459770:0;cd ~/dotfiles/zsh/
+: 1789459772:0;ls
+: 1789459780:0;gl
+: 1789459809:0;gst
+: 1789459821:0;ls
+: 1789459836:0;nvim aliases2
+: 1789461833:0;git stash list
+: 1789461898:0;C3Lint lib-bte
+: 1789461919:0;cd ~/host
+: 1789461922:0;C3Lint lib-bte
+: 1789461965:0;C3LintCheck lib-bte
+: 1789462278:0;C3Lint
+: 1789463120:0;ls
+: 1789463650:0;gst
+: 1789465161:0;ls CORPULS/common/man-blDrv/lint/
+: 1789465191:0;cat CORPULS/common/man-blDrv/lint/man-blDrv-lint.txt
+: 1789466300:0;gst
+: 1789473049:0;ga .
+: 1789473124:0;tig
+: 1789473181:0;git commit -m "TRI-23718 : added missing documentation to bt121 file."
+: 1789473185:0;tig
+: 1789473194:0;gp
+: 1789477169:0;btop
+: 1789546321:0;update_script.sh
+: 1789547387:0;gp
+: 1789547891:0;tmux
+: 1789554090:0;tig
+: 1789557512:0;C3Build 
+: 1789560999:0;tig
+: 1789565862:0;btop
+: 1789566452:0;tig
+: 1789568706:0;gp
+: 1789568720:0;...
+: 1789568722:0;..
+: 1789568727:0;C3Build 
+: 1789628105:0;tmux
+: 1789651040:0;nvim ~/dotfiles/zsh/aliases2
+: 1789658923:0;tig
+: 1789715933:0;nvim man-blDrv-lint.txt
+: 1789716468:0;tmux
+: 1789716473:0;nvim man-blDrv-lint.txt
+: 1789716496:0;nvim ~/dotfiles/zsh/aliases2
+: 1789721068:0;C3LintCheck
+: 1789723411:0;plantuml -tpdf log3-bt121-failure-analysis.puml
+: 1789723433:0;agi install plantuml
+: 1789723808:0;cd  ~/dotfiles
+: 1789723811:0;ls
+: 1789723815:0;gst
+: 1789723821:0;git stash list
+: 1789723840:0;git stash show
+: 1789723855:0;git stash drop
+: 1789723946:0;./install.sh
+: 1789726495:0;cd ~/host
+: 1789726500:0;C3LintCheck
+: 1789726533:0;gst
+: 1789726555:0;C3LintCheck
+: 1789733324:0;gst
+: 1789733333:0;tig
+: 1789733401:0;gp
+: 1789733408:0;tig
+: 1789974102:0;C3Build 
+: 1789975222:0;cd /home/milad/host/docs/bluetooth-sequences/bl-user-handler-partial-init-leak-analysis.puml
+: 1789975228:0;cd /home/milad/host/docs/bluetooth-sequences/
+: 1789975254:0;plantuml -tpdf *.puml
+: 1789978263:0;tmux
+: 1789989030:0;..
+: 1789989039:0;gl
+: 1789989052:0;tig
+: 1789989634:0;gst
+: 1789989637:0;ga .
+: 1789989677:0;git commit -m "TRI-23718 : reverted the temprature calculation."
+: 1789989681:0;gp
+: 1789991771:0;nvim ~/dotfiles/zsh/aliases2
+: 1789993048:0;tig
+: 1790059121:0;nvim ~/dotfiles/zsh/aliases2
+: 1790059168:0;cd ~/host
+: 1790059194:0;C3LintCheck
+: 1790059728:0;gst
+: 1790059741:0;git diff
+: 1790059907:0;ga .
+: 1790059937:0;git commit -m "TRI-23718 : second batch of lint fix."
+: 1790059945:0;gp
+: 1790062719:0;C3Build 
+: 1790069899:0;type C3Lint 
+: 1790069909:0;nvim ~/dotfiles/zsh/aliases2
+: 1790069997:0;make lint
+: 1790070168:0;make lint man-blDrv
+: 1790070469:0;gst
+: 1790070472:0;ga .
+: 1790070519:0;git commit -m "TRI-23718 : increased the amount of reception buffer for SC16C754."
+: 1790070521:0;gp
+: 1790076769:0;tig
+: 1790076852:0;gco TRI-21538
+: 1790076952:0;git merge TRI-23718-sync-therapy
+: 1790077107:0;gp
+: 1790077126:0;tig
+: 1790081087:0;C3Lint lib-bte
+: 1790081117:0;C3LintCheck
+: 1790253066:0;tig
+: 1790257233:0;gst
+: 1790257237:0;ga .
+: 1790257279:0;git commit -m "TRI-23718 : introduced the dispatch thread separation."
+: 1790257284:0;gp
+: 1790258244:0;gst
+: 1790258247:0;ga .
+: 1790258261:0;git commit --amend --no-edit
+: 1790258269:0;gp --force-with-lease
+: 1790317078:0;sudo dpkg -i code_1.139.0-1790100840_amd64.deb
+: 1790328650:0;gst
+: 1790328659:0;ga .
+: 1790328717:0;git commit -m "TRI-23718 : periodic Servicing starts only when cprint succeeds."
+: 1790328732:0;gp
+: 1790578536:0;tig
+: 1790581194:0;grbi --interactive
+: 1790581238:0;git rebase --interactve 
+: 1790581345:0;git rebase --interactve TRI-21538
+: 1790581361:0;git rebase --interactive TRI-21538
+: 1790581378:0;git rebase --interactive 
+: 1790581397:0;tig
+: 1790581717:0;git rebase --interactive
+: 1790581723:0;tig
+: 1790581746:0;git rebase --interactive REL-4.5.0_b2
+: 1790582059:0;tig
+: 1790582235:0;gp --force-with-lease
+: 1790582250:0;C3Build 
+: 1790583752:0;git fetch origin --prune
+: 1790584199:0;git rebase --interactive origin/develop
+: 1790584214:0;gp --force-with-lease
+: 1790584218:0;tig
+: 1790586551:0;C3Lint lib-bte
+: 1790586567:0;ls
+: 1790586590:0;cd lint/2026-09-28
+: 1790586593:0;ls
+: 1790586601:0;nvim lib-bte-lint.txt
+: 1790587677:0;tmux
+: 1790587695:0;cd ~/Downloads
+: 1790587792:0;sudo dpkg -i code_1.139.1-1790309529_amd64.deb
+: 1790587910:0;pwd
+: 1790588419:0;cd ~/host
+: 1790588424:0;C3Lint lib-bte
+: 1790588445:0;cd lint/2026-09-28
+: 1790588447:0;ls
+: 1790588459:0;nvim lib-bte-lint.txt
+: 1790589830:0;C3Lint lib-bte
+: 1790594579:0;nvim lib-bte-lint.txt
+: 1790594821:0;ls
+: 1790594830:0;rm -rf lib-bte-lint.txt
+: 1790594844:0;lh
+: 1790594853:0;C3Lint lib-bte
+: 1790594859:0;lh
+: 1790594866:0;nvim lib-bte-lint.txt
+: 1790595389:0;C3Lint lib-bte
+: 1790595395:0;lh
+: 1790595399:0;nvim lib-bte-lint.txt
+: 1790601901:0;C3Lint lib-bte
+: 1790604701:0;gst
+: 1790604708:0;ga .
+: 1790604752:0;git commit -m "TRI-23718 : Fixed some of the lint finding and data race condition."
+: 1790604788:0;git fetch origin --prune
+: 1790604796:0;gst
+: 1790604803:0;ga .
+: 1790604851:0;git config advice.addIgnoredFile false
+: 1790604853:0;ga .
+: 1790604878:0;..
+: 1790604882:0;gst
+: 1790604885:0;ga .
+: 1790604905:0;git commit -m "TRI-23718 : Fixed some of the lint finding and a data race condition."
+: 1790604912:0;git rebase --interactive origin/develop
+: 1790604946:0;gp --force-with-lease
+: 1790665370:0;C3Build 
+: 1790665599:0;C3Build G -C 10 "Error"
+: 1790665967:0;C3Build 
+: 1790667179:0;...
+: 1790667181:0;..
+: 1790667187:0;git fetch origin --prune
+: 1790667202:0;tig
+: 1790669497:0;tmux
+: 1790669533:0;ATTACHPAMLOG | tee /home/milad/Documents/log-10.txt
+: 1790669540:0;office_config
+: 1790669542:0;ATTACHPAMLOG | tee /home/milad/Documents/log-10.txt
+: 1790669614:0;TPAM
+: 1790669648:0;TDEM
+: 1790669720:0;TDIM
+: 1790669812:0;nvim
+: 1790670397:0;TPAM
+: 1790670406:0;office_config
+: 1790670411:0;TPAM
+: 1790670511:0;ls
+: 1790670540:0;..
+: 1790670541:0;ls
+: 1790670547:0;cd host
+: 1790670633:0;git apply 0001-commit-lan-patch\ 2.patch
+: 1790671291:0;C3Build 
+: 1790673174:0;TDEM
+: 1790673203:0;ping 10.68.145.61
+: 1790673372:0;ping 10.68.145.63
+: 1790673507:0;ping 10.68.145.61
+: 1790674190:0;office_config
+: 1790674193:0;ping 10.68.145.61
+: 1790674197:0;ping 10.68.145.63
+: 1790674827:0;gst
+: 1790675117:0;C3Build 
+: 1790675467:0;gst
+: 1790676501:0;TPAM
+: 1790676528:0;ping 10.68.145.63
+: 1790676544:0;ping 10.68.145.61
+: 1790677393:0;ping 10.68.145.63
+: 1790677645:0;office_config
+: 1790677646:0;ping 10.68.145.63
+: 1790677664:0;ping 10.68.145.61
+: 1790678156:0;online
+: 1790678159:0;ping 10.68.145.61
+: 1790678166:0;ping 10.68.145.63
+: 1790678178:0;TPAM
+: 1790678194:0;office_config
+: 1790678196:0;TPAM
+: 1790682234:0;home_config
+: 1790682243:0;TPAM
+: 1790682304:0;TDIM
+: 1790682334:0;TDEM
+: 1790685336:0;type TDIM 
+: 1790685349:0;echo ${DIM_IP}
+: 1790688630:0;C3Lint lib-bte
+: 1790688655:0;C3Lint man-blDrv
+: 1790689109:0;C3Build 
+: 1790689260:0;UPLOADImage
+: 1790692243:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1790692250:0;home_config
+: 1790692252:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1790694156:0;C3Build 
+: 1790694273:0;C3Build G -C 10 "Error"
+: 1790694776:0;C3Build 
+: 1790750369:0;tmux
+: 1790750821:0;C3Build 
+: 1790751129:0;tmux
+: 1790751140:0;C3Build 
+: 1790751290:0;UPLOADImage
+: 1790751298:0;home_config
+: 1790751301:0;UPLOADImage
+: 1790755289:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1790757101:0;C3Build 
+: 1790757402:0;UPLOADImage
+: 1790762453:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1790763266:0;C3Build 
+: 1790763930:0;UPLOADImage
+: 1790770736:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1790771243:0;ATTACHPAMLOG | tee /home/milad/Documents/log-2.txt
+: 1790771580:0;C3Build 
+: 1790774005:0;tig
+: 1790779873:0;ATTACHPAMLOG | tee /home/milad/Documents/log-3.txt
+: 1790780880:0;C3Build 
+: 1790782830:0;ATTACHPAMLOG | tee /home/milad/Documents/log-4.txt
+: 1791183204:0;...
+: 1791183206:0;..
+: 1791183211:0;C3Build 
+: 1791186119:0;home_config
+: 1791186134:0;ATTACHPAMLOG | tee /home/milad/Documents/log-5.txt
+: 1791187224:0;C3Build 
+: 1791188784:0;ATTACHPAMLOG | tee /home/milad/Documents/log-6.txt
+: 1791189820:0;C3Build man-blDrv
+: 1791189948:0;TPAM
+: 1791190011:0;UPLOADToPAM man-blDrv s
+: 1791190569:0;ATTACHPAMLOG | tee /home/milad/Documents/log-7.txt
+: 1791191425:0;C3Build man-blDrv
+: 1791191570:0;nvim zsh/aliases2
+: 1791191589:0;nvim ~/dotfiles/zsh/aliases2
+: 1791191640:0;SLAYOnPAM man-blDrv
+: 1791191692:0;UPLOADToPAM man-blDrv s
+: 1791192459:0;ATTACHPAMLOG | tee /home/milad/Documents/log-8.txt
+: 1791193199:0;C3Build man-blDrv
+: 1791201084:0;ATTACHPAMLOG | tee /home/milad/Documents/log-9.txt
+: 1791201805:0;C3Build man-blDrv
+: 1791201886:0;SLAYOnPAM man-blDrv
+: 1791201991:0;nvim ~/dotfiles/zsh/aliases2\\
+\\
+
+: 1791202092:0;UPLOADToPAM man-blDrv s
+: 1791202180:0;C3Build 
+: 1791202625:0;ATTACHPAMLOG | tee /home/milad/Documents/log-10.txt
+: 1791203305:0;C3Build man-blDrv
+: 1791203422:0;SLAYOnPAM man-blDrv
+: 1791203451:0;UPLOADToPAM man-blDrv s
+: 1791204099:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Not-Autheroized.txt
+: 1791204206:0;nvim log-Not-Autheroized.txt
+: 1791206392:0;ATTACHPAMLOG | tee /home/milad/Documents/log-10.txt
+: 1791208334:0;TPAM
+: 1791268641:0;cd ~/Downloads
+: 1791268656:0;sudo dpkg -i code_1.140.0-1790759618_amd64.deb
+: 1791269593:0;cd ~/host
+: 1791269595:0;ls
+: 1791269600:0;..
+: 1791269601:0;ls
+: 1791269608:0;cd host-toolchain
+: 1791269640:0;cd qnx6.3/target/qnx6/armle/usr/bin
+: 1791269642:0;ls
+: 1791269706:0;nvim ~/dotfiles/zsh/aliases2
+: 1791270256:0;office_config
+: 1791270315:0;home_config
+: 1791270772:0;TPAM
+: 1791276386:0;tmux
+: 1791276397:0;cd ~/host
+: 1791276418:0;home_config
+: 1791276428:0;TPAM
+: 1791276958:0;source ~/.zshrc
+: 1791276979:0;home_config
+: 1791276988:0;HOGSOnPAM
+: 1791277120:0;source ~/.zshrc
+: 1791277171:0;tmux
+: 1791277333:0;HOGSOnPAM | tee /home/milad/Documents/CPU Usage Measurement/hogs-pam-idle.txt
+: 1791277339:0;home_config
+: 1791277342:0;HOGSOnPAM | tee /home/milad/Documents/CPU Usage Measurement/hogs-pam-idle.txt
+: 1791277539:0;HOGSOnPAM 10 | tee /home/milad/Documents/CPU Usage Measurement/hogs-pam-idle.txt
+: 1791277544:0;home_config
+: 1791277548:0;HOGSOnPAM 10 | tee /home/milad/Documents/CPU Usage Measurement/hogs-pam-idle.txt
+: 1791277657:0;HOGSOnPAM 10 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-idle.txt
+: 1791277733:0;PIDINOnPAM | tee /home/milad/Documents/CPU-Usage-Measurement/pidin-pam-idle.txt
+: 1791277831:0;PIDINOnPAM | tee /home/milad/Documents/CPU-Usage-Measurement/pidin-pam-ecg-connected.txt
+: 1791277894:0;HOGSOnPAM 15 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-connected.txt
+: 1791278061:0;PIDINOnPAM | tee /home/milad/Documents/CPU-Usage-Measurement/pidin-pam-ecg-cpr-connected.txt
+: 1791278131:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected.txt
+: 1791278250:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected-shock-delievery.txt
+: 1791278489:0;HOGSOnPAM 10 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-idle.txt
+: 1791278540:0;PIDINOnPAM | tee /home/milad/Documents/CPU-Usage-Measurement/pidin-pam-ecg-cpr-connected.txt
+: 1791278792:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected.txt
+: 1791278868:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected-shock-delievery.txt
+: 1791279027:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected.txt
+: 1791279097:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected-shock-delievery.txt
+: 1791279235:0;ATTACHPAMLOG | tee /home/milad/Documents/log-11.txt
+: 1791279749:0;HOGSOnPAM 15 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-connected.txt
+: 1791279875:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected.txt
+: 1791279959:0;PIDINOnPAM | tee /home/milad/Documents/CPU-Usage-Measurement/pidin-2.txt
+: 1791280069:0;HOGSOnPAM 30 | tee /home/milad/Documents/CPU-Usage-Measurement/hogs-pam-ecg-cpr-connected-shock-delievery.txt
+: 1791280555:0;tar cf CPU-Usage-Measurement/* CPUMeasurment.tar.gz
+: 1791280573:0;tar cfz CPU-Usage-Measurement/* CPUMeasurment.tar.gz
+: 1791280657:0;tar cvf Cpu-Usage-Measurement.tar.gz CPU-Usage-Measurement/* 
+: 1791280661:0;gst
+: 1791280663:0;ls
+: 1791281327:0;gst
+: 1791282849:0;ga .
+: 1791282880:0;git commit -m "TRI-23718 : Introduced hard reset for bt12x."
+: 1791282895:0;gst
+: 1791282901:0;tig
+: 1791283297:0;gst
+: 1791283299:0;tig
+: 1791283350:0;git diff
+: 1791283759:0;gst
+: 1791283764:0;tig
+: 1791284011:0;git fetch origin --prune
+: 1791284022:0;git rebase --interactive origin/develop
+: 1791284037:0;git stash
+: 1791284041:0;git rebase --interactive origin/develop
+: 1791284081:0;gst
+: 1791284091:0;git rebase --interactive origin/develop
+: 1791284228:0;gst
+: 1791284242:0;git rebase --interactive origin/develop
+: 1791284374:0;tig
+: 1791284392:0;git rebase --interactive origin/develop
+: 1791284404:0;gp --force-with-lease
+: 1791288830:0;C3LintCheck lib-bte
+: 1791357152:0;tig
+: 1791365900:0;plantuml -tpdf pam-cpu-shock-load-analysis.puml
+: 1791374583:0;gst
+: 1791374585:0;ga .
+: 1791374605:0;git commit -m "TRI-23718 : fixed the lint findings."
+: 1791374607:0;gp
+: 1791377152:0;tig
+: 1791381040:0;gst
+: 1791381049:0;git diff
+: 1791381112:0;ga .
+: 1791381135:0;git commit -m "TRI-23718 : review points."
+: 1791381140:0;gp
+: 1791446846:0;tmux
+: 1791450315:0;C3Build 
+: 1791451087:0;C3LintCheck lib-bte
+: 1791451122:0;C3LintCheck man-blDrv
+: 1791451518:0;C3LintCheck lib-bte
+: 1791464688:0;gst
+: 1791464697:0;ga .
+: 1791464709:0;git commit -m "TRI-23718 : review points 2."
+: 1791464717:0;gp
+: 1791527040:0;C3Build 
+: 1791530938:0;ips
+: 1791537131:0;C3Build 
+: 1791539102:0;tmux
+: 1791539109:0;home_config
+: 1791539113:0;TPAM
+: 1791539136:0;home_config
+: 1791539155:0;TPAM
+: 1791539178:0;echo ${DIM_IP}
+: 1791539336:0;home_config
+: 1791539337:0;echo ${DIM_IP}
+: 1791539342:0;TPAM
+: 1791539356:0;TDIM
+: 1791539695:0;gst
+: 1791541370:0;C3Build 
+: 1791541875:0;tig
+: 1791541891:0;gst
+: 1791541895:0;ga .
+: 1791541902:0;git commit -m "TRI-23718 : review points 3."
+: 1791541907:0;gp
+: 1791787487:0;C3Build 
+: 1791796960:0;gst
+: 1791796964:0;ga .
+: 1791796974:0;git commit -m "TRI-23718 : review points 4."
+: 1791796978:0;gp
+: 1791797589:0;C3Build 
+: 1791811962:0;gst
+: 1791815031:0;ga .
+: 1791815037:0;git commit -m "TRI-23718 : review points 5."
+: 1791815039:0;gp
+: 1791815752:0;sudo dpkg -i ~/Downloads/code_1.141.0-1791276758_amd64.deb
+: 1791875702:0;C3Build 
+: 1791890052:0;gst
+: 1791893282:0;C3Build 
+: 1791903563:0;gst
+: 1791903572:0;C3Build 
+: 1791903760:0;gst
+: 1791903764:0;ga .
+: 1791903787:0;git commit -m "TRI-23718 : changed logging policy."
+: 1791903792:0;gp
+: 1791963116:0;C3LintCheck man-blDrv
+: 1791963233:0;C3LintCheck lib-bte
+: 1791963309:0;gst
+: 1791963312:0;ga .
+: 1791963336:0;git commit -m "TRI-23718 : fixed linter findings."
+: 1791963339:0;gp
+: 1791965770:0;C3Build 
+: 1791976269:0;gst
+: 1791976281:0;ga .
+: 1791976485:0;git commit -m "TRI-23718 : reverted the bonded Address functionality."
+: 1791976498:0;gp
+: 1791976975:0;C3LintCheck lib-bte
+: 1791976992:0;C3LintCheck man-blDrv
+: 1791982697:0;C3Build 
+: 1792057002:0;ga .
+: 1792057044:0;git commit -m "TRI-23718 : added size check and improved formating."
+: 1792057050:0;gp
+: 1792057604:0;C3Build 
+: 1792067506:0;gst
+: 1792067509:0;ga .
+: 1792067533:0;git commit -m "TRI-23718 : removed UN devices from BT scan list."
+: 1792067541:0;gp
+: 1792067859:0;C3LintCheck man-blDrv
+: 1792131856:0;cd ~/Downloads
+: 1792131869:0;sudo dpkg -i ~/Downloads/code_1.142.0-1792035033_amd64.deb
+: 1792133332:0;home_config
+: 1792133338:0;TPAM
+: 1792133460:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1792135338:0;cd ~/host
+: 1792135347:0;C3LintCheck man-blDrv
+: 1792135970:0;C3LintCheck lib-bte
+: 1792141632:0;git fetch origin --prune
+: 1792141663:0;grbi origin/develop
+: 1792141678:0;gp
+: 1792141685:0;gp --force-with-lease
+: 1792141822:0;tig
+: 1792146634:0;gco develop
+: 1792147097:0;gst
+: 1792148394:0;git rebase --interactive origin/develop
+: 1792148424:0;tig
+: 1792148443:0;gco develop
+: 1792148561:0;gst
+: 1792148568:0;gco develop
+: 1792148685:0;gst
+: 1792148782:0;git pull --rebase
+: 1792149013:0;tig
+: 1792392309:0;gst
+: 1792417801:0;C3Build 
+: 1792417974:0;gl --rebase
+: 1792417994:0;git stash
+: 1792417997:0;gl --rebase
+: 1792418004:0;git stash pop
+: 1792418015:0;tig
+: 1792419129:0;C3Build 
+: 1792421606:0;gst
+: 1792421656:0;ga CORPULS/common/lib-bte/*
+: 1792421804:0;git checkout -b TRI-23391
+: 1792421857:0;git commit -m "TRI-23391 : Fixed small problems in lmx sdp."
+: 1792421881:0;git push -u origin TRI-23391
+: 1792478774:0;gst
+: 1792478780:0;ga CORPULS/common/lib-bte/*
+: 1792478792:0;git commit --amend --no-edit
+: 1792478802:0;gp --force-with-lease
+: 1792478921:0;C3Build 
+: 1792481499:0;tig
+: 1792481670:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1792481677:0;home_config
+: 1792481681:0;ATTACHPAMLOG | tee /home/milad/Documents/log-1.txt
+: 1792498340:0;git init
+: 1792498355:0;gst
+: 1792498724:0;git remote set-url origin --push --add git@gitlab.corpuls.com:milad.lashini/sanitizers-demo.git
+: 1792498852:0;git remote add "origin" git@gitlab.corpuls.com:milad.lashini/sanitizers-demo.git
+: 1792498856:0;gst
+: 1792498860:0;ga .
+: 1792498865:0;gst
+: 1792498889:0;git commit -m "Initial push."
+: 1792498904:0;ls
+: 1792498943:0;mkdir /opt/sanitizers-demo/
+: 1792498961:0;sudo mkdir /opt/sanitizers-demo/
+: 1792498997:0;mmo /opt/sanitizers-demo/
+: 1792499030:0;cmake --build /opt/sanitizers-demo --target make all
+: 1792499301:0;cd  /opt/sanitizers-demo/ && cmake ~/Documents/sanitizers-demo  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=g++-14 _DCMAKE_C_COMPILER=gcc-14
+: 1792499315:0;cmake --build /opt/sanitizers-demo --target make all
+: 1792499321:0;cmake --build /opt/sanitizers-demo --target make
+: 1792499335:0;type list_targets
+: 1792499360:0;cmake --build . --target help\
+
+: 1792499380:0;cmake --build /opt/sanitizers-demo --target all
+: 1792499765:0;cd ~/Documents/sanitizers-demo
+: 1792499770:0;gp
+: 1792499801:0;git push --set-upstream origin master
+: 1792499805:0;gp
+: 1792499811:0;ls
+: 1792499862:0;tig
+: 1792500145:0;git pull --rebase
+: 1792500151:0;gco main
+: 1792500154:0;tig
+: 1792502577:0;cd  /opt/sanitizers-demo/ 
+: 1792502585:0;run-all
+: 1792502593:0;make run-all
+: 1792502603:0;ls
+: 1792502621:0;./run-all
+: 1792502624:0;ls
+: 1792502835:0;..
+: 1792502838:0;ls
+: 1792502843:0;cd sanitizers-demo
+: 1792502845:0;ls
+: 1792502854:0;list_targets
+: 1792502873:0;cmake --build /opt/sanitizers-demo --target all
+: 1792502904:0;cmake --build . --target help\
+
+: 1792502913:0;make run-all
+: 1792502935:0;run-all
+: 1792502978:0;cmake --build /opt/sanitizers-demo --target run-all
+: 1792503045:0;cmake --build build-gcc --target run-all
+: 1792503107:0;make clean
+: 1792503109:0;ls
+: 1792503121:0;cd CMakeFiles
+: 1792503122:0;ls
+: 1792503153:0;cd run-all.dir
+: 1792503154:0;ls
+: 1792503169:0;..
+: 1792503191:0;rm -rf sanitizers-demo/*
+: 1792503199:0;cd sanitizers-demo
+: 1792503200:0;ls
+: 1792503203:0;..
+: 1792503205:0;rm -rf sanitizers-demo/*
+: 1792503212:0;cd sanitizers-demo
+: 1792503214:0;ls
+: 1792503299:0;cmake -S ~/Documents/sanitizers-demo -B build-gcc
+: 1792503305:0;ls
+: 1792503339:0;cmake --build build-gcc 
+: 1792503371:0;cmake -S . -B build-clang -DCMAKE_CXX_COMPILER=clang++
+: 1792503402:0;cmake -S ~/Documents/sanitizers-demo -B build-clang -DCMAKE_CXX_COMPILER=clang++
+: 1792503425:0;cmake --build build-clang
+: 1792503442:0;cmake --build build-gcc --target run-all
+: 1792503482:0;./build-gcc/SignedIntegerOverflow
+: 1792503513:0;./build-gcc/HeapBufferOverflow
+: 1792503744:0;./build-gcc/MemoryLeak
+: 1792503940:0;./build-gcc/DataRace
+: 1792504028:0;./build-clang/DataRace
+: 1792504718:0;./build-clang/UninitializedRead
+: 1792505974:0;cd ~/Documents/sanitizers-demo
+: 1792505976:0;gst
+: 1792505983:0;ga .
+: 1792505990:0;git commit --amend --no-edit
+: 1792505993:0;gp --force-with-lease
+: 1792506033:0;gp
+: 1792506202:0;gp --force-with-lease
+: 1792506265:0;gst
+: 1792506268:0;ga .
+: 1792506275:0;git commit --amend --no-edit
+: 1792506277:0;gp --force-with-lease
+: 1792506280:0;tig
+: 1792566413:0;gst
+: 1792566416:0;ga .
+: 1792566426:0;git commit --amend --no-edit
+: 1792566430:0;gp --force-with-lease
+: 1792580544:0;cd  /opt/sanitizers-demo/ 
+: 1792580581:0;cmake -S ~/Documents/sanitizers-demo -B build-gcc
+: 1792580647:0;cmake --build . --target help\
+
+: 1792580666:0;ccmake
+: 1792580676:0;ccmake .
+: 1792580738:0;ccmake ~/Documents/sanitizers-demo
+: 1792580755:0;ccmake .
+: 1792580794:0;ccmake --build ~/Documents/sanitizers-demo --target help
+: 1792580809:0;cmake --build ~/Documents/sanitizers-demo --target help
+: 1792580836:0;cd build-gcc
+: 1792580841:0;ccmake .
+: 1792580861:0;cmake --build ~/Documents/sanitizers-demo --target help
+: 1792580873:0;cmake --build . --target help
+: 1792580887:0;tmux
+: 1792580892:0;cmake --build . --target help
+: 1792580936:0;cmake --build . --target run-all
+: 1792581013:0;cmake --build . --target help
+: 1792581028:0;cmake --build . --target run-Data*
+: 1792581036:0;cmake --build . --target run-Data
+: 1792581043:0;cmake --build . --target run-DataRace
+: 1792582326:0;cmake --build . --target help
+: 1792582346:0;cmake --build . --target run-MemoryLeak
+: 1792582353:0;..
+: 1792582395:0;cmake --build build-clang
+: 1792582406:0;cd build-clang
+: 1792582417:0;cmake --build . --target run-all
+: 1792582425:0;cmake --build . --target run-MemoryLeak
+: 1792582464:0;cd ~/Documents/sanitizers-demo
+: 1792582467:0;gst
+: 1792582470:0;ga .
+: 1792582477:0;git commit --amend --no-edit
+: 1792582483:0;gp --force-with-lease
+: 1792584107:0;..
+: 1792584115:0;cd host
+: 1792584121:0;git pull --rebase
+: 1792652210:0;git fetch origin --prune
+: 1792659679:0;..
+: 1792659680:0;ls
+: 1792659692:0;cd Documents
+: 1792659708:0;cd sanitizers-demo
+: 1792659757:0;l
+: 1792659759:0;ls
+: 1792659776:0;cd /opt
+: 1792659777:0;ls
+: 1792659781:0;cd sanitizers-demo
+: 1792659782:0;ls
+: 1792659795:0;cd build-clang
+: 1792659807:0;./UninitializedRead
+: 1792659838:0;..
+: 1792659851:0;./build-gcc/MemoryLeak
+: 1792659933:0;./build-gcc/DataRace
+: 1792659954:0;./build-clang/DataRace
+: 1792659988:0;./build-gcc/DataRace
+: 1792660050:0;./build-gcc/SignedIntegerOverflow
+: 1792662398:0;nvim zsh/.zshrc
+: 1792662434:0;nvim ~/dotfiles/install.sh
+: 1792673941:0;cd ~/host
+: 1792674046:0;gco develop
+: 1792674067:0;git fetch origin --prune
+: 1792674076:0;tig
+: 1792674093:0;git pull --rebase
+: 1792674818:0;git stash 
+: 1792674826:0;git pull --rebase
+: 1792674833:0;git stash pop
+: 1792675108:0;ga CORPULS/common/include/*
+: 1792675113:0;gst
+: 1792675156:0;git checkout -b TRI-23907
+: 1792675241:0;git commit -m "TRI-23907 : added/updated enums and data structures."
+: 1792675782:0;git push -u origin TRI-23907
+: 1792740946:0;tmux
+: 1792740953:0;C3Build 
+: 1792741402:0;gst 
+: 1792741434:0;ga CORPULS/common/man-*
+: 1792741458:0;ga CORPULS/corpuls0817/*
+: 1792741461:0;gst
+: 1792741492:0;git commit -m "TRI-23907 : Made consumers ready for the change."
+: 1792741508:0;gp
+: 1792748538:0;C3Build 
+: 1792750509:0;gst
+: 1792751270:0;gs
+: 1792751277:0;gst
+: 1792751298:0;ga CORPULS/sen*
+: 1792751310:0;ga CORPULS/common/sen*
+: 1792751580:0;git commit -m "TRI-23907 : Adopted rtd."
+: 1792751584:0;gp
+: 1792755632:0;gst
+: 1792755654:0;ga CORPULS/common/man-*
+: 1792755656:0;gst
+: 1792755672:0;ga CORPULS/common/include/*
+: 1792755674:0;gst
+: 1792755726:0;git commit -m "TRI-23907 : Handling JSON."
+: 1792757512:0;gp
+: 1793006006:0;C3Build 
+: 1793007093:0;tig
+: 1793008286:0;tmux
+: 1793008302:0;home_config
+: 1793008348:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793010665:0;git fetch origin --prune
+: 1793010676:0;git rebase --interactive origin/develop
+: 1793010694:0;git stash 
+: 1793010697:0;git rebase --interactive origin/develop
+: 1793010718:0;git stash pop
+: 1793010737:0;git apply 0001-commit-lan-patch\ 2.patch
+: 1793010757:0;C3Build 
+: 1793086920:0;gst
+: 1793086946:0;ga CORPULS/common/sen-ibp/*
+: 1793086954:0;ga CORPULS/common/man-blDrv/*
+: 1793086958:0;gst
+: 1793086967:0;tig
+: 1793087221:0;ga CORPULS/common/include/*
+: 1793087223:0;gst
+: 1793087247:0;git commit -m "TRI-23907 : Added tracing information."
+: 1793087258:0;gst
+: 1793087270:0;gco develop
+: 1793087283:0;gl --rebase
+: 1793087341:0;C3Build 
+: 1793087608:0;sudo dpkg -i ~/Downloads/code_1.143.1-1792691907_amd64.deb\
+
+: 1793090104:0;gco TRI-23907 
+: 1793091810:0;C3Build 
+: 1793093591:0;tmux
+: 1793093609:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793093616:0;home_config
+: 1793093625:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793093662:0;ATTACHDIMLOG | tee /home/milad/Documents/log-Dim.txt
+: 1793103853:0;gst
+: 1793103868:0;ga CORPULS/common/sen-ibp/*
+: 1793104008:0;git commit -m "TRI-23907 : fixed the pam restart problem with null handle."
+: 1793104013:0;tig
+: 1793104040:0;gst
+: 1793104046:0;tig
+: 1793104111:0;gp
+: 1793105456:0;gst
+: 1793108497:0;cd ~/dotfiles
+: 1793108499:0;ls
+: 1793108505:0;gst
+: 1793109397:0;C3Build 
+: 1793111125:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793111588:0;git stash 
+: 1793111595:0;gl rebase
+: 1793111625:0;git pull --rebase
+: 1793111644:0;git stash pop
+: 1793111665:0;ga scripts/Python/ble-vp-json.py
+: 1793111696:0;tig
+: 1793111747:0;git commit -m "added python script to read ble"
