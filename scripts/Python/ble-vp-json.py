@@ -21,6 +21,9 @@ words, numeric value, unit/display_unit codes, factor, offset, and optional IBP
 alias. value = decoded_raw / factor - offset, in unit (not display_unit).
 It is not the BLE wire JSON schema or its numeric encoding. SDK authorization
 errors are reported; this client does not supply SDK authentication secrets.
+GET_DEVICE_INFO uses the firmware's required SDK role name CWBTAPI; the serial
+and software fields still identify this Python client. Other names complete
+the handshake but are rejected by the firmware's outer SPP request dispatcher.
 Classic frames are spaced by at least --frame-gap seconds (default: 0.1) to
 mitigate the legacy receiver's one-EDCOMM-frame-per-SPP-payload assumption.
 This does not guarantee transport packet boundaries; device validation is needed.
@@ -148,7 +151,7 @@ class ClassicEdcomm:
         if command == 0x0001:
             response = struct.pack("<IIIB", 2, 1, 3, 0)
         else:
-            response = struct.pack("<II", 1, 3) + b"python-sdk\x001.0\x00Python SDK\x00"
+            response = struct.pack("<II", 1, 3) + b"python-sdk\x001.0\x00CWBTAPI\x00"
         await self.send(EDCOMM_RESPONSE, sequence, command, response)
         return command
 
