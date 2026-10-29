@@ -8401,3 +8401,40 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1793111665:0;ga scripts/Python/ble-vp-json.py
 : 1793111696:0;tig
 : 1793111747:0;git commit -m "added python script to read ble"
+: 1793111754:0;gp --force-with-lease
+: 1793114349:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793170368:0;./install.sh
+: 1793170416:0;nvim zsh/.zshrc
+: 1793170484:0;wtmux
+: 1793170487:0;tmux
+: 1793170511:0;cd ~/host
+: 1793170586:0;C3Build 
+: 1793172331:0;home_config
+: 1793172337:0;ATTACHPAMLOG | tee /home/milad/Documents/log-Pam.txt
+: 1793174626:0;gst
+: 1793175008:0;C3Build 
+: 1793175741:0;gst
+: 1793175774:0;ga CORPULS/common/include/*
+: 1793175786:0;ga CORPULS/common/man-blDrv/*
+: 1793175803:0;ga CORPULS/common/sen-ibp/*
+: 1793175819:0;ga CORPULS/common/lib-bte/*
+: 1793175821:0;gst
+: 1793175873:0;git commit -m "Fixed problems with SDK."
+: 1793175881:0;gp --force-with-lease
+: 1793256418:0;gst
+: 1793256422:0;git fetch origin --prune
+: 1793256431:0;git rebase --interactive origin/develop
+: 1793256568:0;gst
+: 1793256582:0;ga CORPULS/common/man-blDrv/BlDevGenericBle.c
+: 1793256591:0;git rebase --continue
+: 1793256604:0;C3Build 
+: 1793256759:0;gp --force-with-lease
+: 1793256770:0;tig
+: 1793257310:0;C3Build 
+: 1793259432:0;tig
+: 1793267340:0;tmux
+: 1793267359:0;cd ~/dotfiles
+: 1793267360:0;ls
+: 1793267366:0;gst
+: 1793267388:0;ga scripts/Python/ble-vp-json.py
+: 1793267409:0;git commit -m "updated the BT script."
