@@ -8438,3 +8438,105 @@ curl -v https://gitlab.corpuls.com:4567/v2/
 : 1793267366:0;gst
 : 1793267388:0;ga scripts/Python/ble-vp-json.py
 : 1793267409:0;git commit -m "updated the BT script."
+: 1791711914:0;gp
+: 1791838978:0;cd ~/Documents/RPC
+: 1791838980:0;gst
+: 1791838996:0;ga .
+: 1791839029:0;git commit -m "Introduced the coverage report generation targets."
+: 1791839044:0;cmake-format -i "src/cmake/Coverage.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/Coverage.cmake"
+: 1791839056:0;git commit -m "Introduced the coverage report generation targets."
+: 1791839061:0;gp
+: 1791839420:0;coverage_rpc_gcc
+: 1791917416:0;sudo dpkg -i ~/Downloads/code_1.141.1-1791833136_amd64.deb
+: 1791923063:0;build_rpc_clang_tidy_test
+: 1791923446:0;build_rpc_gcc_tidy_test
+: 1792007349:0;sudo dpkg -i ~/Downloads/code_1.141.2-1791980535_amd64.deb
+: 1792010544:0;update_script.sh
+: 1792019856:0;gst
+: 1792019864:0;ga .
+: 1792019899:0;git commit -m "Fixed the clang tidy check problems."
+: 1792019902:0;gp
+: 1792020231:0;tig
+: 1792092674:0;tmux
+: 1792092695:0;cd /opt/RPC-build-gcc
+: 1792092729:0;test_rpc_fast
+: 1792092762:0;test_rpc
+: 1792097016:0;cd ~/Downloads/
+: 1792097033:0;sudo dpkg -i ~/Downloads/code_1.141.2-1791980535_amd64.deb
+: 1792102243:0;tig
+: 1792180207:0;gst
+: 1792191866:0;tig
+: 1792354741:0;coverage_rpc_gcc
+: 1792356326:0;sudo dpkg -i ~/Downloads/code_1.142.0-1792035033_amd64.deb
+: 1792356513:0;coverage_rpc_gcc
+: 1792451355:0;cd /opt/RPC-build-gcc
+: 1792451360:0;cd ~/Documents/RPC
+: 1792451362:0;ls
+: 1792451368:0;tig
+: 1792611342:0;sudo dpkg -i ~/Downloads/code_1.143.0-1792533444_amd64.deb
+: 1792612353:0;tig
+: 1792785162:0;tmux
+: 1792785185:0;tig
+: 1792797102:0;tmux
+: 1792797120:0;tig
+: 1792799030:0;sudo dpkg -i ~/Downloads/code_1.143.1-1792691907_amd64.deb
+: 1792834914:0;tmux
+: 1792835368:0;tig
+: 1792876249:0;gst
+: 1792877373:0;ga .
+: 1792877391:0;git commit -m "Fixed the clang tidy check problems and refactored."
+: 1792877403:0;cmake-format -i "src/cmake/Tests.cmake" -c "/home/viserion/Documents/RPC/src/.cmake-format.yaml" && git add "src/cmake/Tests.cmake"
+: 1792877406:0;git commit -m "Fixed the clang tidy check problems and refactored."
+: 1792877415:0;gp
+: 1793111933:0;cd ~/dotfiles
+: 1793111938:0;gst
+: 1793111946:0;git stash
+: 1793111955:0;git pull --rebase
+: 1793111972:0;git stash pop
+: 1793111979:0;cd scripts/Python
+: 1793112042:0;pip install bleak
+: 1793112091:0;pip install --upgrade pip
+: 1793112133:0;nvim ble-vp-json.py
+: 1793112225:0;./ble-vp-json.py --scan
+: 1793112404:0;./ble-vp-json.py 0C:43:14:36:E6:4E --count 1 > vital-parameter.jsonl
+: 1793112432:0;./ble-vp-json.py 0C:43:14:36:E6:4E --list
+: 1793112457:0;./ble-vp-json.py --scan
+: 1793112521:0;./ble-vp-json.py 0C:43:14:36:E6:4E --list
+: 1793112765:0;./ble-vp-json.py 0C:43:14:36:E6:4E --count 1 > vital-parameter.jsonl
+: 1793112772:0;./ble-vp-json.py 0C:43:14:36:E6:4E --list
+: 1793113237:0;sudo sed -i 's/^#\?\s*Experimental = .*/Experimental = true/' /etc/bluetooth/main.conf
+: 1793113257:0;sudo systemctl restart bluetooth
+: 1793113280:0;./ble-vp-json.py 0C:43:14:36:E6:4E --list
+: 1793113292:0;./ble-vp-json.py 0C:43:14:36:E6:4E --count 1 > vital-parameter.jsonl
+: 1793172062:0;./ble-vp-json.py --scan
+: 1793173469:0;./ble-vp-json.py --help
+: 1793173497:0;./ble-vp-json.py 0C:43:14:36:E6:4E --count 1 > vital-parameter.jsonl
+: 1793173505:0;ls
+: 1793173528:0;nvim ./vital-parameter.jsonl
+: 1793173633:0;./ble-vp-json.py 0C:43:14:36:E6:4E --count 1 > vital-parameter.jsonl
+: 1793267540:0;..
+: 1793267553:0;gl
+: 1793267561:0;gst
+: 1793267586:0;git diff
+: 1793267693:0;git checkout -- scripts/Python/ble-vp-json.py
+: 1793267697:0;gst
+: 1793267717:0;git stash
+: 1793267721:0;gl
+: 1793267730:0;git stash pop
+: 1793268816:0;cd ~/dotfiles/scripts/Python\
+python3 ble-vp-json.py 0C:43:14:36:E6:4E --transport classic --pair --list --timeout 60\
+
+: 1793268827:0;548197
+: 1793268848:0;cd ~/dotfiles/scripts/Python\
+python3 ble-vp-json.py 0C:43:14:36:E6:4E --transport classic --pair --list --timeout 60\
+
+: 1793269054:0;python3 ble-vp-json.py 0C:43:14:36:E6:4E --transport classic --pair --list --timeout 60\
+
+: 1793269162:0;tmux
+: 1793269174:0;sudo btmon
+: 1793269270:0;bluetoothctl
+: 1793270420:0;gst
+: 1793270431:0;ga ble-vp-json.py
+: 1793270435:0;gst
+: 1793270439:0;..
+: 1793270462:0;git commit -m "updated the BT script 2."

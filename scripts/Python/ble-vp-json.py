@@ -529,7 +529,8 @@ def make_pairing_agent():
         @dbus_method()
         async def RequestConfirmation(self, device: DBusObjectPath, passkey: DBusUInt32) -> None:
             answer = await ask(f"Confirm that the device shows passkey {passkey:06d} (yes/no): ")
-            if answer.lower() not in ("y", "yes"):
+            # Typing the passkey itself also confirms it.
+            if answer.lower() not in ("y", "yes", f"{passkey:06d}"):
                 reject("passkey not confirmed")
 
         @dbus_method()
