@@ -8540,3 +8540,10 @@ python3 ble-vp-json.py 0C:43:14:36:E6:4E --transport classic --pair --list --tim
 : 1793270435:0;gst
 : 1793270439:0;..
 : 1793270462:0;git commit -m "updated the BT script 2."
+: 1793267416:0;gp --force-with-lease
+: 1793270601:0;gst
+: 1793270611:0;gl
+: 1793271024:0;gst
+: 1793271033:0;ga ble-vp-json.py
+: 1793271041:0;ga scripts/Python/ble-vp-json.py
+: 1793271054:0;git commit -m "updated the BT script 3."

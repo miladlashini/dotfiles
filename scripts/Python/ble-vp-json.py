@@ -21,6 +21,9 @@ words, numeric value, unit/display_unit codes, factor, offset, and optional IBP
 alias. value = decoded_raw / factor - offset, in unit (not display_unit).
 It is not the BLE wire JSON schema or its numeric encoding. SDK authorization
 errors are reported; this client does not supply SDK authentication secrets.
+Classic frames are spaced by at least --frame-gap seconds (default: 0.1) to
+mitigate the legacy receiver's one-EDCOMM-frame-per-SPP-payload assumption.
+This does not guarantee transport packet boundaries; device validation is needed.
 
 Examples (use the virtual environment's python if Bleak is not on PATH):
   ble-vp-json.py --scan
@@ -29,7 +32,7 @@ Examples (use the virtual environment's python if Bleak is not on PATH):
   ble-vp-json.py AA:BB:CC:DD:EE:FF --count 0 > vital-parameters.jsonl
     ble-vp-json.py --transport classic --scan
     ble-vp-json.py AA:BB:CC:DD:EE:FF --transport classic --pair --list --timeout 60
-    ble-vp-json.py AA:BB:CC:DD:EE:FF --transport classic --channel 4 --count 0
+    ble-vp-json.py AA:BB:CC:DD:EE:FF --transport classic --channel 6 --verbose --count 0
 
 Redirected stdout gets one complete JSON object per line, and the terminal
 (stderr) shows each snapshot as indented JSON. When stdout is the terminal,
@@ -102,15 +105,29 @@ def check_edcomm_status(command, status):
 
 
 class ClassicEdcomm:
-    def __init__(self, reader, writer, verbose=False):
+    def __init__(self, reader, writer, verbose=False, frame_gap=0.1):
         self.reader = reader
         self.writer = writer
         self.verbose = verbose
         self.sequence = 0
+        self.frame_gap = frame_gap
+        self.last_send = None
+        self.waiting_for = "device handshake"
 
     async def send(self, message_type, sequence, command, payload=b"", status=0):
+        loop = asyncio.get_running_loop()
+        if self.last_send is not None:
+            delay = self.frame_gap - (loop.time() - self.last_send)
+            if delay > 0:
+                await asyncio.sleep(delay)
+        if self.verbose:
+            print(
+                f"Classic TX type={message_type} seq={sequence} cmd=0x{command:04x} "
+                f"status=0x{status:04x} bytes={len(payload)}", file=sys.stderr,
+            )
         self.writer.write(edcomm_packet(message_type, sequence, command, payload, status))
         await self.writer.drain()
+        self.last_send = loop.time()
 
     async def receive(self):
         packet = await read_edcomm_packet(self.reader)
@@ -138,6 +155,8 @@ class ClassicEdcomm:
     async def handshake(self):
         seen = set()
         while seen != {0x0001, 0x0003}:
+            missing = ", ".join(f"0x{command:04x}" for command in sorted({0x0001, 0x0003} - seen))
+            self.waiting_for = f"device handshake request(s) {missing}"
             packet = await self.receive()
             message_type, _, command, status, _ = packet
             if message_type == EDCOMM_REQUEST:
@@ -150,6 +169,7 @@ class ClassicEdcomm:
     async def request(self, command):
         self.sequence = (self.sequence + 1) & 0xFF
         sequence = self.sequence
+        self.waiting_for = f"ACK/response to command 0x{command:04x}, seq={sequence} (no matching ACK received)"
         await self.send(EDCOMM_REQUEST, sequence, command)
         while True:
             packet = await self.receive()
@@ -165,6 +185,8 @@ class ClassicEdcomm:
                 return payload
             if message_type == EDCOMM_ACK:
                 check_edcomm_status(received_command, status)
+                if (received_sequence, received_command) == (sequence, command):
+                    self.waiting_for = f"response to command 0x{command:04x}, seq={sequence} (ACK received)"
 
 
 def decode_vp_information(payload):
@@ -380,12 +402,13 @@ async def run_classic(args):
         channel = args.channel if args.channel is not None else channels.pop()
         print(f"Connecting via Classic RFCOMM to {args.address}, channel {channel} ...", file=sys.stderr)
         classic_socket = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+        client = None
         try:
             classic_socket.setblocking(False)
             await asyncio.wait_for(asyncio.get_running_loop().sock_connect(classic_socket, (args.address, channel)), args.timeout)
             reader, writer = await asyncio.open_connection(sock=classic_socket)
             try:
-                client = ClassicEdcomm(reader, writer, args.verbose)
+                client = ClassicEdcomm(reader, writer, args.verbose, args.frame_gap)
                 await asyncio.wait_for(client.handshake(), args.timeout)
                 captured = 0
                 while args.count == 0 or captured < args.count:
@@ -403,7 +426,11 @@ async def run_classic(args):
                 with contextlib.suppress(OSError, asyncio.TimeoutError):
                     await asyncio.wait_for(writer.wait_closed(), args.timeout)
         except asyncio.TimeoutError as error:
-            raise RuntimeError("Classic connection/handshake/read timed out; check the SDK RFCOMM service and Classic bond") from error
+            pending = client.waiting_for if client is not None else "RFCOMM connection"
+            raise RuntimeError(
+                f"Classic timed out waiting for {pending}; check channel {channel} and device logs. "
+                "A silent timeout alone does not establish an SDK authentication failure."
+            ) from error
         except asyncio.IncompleteReadError as error:
             raise RuntimeError("Classic device disconnected before a complete EDCOMM packet arrived") from error
         finally:
@@ -693,6 +720,7 @@ def main(argv=None):
     parser.add_argument("address", nargs="?", help="Bluetooth device address from --scan")
     parser.add_argument("--transport", choices=("ble", "classic"), default="ble", help="Bluetooth transport (default: ble)")
     parser.add_argument("--channel", type=int, help="Classic SDK RFCOMM channel (1-30); otherwise discover using sdptool")
+    parser.add_argument("--frame-gap", type=positive_seconds, default=0.1, help="minimum seconds between Classic EDCOMM frames (default: 0.1)")
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--scan", action="store_true", help="scan for devices on the selected transport")
     modes.add_argument("--list", action="store_true", help="list BLE GATT characteristics or Classic RFCOMM services")
