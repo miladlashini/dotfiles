@@ -8550,3 +8550,20 @@ python3 ble-vp-json.py 0C:43:14:36:E6:4E --transport classic --pair --list --tim
 : 1793271057:0;gp
 : 1793271566:0;ga scripts/Python/ble-vp-json.py
 : 1793271574:0;git commit -m "updated the BT script 4."
+: 1793271579:0;gp
+: 1793349112:0;cd ~/host
+: 1793349115:0;gst
+: 1793349168:0;ga CORPULS/common/include/*
+: 1793349179:0;ga CORPULS/common/man-blDrv/BlDevGenericBle.c
+: 1793349191:0;ga TOOLS/decode-rtd/rtd_common.h
+: 1793349195:0;gst
+: 1793349231:0;git commit -m "TRI-23907 : review points."
+: 1793349247:0;gp --force-with-lease
+: 1793351499:0;gco develop
+: 1793351508:0;gl rebase
+: 1793351514:0;gl --rebase
+: 1793351521:0;tig
+: 1793627812:0;cd ~/dotfiles/
+: 1793627815:0;gst
+: 1793627850:0;ga scripts/Python/verify-classic-sdp.py
+: 1793627875:0;git commit -m " Sdp script added."
